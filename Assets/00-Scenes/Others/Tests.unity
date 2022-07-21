@@ -249,7 +249,7 @@ GameObject:
   - component: {fileID: 292318269}
   - component: {fileID: 292318268}
   m_Layer: 0
-  m_Name: lgtDiretional
+  m_Name: LightDiretional
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -344,7 +344,7 @@ GameObject:
   - component: {fileID: 1705294282}
   - component: {fileID: 1705294281}
   m_Layer: 0
-  m_Name: camMain
+  m_Name: CameraMain
   m_TagString: MainCamera
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
