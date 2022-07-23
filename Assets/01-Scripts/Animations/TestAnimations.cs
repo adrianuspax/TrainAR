@@ -16,12 +16,9 @@ public class TestAnimations : MonoBehaviour
     private Slider idleBlend;
     [SerializeField]
     private Slider breathing;
-
     [SerializeField]
     private Color pressedColor;
     private Color noPressedColor;
-
-    //private Trigger trigger;
 
     private const int IDLE = 0;
     private const int BORED = 1;
@@ -41,17 +38,13 @@ public class TestAnimations : MonoBehaviour
             AssignButtons(i);
         }
 
-        noPressedColor = gridButton[0].image.color;
+        noPressedColor = gridButton[1].image.color;
     }
 
     private void Start()
     {
-        
-    }
-
-    private void Update()
-    {
-        
+        gridButton[0].image.color = pressedColor;
+        gridPressed[0] = true;
     }
 
     private void GridFunction(int index)
@@ -75,8 +68,31 @@ public class TestAnimations : MonoBehaviour
                 gridPressed[i] = false;
             }
         }
-
+                
+        StartCoroutine(Cor_GridUIBehaviour(index));
+        
         GridFunction(index);
+    }
+
+    private IEnumerator Cor_GridUIBehaviour(int index)
+    {
+        float time;
+        bool isLoop;
+        time = animations.clipByIndex[index].length;
+        isLoop = animations.clipByIndex[index].isLooping;
+
+        if (isLoop)
+        {
+            yield return null;
+        }
+        else
+        {
+            yield return new WaitForSeconds(time);
+            gridButton[index].image.color = noPressedColor;
+            gridPressed[index] = false;
+            gridButton[0].image.color = pressedColor;
+            gridPressed[0] = true;
+        }
     }
 
     private void AssignButtons(int index)

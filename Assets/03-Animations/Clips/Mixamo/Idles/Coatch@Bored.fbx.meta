@@ -1,11 +1,11 @@
 fileFormatVersion: 2
-guid: 1836183a532faa64dbc2b331abda4360
+guid: e2d9f48a14090cf488c7f8c9ceee317f
 ModelImporter:
   serializedVersion: 21300
   internalIDToNameTable:
   - first:
       74: -203655887218126122
-    second: OffensiveIdle
+    second: Bored
   externalObjects: {}
   materials:
     materialImportMode: 2
@@ -36,25 +36,25 @@ ModelImporter:
     extraUserProperties: []
     clipAnimations:
     - serializedVersion: 16
-      name: OffensiveIdle
+      name: Bored
       takeName: mixamo.com
       internalID: 0
       firstFrame: 0
-      lastFrame: 128
+      lastFrame: 320
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
       cycleOffset: 0
       loop: 0
-      hasAdditiveReferencePose: 1
-      loopTime: 1
-      loopBlend: 1
-      loopBlendOrientation: 1
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
       loopBlendPositionY: 0
-      loopBlendPositionXZ: 1
+      loopBlendPositionXZ: 0
       keepOriginalOrientation: 0
       keepOriginalPositionY: 1
-      keepOriginalPositionXZ: 1
+      keepOriginalPositionXZ: 0
       heightFromFeet: 0
       mirror: 0
       bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
