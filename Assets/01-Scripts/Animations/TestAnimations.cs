@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine.UI;
 using UnityEngine;
+using TMPro;
 
 public class TestAnimations : MonoBehaviour
 {
@@ -18,38 +19,37 @@ public class TestAnimations : MonoBehaviour
     private Slider breathing;
     [SerializeField]
     private Color pressedColor;
+    [SerializeField]
     private Color noPressedColor;
-
-    private const int IDLE = 0;
-    private const int BORED = 1;
-    private const int OFFESINVE = 2;
-    private const int SQUAT = 3;
-    private const int BENTARMS = 4;
+    [SerializeField]
+    private GameObject buttonPrefab;
+    private TextMeshProUGUI[] tmpButton;
 
     private void Awake()
     {
         animations = this.GetComponent<CoatchAnimations>();
 
+        InstantiateButtons(animations.TotalCount);
+
         gridButton = new Button[gridHeader.childCount];
         gridPressed = new bool[gridButton.Length];
+        tmpButton = new TextMeshProUGUI[gridButton.Length];
 
         for (int i = 0; i < gridButton.Length; i++)
         {
             AssignButtons(i);
+            AssignTMPs(i);
         }
-
-        noPressedColor = gridButton[1].image.color;
     }
 
     private void Start()
     {
-        gridButton[0].image.color = pressedColor;
-        gridPressed[0] = true;
+
     }
 
     private void GridFunction(int index)
     {
-        animations.Animation((Trigger)index);
+        animations.StartAnimation(index);
     }
 
     private void GridUIBehaviour(int index)
@@ -61,16 +61,17 @@ public class TestAnimations : MonoBehaviour
             if (i == index && gridPressed[index])
             {
                 gridButton[index].image.color = pressedColor;
+                tmpButton[index].color = noPressedColor;
             }
             else
             {
                 gridButton[i].image.color = noPressedColor;
+                tmpButton[i].color = pressedColor;
                 gridPressed[i] = false;
             }
         }
-                
+
         StartCoroutine(Cor_GridUIBehaviour(index));
-        
         GridFunction(index);
     }
 
@@ -78,8 +79,8 @@ public class TestAnimations : MonoBehaviour
     {
         float time;
         bool isLoop;
-        time = animations.clipByIndex[index].length;
-        isLoop = animations.clipByIndex[index].isLooping;
+        time = animations.GetClipTime(index);
+        isLoop = animations.GetClipLooping(index);
 
         if (isLoop)
         {
@@ -95,9 +96,46 @@ public class TestAnimations : MonoBehaviour
         }
     }
 
+    private void InstantiateButtons(int amount)
+    {
+        for (int i = 0; i < amount; i++)
+        {
+            Instantiate(buttonPrefab, gridHeader);
+        }
+    }
+
     private void AssignButtons(int index)
     {
+        TextMeshProUGUI tmpButon;
+
         gridButton[index] = gridHeader.GetChild(index).GetComponent<Button>();
         gridButton[index].onClick.AddListener(() => GridUIBehaviour(index));
+
+        for (int i = 0; i < gridButton[index].transform.childCount; i++)
+        {
+            tmpButon = gridButton[index].transform.GetChild(i).GetComponent<TextMeshProUGUI>();
+
+            if (tmpButon != null)
+            {
+                tmpButon.text = animations.GetName(index);
+            }
+        }
+    }
+
+    private void AssignTMPs(int index)
+    {
+        TextMeshProUGUI tmpButton;
+        int childCount;
+        childCount = gridButton[index].transform.childCount;
+
+        for (int i = 0; i < childCount; i++)
+        {
+            tmpButton = gridButton[index].transform.GetChild(i).GetComponent<TextMeshProUGUI>();
+
+            if (tmpButton != null)
+            {
+                this.tmpButton[index] = tmpButton;
+            }
+        }
     }
 }
