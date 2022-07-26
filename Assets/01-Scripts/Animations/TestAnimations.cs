@@ -69,8 +69,13 @@ public class TestAnimations : MonoBehaviour
             }
         }
 
-        if (!gridPressed[index]) { IdleTriggered(); animations.StartAnimation(0); }
+        if (!gridPressed[index])
+        {
+            StartCoroutine(Cor_ButtonsWaiting(index));
+            animations.StartAnimation(0);
+        }
 
+        ExceptionsBehaviour();
         StartCoroutine(Cor_GridUIBehaviour(index));
     }
 
@@ -78,12 +83,26 @@ public class TestAnimations : MonoBehaviour
     {
         GridButtonsBehaviour(0);
 
-        foreach (Button buttons in gridButton)
+        for (int i = 1; i < gridButton.Length; i++)
         {
-            buttons.interactable = true;
+            gridButton[i].interactable = true;
+        }
+    }
+
+    public void ExceptionsBehaviour()
+    {
+        if (gridPressed[8] || gridPressed[9] || gridPressed[16])
+        {
+            gridButton[8].interactable = true;
+            gridButton[9].interactable = true;
+            gridButton[16].interactable = true;
         }
 
-        gridButton[0].interactable = false;
+        if (gridPressed[3] || gridPressed[4])
+        {
+            gridButton[3].interactable = true;
+            gridButton[4].interactable = true;
+        }
     }
 
     private void InstantiateButtons(int amount)
@@ -144,6 +163,21 @@ public class TestAnimations : MonoBehaviour
         {
             yield return new WaitForSeconds(time);
             IdleTriggered();
+        }
+    }
+
+    private IEnumerator Cor_ButtonsWaiting(int index)
+    {
+        float time;
+        time = animations.GetClipTime(index);
+
+        yield return new WaitForSeconds(time);
+
+        GridButtonsBehaviour(0);
+
+        for (int i = 1; i < gridButton.Length; i++)
+        {
+            gridButton[i].interactable = true;
         }
     }
 }
