@@ -101,15 +101,12 @@ public class CoatchAnimations : MonoBehaviour
     [Space(-10f, order = 1)]
     [Header("Blends", order = 2)]
     [Range(-1f, 1f, order = 3)]
-    [SerializeField] private float idleBlendFloat;
-    [Range(0f, 1f, order = 4)]
     [SerializeField] private float breathingFloat;
     [Space(-10f, order = 0)]
     [Header("Triggered", order = 1)]
     [SerializeField] private Trigger triggered;
 
-    private const string IDLEBLEND = "IdleBlend";
-    private const int BREATHING = 1;
+    private const string BREATHING = "BreathingBlend";
     private AnimationClip[] clipByIndex;
 
     private void Awake()
@@ -136,19 +133,12 @@ public class CoatchAnimations : MonoBehaviour
 
     private void Start()
     {
-        idleBlendFloat = 0.3f;
-        breathingFloat = 0f;
-    }
-
-    public void IdleBlend(float blend)
-    {
-        coachControl.SetFloat(IDLEBLEND, blend);
-        idleBlendFloat = blend;
+        Breathing(- 0.5f);
     }
 
     public void Breathing(float weight)
     {
-        coachControl.SetLayerWeight(BREATHING, weight);
+        coachControl.SetFloat(BREATHING, weight);
         breathingFloat = weight;
     }
 
