@@ -245,7 +245,7 @@ MonoBehaviour:
     type: 3}
   bicepCurlClip: {fileID: -203655887218126122, guid: 645675340609c914e8cff2109e413390,
     type: 3}
-  boxJumpClip: {fileID: -203655887218126122, guid: dc9ca120ec7644444a4b9288a099bcf4,
+  boxJumpClip: {fileID: 2184839216927646963, guid: dc9ca120ec7644444a4b9288a099bcf4,
     type: 3}
   burpeeStartClip: {fileID: -203655887218126122, guid: 3091234133ad4ff4da1c3fe212e4e57f,
     type: 3}
@@ -311,7 +311,6 @@ MonoBehaviour:
     type: 3}
   boredClip: {fileID: -203655887218126122, guid: e2d9f48a14090cf488c7f8c9ceee317f,
     type: 3}
-  idleBlendFloat: 0
   breathingFloat: 0
   triggered: 0
 --- !u!114 &241703388
@@ -327,9 +326,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gridHeader: {fileID: 1798838524}
-  gridButton: []
-  gridPressed: 
-  idleBlend: {fileID: 0}
   breathing: {fileID: 0}
   pressedColor: {r: 0, g: 0, b: 0, a: 1}
   noPressedColor: {r: 1, g: 1, b: 1, a: 1}
@@ -829,7 +825,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1798838523}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 

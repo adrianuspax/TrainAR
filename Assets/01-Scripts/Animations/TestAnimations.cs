@@ -9,12 +9,12 @@ public class TestAnimations : MonoBehaviour
     private CoatchAnimations animations;
     [SerializeField]
     private Transform gridHeader;
-    [SerializeField]
+    //[SerializeField]
     private Button[] gridButton;
-    [SerializeField]
+    //[SerializeField]
     private bool[] gridPressed;
-    [SerializeField]
-    private Slider idleBlend;
+    //[SerializeField]
+    private TextMeshProUGUI[] tmpButton;
     [SerializeField]
     private Slider breathing;
     [SerializeField]
@@ -23,7 +23,6 @@ public class TestAnimations : MonoBehaviour
     private Color noPressedColor;
     [SerializeField]
     private GameObject buttonPrefab;
-    private TextMeshProUGUI[] tmpButton;
 
     private void Awake()
     {
