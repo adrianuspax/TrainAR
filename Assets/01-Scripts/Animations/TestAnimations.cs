@@ -44,15 +44,10 @@ public class TestAnimations : MonoBehaviour
 
     private void Start()
     {
-
+        IdleTriggered();
     }
 
-    private void GridFunction(int index)
-    {
-        animations.StartAnimation(index);
-    }
-
-    private void GridUIBehaviour(int index)
+    private void GridButtonsBehaviour(int index)
     {
         gridPressed[index] = !gridPressed[index];
 
@@ -62,38 +57,33 @@ public class TestAnimations : MonoBehaviour
             {
                 gridButton[index].image.color = pressedColor;
                 tmpButton[index].color = noPressedColor;
+
+                if (index != 0) { animations.StartAnimation(index); }
             }
             else
             {
                 gridButton[i].image.color = noPressedColor;
+                gridButton[i].interactable = false;
                 tmpButton[i].color = pressedColor;
                 gridPressed[i] = false;
             }
         }
 
+        if (!gridPressed[index]) { IdleTriggered(); animations.StartAnimation(0); }
+
         StartCoroutine(Cor_GridUIBehaviour(index));
-        GridFunction(index);
     }
 
-    private IEnumerator Cor_GridUIBehaviour(int index)
+    public void IdleTriggered()
     {
-        float time;
-        bool isLoop;
-        time = animations.GetClipTime(index);
-        isLoop = animations.GetClipLooping(index);
+        GridButtonsBehaviour(0);
 
-        if (isLoop)
+        foreach (Button buttons in gridButton)
         {
-            yield return null;
+            buttons.interactable = true;
         }
-        else
-        {
-            yield return new WaitForSeconds(time);
-            gridButton[index].image.color = noPressedColor;
-            gridPressed[index] = false;
-            gridButton[0].image.color = pressedColor;
-            gridPressed[0] = true;
-        }
+
+        gridButton[0].interactable = false;
     }
 
     private void InstantiateButtons(int amount)
@@ -109,7 +99,7 @@ public class TestAnimations : MonoBehaviour
         TextMeshProUGUI tmpButon;
 
         gridButton[index] = gridHeader.GetChild(index).GetComponent<Button>();
-        gridButton[index].onClick.AddListener(() => GridUIBehaviour(index));
+        gridButton[index].onClick.AddListener(() => GridButtonsBehaviour(index));
 
         for (int i = 0; i < gridButton[index].transform.childCount; i++)
         {
@@ -136,6 +126,24 @@ public class TestAnimations : MonoBehaviour
             {
                 this.tmpButton[index] = tmpButton;
             }
+        }
+    }
+
+    private IEnumerator Cor_GridUIBehaviour(int index)
+    {
+        float time;
+        bool isLoop;
+        time = animations.GetClipTime(index);
+        isLoop = animations.GetClipLooping(index);
+
+        if (isLoop)
+        {
+            yield return null;
+        }
+        else
+        {
+            yield return new WaitForSeconds(time);
+            IdleTriggered();
         }
     }
 }
