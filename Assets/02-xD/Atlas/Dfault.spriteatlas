@@ -1,0 +1,70 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!687078895 &4343727234628468602
+SpriteAtlas:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Dfault
+  m_EditorData:
+    serializedVersion: 2
+    textureSettings:
+      serializedVersion: 2
+      anisoLevel: 1
+      compressionQuality: 50
+      maxTextureSize: 2048
+      textureCompression: 0
+      filterMode: 1
+      generateMipMaps: 0
+      readable: 0
+      crunchedCompression: 0
+      sRGB: 1
+    platformSettings:
+    - serializedVersion: 3
+      m_BuildTarget: Android
+      m_MaxTextureSize: 512
+      m_ResizeAlgorithm: 0
+      m_TextureFormat: 47
+      m_TextureCompression: 1
+      m_CompressionQuality: 50
+      m_CrunchedCompression: 0
+      m_AllowsAlphaSplitting: 0
+      m_Overridden: 1
+      m_AndroidETC2FallbackOverride: 0
+      m_ForceMaximumCompressionQuality_BC6H_BC7: 0
+    packingSettings:
+      serializedVersion: 2
+      padding: 4
+      blockOffset: 1
+      allowAlphaSplitting: 0
+      enableRotation: 0
+      enableTightPacking: 0
+      enableAlphaDilation: 0
+    secondaryTextureSettings: {}
+    variantMultiplier: 1
+    packables:
+    - {fileID: 102900000, guid: 613ce95f8b243ac468a35f83277fa232, type: 3}
+    bindAsDefault: 1
+    isAtlasV2: 0
+    cachedData: {fileID: 0}
+  m_MasterAtlas: {fileID: 0}
+  m_PackedSprites:
+  - {fileID: -9095717837082945937, guid: b45e18e09ae021c428892c14867f6346, type: 3}
+  - {fileID: -2413806693520163455, guid: 36b06fa118d8a8e40a2d83f9f941f0aa, type: 3}
+  - {fileID: 3625043607559282579, guid: 0b7097c44bacc0344b8428abb9c1a10a, type: 3}
+  - {fileID: 7482667652216324306, guid: 6da87bf57adf7a842851a8ceac70726f, type: 3}
+  - {fileID: -2135585597343286014, guid: 8959e28bca4d910428b73e1d22fdf693, type: 3}
+  - {fileID: -5177388603050735206, guid: 2462a24d16558c44f91f97fb9a8f827c, type: 3}
+  - {fileID: 2747690628134850419, guid: 02d7a48d4951656468666790c2554da6, type: 3}
+  m_PackedSpriteNamesToIndex:
+  - Capsule
+  - Circle
+  - Isometric Diamond
+  - Square
+  - Hexagon Pointed-Top
+  - 9-Sliced
+  - Hexagon Flat-Top
+  m_RenderDataMap: {}
+  m_Tag: Dfault
+  m_IsVariant: 0
