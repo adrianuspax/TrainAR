@@ -56,13 +56,13 @@ SpriteAtlas:
   - {fileID: 21300000, guid: 55091062304c21c43b8e2ce710928588, type: 3}
   - {fileID: 21300000, guid: 5c7deea223a69a046aba09d77b3fad10, type: 3}
   - {fileID: 21300000, guid: c203ddb2cd0167c4e81b99d62b306913, type: 3}
+  - {fileID: 21300000, guid: 25656fc2cb5e6ed4abe9175d143a5ee2, type: 3}
+  - {fileID: 21300000, guid: 945b0c43b89d6a344a5e57b8a69a8596, type: 3}
   - {fileID: 21300000, guid: 158f018327af6b24f9888663b464412e, type: 3}
   - {fileID: 21300000, guid: 5d3e1e4417c6bc246974ee497d585dcb, type: 3}
   - {fileID: 21300000, guid: a861ffc4d37ce064986a23cd68fcae21, type: 3}
   - {fileID: 21300000, guid: d7d2aff4b9131244f9940c7855c464de, type: 3}
   - {fileID: 21300000, guid: 877ad695a23c56343a7a2e898b689e5a, type: 3}
-  - {fileID: 21300000, guid: 9923d2a56e47a714dabb927cdbf6fdc2, type: 3}
-  - {fileID: 21300000, guid: 798cbd067a5c15f41b23b9d5497add44, type: 3}
   - {fileID: 21300000, guid: 1ba8de16797e3824688aa5206a7815bd, type: 3}
   - {fileID: 21300000, guid: 1ff357171d1453e40b14527e731ed192, type: 3}
   - {fileID: 21300000, guid: db59d5a7280eb5b4d887b64da5e7b6ac, type: 3}
@@ -71,7 +71,6 @@ SpriteAtlas:
   - {fileID: 21300000, guid: 3cc2e6a92bc26c24db7bc7757302ef04, type: 3}
   - {fileID: 21300000, guid: d6131f9a3cc15f74dace1433f8079181, type: 3}
   - {fileID: 21300000, guid: 688af6cbff630544cb04752a7316d588, type: 3}
-  - {fileID: 21300000, guid: 73e2de9c05eebe542bad405394461a7c, type: 3}
   - {fileID: 21300000, guid: 67cfef9cfb7a7c44a84088d7e0569d16, type: 3}
   - {fileID: 21300000, guid: c1f810cd76297c143a03dc228cd66d6e, type: 3}
   - {fileID: 21300000, guid: c4282eedac2ea23428bc26d1f1a83291, type: 3}
@@ -86,13 +85,13 @@ SpriteAtlas:
   - highlight_off
   - thumb_up
   - manage_accounts
+  - linear_scale
+  - expand_circle_left
   - search
   - settings
   - login
   - help_outline
   - help
-  - grade
-  - favorite_border
   - check_circle
   - report_problem
   - close
@@ -101,7 +100,6 @@ SpriteAtlas:
   - arrow_back
   - delete
   - touch_app
-  - expand_circle_down
   - do_not_disturb_on
   - view_in_ar
   - home
