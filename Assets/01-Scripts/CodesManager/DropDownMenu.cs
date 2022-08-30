@@ -21,21 +21,25 @@ public class DropDownMenu : MonoBehaviour
     [SerializeField] private ScrollRect dropDownScrollRect;
     [Space(-10, order = 0)]
     [Header("Panel Float", order = 1)]
-    [SerializeField] private Transform pivotPanel;
-    [SerializeField] private Transform toTarget;
+    [SerializeField] private Transform pivotCenterPanel;
     [SerializeField] private float velocityToReturn;
 
+    private Transform cameraTransform;
+    private Rigidbody cameraRigidBody;
     private bool panelDropDownOpen;
 
     private void Awake()
     {
         btnOpenDropDown.onClick.AddListener(ButtonOpenDropDown);
         btnCloseDropDown.onClick.AddListener(ButtonCloseDropDown);
+
+        cameraTransform = GameObject.FindWithTag("MainCamera").transform;
+        cameraRigidBody = GameObject.FindWithTag("MainCamera").GetComponent<Rigidbody>();
     }
 
     private void Start()
     {
-
+        Screen.sleepTimeout = SleepTimeout.NeverSleep;
     }
 
     private void Update()
@@ -70,11 +74,20 @@ public class DropDownMenu : MonoBehaviour
         }
     }
 
-    public void PanelFloat(float velocity)
+    /*public void PanelFloat(float velocity)
     {
         if (panelDropDownOpen)
-        { pivotPanel.position = Vector3.Lerp(pivotPanel.position, toTarget.position, velocity * Time.deltaTime); }
-    }
+        {
+            if (cameraRigidBody.IsSleeping())
+            {
+                pivotCenterPanel.localRotation = Quaternion.Lerp(pivotCenterPanel.localRotation, Quaternion.identity, Time.deltaTime * velocity * 5);
+            }
+            else
+            {
+                pivotCenterPanel.localRotation = Quaternion.Lerp(pivotCenterPanel.localRotation, cameraTransform.localRotation, Time.deltaTime / velocity);
+            }
+        }
+    }*/
 
     private IEnumerator Cor_ScrowViewPos(float time)
     {

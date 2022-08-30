@@ -1243,7 +1243,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 900123794}
   m_Direction: 2
   m_Value: 1
-  m_Size: 0.041583166
+  m_Size: 0.492485
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -2101,6 +2101,37 @@ RectTransform:
     type: 3}
   m_PrefabInstance: {fileID: 1283317974}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1109836895
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1109836896}
+  m_Layer: 0
+  m_Name: reference
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1109836896
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1109836895}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1155851401
 GameObject:
   m_ObjectHideFlags: 0
@@ -2200,7 +2231,7 @@ MonoBehaviour:
   m_MovementType: 1
   m_Elasticity: 0.25
   m_Inertia: 1
-  m_DecelerationRate: 1
+  m_DecelerationRate: 0.5
   m_ScrollSensitivity: 1
   m_Viewport: {fileID: 1420703633}
   m_HorizontalScrollbar: {fileID: 1926469284}
@@ -2867,6 +2898,7 @@ GameObject:
   - component: {fileID: 1354141929}
   - component: {fileID: 1354141928}
   - component: {fileID: 1354141927}
+  - component: {fileID: 1354141931}
   m_Layer: 0
   m_Name: ARcamMain
   m_TagString: MainCamera
@@ -2981,6 +3013,22 @@ Transform:
   m_Father: {fileID: 1659859599}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!54 &1354141931
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1354141925}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0
+  m_UseGravity: 0
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!1 &1420703632
 GameObject:
   m_ObjectHideFlags: 0
@@ -3946,9 +3994,8 @@ MonoBehaviour:
   dropDownOpenClip: {fileID: 7400000, guid: 89872bf865be59e49bdf94c5ce9ef3fd, type: 2}
   dropDownNullClip: {fileID: 7400000, guid: 07eb43fb58bf9694b9298488a10d70f5, type: 2}
   dropDownScrollRect: {fileID: 1160994451}
-  pivotPanel: {fileID: 439880266}
-  toTarget: {fileID: 0}
-  velocityToReturn: 0
+  pivotCenterPanel: {fileID: 1155851402}
+  velocityToReturn: 10
 --- !u!1001 &2094034477
 PrefabInstance:
   m_ObjectHideFlags: 0
