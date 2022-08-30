@@ -40,7 +40,7 @@ public class DropDownMenu : MonoBehaviour
 
     private void Update()
     {
-        PanelFloat(velocityToReturn);
+        //PanelFloat(velocityToReturn);
     }
 
     public void ButtonOpenDropDown()
