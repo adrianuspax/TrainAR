@@ -19,13 +19,13 @@ public class DropDownMenu : MonoBehaviour
     [Space(-10, order = 0)]
     [Header("Scrow View", order = 1)]
     [SerializeField] private ScrollRect dropDownScrollRect;
-    [Space(-10, order = 0)]
+    /*[Space(-10, order = 0)]
     [Header("Panel Float", order = 1)]
     [SerializeField] private Transform pivotCenterPanel;
     [SerializeField] private float velocityToReturn;
 
     private Transform cameraTransform;
-    private Rigidbody cameraRigidBody;
+    private Rigidbody cameraRigidBody;*/
     private bool panelDropDownOpen;
 
     private void Awake()
@@ -33,8 +33,7 @@ public class DropDownMenu : MonoBehaviour
         btnOpenDropDown.onClick.AddListener(ButtonOpenDropDown);
         btnCloseDropDown.onClick.AddListener(ButtonCloseDropDown);
 
-        cameraTransform = GameObject.FindWithTag("MainCamera").transform;
-        cameraRigidBody = GameObject.FindWithTag("MainCamera").GetComponent<Rigidbody>();
+        //cameraTransform = GameObject.FindWithTag("MainCamera").transform;
     }
 
     private void Start()
