@@ -160,6 +160,11 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -8146822442825264416, guid: 9570457303b36994dabee61093c947eb,
+        type: 3}
+      propertyPath: m_Lightmapping
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: -3410284751590280854, guid: 9570457303b36994dabee61093c947eb,
         type: 3}
       propertyPath: m_Icon
