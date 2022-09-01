@@ -1,0 +1,220 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!181963792 &2655988077585873504
+Preset:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: CoatchAnimations
+  m_TargetType:
+    m_NativeTypeID: 114
+    m_ManagedTypePPtr: {fileID: 11500000, guid: 706d1ea456dcd774497ddec2cfb1eb1b,
+      type: 3}
+    m_ManagedTypeFallback: 
+  m_Properties:
+  - target: {fileID: 0}
+    propertyPath: m_Enabled
+    value: 1
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: m_EditorHideFlags
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: m_EditorClassIdentifier
+    value: 
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: coachControl
+    value: 
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: airSquatClip
+    value: 
+    objectReference: {fileID: -203655887218126122, guid: 5f321a24707a12d459486cd23cf2639a,
+      type: 3}
+  - target: {fileID: 0}
+    propertyPath: airSquatBentArmsClip
+    value: 
+    objectReference: {fileID: -203655887218126122, guid: 6945d9f575cb97048a6f29160f1d3d46,
+      type: 3}
+  - target: {fileID: 0}
+    propertyPath: bicepCurlClip
+    value: 
+    objectReference: {fileID: -203655887218126122, guid: 645675340609c914e8cff2109e413390,
+      type: 3}
+  - target: {fileID: 0}
+    propertyPath: boxJumpClip
+    value: 
+    objectReference: {fileID: 2184839216927646963, guid: dc9ca120ec7644444a4b9288a099bcf4,
+      type: 3}
+  - target: {fileID: 0}
+    propertyPath: burpeeStartClip
+    value: 
+    objectReference: {fileID: -203655887218126122, guid: 3091234133ad4ff4da1c3fe212e4e57f,
+      type: 3}
+  - target: {fileID: 0}
+    propertyPath: burpeeClip
+    value: 
+    objectReference: {fileID: -203655887218126122, guid: 94a881f97f15a1f4ba373912138d6b93,
+      type: 3}
+  - target: {fileID: 0}
+    propertyPath: burpeeEndClip
+    value: 
+    objectReference: {fileID: -203655887218126122, guid: 7531f0b3c1523e043baf0e123dc9598a,
+      type: 3}
+  - target: {fileID: 0}
+    propertyPath: bicycleCrunchStartClip
+    value: 
+    objectReference: {fileID: -203655887218126122, guid: 8db78dde1582a1049bdeb67eb689553d,
+      type: 3}
+  - target: {fileID: 0}
+    propertyPath: bicycleCrunchClip
+    value: 
+    objectReference: {fileID: -203655887218126122, guid: 9d531b737d050b3439d1cac93200753c,
+      type: 3}
+  - target: {fileID: 0}
+    propertyPath: bicycleCrunchEndClip
+    value: 
+    objectReference: {fileID: -203655887218126122, guid: 4ca4ddf592e79984bbf0dc37995a97e3,
+      type: 3}
+  - target: {fileID: 0}
+    propertyPath: circleCrunchClip
+    value: 
+    objectReference: {fileID: -203655887218126122, guid: 867b985fe67719e42a8ff1c2d995f6d8,
+      type: 3}
+  - target: {fileID: 0}
+    propertyPath: jumpingJacksStartClip
+    value: 
+    objectReference: {fileID: -203655887218126122, guid: 4db02382f7e1d23409f81d82d2aabe1b,
+      type: 3}
+  - target: {fileID: 0}
+    propertyPath: jumpingJacksClip
+    value: 
+    objectReference: {fileID: -203655887218126122, guid: 3275a195b8fa8c24ca6dbe9fa6467e50,
+      type: 3}
+  - target: {fileID: 0}
+    propertyPath: jumpingJacksEndClip
+    value: 
+    objectReference: {fileID: -203655887218126122, guid: 645d6ce4218341e43963c57e354222d8,
+      type: 3}
+  - target: {fileID: 0}
+    propertyPath: pistolStartClip
+    value: 
+    objectReference: {fileID: -203655887218126122, guid: 23e54cf58cf91044f8d630e0c646132c,
+      type: 3}
+  - target: {fileID: 0}
+    propertyPath: pistolClip
+    value: 
+    objectReference: {fileID: -203655887218126122, guid: 51f3af15503038c40be393cde96039b9,
+      type: 3}
+  - target: {fileID: 0}
+    propertyPath: pistolEndClip
+    value: 
+    objectReference: {fileID: -203655887218126122, guid: 7239eb515348ccf46b1265a91afa8df5,
+      type: 3}
+  - target: {fileID: 0}
+    propertyPath: pikeWalkClip
+    value: 
+    objectReference: {fileID: -203655887218126122, guid: 9734fd5813b6cd44e8a8b9f370b413e0,
+      type: 3}
+  - target: {fileID: 0}
+    propertyPath: plankStartClip
+    value: 
+    objectReference: {fileID: -203655887218126122, guid: 0b51950100557f64ba5d1292ec49c1db,
+      type: 3}
+  - target: {fileID: 0}
+    propertyPath: plankClip
+    value: 
+    objectReference: {fileID: -203655887218126122, guid: 0f7825939b9f5014da6edf0d513e2f10,
+      type: 3}
+  - target: {fileID: 0}
+    propertyPath: plankEndClip
+    value: 
+    objectReference: {fileID: -203655887218126122, guid: 1e71bb3bb51a98849b3567220d1cb0b7,
+      type: 3}
+  - target: {fileID: 0}
+    propertyPath: pushUpStartClip
+    value: 
+    objectReference: {fileID: -203655887218126122, guid: 296d50d7b9396a543b9262580f9519a7,
+      type: 3}
+  - target: {fileID: 0}
+    propertyPath: pushUpClip
+    value: 
+    objectReference: {fileID: -203655887218126122, guid: acc2a7d1df52a294ba20aa1c3f54cc59,
+      type: 3}
+  - target: {fileID: 0}
+    propertyPath: pushUpEndClip
+    value: 
+    objectReference: {fileID: -203655887218126122, guid: be6c88c527558154e81dd05750d8cdd6,
+      type: 3}
+  - target: {fileID: 0}
+    propertyPath: quickStepsClip
+    value: 
+    objectReference: {fileID: -203655887218126122, guid: 209cf2b14e9561d45a91d933c0dab2e7,
+      type: 3}
+  - target: {fileID: 0}
+    propertyPath: situpStartClip
+    value: 
+    objectReference: {fileID: -203655887218126122, guid: 326b50ec2e0bbf643b74f9f06f52fa60,
+      type: 3}
+  - target: {fileID: 0}
+    propertyPath: situpClip
+    value: 
+    objectReference: {fileID: -203655887218126122, guid: 602cb0321b7bcc24ab560811e26461c3,
+      type: 3}
+  - target: {fileID: 0}
+    propertyPath: situpEndClip
+    value: 
+    objectReference: {fileID: -203655887218126122, guid: 03f2010e18eaf4145b94be43de91602c,
+      type: 3}
+  - target: {fileID: 0}
+    propertyPath: idle0Clip
+    value: 
+    objectReference: {fileID: -203655887218126122, guid: c6cdd2e130d1f6741badc4a745c3fe67,
+      type: 3}
+  - target: {fileID: 0}
+    propertyPath: idleClip
+    value: 
+    objectReference: {fileID: -203655887218126122, guid: 2ad17ee5162de4c46821bf16e865516f,
+      type: 3}
+  - target: {fileID: 0}
+    propertyPath: pantingClip
+    value: 
+    objectReference: {fileID: -203655887218126122, guid: 0574868c21e14914ebb9acb5aa6d5240,
+      type: 3}
+  - target: {fileID: 0}
+    propertyPath: breathingClip
+    value: 
+    objectReference: {fileID: -203655887218126122, guid: d00e5188cd7d27e4cb74df42ae5250ac,
+      type: 3}
+  - target: {fileID: 0}
+    propertyPath: transitionEnterClip
+    value: 
+    objectReference: {fileID: -203655887218126122, guid: 53e8d23b0fb80804eb6de9d58d92fb99,
+      type: 3}
+  - target: {fileID: 0}
+    propertyPath: transitionOutClip
+    value: 
+    objectReference: {fileID: -203655887218126122, guid: dc3ea7a7a3559d4428d40da662fcd1c3,
+      type: 3}
+  - target: {fileID: 0}
+    propertyPath: offensiveClip
+    value: 
+    objectReference: {fileID: -203655887218126122, guid: 1836183a532faa64dbc2b331abda4360,
+      type: 3}
+  - target: {fileID: 0}
+    propertyPath: boredClip
+    value: 
+    objectReference: {fileID: -203655887218126122, guid: e2d9f48a14090cf488c7f8c9ceee317f,
+      type: 3}
+  - target: {fileID: 0}
+    propertyPath: breathingFloat
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: triggered
+    value: 0
+    objectReference: {fileID: 0}
+  m_ExcludedProperties: []
