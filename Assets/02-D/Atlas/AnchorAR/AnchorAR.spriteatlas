@@ -1,0 +1,68 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!687078895 &4343727234628468602
+SpriteAtlas:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: AnchorAR
+  m_EditorData:
+    serializedVersion: 2
+    textureSettings:
+      serializedVersion: 2
+      anisoLevel: 1
+      compressionQuality: 50
+      maxTextureSize: 2048
+      textureCompression: 0
+      filterMode: 1
+      generateMipMaps: 0
+      readable: 0
+      crunchedCompression: 0
+      sRGB: 1
+    platformSettings:
+    - serializedVersion: 3
+      m_BuildTarget: Android
+      m_MaxTextureSize: 2048
+      m_ResizeAlgorithm: 0
+      m_TextureFormat: 47
+      m_TextureCompression: 1
+      m_CompressionQuality: 50
+      m_CrunchedCompression: 0
+      m_AllowsAlphaSplitting: 0
+      m_Overridden: 1
+      m_AndroidETC2FallbackOverride: 0
+      m_ForceMaximumCompressionQuality_BC6H_BC7: 0
+    packingSettings:
+      serializedVersion: 2
+      padding: 4
+      blockOffset: 1
+      allowAlphaSplitting: 0
+      enableRotation: 0
+      enableTightPacking: 0
+      enableAlphaDilation: 0
+    secondaryTextureSettings: {}
+    variantMultiplier: 1
+    packables:
+    - {fileID: 102900000, guid: f1c032fdd9ee0a14ea19e93bc74b3de9, type: 3}
+    bindAsDefault: 1
+    isAtlasV2: 0
+    cachedData: {fileID: 0}
+  m_MasterAtlas: {fileID: 0}
+  m_PackedSprites:
+  - {fileID: 21300000, guid: 054e3bc063927f2438f5ed0deab39688, type: 3}
+  - {fileID: 21300000, guid: 7276c2e1b87031a4ba09e58cb58a84c2, type: 3}
+  - {fileID: 21300000, guid: 9e8e79c92162a6c4c8ca4f48dc273fd6, type: 3}
+  - {fileID: 21300000, guid: 360798eae6658104bb05395ecb041dfa, type: 3}
+  - {fileID: 21300000, guid: cebd885c78c15fe45ba690179bacb6ac, type: 3}
+  - {fileID: 21300000, guid: 240f3ecc133922f41a7c88c0f11303a4, type: 3}
+  m_PackedSpriteNamesToIndex:
+  - arrow_drop_down
+  - 3d_rotation
+  - arrow_downward
+  - down
+  - play_arrow
+  - Star
+  m_RenderDataMap: {}
+  m_Tag: AnchorAR
+  m_IsVariant: 0
