@@ -23,9 +23,9 @@ SpriteAtlas:
     platformSettings:
     - serializedVersion: 3
       m_BuildTarget: Android
-      m_MaxTextureSize: 2048
+      m_MaxTextureSize: 1024
       m_ResizeAlgorithm: 0
-      m_TextureFormat: 47
+      m_TextureFormat: 13
       m_TextureCompression: 1
       m_CompressionQuality: 50
       m_CrunchedCompression: 0
@@ -51,59 +51,87 @@ SpriteAtlas:
   m_MasterAtlas: {fileID: 0}
   m_PackedSprites:
   - {fileID: 21300000, guid: 20a0eb00642f927459e3be13a61835cc, type: 3}
+  - {fileID: 21300000, guid: bf789f50378880142b7048ab7744d1c4, type: 3}
   - {fileID: 21300000, guid: 593c92a05a7a6314b88da70a93f6c816, type: 3}
+  - {fileID: 21300000, guid: eb437d014c805e8458b7026db953ef4d, type: 3}
+  - {fileID: 21300000, guid: b2f00302da6ffaf4da0e8c6a4570e616, type: 3}
   - {fileID: 21300000, guid: ff02733287b122e47b6ef724ea6f8d51, type: 3}
   - {fileID: 21300000, guid: 55091062304c21c43b8e2ce710928588, type: 3}
   - {fileID: 21300000, guid: 5c7deea223a69a046aba09d77b3fad10, type: 3}
   - {fileID: 21300000, guid: c203ddb2cd0167c4e81b99d62b306913, type: 3}
+  - {fileID: 21300000, guid: 0c9f16c293e848841b7e48a0ea7276e6, type: 3}
   - {fileID: 21300000, guid: 25656fc2cb5e6ed4abe9175d143a5ee2, type: 3}
+  - {fileID: 21300000, guid: baad5233023e986458dd4e395084f6c2, type: 3}
   - {fileID: 21300000, guid: 945b0c43b89d6a344a5e57b8a69a8596, type: 3}
+  - {fileID: 21300000, guid: a7983d632259ecb49adde4d7e48c3475, type: 3}
   - {fileID: 21300000, guid: 158f018327af6b24f9888663b464412e, type: 3}
+  - {fileID: 21300000, guid: 689de283576969244a4063f5561bcc98, type: 3}
+  - {fileID: 21300000, guid: d6468c047d0231f4f927a57e70a2fd49, type: 3}
   - {fileID: 21300000, guid: 5d3e1e4417c6bc246974ee497d585dcb, type: 3}
   - {fileID: 21300000, guid: a861ffc4d37ce064986a23cd68fcae21, type: 3}
   - {fileID: 21300000, guid: d7d2aff4b9131244f9940c7855c464de, type: 3}
+  - {fileID: 21300000, guid: b8027a156df40d64ea678d2f14145439, type: 3}
   - {fileID: 21300000, guid: 877ad695a23c56343a7a2e898b689e5a, type: 3}
   - {fileID: 21300000, guid: 1ba8de16797e3824688aa5206a7815bd, type: 3}
   - {fileID: 21300000, guid: 1ff357171d1453e40b14527e731ed192, type: 3}
   - {fileID: 21300000, guid: db59d5a7280eb5b4d887b64da5e7b6ac, type: 3}
   - {fileID: 21300000, guid: f51cfb78a834d1e448fdc4d5351c720b, type: 3}
+  - {fileID: 21300000, guid: 0af6dbd890f6f9f41be7af9ef5b7c8cd, type: 3}
   - {fileID: 21300000, guid: 8999d8f841b3a724b8a064c1265c2511, type: 3}
   - {fileID: 21300000, guid: 3cc2e6a92bc26c24db7bc7757302ef04, type: 3}
   - {fileID: 21300000, guid: d6131f9a3cc15f74dace1433f8079181, type: 3}
+  - {fileID: 21300000, guid: c737c5aacac9f0949bd8cb13d0c6de08, type: 3}
+  - {fileID: 21300000, guid: da4a142bc72e9e845894fcbb00f5a132, type: 3}
   - {fileID: 21300000, guid: 688af6cbff630544cb04752a7316d588, type: 3}
   - {fileID: 21300000, guid: 67cfef9cfb7a7c44a84088d7e0569d16, type: 3}
+  - {fileID: 21300000, guid: 63e08cadf6b7fa04599375dfaca20c23, type: 3}
   - {fileID: 21300000, guid: c1f810cd76297c143a03dc228cd66d6e, type: 3}
   - {fileID: 21300000, guid: c4282eedac2ea23428bc26d1f1a83291, type: 3}
   - {fileID: 21300000, guid: 6e2bc95e5b2440c46b328fa8c706f52c, type: 3}
+  - {fileID: 21300000, guid: 9a5087ef0b8dcb043a8d9eccec950465, type: 3}
   - {fileID: 21300000, guid: a0a028ef79184614e9663639cdf0e542, type: 3}
   - {fileID: 21300000, guid: 27a451ff8faee0b4ea2e2be27b51d39d, type: 3}
   - {fileID: 21300000, guid: bc54f2ffa60d83c49beedc8fc7305256, type: 3}
   m_PackedSpriteNamesToIndex:
   - loop
+  - Restore-Handler
   - info
+  - arrow_drop_down_circle-Handler
+  - circle-Hnadler
   - account_circle
   - highlight_off
   - thumb_up
   - manage_accounts
+  - quarter-Handler
   - linear_scale
+  - Input-Handler
   - expand_circle_left
+  - undo-Handler
   - search
+  - exit_to_app-Handle
+  - visibility-Handler
   - settings
   - login
   - help_outline
+  - visibility_off-Handler
   - help
   - check_circle
   - report_problem
   - close
   - exit_to_app
+  - closeB-Handler
   - logout
   - arrow_back
   - delete
+  - AR-Handle
+  - RestoreHandle
   - touch_app
   - do_not_disturb_on
+  - Circle-Handle
   - view_in_ar
   - home
   - arrow_back_ios
+  - control_point_duplicate-Handle
   - cancel
   - task_alt
   - refresh
