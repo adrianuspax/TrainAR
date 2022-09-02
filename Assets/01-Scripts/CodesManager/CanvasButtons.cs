@@ -16,9 +16,12 @@ public class CanvasButtons : MonoBehaviour
     [SerializeField] private Button btnBarR;
     [SerializeField] private Button btnBarC;
 
+    private AugmentedReality AR;
+
     private void Awake()
     {
         btnTopR.onClick.AddListener(CloseApplication);
+        AR = this.GetComponent<AugmentedReality>();
     }
 
     private void Start()
@@ -38,5 +41,10 @@ public class CanvasButtons : MonoBehaviour
         #else
             Application.Quit();
         #endif
+    }
+
+    public void SetCoachInPlace()
+    {
+        
     }
 }
