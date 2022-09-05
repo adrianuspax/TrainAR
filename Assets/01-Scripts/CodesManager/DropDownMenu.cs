@@ -30,7 +30,7 @@ public class DropDownMenu : MonoBehaviour
 
     private void Start()
     {
-        Screen.sleepTimeout = SleepTimeout.NeverSleep;
+
     }
 
     private void Update()

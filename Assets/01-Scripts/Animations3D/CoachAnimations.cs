@@ -24,12 +24,12 @@ public enum Trigger
     Situps = 16
 };
 
-public class CoatchAnimations : MonoBehaviour
+public class CoachAnimations : MonoBehaviour
 {
     [Header("ANIMATIONS", order = 0)]
     [Space(-10f, order = 1)]
     [Header("Animators", order = 2)]
-    [SerializeField] private Animator coachControl;
+    public Animator coachControl;
     [Space(-10f, order = 0)]
     [Header("CLIPS", order = 1)]
     [Space(-10f, order = 2)]
@@ -107,7 +107,10 @@ public class CoatchAnimations : MonoBehaviour
     [SerializeField] private Trigger triggered;
 
     private const string BREATHING = "BreathingBlend";
+    public const string COACH = "Coach";
     private AnimationClip[] clipByIndex;
+
+    private AugmentedReality AR;
 
     private void Awake()
     {
@@ -129,11 +132,13 @@ public class CoatchAnimations : MonoBehaviour
         clipByIndex[(int)Trigger.PushUp] = pushUpClip;
         clipByIndex[(int)Trigger.QuickSteps] = quickStepsClip;
         clipByIndex[(int)Trigger.Situps] = situpClip;
+
+        AR = this.GetComponent<AugmentedReality>();
     }
 
     private void Start()
     {
-        Breathing(- 0.5f);
+        //Breathing(- 0.5f);
     }
 
     public void Breathing(float weight)
@@ -172,6 +177,23 @@ public class CoatchAnimations : MonoBehaviour
     public string GetName(int index)
     {
         return GetTrigger(index).ToString();
+    }
+
+    public void AssignAnimator()
+    {
+        Animator control;
+
+        if (AR.CoachIsPlaced)
+        {
+            control = GameObject.FindGameObjectWithTag(COACH).GetComponent<Animator>();
+            coachControl = control;
+        }
+        else
+        {
+#if UNITY_EDITOR
+            Debug.Log("3D object not instantiated in scene!");
+#endif
+        }
     }
 
     public int TotalCount

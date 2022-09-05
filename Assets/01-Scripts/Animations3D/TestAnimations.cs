@@ -6,7 +6,7 @@ using TMPro;
 
 public class TestAnimations : MonoBehaviour
 {
-    private CoatchAnimations animations;
+    private CoachAnimations animations;
     [SerializeField]
     private Transform gridHeader;
     //[SerializeField]
@@ -26,7 +26,7 @@ public class TestAnimations : MonoBehaviour
 
     private void Awake()
     {
-        animations = this.GetComponent<CoatchAnimations>();
+        animations = this.GetComponent<CoachAnimations>();
 
         InstantiateButtons(animations.TotalCount);
 

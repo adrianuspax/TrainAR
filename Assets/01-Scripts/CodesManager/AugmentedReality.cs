@@ -13,20 +13,26 @@ public class AugmentedReality : MonoBehaviour
     [SerializeField] private Transform pool3Dpivot;
     [SerializeField] private GameObject coatch3D;
 
-    /*[HideInInspector]*/ public bool coachPlaced;
+    private bool coachPlaced;
     private bool anchorEnable;
     private Transform cameraPivot;
     private Vector3 anchorPosSaver;
     static List<ARRaycastHit> hits = new List<ARRaycastHit>();
     public const string ARCAMERA = "MainCamera";
 
+    private AnimationsManager Animations;
+    private CanvasButtons Buttons;
+
     private void Awake()
     {
         cameraPivot = GameObject.FindGameObjectWithTag(ARCAMERA).transform;
+        Animations = this.GetComponent<AnimationsManager>();
+        Buttons = this.GetComponent<CanvasButtons>();
     }
 
     private void Start()
     {
+        Screen.sleepTimeout = SleepTimeout.NeverSleep;
         centerVector = new Vector2(Screen.width * 0.5f, Screen.height * 0.5f);
     }
 
@@ -45,9 +51,12 @@ public class AugmentedReality : MonoBehaviour
 
         raycast = arRaycastManager.Raycast(centerVector, hits, TrackableType.PlaneWithinPolygon);
 
+        anchorEnable = raycast;
+        Animations.AnchorIsHit(raycast);
+        Buttons.ButtonSetCoachIntercatable = raycast;
+
         if (raycast)
         {
-            anchorEnable = true;
             hitPose = hits[0].pose;
             hitDistance = hits[0].distance;
 
@@ -63,17 +72,45 @@ public class AugmentedReality : MonoBehaviour
             pvtAnchorAR.localScale = new Vector3(hitDistance, hitDistance, hitDistance);
             pvtAnchorAR.SetPositionAndRotation(anchorPos, anchorRot);
 
-
-        }
-        else
-        {
-
+            if (coachPlaced)
+            {
+                coatch3D.transform.position = hitPose.position;
+            }
         }
     }
 
-    public void SetCoachAR(Vector3 pos)
+    public void SetCoachAR()
     {
-        coatch3D.transform.position = pos;
-        coachPlaced = true;
+        GameObject coach;
+
+        if (anchorEnable)
+        {
+            if (!coachPlaced)
+            {
+                coach = Instantiate(coatch3D, pool3Dpivot, false) as GameObject;
+                Animations.coach.AssignAnimator();
+                //coach.transform.SetParent(pool3Dpivot);
+                coach.transform.position = Vector3.zero;
+                coach.transform.localScale = new Vector3(1, 1, 1);
+                coatch3D.transform.position = anchorPosSaver;
+                coachPlaced = true;
+            }
+            else
+            {
+                coachPlaced = false;
+            }
+        }
+
+        Debug.Log("AnchorEnable = " + anchorEnable);
+        Debug.Log("coachPlaced = " + coachPlaced);
+        Debug.Log("anchorPosSaver = " + anchorPosSaver);
+    }
+
+    public bool CoachIsPlaced
+    {
+        get
+        {
+            return GameObject.FindWithTag("Coach");
+        }
     }
 }
