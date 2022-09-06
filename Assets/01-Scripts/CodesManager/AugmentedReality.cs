@@ -52,10 +52,6 @@ public class AugmentedReality : MonoBehaviour
 
         raycast = arRaycastManager.Raycast(centerVector, hits, TrackableType.PlaneWithinPolygon);
 
-        anchorEnable = raycast;
-        Animations.AnchorIsHit(raycast);
-        Buttons.ButtonSetCoachIntercatable = raycast;
-
         if (raycast)
         {
             hitPose = hits[0].pose;
@@ -78,14 +74,17 @@ public class AugmentedReality : MonoBehaviour
                 coatch3D.transform.position = hitPose.position;
             }
 
-            MyDebug.LogUpdate("isHit = " + raycast +
-                    "\ncoachPlaced = " + coachPlaced +
-                    "\nhitPose = " + hitPose +
-                    "\nhitDistance = " + hitDistance +
-                    "\nanchorPosSaver = " + anchorPosSaver +
-                    "\nanchorPos = " + anchorPos +
-                    "\nanchorRot = " + anchorRot);
+            MyDebug.LogUpdate("\nanchorPosSaver = " + anchorPosSaver +
+                              "\nhitPose = " + hitPose +
+                              "\nhitPose.position = " + hitPose.position +
+                              "\nhitDistance = " + hitDistance +
+                              "\nanchorPos = " + anchorPos +
+                              "\nanchorRot = " + anchorRot);
         }
+
+        anchorEnable = raycast;
+        Animations.AnchorIsHit(raycast);
+        Buttons.ButtonSetCoachIntercatable = raycast;
     }
 
     public void SetCoachAR()
@@ -96,7 +95,7 @@ public class AugmentedReality : MonoBehaviour
         {
             if (!coachPlaced)
             {
-                coach = Instantiate(coatch3D/*, pool3Dpivot, true*/) as GameObject;
+                coach = Instantiate(coatch3D) as GameObject;
                 Animations.coach.AssignAnimator();
                 coach.transform.SetParent(pool3Dpivot);
                 coach.transform.position = Vector3.zero;

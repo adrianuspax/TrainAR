@@ -22,7 +22,7 @@ public class AnimationsManager : MonoBehaviour
 
     private void Start()
     {
-
+        
     }
 
     private bool IsOnTheScene(string tag)
