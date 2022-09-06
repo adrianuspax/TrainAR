@@ -34,6 +34,7 @@ public class AugmentedReality : MonoBehaviour
     {
         Screen.sleepTimeout = SleepTimeout.NeverSleep;
         centerVector = new Vector2(Screen.width * 0.5f, Screen.height * 0.5f);
+        MyDebug.Log("centerVector = " + centerVector);
     }
 
     private void Update()
@@ -76,6 +77,14 @@ public class AugmentedReality : MonoBehaviour
             {
                 coatch3D.transform.position = hitPose.position;
             }
+
+            MyDebug.LogUpdate("isHit = " + raycast +
+                    "\ncoachPlaced = " + coachPlaced +
+                    "\nhitPose = " + hitPose +
+                    "\nhitDistance = " + hitDistance +
+                    "\nanchorPosSaver = " + anchorPosSaver +
+                    "\nanchorPos = " + anchorPos +
+                    "\nanchorRot = " + anchorRot);
         }
     }
 
@@ -87,9 +96,9 @@ public class AugmentedReality : MonoBehaviour
         {
             if (!coachPlaced)
             {
-                coach = Instantiate(coatch3D, pool3Dpivot, false) as GameObject;
+                coach = Instantiate(coatch3D/*, pool3Dpivot, true*/) as GameObject;
                 Animations.coach.AssignAnimator();
-                //coach.transform.SetParent(pool3Dpivot);
+                coach.transform.SetParent(pool3Dpivot);
                 coach.transform.position = Vector3.zero;
                 coach.transform.localScale = new Vector3(1, 1, 1);
                 coatch3D.transform.position = anchorPosSaver;
@@ -101,9 +110,11 @@ public class AugmentedReality : MonoBehaviour
             }
         }
 
-        Debug.Log("AnchorEnable = " + anchorEnable);
-        Debug.Log("coachPlaced = " + coachPlaced);
-        Debug.Log("anchorPosSaver = " + anchorPosSaver);
+        MyDebug.Log("anchorPosSaver = " + anchorPosSaver);
+        MyDebug.Log("coatch3D.transform.position = " + coatch3D.transform.position);
+        MyDebug.Log("AnchorEnable = " + anchorEnable);
+        MyDebug.Log("coachPlaced = " + coachPlaced);
+        MyDebug.Log("anchorPosSaver = " + anchorPosSaver);
     }
 
     public bool CoachIsPlaced

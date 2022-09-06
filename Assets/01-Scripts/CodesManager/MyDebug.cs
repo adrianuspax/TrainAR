@@ -1,0 +1,50 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.UI;
+
+public class MyDebug : MonoBehaviour
+{
+    [SerializeField] private bool DebugIsAtctivated;
+    [SerializeField] private Canvas canvasDebug;
+    [SerializeField] private Text debugText;
+    [SerializeField] private Text updateText;
+    [SerializeField] private Button closeButton;
+    private static Text staticText;
+    private static Text staticTextUpdate;
+
+    private void Awake()
+    {
+        closeButton.onClick.AddListener(Close);
+    }
+
+    private void Start()
+    {
+        if (DebugIsAtctivated)
+        {
+            staticText = debugText;
+            staticTextUpdate = updateText;
+        }
+        else
+        {
+            canvasDebug.enabled = false;
+            this.enabled = false;
+        }
+    }
+
+    public static void LogUpdate(object info)
+    {
+        staticTextUpdate.text = "UPDATE:\n" + info;
+    }
+
+    public static void Log(object info)
+    {
+        staticText.text += "\n" + info;
+    }
+
+    private void Close()
+    {
+        canvasDebug.enabled = false;
+        this.enabled = false;
+    }
+}

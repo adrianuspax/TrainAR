@@ -138,7 +138,7 @@ public class CoachAnimations : MonoBehaviour
 
     private void Start()
     {
-        //Breathing(- 0.5f);
+
     }
 
     public void Breathing(float weight)
@@ -187,6 +187,7 @@ public class CoachAnimations : MonoBehaviour
         {
             control = GameObject.FindGameObjectWithTag(COACH).GetComponent<Animator>();
             coachControl = control;
+            Breathing(-0.5f);
         }
         else
         {

@@ -43,3 +43,15 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: Debug
+    uniqueID: 2999531697
+    locked: 0
+  - name: Buttons
+    uniqueID: 706706875
+    locked: 0
+  - name: DropDown
+    uniqueID: 3627048245
+    locked: 0
+  - name: Animations
+    uniqueID: 2644158495
+    locked: 0
