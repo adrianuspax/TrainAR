@@ -50,25 +50,11 @@ SpriteAtlas:
     cachedData: {fileID: 0}
   m_MasterAtlas: {fileID: 0}
   m_PackedSprites:
-  - {fileID: 21300000, guid: 054e3bc063927f2438f5ed0deab39688, type: 3}
-  - {fileID: 21300000, guid: 7276c2e1b87031a4ba09e58cb58a84c2, type: 3}
-  - {fileID: 21300000, guid: 9460f846d5e681d4eb8d2f784afb6fd2, type: 3}
-  - {fileID: 21300000, guid: 9e8e79c92162a6c4c8ca4f48dc273fd6, type: 3}
-  - {fileID: 21300000, guid: 360798eae6658104bb05395ecb041dfa, type: 3}
-  - {fileID: 21300000, guid: cebd885c78c15fe45ba690179bacb6ac, type: 3}
-  - {fileID: 21300000, guid: 240f3ecc133922f41a7c88c0f11303a4, type: 3}
   - {fileID: 21300000, guid: a2fe6b9dc7a489e4eb8ec2c6961fedbb, type: 3}
   - {fileID: 21300000, guid: 8784811e4d1968344bdd14a802f444f5, type: 3}
   m_PackedSpriteNamesToIndex:
-  - arrow_drop_down
-  - 3d_rotation
-  - phone_android
-  - arrow_downward
-  - down
-  - play_arrow
-  - Star
-  - motion_photos_on
-  - fiber_manual_record
+  - RingOrbital
+  - circleSmall
   m_RenderDataMap: {}
   m_Tag: AnchorAR
   m_IsVariant: 0
