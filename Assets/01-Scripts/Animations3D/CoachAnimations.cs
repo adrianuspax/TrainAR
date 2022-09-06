@@ -1,7 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 
 public enum Trigger
 {
@@ -136,11 +135,6 @@ public class CoachAnimations : MonoBehaviour
         AR = this.GetComponent<AugmentedReality>();
     }
 
-    private void Start()
-    {
-
-    }
-
     public void Breathing(float weight)
     {
         coachControl.SetFloat(BREATHING, weight);
@@ -159,25 +153,10 @@ public class CoachAnimations : MonoBehaviour
         triggered = GetTrigger(index);
     }
 
-    public float GetClipTime(int index)
-    {
-        return clipByIndex[index].length;
-    }
-
-    public bool GetClipLooping(int index)
-    {
-        return clipByIndex[index].isLooping;
-    }
-
-    public Trigger GetTrigger(int index)
-    {
-        return (Trigger)index;
-    }
-
-    public string GetName(int index)
-    {
-        return GetTrigger(index).ToString();
-    }
+    public float GetClipTime(int index) => clipByIndex[index].length;
+    public bool GetClipLooping(int index) => clipByIndex[index].isLooping;
+    public Trigger GetTrigger(int index) => (Trigger)index;
+    public string GetName(int index) => GetTrigger(index).ToString();
 
     public void AssignAnimator()
     {
@@ -197,11 +176,5 @@ public class CoachAnimations : MonoBehaviour
         }
     }
 
-    public int TotalCount
-    {
-        get
-        {
-            return System.Enum.GetValues(typeof(Trigger)).Length;
-        }
-    }
+    public int TotalCount => System.Enum.GetValues(typeof(Trigger)).Length;
 }

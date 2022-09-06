@@ -28,16 +28,6 @@ public class DropDownMenu : MonoBehaviour
         btnCloseDropDown.onClick.AddListener(ButtonCloseDropDown);
     }
 
-    private void Start()
-    {
-
-    }
-
-    private void Update()
-    {
-
-    }
-
     public void ButtonOpenDropDown()
     {
         if (panelDropDownOpen)

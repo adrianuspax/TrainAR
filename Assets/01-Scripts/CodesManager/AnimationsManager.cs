@@ -20,11 +20,6 @@ public class AnimationsManager : MonoBehaviour
         if (IsOnTheScene(TagAnchor)) { anchorAnimator = GetAnimator(TagAnchor); }
     }
 
-    private void Start()
-    {
-        
-    }
-
     private bool IsOnTheScene(string tag)
     {
         return GameObject.FindWithTag(tag) != null;
@@ -36,9 +31,6 @@ public class AnimationsManager : MonoBehaviour
     }
 
     #region ANCHOR_AR
-    public void AnchorIsHit(bool isHit)
-    {
-        anchorAnimator.SetBool(ParameterAnchor, isHit);
-    }
+    public void AnchorIsHit(bool isHit) => anchorAnimator.SetBool(ParameterAnchor, isHit);
     #endregion
 }

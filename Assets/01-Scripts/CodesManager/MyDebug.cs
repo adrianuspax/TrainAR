@@ -16,30 +16,27 @@ public class MyDebug : MonoBehaviour
     private void Awake()
     {
         closeButton.onClick.AddListener(Close);
-    }
 
-    private void Start()
-    {
         if (DebugIsAtctivated)
         {
             staticText = debugText;
             staticTextUpdate = updateText;
+            return;
         }
         else
         {
-            canvasDebug.enabled = false;
-            this.enabled = false;
+            Close();
         }
     }
 
     public static void LogUpdate(object info)
     {
-        staticTextUpdate.text = "UPDATE:\n" + info;
+        staticTextUpdate.text = "UPDATE:\n" + info.ToString();
     }
 
     public static void Log(object info)
     {
-        staticText.text += "\n" + info;
+        staticText.text += "\n" + info.ToString();
     }
 
     private void Close()

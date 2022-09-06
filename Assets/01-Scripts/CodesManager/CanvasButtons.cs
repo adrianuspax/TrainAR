@@ -37,11 +37,6 @@ public class CanvasButtons : MonoBehaviour
         Sprites = this.GetComponent<ImagesManager>();
     }
 
-    private void Start()
-    {
-        
-    }
-
     public void CloseApplication()
     {
 #if UNITY_EDITOR
@@ -79,14 +74,7 @@ public class CanvasButtons : MonoBehaviour
 
     public bool ButtonSetCoachIntercatable
     {
-        get
-        {
-            return btnBarC.IsInteractable();
-        }
-
-        set
-        {
-            btnBarC.interactable = value;
-        }
+        get => btnBarC.IsInteractable();
+        set => btnBarC.interactable = value;
     }
 }

@@ -116,11 +116,5 @@ public class AugmentedReality : MonoBehaviour
         MyDebug.Log("anchorPosSaver = " + anchorPosSaver);
     }
 
-    public bool CoachIsPlaced
-    {
-        get
-        {
-            return GameObject.FindWithTag("Coach");
-        }
-    }
+    public bool CoachIsPlaced => GameObject.FindWithTag("Coach");
 }
