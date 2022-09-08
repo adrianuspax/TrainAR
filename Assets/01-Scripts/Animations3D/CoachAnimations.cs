@@ -100,16 +100,22 @@ public class CoachAnimations : MonoBehaviour
     [Space(-10f, order = 1)]
     [Header("Blends", order = 2)]
     [Range(-1f, 1f, order = 3)]
-    [SerializeField] private float breathingFloat;
+    [SerializeField, ReadOnly] private float breathingFloat;
     [Space(-10f, order = 0)]
     [Header("Triggered", order = 1)]
-    [SerializeField] private Trigger triggered;
+    [SerializeField, ReadOnly] private Trigger triggered;
+    [Space(-10f, order = 0)]
+    [Header("AnimationsClips Indexing", order = 1)]
+    [SerializeField, ReadOnly] private AnimationClip[] clipByIndex;
+    [Space(-10f, order = 0)]
+    [Header("Scripts", order = 1)]
+    [SerializeField, ReadOnly] private AugmentedReality AR;
 
     private const string BREATHING = "BreathingBlend";
     public const string COACH = "Coach";
-    private AnimationClip[] clipByIndex;
+    
 
-    private AugmentedReality AR;
+    
 
     private void Awake()
     {

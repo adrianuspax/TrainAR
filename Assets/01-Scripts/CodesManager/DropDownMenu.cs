@@ -20,7 +20,10 @@ public class DropDownMenu : MonoBehaviour
     [Header("Scrow View", order = 1)]
     [SerializeField] private ScrollRect dropDownScrollRect;
 
-    private bool panelDropDownOpen;
+    [Header("READY ONLY", order = 0)]
+    [Space(-10, order = 1)]
+    [Header("Variables", order = 2)]
+    [SerializeField, ReadOnly] private bool panelDropDownOpen;
 
     private void Awake()
     {

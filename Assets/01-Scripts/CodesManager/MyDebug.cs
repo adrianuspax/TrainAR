@@ -10,8 +10,8 @@ public class MyDebug : MonoBehaviour
     [SerializeField] private Text debugText;
     [SerializeField] private Text updateText;
     [SerializeField] private Button closeButton;
-    private static Text staticText;
-    private static Text staticTextUpdate;
+                     private static Text staticText;
+                     private static Text staticTextUpdate;
 
     private void Awake()
     {

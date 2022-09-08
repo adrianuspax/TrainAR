@@ -5,18 +5,20 @@ using UnityEngine;
 public class AnimationsManager : MonoBehaviour
 {
     [Header("ANCHOR", order = 0)]
-    private Animator anchorAnimator;
     [SerializeField] private AnimationClip anchorARIdleStart;
     [SerializeField] private AnimationClip anchorARNoHitStart;
     [SerializeField] private AnimationClip anchorDisable;
 
     [Header("BUTTON AR", order = 0)]
-    private Animator movePhoneAnimator;
     [SerializeField] private AnimationClip movePhoneStart;
     [SerializeField] private AnimationClip movePhoneNull;
 
-    [Header("COACH", order = 0)]
-    [HideInInspector] public CoachAnimations coach;
+    [Header("READY ONLY", order = 0)]
+    [Space(-10, order = 1)]
+    [Header("Animators", order = 2)]
+    [ReadOnly] public CoachAnimations coach;
+    [SerializeField, ReadOnly] private Animator anchorAnimator;
+    [SerializeField, ReadOnly] private Animator movePhoneAnimator;
 
     public const string TagAnchor = "aniAnchorAR";
     public const string TagButtonAR = "aniButtonAR";

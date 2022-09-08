@@ -1,6 +1,5 @@
 using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.XR.ARFoundation;
 using UnityEngine.XR.ARSubsystems;
@@ -8,37 +7,45 @@ using UnityEngine.XR.ARSubsystems;
 public class AugmentedReality : MonoBehaviour
 {
     [Header("AR MANAGEMENT", order = 0)]
-    [SerializeField] private Vector2 centerVector;
     [SerializeField] private ARRaycastManager arRaycastManager;
     [SerializeField] private Transform pvtAnchorAR;
     [SerializeField] private Transform pool3DPivot;
     [SerializeField] private GameObject coach3DPrefab;
-                     private GameObject coachInstantiated;
 
-    private bool coachPlaced;
-    private bool anchorIsHitting;
-    private Transform cameraPivot;
-    private Vector3 anchorPosSaver;
-    static List<ARRaycastHit> hits = new List<ARRaycastHit>();
+    [Header("READY ONLY", order = 0)]
+    [Space(-10, order = 1)]
+    [Header("Variables", order = 2)]
+    [SerializeField, ReadOnly] private Vector2 screenPoint;
+    [SerializeField, ReadOnly] private GameObject coachInstantiated;
+    [SerializeField, ReadOnly] private bool coachPlaced;
+    [SerializeField, ReadOnly] private bool anchorIsHitting;
+    [SerializeField, ReadOnly] private Transform cameraPivot;
+    [SerializeField, ReadOnly] private Vector3 anchorPosSaver;
+    [SerializeField, ReadOnly] private TrackableType trackableTypes;
+    [Space(-10, order = 0)]
+    [Header("Scrips")]
+    [SerializeField, ReadOnly] private AnimationsManager Animations;
+    [SerializeField, ReadOnly] private ButtonsManager Buttons;
+
+    static readonly List<ARRaycastHit> hitResults = new();
+
     public const string ARCAMERA = "MainCamera";
-
-    private AnimationsManager Animations;
-    private CanvasButtons Buttons;
 
     private void Awake()
     {
         cameraPivot = GameObject.FindGameObjectWithTag(ARCAMERA).transform;
         Animations = this.GetComponent<AnimationsManager>();
-        Buttons = this.GetComponent<CanvasButtons>();
+        Buttons = this.GetComponent<ButtonsManager>();
     }
 
     private void Start()
     {
         coachPlaced = false;
         anchorIsHitting = false;
+        trackableTypes = TrackableType.PlaneWithinPolygon;
 
         Screen.sleepTimeout = SleepTimeout.NeverSleep;
-        centerVector = new Vector2(Screen.width * 0.5f, Screen.height * 0.5f);
+        screenPoint = new Vector2(Screen.width * 0.5f, Screen.height * 0.5f);
     }
 
     private void Update()
@@ -51,19 +58,35 @@ public class AugmentedReality : MonoBehaviour
         Pose hitPose;
         Vector3 anchorPos;
         Quaternion anchorRot;
-        StateButtonAR raycastAndPlacedBasedState;
-        StateButtonAR placedBasedState;
+        StateButtonAR state;
+        //StateButtonAR placedBasedState;
         float hitDistance;
-        bool raycast;
+        bool isHit;
 
-        raycast = arRaycastManager.Raycast(centerVector, hits, TrackableType.PlaneWithinPolygon);
-        placedBasedState = CoachIsPlaced ? StateButtonAR.Refresh : StateButtonAR.ReadyToSet;
-        raycastAndPlacedBasedState = (raycast || CoachIsPlaced) ? placedBasedState : StateButtonAR.Uninteractable;
+        isHit = arRaycastManager.Raycast(screenPoint, hitResults, trackableTypes);
+        /*placedBasedState = CoachIsPlaced ? StateButtonAR.Refresh : StateButtonAR.ReadyToSet;
+        state = (isHit || CoachIsPlaced) ? placedBasedState : StateButtonAR.Uninteractable;*/
 
-        if (raycast)
+        /*if (isHit)
         {
-            hitPose = hits[0].pose;
-            hitDistance = hits[0].distance;
+            if (CoachIsPlaced)
+            {
+                state = StateButtonAR.Refresh;
+            }
+            else
+            {
+                state = StateButtonAR.ReadyToSet;
+            }
+        }
+        else
+        {
+            state = StateButtonAR.Uninteractable;
+        }*/
+
+        if (isHit)
+        {
+            hitPose = hitResults[0].pose;
+            hitDistance = hitResults[0].distance;
 
             if (hitDistance < 0.1f) { hitDistance = 0.1f; }
             if (hitDistance > 0.5f) { hitDistance = 0.5f; }
@@ -77,19 +100,31 @@ public class AugmentedReality : MonoBehaviour
             pvtAnchorAR.localScale = new Vector3(hitDistance, hitDistance, hitDistance);
             pvtAnchorAR.SetPositionAndRotation(anchorPos, anchorRot);
 
-            if (CoachIsPlaced) { coach3DPrefab.transform.position = hitPose.position; }
+            if (CoachIsPlaced)
+            {
+                coach3DPrefab.transform.position = hitPose.position;
+                state = StateButtonAR.Refresh;
+            }
+            else
+            {
+                state = StateButtonAR.ReadyToSet;
+            }
+        }
+        else
+        {
+            state = StateButtonAR.Uninteractable;
         }
 
-        anchorIsHitting = raycast;
-        Animations.AnchorIsHit(raycast);
-        Buttons.ButtonARBehaviour(raycastAndPlacedBasedState);
+        anchorIsHitting = isHit;
+        Animations.AnchorIsHit(isHit);
+        Buttons.CanvasMain.ButtonARBehaviour(state);
     }
 
     public void SetCoachAR()
     {
         if (CoachIsPlaced)
         {
-            ReplaceCoachAR();
+            ReplaceCoachAR(coachInstantiated);
         }
         else if (AnchorIsHitting)
         {
@@ -101,7 +136,7 @@ public class AugmentedReality : MonoBehaviour
         }
     }
 
-    public void ReplaceCoachAR()
+    public void ReplaceCoachAR(GameObject coachInstantiated)
     {
         if (coachInstantiated.activeInHierarchy)
         {

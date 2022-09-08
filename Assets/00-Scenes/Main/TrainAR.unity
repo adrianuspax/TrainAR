@@ -5397,6 +5397,7 @@ GameObject:
   - component: {fileID: 2045423150}
   - component: {fileID: 2045423151}
   - component: {fileID: 2045423152}
+  - component: {fileID: 2045423153}
   m_Layer: 0
   m_Name: CodeManager
   m_TagString: Untagged
@@ -5555,7 +5556,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ab08587e5b0985c41b511083eedc4c0a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  centerVector: {x: 0, y: 0}
+  screenPoint: {x: 0, y: 0}
   arRaycastManager: {fileID: 1659859601}
   pvtAnchorAR: {fileID: 986298669}
   pool3DPivot: {fileID: 1284178634}
@@ -5612,6 +5613,18 @@ MonoBehaviour:
   debugText: {fileID: 1115653835}
   updateText: {fileID: 375060615}
   closeButton: {fileID: 1773631307}
+--- !u!114 &2045423153
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2045423144}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2180d209ed932454084d997072bf0417, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &2048479392
 PrefabInstance:
   m_ObjectHideFlags: 0
