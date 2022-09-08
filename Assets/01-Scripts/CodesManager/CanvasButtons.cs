@@ -4,6 +4,13 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
+public enum StateButtonAR
+{
+    ReadyToSet = 0,
+    Uninteractable = 1,
+    Refresh = 2
+};
+
 public class CanvasButtons : MonoBehaviour
 {
     [Header("BUTTONS", order = 0)]
@@ -17,18 +24,20 @@ public class CanvasButtons : MonoBehaviour
     [SerializeField] private Button btnBarC;
     [SerializeField] private Button btnBarR;
 
+    public StateButtonAR stateButtonAR;
+
     private AugmentedReality AR;
     private DropDownMenu DropDownMenu;
     private AnimationsManager Animations;
     private ImagesManager Sprites;
 
-    private bool coachDropped;
+    //private bool coachSeted;
     private bool dropDownIsOpen;
 
     private void Awake()
     {
-        btnTopR.onClick.AddListener(CloseApplication);
-        btnBarC.onClick.AddListener(() => SetCoachInPlace(coachDropped));
+        btnTopR.onClick.AddListener(() => CloseApplication());
+        btnBarC.onClick.AddListener(() => AR.SetCoachAR());
         btnBarR.onClick.AddListener(() => CallDropDownMenu(dropDownIsOpen));
 
         AR = this.GetComponent<AugmentedReality>();
@@ -47,18 +56,56 @@ public class CanvasButtons : MonoBehaviour
 #endif
     }
 
-    public void SetCoachInPlace(bool isSet)
+    /*public void SetCoachInPlace(bool set)
     {
-        isSet = !isSet;
+        set = !set;
 
-        if (isSet) { AR.SetCoachAR(); }
-        if (!isSet) { SceneManager.LoadScene(SceneManager.GetActiveScene().name); }
+        if (set) { AR.SetCoachAR(); }
+        else { ButtonARBehaviour(StateButtonAR.Refresh); }
+        
+        //Animations.AnchorEnable(false);
+        
+        //if (!isSet) { SceneManager.LoadScene(SceneManager.GetActiveScene().name); }
 
-        btnBarC.image.sprite = isSet ? Sprites.refreshAR : Sprites.setCoach;
+        //btnBarC.image.sprite = isSet ? Sprites.refreshAR : Sprites.setCoach;
 
-        coachDropped = isSet;
+        coachSeted = set;
+    }*/
 
-        Debug.Log("SetCoachInPlace() called");
+    public void ButtonARBehaviour(StateButtonAR state)
+    {
+        switch (state)
+        {
+            case StateButtonAR.ReadyToSet:
+                Animations.AnchorVisible(true);
+                Animations.MovePhoneButton(false);
+                btnBarC.image.sprite = Sprites.setCoachAR;
+                ButtonSetCoachIntercatable = true;
+                GetCurrentStateButtonAR = StateButtonAR.ReadyToSet;
+                break;
+            case StateButtonAR.Uninteractable:
+                Animations.AnchorVisible(true);
+                Animations.MovePhoneButton(true);
+                ButtonSetCoachIntercatable = false;
+                GetCurrentStateButtonAR = StateButtonAR.Uninteractable;
+                break;
+            case StateButtonAR.Refresh:
+                Animations.AnchorVisible(false);
+                Animations.MovePhoneButton(false);
+                btnBarC.image.sprite = Sprites.replaceCoachAR;
+                ButtonSetCoachIntercatable = true;
+                GetCurrentStateButtonAR = StateButtonAR.Refresh;
+                break;
+            default:
+                Animations.AnchorVisible(true);
+                Animations.MovePhoneButton(false);
+                btnBarC.image.sprite = Sprites.setCoachAR;
+                ButtonSetCoachIntercatable = true;
+                GetCurrentStateButtonAR = StateButtonAR.ReadyToSet;
+                break;
+        }
+
+        MyDebug.LogUpdate(state);
     }
 
     public void CallDropDownMenu(bool called)
@@ -76,5 +123,11 @@ public class CanvasButtons : MonoBehaviour
     {
         get => btnBarC.IsInteractable();
         set => btnBarC.interactable = value;
+    }
+
+    public StateButtonAR GetCurrentStateButtonAR
+    {
+        get => GetCurrentStateButtonAR;
+        private set => GetCurrentStateButtonAR = value;
     }
 }

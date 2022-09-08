@@ -162,7 +162,7 @@ public class CoachAnimations : MonoBehaviour
     {
         Animator control;
 
-        if (AR.CoachIsPlaced)
+        if (AR.CoachIsInstantiated)
         {
             control = GameObject.FindGameObjectWithTag(COACH).GetComponent<Animator>();
             coachControl = control;

@@ -4,10 +4,8 @@ using UnityEngine;
 
 public class ImagesManager : MonoBehaviour
 {
-    public Sprite setCoach;
-    public Sprite refreshAR;
-    public Sprite openDDMenu;
-    public Sprite closeDDMenu;
-    public Sprite eyeOpen;
-    public Sprite eyeClose;
+    public Sprite setCoachAR;
+    public Sprite replaceCoachAR;
+    public Sprite visibilityOn;
+    public Sprite visibilityOff;
 }

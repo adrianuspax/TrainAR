@@ -1,0 +1,49 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
+  m_Name: Images
+  m_EditorClassIdentifier: 
+  m_GroupName: Images
+  m_Data:
+    m_SerializedData: []
+  m_GUID: 00584867b352cdd47a236ebed1c2e09c
+  m_SerializeEntries:
+  - m_GUID: c737c5aacac9f0949bd8cb13d0c6de08
+    m_Address: SetCoachButton
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - mainScene
+    - Images
+  - m_GUID: da4a142bc72e9e845894fcbb00f5a132
+    m_Address: RestoreCoachButton
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - mainScene
+    - Images
+  - m_GUID: b8027a156df40d64ea678d2f14145439
+    m_Address: visibilityOff
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - mainScene
+    - Images
+  - m_GUID: d6468c047d0231f4f927a57e70a2fd49
+    m_Address: visibilityOn
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - mainScene
+    - Images
+  m_ReadOnly: 0
+  m_Settings: {fileID: 11400000, guid: 92e309a11bd46934b92501db579e30aa, type: 2}
+  m_SchemaSet:
+    m_Schemas:
+    - {fileID: 11400000, guid: ff48ab0fae79a104bbb506708646c1d7, type: 2}
+    - {fileID: 11400000, guid: 0f5550911ab8f8049807b156c00e3754, type: 2}

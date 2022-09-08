@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.XR.ARFoundation;
 using UnityEngine.XR.ARSubsystems;
@@ -10,11 +11,12 @@ public class AugmentedReality : MonoBehaviour
     [SerializeField] private Vector2 centerVector;
     [SerializeField] private ARRaycastManager arRaycastManager;
     [SerializeField] private Transform pvtAnchorAR;
-    [SerializeField] private Transform pool3Dpivot;
-    [SerializeField] private GameObject coatch3D;
+    [SerializeField] private Transform pool3DPivot;
+    [SerializeField] private GameObject coach3DPrefab;
+                     private GameObject coachInstantiated;
 
     private bool coachPlaced;
-    private bool anchorEnable;
+    private bool anchorIsHitting;
     private Transform cameraPivot;
     private Vector3 anchorPosSaver;
     static List<ARRaycastHit> hits = new List<ARRaycastHit>();
@@ -32,6 +34,9 @@ public class AugmentedReality : MonoBehaviour
 
     private void Start()
     {
+        coachPlaced = false;
+        anchorIsHitting = false;
+
         Screen.sleepTimeout = SleepTimeout.NeverSleep;
         centerVector = new Vector2(Screen.width * 0.5f, Screen.height * 0.5f);
     }
@@ -46,10 +51,14 @@ public class AugmentedReality : MonoBehaviour
         Pose hitPose;
         Vector3 anchorPos;
         Quaternion anchorRot;
+        StateButtonAR raycastAndPlacedBasedState;
+        StateButtonAR placedBasedState;
         float hitDistance;
         bool raycast;
 
         raycast = arRaycastManager.Raycast(centerVector, hits, TrackableType.PlaneWithinPolygon);
+        placedBasedState = CoachIsPlaced ? StateButtonAR.Refresh : StateButtonAR.ReadyToSet;
+        raycastAndPlacedBasedState = (raycast || CoachIsPlaced) ? placedBasedState : StateButtonAR.Uninteractable;
 
         if (raycast)
         {
@@ -68,37 +77,44 @@ public class AugmentedReality : MonoBehaviour
             pvtAnchorAR.localScale = new Vector3(hitDistance, hitDistance, hitDistance);
             pvtAnchorAR.SetPositionAndRotation(anchorPos, anchorRot);
 
-            if (coachPlaced)
-            {
-                coatch3D.transform.position = hitPose.position;
-            }
-
-            /*MyDebug.LogUpdate("\nanchorPosSaver = " + anchorPosSaver +
-                              "\nhitPose = " + hitPose +
-                              "\nhitPose.position = " + hitPose.position +
-                              "\nhitDistance = " + hitDistance +
-                              "\nanchorPos = " + anchorPos +
-                              "\nanchorRot = " + anchorRot);*/
+            if (CoachIsPlaced) { coach3DPrefab.transform.position = hitPose.position; }
         }
 
-        anchorEnable = raycast;
+        anchorIsHitting = raycast;
         Animations.AnchorIsHit(raycast);
-        Buttons.ButtonSetCoachIntercatable = raycast;
+        Buttons.ButtonARBehaviour(raycastAndPlacedBasedState);
     }
 
     public void SetCoachAR()
     {
-        GameObject coach;
-
-        if (anchorEnable && !coachPlaced)
+        if (CoachIsPlaced)
         {
-            coach = Instantiate(coatch3D, pool3Dpivot) as GameObject;
+            ReplaceCoachAR();
+        }
+        else if (AnchorIsHitting)
+        {
+            coachInstantiated = Instantiate(this.coach3DPrefab, pool3DPivot);
             Animations.coach.AssignAnimator();
-            coach.transform.localScale = Vector3.one;
-            coach.transform.position = anchorPosSaver;
+            coachInstantiated.transform.localScale = Vector3.one;
+            coachInstantiated.transform.position = anchorPosSaver;
             coachPlaced = true;
         }
     }
 
-    public bool CoachIsPlaced => GameObject.FindWithTag("Coach");
+    public void ReplaceCoachAR()
+    {
+        if (coachInstantiated.activeInHierarchy)
+        {
+            coachInstantiated.SetActive(false);
+        }
+        else if(AnchorIsHitting)
+        {
+            coachInstantiated.transform.position = anchorPosSaver;
+            coachInstantiated.SetActive(true);
+        }
+    }
+
+    public bool CoachIsInstantiated => GameObject.FindWithTag("Coach");
+    public bool AnchorIsHitting => anchorIsHitting;
+    public bool CoachIsPlaced => coachPlaced;
 }

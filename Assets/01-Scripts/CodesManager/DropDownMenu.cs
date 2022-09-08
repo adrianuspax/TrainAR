@@ -7,7 +7,7 @@ public class DropDownMenu : MonoBehaviour
 {
     [Header("DROP-DOWN MENU BEHAVIOUR", order = 0)]
     [Space(-10, order = 1)]
-    [Header("Buttons", order = 2)]    
+    [Header("Buttons", order = 2)]
     [SerializeField] private Button btnOpenDropDown;
     [SerializeField] private Button btnCloseDropDown;
     [Space(-10, order = 0)]

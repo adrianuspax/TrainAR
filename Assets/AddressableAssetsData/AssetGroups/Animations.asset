@@ -1,0 +1,67 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
+  m_Name: Animations
+  m_EditorClassIdentifier: 
+  m_GroupName: Animations
+  m_Data:
+    m_SerializedData: []
+  m_GUID: 64b30624f3eaee1489f42ef5ebdf79ed
+  m_SerializeEntries:
+  - m_GUID: c96de7466ad311f4ba0b381e5c2f238f
+    m_Address: AnchorARIdle
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Animations
+    - mainScene
+  - m_GUID: b62367c3a3519044e8ca71d56a9d1c6a
+    m_Address: AnchorARIdleStart
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Animations
+    - mainScene
+  - m_GUID: b2b2c1c8db0350f4bb7cd8f2c527b7ad
+    m_Address: AnchorARNoHit
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Animations
+    - mainScene
+  - m_GUID: 17dc264b862b08e4f9fe53260add502a
+    m_Address: AnchorARNoHitStart
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - mainScene
+    - Animations
+  - m_GUID: a0b71aa3e4aae2e419bf83ae79003bd5
+    m_Address: dropDownClose
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - mainScene
+    - Animations
+  - m_GUID: 89872bf865be59e49bdf94c5ce9ef3fd
+    m_Address: dropDownOpen
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - mainScene
+    - Animations
+  - m_GUID: 07eb43fb58bf9694b9298488a10d70f5
+    m_Address: dropDownNull
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - mainScene
+    - Animations
+  m_ReadOnly: 0
+  m_Settings: {fileID: 11400000, guid: 92e309a11bd46934b92501db579e30aa, type: 2}
+  m_SchemaSet:
+    m_Schemas:
+    - {fileID: 11400000, guid: e5b8db4cc5ccd264c9210012d2f96f3d, type: 2}
+    - {fileID: 11400000, guid: a8af1c856a5afed4bb5a824ad47f5dcc, type: 2}
