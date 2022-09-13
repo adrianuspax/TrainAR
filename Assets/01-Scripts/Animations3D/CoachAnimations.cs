@@ -113,9 +113,6 @@ public class CoachAnimations : MonoBehaviour
 
     private const string BREATHING = "BreathingBlend";
     public const string COACH = "Coach";
-    
-
-    
 
     private void Awake()
     {

@@ -15,13 +15,14 @@ public class AugmentedReality : MonoBehaviour
     [Header("READY ONLY", order = 0)]
     [Space(-10, order = 1)]
     [Header("Variables", order = 2)]
-    [SerializeField, ReadOnly] private Vector2 screenPoint;
-    [SerializeField, ReadOnly] private GameObject coachInstantiated;
     [SerializeField, ReadOnly] private bool coachPlaced;
     [SerializeField, ReadOnly] private bool anchorIsHitting;
+    [SerializeField, ReadOnly] private Vector2 screenPoint;
+    [SerializeField, ReadOnly] private GameObject coachInstantiated;
     [SerializeField, ReadOnly] private Transform cameraPivot;
     [SerializeField, ReadOnly] private Vector3 anchorPosSaver;
     [SerializeField, ReadOnly] private TrackableType trackableTypes;
+    [SerializeField, ReadOnly] private StateButtonAR stateButtonAR;
     [Space(-10, order = 0)]
     [Header("Scrips")]
     [SerializeField, ReadOnly] private AnimationsManager Animations;
@@ -58,30 +59,10 @@ public class AugmentedReality : MonoBehaviour
         Pose hitPose;
         Vector3 anchorPos;
         Quaternion anchorRot;
-        StateButtonAR state;
-        //StateButtonAR placedBasedState;
         float hitDistance;
         bool isHit;
 
         isHit = arRaycastManager.Raycast(screenPoint, hitResults, trackableTypes);
-        /*placedBasedState = CoachIsPlaced ? StateButtonAR.Refresh : StateButtonAR.ReadyToSet;
-        state = (isHit || CoachIsPlaced) ? placedBasedState : StateButtonAR.Uninteractable;*/
-
-        /*if (isHit)
-        {
-            if (CoachIsPlaced)
-            {
-                state = StateButtonAR.Refresh;
-            }
-            else
-            {
-                state = StateButtonAR.ReadyToSet;
-            }
-        }
-        else
-        {
-            state = StateButtonAR.Uninteractable;
-        }*/
 
         if (isHit)
         {
@@ -103,28 +84,33 @@ public class AugmentedReality : MonoBehaviour
             if (CoachIsPlaced)
             {
                 coach3DPrefab.transform.position = hitPose.position;
-                state = StateButtonAR.Refresh;
             }
-            else
-            {
-                state = StateButtonAR.ReadyToSet;
-            }
-        }
-        else
-        {
-            state = StateButtonAR.Uninteractable;
         }
 
         anchorIsHitting = isHit;
         Animations.AnchorIsHit(isHit);
-        Buttons.CanvasMain.ButtonARBehaviour(state);
+        Buttons.CanvasMain.ButtonARBehaviour(stateButtonAR, isHit);
     }
 
-    public void SetCoachAR()
+    public void PlaceCoachAR()
     {
+        Vector3 vectorCorrection;
+
         if (CoachIsPlaced)
         {
-            ReplaceCoachAR(coachInstantiated);
+            if (coachInstantiated.activeInHierarchy)
+            {
+                coachInstantiated.SetActive(false);
+                stateButtonAR = StateButtonAR.ReadyToSet;
+                Animations.AnchorVisible(true);
+            }
+            else if (AnchorIsHitting)
+            {
+                coachInstantiated.transform.position = anchorPosSaver;
+                coachInstantiated.SetActive(true);
+                stateButtonAR = StateButtonAR.Refresh;
+                Animations.AnchorVisible(false);
+            }
         }
         else if (AnchorIsHitting)
         {
@@ -133,20 +119,13 @@ public class AugmentedReality : MonoBehaviour
             coachInstantiated.transform.localScale = Vector3.one;
             coachInstantiated.transform.position = anchorPosSaver;
             coachPlaced = true;
+            stateButtonAR = StateButtonAR.Refresh;
+            Animations.AnchorVisible(false);
         }
-    }
 
-    public void ReplaceCoachAR(GameObject coachInstantiated)
-    {
-        if (coachInstantiated.activeInHierarchy)
-        {
-            coachInstantiated.SetActive(false);
-        }
-        else if(AnchorIsHitting)
-        {
-            coachInstantiated.transform.position = anchorPosSaver;
-            coachInstantiated.SetActive(true);
-        }
+        coachInstantiated.transform.LookAt(cameraPivot);
+        vectorCorrection = new Vector3(0, coachInstantiated.transform.rotation.eulerAngles.y, 0);
+        coachInstantiated.transform.rotation = Quaternion.Euler(vectorCorrection);
     }
 
     public bool CoachIsInstantiated => GameObject.FindWithTag("Coach");

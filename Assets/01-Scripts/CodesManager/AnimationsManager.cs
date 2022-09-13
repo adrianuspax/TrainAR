@@ -39,6 +39,14 @@ public class AnimationsManager : MonoBehaviour
     public void AnchorVisible(bool isVisible) => anchorAnimator.SetBool(ParameterAnchorEnable, isVisible);
     #endregion
     #region BUTTON_AR
-    public void MovePhoneButton(bool isPlaying) => movePhoneAnimator.Play(isPlaying ? movePhoneStart.name : movePhoneNull.name);
+    public void MovePhoneButton(bool isPlaying)
+    {
+        movePhoneAnimator.enabled = isPlaying;
+
+        if (movePhoneAnimator.enabled)
+        {
+            movePhoneAnimator.Play(movePhoneStart.name);
+        }
+    }
     #endregion
 }

@@ -27,8 +27,8 @@ public class DropDownMenu : MonoBehaviour
 
     private void Awake()
     {
-        btnOpenDropDown.onClick.AddListener(ButtonOpenDropDown);
-        btnCloseDropDown.onClick.AddListener(ButtonCloseDropDown);
+        btnOpenDropDown.onClick.AddListener(() => ButtonOpenDropDown());
+        btnCloseDropDown.onClick.AddListener(() => ButtonCloseDropDown());
     }
 
     public void ButtonOpenDropDown()
