@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -108,6 +109,9 @@ public class CoachAnimations : MonoBehaviour
     [Header("AnimationsClips Indexing", order = 1)]
     [SerializeField, ReadOnly] private AnimationClip[] clipByIndex;
     [Space(-10f, order = 0)]
+    [Header("Booleans", order = 1)]
+    [SerializeField, ReadOnly] private bool AnimationStarted;
+    [Space(-10f, order = 0)]
     [Header("Scripts", order = 1)]
     [SerializeField, ReadOnly] private AugmentedReality AR;
 
@@ -148,12 +152,16 @@ public class CoachAnimations : MonoBehaviour
     {
         coachControl.SetTrigger(trigger.ToString());
         triggered = trigger;
+
+        AnimationStarted = !(trigger == 0);
     }
 
     public void StartAnimation(int index)
     {
         coachControl.SetTrigger(((Trigger)index).ToString());
         triggered = GetTrigger(index);
+
+        AnimationStarted = !(index == 0);
     }
 
     public float GetClipTime(int index) => clipByIndex[index].length;
@@ -180,4 +188,5 @@ public class CoachAnimations : MonoBehaviour
     }
 
     public int TotalCount => System.Enum.GetValues(typeof(Trigger)).Length;
+    public bool IsStarted => AnimationStarted;
 }

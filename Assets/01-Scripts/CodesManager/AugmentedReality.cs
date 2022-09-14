@@ -44,6 +44,7 @@ public class AugmentedReality : MonoBehaviour
         coachPlaced = false;
         anchorIsHitting = false;
         trackableTypes = TrackableType.PlaneWithinPolygon;
+        Buttons.CanvasMain.ButtonDDMInteraction = false;
 
         Screen.sleepTimeout = SleepTimeout.NeverSleep;
         screenPoint = new Vector2(Screen.width * 0.5f, Screen.height * 0.5f);
@@ -126,6 +127,7 @@ public class AugmentedReality : MonoBehaviour
         coachInstantiated.transform.LookAt(cameraPivot);
         vectorCorrection = new Vector3(0, coachInstantiated.transform.rotation.eulerAngles.y, 0);
         coachInstantiated.transform.rotation = Quaternion.Euler(vectorCorrection);
+        Buttons.CanvasMain.ButtonDDMInteraction = CoachIsInstantiated;
     }
 
     public bool CoachIsInstantiated => GameObject.FindWithTag("Coach");

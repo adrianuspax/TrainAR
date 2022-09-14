@@ -74,18 +74,18 @@ public class CanvasButtons : MonoBehaviour
         }
 
         condition = CurrentStateButtonAR == StateButtonAR.Refresh || isInteractable;
-        ButtonSetCoachIsIntercatable = condition;
+        ButtonSetCoachInteraction = condition && !Animations.coach.IsStarted;
+        //ButtonSetCoachInteraction = Animations.coach.AnimationIsStarted;
 
-        if (ButtonSetCoachIsIntercatable)
+        if (ButtonSetCoachInteraction)
         {
             btnBarC.image.rectTransform.localScale = Vector3.one;
             btnBarC.image.rectTransform.localRotation = Quaternion.Euler(Vector3.zero);
             btnBarC.image.rectTransform.anchoredPosition = Vector3.zero;
         }
 
-        Animations.MovePhoneButton(!ButtonSetCoachIsIntercatable);
+        Animations.MovePhoneButton(!condition);
         stateButtonAR = state;
-        MyDebug.LogUpdate("Button AR State: " + state + " // isIntercatable = " + isInteractable);
     }
 
     public void CallDropDownMenu(bool called)
@@ -99,10 +99,16 @@ public class CanvasButtons : MonoBehaviour
         dropDownIsOpen = called;
     }
 
-    public bool ButtonSetCoachIsIntercatable
+    public bool ButtonSetCoachInteraction
     {
         get => btnBarC.IsInteractable();
-        private set => btnBarC.interactable = value;
+        set => btnBarC.interactable = value;
+    }
+
+    public bool ButtonDDMInteraction
+    {
+        get => btnBarR.IsInteractable();
+        set => btnBarR.interactable = value;
     }
 
     public StateButtonAR CurrentStateButtonAR
