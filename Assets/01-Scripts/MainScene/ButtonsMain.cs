@@ -11,7 +11,7 @@ public enum StateButtonAR
     Refresh = 1
 };
 
-public class CanvasButtons : MonoBehaviour
+public class ButtonsMain : MonoBehaviour
 {
     [Header("BUTTONS", order = 0)]
     [Space(-10, order = 1)]
@@ -32,7 +32,7 @@ public class CanvasButtons : MonoBehaviour
     [Header("Scripts", order = 2)]
     [SerializeField, ReadOnly] private AugmentedReality AR;
     [SerializeField, ReadOnly] private DropDownMenu DropDownMenu;
-    [SerializeField, ReadOnly] private AnimationsManager Animations;
+    [SerializeField, ReadOnly] private AnimationsMain Animations;
     [SerializeField, ReadOnly] private ImagesManager Sprites;
 
     private bool dropDownIsOpen;
@@ -44,7 +44,7 @@ public class CanvasButtons : MonoBehaviour
         btnBarR.onClick.AddListener(() => CallDropDownMenu(dropDownIsOpen));
 
         AR = this.GetComponent<AugmentedReality>();
-        Animations = this.GetComponent<AnimationsManager>();
+        Animations = this.GetComponent<AnimationsMain>();
         DropDownMenu = this.GetComponent<DropDownMenu>();
         Sprites = this.GetComponent<ImagesManager>();
     }

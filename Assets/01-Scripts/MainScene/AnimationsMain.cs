@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class AnimationsManager : MonoBehaviour
+public class AnimationsMain : MonoBehaviour
 {
     [Header("ANCHOR", order = 0)]
     [SerializeField] private AnimationClip anchorARIdleStart;

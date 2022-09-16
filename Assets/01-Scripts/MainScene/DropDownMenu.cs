@@ -36,12 +36,12 @@ public class DropDownMenu : MonoBehaviour
     [Space(-10, order = 1)]
     [Header("Scripts", order = 2)]
     [SerializeField, ReadOnly] private ButtonsManager Buttons;
-    [SerializeField, ReadOnly] private AnimationsManager Animations;
+    [SerializeField, ReadOnly] private AnimationsMain Animations;
 
     private void Awake()
     {
         Buttons = this.GetComponent<ButtonsManager>();
-        Animations = this.GetComponent<AnimationsManager>();
+        Animations = this.GetComponent<AnimationsMain>();
 
         btnOpenDropDown.onClick.AddListener(() => ButtonOpenDropDown());
         btnCloseDropDown.onClick.AddListener(() => ButtonCloseDropDown());

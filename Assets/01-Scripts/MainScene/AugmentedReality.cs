@@ -25,7 +25,7 @@ public class AugmentedReality : MonoBehaviour
     [SerializeField, ReadOnly] private StateButtonAR stateButtonAR;
     [Space(-10, order = 0)]
     [Header("Scrips")]
-    [SerializeField, ReadOnly] private AnimationsManager Animations;
+    [SerializeField, ReadOnly] private AnimationsMain Animations;
     [SerializeField, ReadOnly] private ButtonsManager Buttons;
 
     static readonly List<ARRaycastHit> hitResults = new();
@@ -35,7 +35,7 @@ public class AugmentedReality : MonoBehaviour
     private void Awake()
     {
         cameraPivot = GameObject.FindGameObjectWithTag(ARCAMERA).transform;
-        Animations = this.GetComponent<AnimationsManager>();
+        Animations = this.GetComponent<AnimationsMain>();
         Buttons = this.GetComponent<ButtonsManager>();
     }
 
