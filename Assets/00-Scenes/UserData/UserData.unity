@@ -664,7 +664,7 @@ GameObject:
   m_Component:
   - component: {fileID: 110784996}
   m_Layer: 0
-  m_Name: Field3
+  m_Name: Footer3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -7597,7 +7597,7 @@ GameObject:
   m_Component:
   - component: {fileID: 993186487}
   m_Layer: 0
-  m_Name: Field1
+  m_Name: Footer1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -8223,7 +8223,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1117998973}
   m_Layer: 0
-  m_Name: Field4
+  m_Name: Footer4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -8397,9 +8397,9 @@ GameObject:
   m_Component:
   - component: {fileID: 1127046626}
   - component: {fileID: 1127046629}
-  - component: {fileID: 1127046627}
   - component: {fileID: 1127046628}
   - component: {fileID: 1127046630}
+  - component: {fileID: 1127046627}
   m_Layer: 0
   m_Name: CodeManager
   m_TagString: Untagged
@@ -8453,7 +8453,7 @@ MonoBehaviour:
   saveButton: {fileID: 1376320792}
   cancelButton: {fileID: 165022774}
   currentPage: 0
-  currentField: 0
+  currentFooter: 0
   Buttons: {fileID: 0}
   UserDataManager: {fileID: 0}
   UserDataAnimations: {fileID: 0}
@@ -8470,9 +8470,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pagesHeader: {fileID: 90876050}
-  fieldsHeader: {fileID: 577803303}
+  footerHeader: {fileID: 577803303}
   page: []
-  field: []
+  footer: []
   UserDataAnimations: {fileID: 0}
 --- !u!114 &1127046630
 MonoBehaviour:
@@ -8486,9 +8486,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 07625073b02112b4b83f55768080de7a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pageNullClip: {fileID: 7400000, guid: 036828beec5e1144a9747199651723f5, type: 2}
   pageEnterClip: {fileID: 7400000, guid: acf139c64cd11f94f98ede6a31cde04b, type: 2}
   pageOutClip: {fileID: 7400000, guid: 19e46546933307448bf22fa09f7fab8a, type: 2}
+  footerAnimator: {fileID: 305537778}
+  footerNullClip: {fileID: 7400000, guid: dac7e9af9c4bde24f9e4da269530ea7c, type: 2}
+  footerEnterClip: {fileID: 7400000, guid: 721e64f60505185449e3521a2e965cca, type: 2}
+  footerSaveClip: {fileID: 7400000, guid: bee67f21daaf356489e3ebd7c100447b, type: 2}
+  footerCancelClip: {fileID: 7400000, guid: b48359fcfc646ce48891695e97041304, type: 2}
   animatorsPages: []
   UserDataManager: {fileID: 0}
 --- !u!1 &1130995706
@@ -8793,7 +8797,7 @@ GameObject:
   - component: {fileID: 1213865381}
   - component: {fileID: 1213865380}
   m_Layer: 0
-  m_Name: MoreArea
+  m_Name: BlocksArea
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -9321,7 +9325,7 @@ MonoBehaviour:
   m_Transition: 1
   m_Colors:
     m_NormalColor: {r: 0.98039216, g: 0.3019608, b: 0.3254902, a: 1}
-    m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_HighlightedColor: {r: 0.98039216, g: 0.3019608, b: 0.3254902, a: 1}
     m_PressedColor: {r: 0.47843137, g: 0.14901961, b: 0.16078432, a: 1}
     m_SelectedColor: {r: 0.98039216, g: 0.3019608, b: 0.3254902, a: 1}
     m_DisabledColor: {r: 0.5803922, g: 0.45882353, b: 0.4117647, a: 0.78431374}
@@ -10269,7 +10273,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1505936400}
   m_Layer: 0
-  m_Name: Field2
+  m_Name: Footer2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -12105,8 +12109,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4294045676
-  m_fontColor: {r: 0.9254902, g: 0.9372549, b: 0.94509804, a: 1}
+    rgba: 4283649530
+  m_fontColor: {r: 0.98039216, g: 0.3019608, b: 0.3254902, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -12130,7 +12134,7 @@ MonoBehaviour:
   m_fontSizeMin: 50
   m_fontSizeMax: 100
   m_fontStyle: 0
-  m_HorizontalAlignment: 1
+  m_HorizontalAlignment: 2
   m_VerticalAlignment: 4096
   m_textAlignment: 65535
   m_characterSpacing: 0

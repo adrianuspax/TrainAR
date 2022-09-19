@@ -2,7 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PagesAndFields : MonoBehaviour
+public class PagesAndFields
+    : MonoBehaviour
 {
     [Header("HEADERS", order = 0)]
     [Space(-10, order = 1)]
@@ -10,7 +11,7 @@ public class PagesAndFields : MonoBehaviour
     [SerializeField] private Transform pagesHeader;
     [Space(-10, order = 0)]
     [Header("Header Fields", order = 1)]
-    [SerializeField] private Transform fieldsHeader;
+    [SerializeField] private Transform footerHeader;
 
     [Header("READY ONLY", order = 0)]
     [Space(-10, order = 1)]
@@ -18,10 +19,10 @@ public class PagesAndFields : MonoBehaviour
     [ReadOnly, SerializeField] private GameObject[] page;
     [Space(-10, order = 0)]
     [Header("Fields", order = 1)]
-    [ReadOnly, SerializeField] private GameObject[] field;
+    [ReadOnly, SerializeField] private GameObject[] footer;
     [Space(-10, order = 0)]
     [Header("Scripts", order = 1)]
-    [ReadOnly, SerializeField] private UserDataAnimations UserDataAnimations;
+    [ReadOnly, SerializeField] private AnimationsManager Animations;
 
 
     public const int PAGE1 = 1;
@@ -31,31 +32,53 @@ public class PagesAndFields : MonoBehaviour
     public const int PAGE5 = 5;
     public const int PAGE6 = 6;
 
-    public const int FIELD1 = 1;
-    public const int FIELD2 = 2;
-    public const int FIELD3 = 3;
-    public const int FIELD4 = 4;
+    public const int FOOTER1 = 1;
+    public const int FOOTER2 = 2;
+    public const int FOOTER3 = 3;
+    public const int FOOTER4 = 4;
 
     private void Awake()
     {
         page = AssignGameObjects(pagesHeader);
-        field = AssignGameObjects(fieldsHeader);
+        footer = AssignGameObjects(footerHeader);
 
-        UserDataAnimations = this.GetComponent<UserDataAnimations>();
-        UserDataAnimations.AnimatorsPage = UserDataAnimations.AssignAnimatorsPages(page);
+        Animations = this.GetComponent<AnimationsManager>();
+        Animations.UserData.AnimatorsPage = Animations.UserData.AssignAnimatorsPages(page);
     }
 
     private void Start()
     {
         foreach (GameObject pages in page) { pages.SetActive(false); }
+        foreach (GameObject footers in footer) { footers.SetActive(false); }
 
         PageActivation(PAGE1);
-        FieldActivation(FIELD1);
+        //FooterActivation(FOOTER1);
     }
 
     public void PageActivation(int pageNumberToActive)
     {
         StartCoroutine(Cor_PageActivation(pageNumberToActive));
+    }
+
+    public void FooterActivation(int footerNumberToActive)
+    {
+        int index;
+        index = footerNumberToActive - 1;
+
+        if (index < TotalFooters && index >= 0)
+        {
+            foreach (GameObject footers in footer)
+            {
+                footers.SetActive(false);
+            }
+
+            footer[index].SetActive(true);
+            Animations.UserData.PlayFooterEnterClip();
+        }
+        else
+        {
+            Debug.LogError("Footer Activation: Parameter value out of range. You moke!" + "// footerNumberToActive = " + footerNumberToActive);
+        }
     }
 
     private IEnumerator Cor_PageActivation(int pageNumber)
@@ -67,13 +90,13 @@ public class PagesAndFields : MonoBehaviour
         {
             if (pageNumber > 1)
             {
-                UserDataAnimations.PlayPageOutAnimation(index);
-                yield return new WaitForSeconds(UserDataAnimations.OutClipTime * 0.5f);
+                Animations.UserData.PlayPageOutAnimation(index);
+                yield return new WaitForSeconds(Animations.UserData.OutClipTime * 0.5f);
             }
 
             page[index].SetActive(true);
 
-            yield return new WaitForSeconds(UserDataAnimations.EnterClipTime);
+            yield return new WaitForSeconds(Animations.UserData.EnterClipTime);
 
             for (int i = 0; i < index; i++)
             {
@@ -88,26 +111,6 @@ public class PagesAndFields : MonoBehaviour
         else
         {
             Debug.LogError("Page Activation: Parameter value out of range. You moke!");
-        }
-    }
-
-    public void FieldActivation(int fieldNumberToActive)
-    {
-        int index;
-        index = fieldNumberToActive - 1;
-
-        if (index < TotalFields && index >= 0)
-        {
-            foreach (GameObject field in field)
-            {
-                field.SetActive(false);
-            }
-
-            field[index].SetActive(true);
-        }
-        else
-        {
-            Debug.LogError("Field Activation: Parameter value out of range. You moke!");
         }
     }
 
@@ -126,5 +129,5 @@ public class PagesAndFields : MonoBehaviour
     }
 
     public int TotalPages => page.Length;
-    public int TotalFields => field.Length;
+    public int TotalFooters => footer.Length;
 }

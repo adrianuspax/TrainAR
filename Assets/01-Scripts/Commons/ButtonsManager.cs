@@ -17,9 +17,9 @@ public class ButtonsManager : MonoBehaviour
     private void Awake()
     {
         if (this.GetComponent<ButtonsMain>() != null)
-            CanvasButtons = this.GetComponent<ButtonsMain>();
+        { CanvasButtons = this.GetComponent<ButtonsMain>(); }
         if (this.GetComponent<DropDownMenu>() != null)
-            DDM = this.GetComponent<DropDownMenu>();
+        { DDM = this.GetComponent<DropDownMenu>(); }
     }
 
     public ButtonsMain CanvasMain => CanvasButtons;
