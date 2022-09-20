@@ -8400,6 +8400,7 @@ GameObject:
   - component: {fileID: 1127046628}
   - component: {fileID: 1127046630}
   - component: {fileID: 1127046627}
+  - component: {fileID: 1127046631}
   m_Layer: 0
   m_Name: CodeManager
   m_TagString: Untagged
@@ -8450,13 +8451,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   nextButton: {fileID: 1315431819}
   closeButton: {fileID: 584496964912265755}
+  editAge: {fileID: 1197637844}
+  editCurrentWeight: {fileID: 1809055080}
+  editWeightGoal: {fileID: 284247381}
+  editHeight: {fileID: 1818240958}
   saveButton: {fileID: 1376320792}
   cancelButton: {fileID: 165022774}
   currentPage: 0
   currentFooter: 0
   Buttons: {fileID: 0}
-  UserDataManager: {fileID: 0}
-  UserDataAnimations: {fileID: 0}
+  PagesAndFields: {fileID: 0}
+  Animations: {fileID: 0}
 --- !u!114 &1127046629
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8473,7 +8478,7 @@ MonoBehaviour:
   footerHeader: {fileID: 577803303}
   page: []
   footer: []
-  UserDataAnimations: {fileID: 0}
+  Animations: {fileID: 0}
 --- !u!114 &1127046630
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8494,7 +8499,21 @@ MonoBehaviour:
   footerSaveClip: {fileID: 7400000, guid: bee67f21daaf356489e3ebd7c100447b, type: 2}
   footerCancelClip: {fileID: 7400000, guid: b48359fcfc646ce48891695e97041304, type: 2}
   animatorsPages: []
-  UserDataManager: {fileID: 0}
+  PagesAndFields: {fileID: 0}
+--- !u!114 &1127046631
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1127046625}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7543f7b593c23584abcb3057b1e5176c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  userData: {fileID: 0}
+  main: {fileID: 0}
 --- !u!1 &1130995706
 GameObject:
   m_ObjectHideFlags: 0

@@ -24,7 +24,6 @@ public class PagesAndFields
     [Header("Scripts", order = 1)]
     [ReadOnly, SerializeField] private AnimationsManager Animations;
 
-
     public const int PAGE1 = 1;
     public const int PAGE2 = 2;
     public const int PAGE3 = 3;
@@ -43,16 +42,16 @@ public class PagesAndFields
         footer = AssignGameObjects(footerHeader);
 
         Animations = this.GetComponent<AnimationsManager>();
-        Animations.UserData.AnimatorsPage = Animations.UserData.AssignAnimatorsPages(page);
     }
 
     private void Start()
     {
+        Animations.UserData.AnimatorsPage = Animations.UserData.AssignAnimatorsPages(page);
+
         foreach (GameObject pages in page) { pages.SetActive(false); }
         foreach (GameObject footers in footer) { footers.SetActive(false); }
 
         PageActivation(PAGE1);
-        //FooterActivation(FOOTER1);
     }
 
     public void PageActivation(int pageNumberToActive)

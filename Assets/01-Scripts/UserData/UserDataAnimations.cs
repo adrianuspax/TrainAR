@@ -11,7 +11,7 @@ public class UserDataAnimations : MonoBehaviour
     [Space(-10, order = 1)]
     [Header("FOOTER FIELDS", order = 2)]
     [SerializeField] private Animator footerAnimator;
-    [SerializeField] private AnimationClip footerNullClip;
+    //[SerializeField] private AnimationClip footerNullClip;
     [SerializeField] private AnimationClip footerEnterClip;
     [SerializeField] private AnimationClip footerSaveClip;
     [SerializeField] private AnimationClip footerCancelClip;
@@ -20,7 +20,7 @@ public class UserDataAnimations : MonoBehaviour
     [Header("READY ONLY", order = 0)]
     [Space(-10, order = 1)]
     [Header("Animators Controllers", order = 2)]
-    [ReadOnly, SerializeField] private Animator[] animatorsPages;
+    [ReadOnly, SerializeField] public Animator[] animatorsPages;
     [Space(-10, order = 0)]
     [Header("Scripts", order = 1)]
     [ReadOnly, SerializeField] private PagesAndFields PagesAndFields;
@@ -59,8 +59,6 @@ public class UserDataAnimations : MonoBehaviour
     }
 
     public Animator[] AnimatorsPage { set => animatorsPages = value; }
-
     public float EnterClipTime => pageEnterClip.length;
     public float OutClipTime => pageOutClip.length;
-
 }
