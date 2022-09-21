@@ -6,9 +6,9 @@ using UnityEngine.UI;
 
 public class ButtonsManager : MonoBehaviour
 {
-    [Header("READY ONLY", order = 0)]
-    [Space(-10, order = 1)]
-    [Header("Scripts", order = 2)]
+    [Header(" =========================== READY ONLY =========================== ", order = 0)]
+
+    [Header("Scripts", order = 0)]
     [SerializeField, ReadOnly] private ButtonsMain CanvasButtons;
     [SerializeField, ReadOnly] private DropDownMenu DDM;
     [SerializeField, ReadOnly] private UserDataButtons UserDataButtons;

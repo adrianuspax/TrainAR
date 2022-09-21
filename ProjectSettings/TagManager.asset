@@ -7,6 +7,8 @@ TagManager:
   - Coach
   - aniAnchorAR
   - aniButtonAR
+  - CodeManager
+  - PalleteColors
   layers:
   - Default
   - TransparentFX

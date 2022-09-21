@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class AnimationsManager : MonoBehaviour
 {
-    [Header("READY ONLY", order = 0)]
-    [Space(-10, order = 1)]
-    [Header("Scripts", order = 2)]
+    [Header(" =========================== READY ONLY =========================== ", order = 0)]
+
+    [Header("Scripts", order = 0)]
     [SerializeField, ReadOnly] private UserDataAnimations userData;
     [SerializeField, ReadOnly] private AnimationsMain main;
 

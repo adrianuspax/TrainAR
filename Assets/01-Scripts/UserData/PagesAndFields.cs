@@ -19,7 +19,7 @@ public class PagesAndFields
     [Header("Page 1", order = 2)]
     [SerializeField] private TMP_InputField userNameInput;
 
-    [Header("READY ONLY", order = 0)]
+    [Header(" =========================== READY ONLY =========================== ", order = 0)]
     [Space(-10, order = 1)]
     [Header("Pages", order = 2)]
     [ReadOnly, SerializeField] private GameObject[] page;
@@ -32,8 +32,8 @@ public class PagesAndFields
     [ReadOnly, SerializeField] private int currentFooter;
     [ReadOnly, SerializeField] private bool userNameInputIsEmpty;
     [ReadOnly, SerializeField] private string userNameString;
-    [Space(-10, order = 0)]
-    [Header("Scripts", order = 1)]
+
+    [Header("Scripts", order = 0)]
     [ReadOnly, SerializeField] private AnimationsManager Animations;
     [ReadOnly, SerializeField] private ButtonsManager Buttons;
 
