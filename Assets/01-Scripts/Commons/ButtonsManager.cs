@@ -11,19 +11,20 @@ public class ButtonsManager : MonoBehaviour
     [Header("Scripts", order = 2)]
     [SerializeField, ReadOnly] private ButtonsMain CanvasButtons;
     [SerializeField, ReadOnly] private DropDownMenu DDM;
+    [SerializeField, ReadOnly] private UserDataButtons UserDataButtons;
 
     public delegate void BehaviourButtons(int index);
 
     private void Awake()
     {
-        if (this.GetComponent<ButtonsMain>() != null)
-        { CanvasButtons = this.GetComponent<ButtonsMain>(); }
-        if (this.GetComponent<DropDownMenu>() != null)
-        { DDM = this.GetComponent<DropDownMenu>(); }
+        if (this.GetComponent<ButtonsMain>() != null) { CanvasButtons = this.GetComponent<ButtonsMain>(); }
+        if (this.GetComponent<DropDownMenu>() != null) { DDM = this.GetComponent<DropDownMenu>(); }
+        if (this.GetComponent<UserDataButtons>() != null) { UserDataButtons = this.GetComponent<UserDataButtons>(); }
     }
 
     public ButtonsMain CanvasMain => CanvasButtons;
     public DropDownMenu DropDownMenu => DDM;
+    public UserDataButtons UserData => UserDataButtons;
 
     public (Button[], bool[]) Assignment(Transform header, params BehaviourButtons[] behaviour)
     {

@@ -21,6 +21,10 @@ public class PagesAndFields
     [Header("Fields", order = 1)]
     [ReadOnly, SerializeField] private GameObject[] footer;
     [Space(-10, order = 0)]
+    [Header("Variables", order = 1)]
+    [ReadOnly, SerializeField] private int currentPage;
+    [ReadOnly, SerializeField] private int currentFooter;
+    [Space(-10, order = 0)]
     [Header("Scripts", order = 1)]
     [ReadOnly, SerializeField] private AnimationsManager Animations;
 
@@ -57,6 +61,7 @@ public class PagesAndFields
     public void PageActivation(int pageNumberToActive)
     {
         StartCoroutine(Cor_PageActivation(pageNumberToActive));
+        CurrentPage = pageNumberToActive;
     }
 
     public void FooterActivation(int footerNumberToActive)
@@ -73,6 +78,8 @@ public class PagesAndFields
 
             footer[index].SetActive(true);
             Animations.UserData.PlayFooterEnterClip();
+
+            CurrentFooter = footerNumberToActive;
         }
         else
         {
@@ -129,4 +136,16 @@ public class PagesAndFields
 
     public int TotalPages => page.Length;
     public int TotalFooters => footer.Length;
+
+    public int CurrentPage
+    {
+        get => currentPage;
+        private set => currentPage = value;
+    }
+
+    public int CurrentFooter
+    {
+        get => currentFooter;
+        private set => currentFooter = value;
+    }
 }
