@@ -16,16 +16,48 @@ public class DataManagement : MonoBehaviour
     [Header("Scripts", order = 0)]
     [ReadOnly, SerializeField] private ButtonsManager Buttons;
     [ReadOnly, SerializeField] private PagesAndFields PagesAndFields;
-
+    #region DATA_MANAGEMENT
     private const string PAGE1KEY = "name";
     private const string PAGE2KEY = "genre";
     private const string PAGE3KEY = "goal";
     private const string PAGE4KEY = "level";
     private const string PAGE5KEY = "focus";
+    private const string PAGEK6EY = "more";
 
     private const string MALE = "Male";
     private const string FEMALE = "Female";
 
+    public const int PAGE1NUM = 1;
+    public const int PAGE2NUM = 2;
+    public const int PAGE3NUM = 3;
+    public const int PAGE4NUM = 4;
+    public const int PAGE5NUM = 5;
+    public const int PAGE6NUM = 6;
+
+    private const int FOOTER1INDEX = 1;
+    private const int FOOTER2INDEX = 2;
+    private const int FOOTER3INDEX = 3;
+    private const int FOOTER4INDEX = 4;
+    #endregion
+    #region DATA_VALUES_MANAGEMENT
+    public const string GOAL0 = "Lose Weight";
+    public const string GOAL1 = "More Muscles";
+    public const string GOAL2 = "Keep Shape";
+    public const int TOTALGOALS = 3;
+
+    public const string LEVEL1 = "I'm sedentary!";
+    public const string LEVEL2 = "I'm walker!";
+    public const string LEVEL3 = "I'm runner!";
+    public const string LEVEL4 = "I'm athletic!";
+    public const string LEVEL5 = "I'm body builder!";
+    public const int TOTALLEVELS = 5;
+
+    public const string FOCUSNAME0 = "Abdomen";
+    public const string FOCUSNAME1 = "Chest";
+    public const string FOCUSNAME2 = "Arms";
+    public const string FOCUSNAME3 = "Legs";
+    public const int TOTALFOCUS = 4;
+    #endregion
 
     public void Awake()
     {
@@ -47,28 +79,28 @@ public class DataManagement : MonoBehaviour
     {
         switch (page)
         {
-            case PagesAndFields.PAGE1INDEX:
+            case PAGE1NUM:
                 UserName = PagesAndFields.UserName;
                 Debug.Log("Page1: " + "UserName = " + userName);
                 break;
-            case PagesAndFields.PAGE2INDEX:
+            case PAGE2NUM:
                 IsMale = Buttons.UserData.Genre;
                 Debug.Log("Page2: " + "Genre = " + genre);
                 break;
-            case PagesAndFields.PAGE3INDEX:
+            case PAGE3NUM:
                 Goal = Buttons.UserData.Goal;
                 Buttons.UserData.LevelButtonsBehaviour(2);
                 Debug.Log("Page3: " + "Goal = " + goal);
                 break;
-            case PagesAndFields.PAGE4INDEX:
+            case PAGE4NUM:
                 Level = Buttons.UserData.Level;
                 Debug.Log("Page4: " + "Level = " + level);
                 break;
-            case PagesAndFields.PAGE5INDEX:
+            case PAGE5NUM:
                 Focus = Buttons.UserData.Focus;
                 Debug.Log("Page4: " + "Level = " + focus);
                 break;
-            case PagesAndFields.PAGE6INDEX:
+            case PAGE6NUM:
 
                 break;
         }
@@ -89,7 +121,7 @@ public class DataManagement : MonoBehaviour
         get => (GenreByIndex == 0);
         private set
         {
-            GenreByIndex = value ? PagesAndFields.M : PagesAndFields.F;
+            GenreByIndex = value ? 0 : 1;
             genre = (GenreByIndex == 0) ? MALE : FEMALE;
         }
     }

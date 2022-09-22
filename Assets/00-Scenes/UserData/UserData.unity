@@ -8405,11 +8405,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   nextButton: {fileID: 1315431819}
   closeButton: {fileID: 584496964912265755}
-  maleButton: {fileID: 854813189}
-  femaleButton: {fileID: 185633871}
-  looseWeightButton: {fileID: 686829626}
-  moreMusclesButton: {fileID: 1719390801}
-  keepShapeButton: {fileID: 1945880903}
+  genreButtonsHeader: {fileID: 1759591229}
+  goalButtonsHeader: {fileID: 826030455}
   levelButtonsHeader: {fileID: 174273522}
   focusButtonsHeader: {fileID: 2051469585}
   editAge: {fileID: 1197637844}
@@ -8418,23 +8415,18 @@ MonoBehaviour:
   editHeight: {fileID: 1818240958}
   saveButton: {fileID: 1376320792}
   cancelButton: {fileID: 165022774}
-  genreButtonByIndex: []
+  genreButton: []
   genreIsPressed: 
   isMale: 0
-  genreColorPressed:
-  - {r: 0, g: 0, b: 0, a: 0}
-  - {r: 0, g: 0, b: 0, a: 0}
-  goalButtonByIndex: []
+  genreColorPressed: []
+  goalButton: []
   goalIsPressed: 
+  goalbyIndex: []
   chosenGoal: 
   levelButton: []
   levelIsPressed: 
-  levelByIndex:
-  - I'm sedentary
-  - I'm walker
-  - I'm runner
-  - I'm athlete
-  - I'm body builder
+  levelByIndex: []
+  chosenLevel: 
   focusButton: []
   focusIsPressed: 
   focusByIndex: []

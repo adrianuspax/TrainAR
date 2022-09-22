@@ -40,36 +40,6 @@ public class PagesAndFields
     [ReadOnly, SerializeField] private AnimationsManager Animations;
     [ReadOnly, SerializeField] private ButtonsManager Buttons;
 
-    public const int PAGE1INDEX = 1;
-    public const int PAGE2INDEX = 2;
-    public const int PAGE3INDEX = 3;
-    public const int PAGE4INDEX = 4;
-    public const int PAGE5INDEX = 5;
-    public const int PAGE6INDEX = 6;
-
-    public const int FOOTER1INDEX = 1;
-    public const int FOOTER2INDEX = 2;
-    public const int FOOTER3INDEX = 3;
-    public const int FOOTER4INDEX = 4;
-
-    public const int M = 0;
-    public const int F = 1;
-
-    public const int LOSEWEIGHT = 0;
-    public const int MOREMUSCLES = 1;
-    public const int KEEPSHAPE = 2;
-
-    public const string LEVEL1 = "I'm sedentary!";
-    public const string LEVEL2 = "I'm walker!";
-    public const string LEVEL3 = "I'm runner!";
-    public const string LEVEL4 = "I'm athletic!";
-    public const string LEVEL5 = "I'm body builder!";
-
-    public const string FOCUSNAME0 = "Abdomen";
-    public const string FOCUSNAME1 = "Chest";
-    public const string FOCUSNAME2 = "Arms";
-    public const string FOCUSNAME3 = "Legs";
-
     private void Awake()
     {
         page = AssignGameObjects(pagesHeader);
@@ -91,11 +61,10 @@ public class PagesAndFields
         foreach (GameObject pages in page) { pages.SetActive(false); }
         foreach (GameObject footers in footer) { footers.SetActive(false); }
 
-        PageActivation(PAGE1INDEX);
+        PageActivation(DataManagement.PAGE1NUM);
 
         userNameInputIsEmpty = true;
     }
-    #region PAGES
     #region BEHAVIOURS
     public void PageActivation(int pageNumberToActive)
     {
@@ -181,7 +150,6 @@ public class PagesAndFields
         get => nameLevel.text;
         set => nameLevel.text = value;
     }
-    #endregion
     #endregion
     #region FOOTERS
     public void FooterActivation(int footerNumberToActive)

@@ -12,14 +12,11 @@ public class UserDataButtons : MonoBehaviour
     [SerializeField] private Button nextButton;
     [SerializeField] private Button closeButton;
     [Space(-10, order = 0)]
-    [Header("Page Two Buttons", order = 1)]
-    [SerializeField] private Button maleButton;
-    [SerializeField] private Button femaleButton;
+    [Header("Page Two Header", order = 1)]
+    [SerializeField] private Transform genreButtonsHeader;
     [Space(-10, order = 0)]
-    [Header("Page three Buttons", order = 1)]
-    [SerializeField] private Button looseWeightButton;
-    [SerializeField] private Button moreMusclesButton;
-    [SerializeField] private Button keepShapeButton;
+    [Header("Page three Header", order = 1)]
+    [SerializeField] private Transform goalButtonsHeader;
     [Space(-10, order = 0)]
     [Header("Page Four Buttons", order = 1)]
     [SerializeField] private Transform levelButtonsHeader;
@@ -42,20 +39,22 @@ public class UserDataButtons : MonoBehaviour
     [Header("Variables", order = 2)]
     [Space(-10, order = 3)]
     [Header("Page2_(Genre)", order = 4)]
-    [SerializeField, ReadOnly] private Button[] genreButtonByIndex;
+    [SerializeField, ReadOnly] private Button[] genreButton;
     [SerializeField, ReadOnly] private bool[] genreIsPressed;
     [SerializeField, ReadOnly] private bool isMale;
     [SerializeField, ReadOnly] private Color[] genreColorPressed;
     [Space(-10, order = 0)]
     [Header("Page3_(Goal)", order = 1)]
-    [SerializeField, ReadOnly] private Button[] goalButtonByIndex;
+    [SerializeField, ReadOnly] private Button[] goalButton;
     [SerializeField, ReadOnly] private bool[] goalIsPressed;
+    [SerializeField, ReadOnly] private string[] goalbyIndex;
     [SerializeField, ReadOnly] private string chosenGoal;
     [Space(-10, order = 0)]
     [Header("Page4_(Level)", order = 1)]
     [SerializeField, ReadOnly] private Button[] levelButton;
     [SerializeField, ReadOnly] private bool[] levelIsPressed;
     [SerializeField, ReadOnly] private string[] levelByIndex;
+    [SerializeField, ReadOnly] private string chosenLevel;
     [Space(-10, order = 0)]
     [Header("Page5_(Focus)", order = 1)]
     [SerializeField, ReadOnly] private Button[] focusButton;
@@ -68,13 +67,6 @@ public class UserDataButtons : MonoBehaviour
     [SerializeField, ReadOnly] private AnimationsManager Animations;
     [SerializeField, ReadOnly] private DataManagement Data;
     [SerializeField, ReadOnly] private PalleteColors PalleteColors;
-
-    private enum ChosenGoal
-    {
-        Lose_Weight = PagesAndFields.LOSEWEIGHT,
-        More_Muscles = PagesAndFields.MOREMUSCLES,
-        Keep_Shape = PagesAndFields.KEEPSHAPE
-    };
 
     private void Awake()
     {
@@ -90,26 +82,19 @@ public class UserDataButtons : MonoBehaviour
         nextButton.onClick.AddListener(() => NextButtonFunction());
         #endregion
         #region GENRE
-        genreButtonByIndex = new Button[2] { maleButton, femaleButton };
-        genreIsPressed = new bool[2] { false, false };
-        genreButtonByIndex[PagesAndFields.M].onClick.AddListener(() => GenreButtonBehaviour(PagesAndFields.M));
-        genreButtonByIndex[PagesAndFields.F].onClick.AddListener(() => GenreButtonBehaviour(PagesAndFields.F));
+        genreColorPressed = new Color[2] { PalleteColors.Triad(3), PalleteColors.Main };
+        (genreButton, genreIsPressed) = Buttons.Assignment(genreButtonsHeader, GenreButtonBehaviour);
         #endregion
         #region GOAL
-        goalButtonByIndex = new Button[3] { looseWeightButton, moreMusclesButton, keepShapeButton };
-        goalIsPressed = new bool[3] { false, false, false };
-        genreColorPressed[0] = PalleteColors.Triad(3);
-        genreColorPressed[1] = PalleteColors.Main;
-        goalButtonByIndex[PagesAndFields.LOSEWEIGHT].onClick.AddListener(() => GoalButtonsBehaviour(PagesAndFields.LOSEWEIGHT));
-        goalButtonByIndex[PagesAndFields.MOREMUSCLES].onClick.AddListener(() => GoalButtonsBehaviour(PagesAndFields.MOREMUSCLES));
-        goalButtonByIndex[PagesAndFields.KEEPSHAPE].onClick.AddListener(() => GoalButtonsBehaviour(PagesAndFields.KEEPSHAPE));
+        goalbyIndex = new string[DataManagement.TOTALGOALS] { DataManagement.GOAL0, DataManagement.GOAL1, DataManagement.GOAL2 };
+        (goalButton, goalIsPressed) = Buttons.Assignment(goalButtonsHeader, GoalButtonsBehaviour);
         #endregion
         #region LEVEL
-        levelByIndex = new string[5] { PagesAndFields.LEVEL1, PagesAndFields.LEVEL2, PagesAndFields.LEVEL3, PagesAndFields.LEVEL4, PagesAndFields.LEVEL5 };
+        levelByIndex = new string[DataManagement.TOTALLEVELS] { DataManagement.LEVEL1, DataManagement.LEVEL2, DataManagement.LEVEL3, DataManagement.LEVEL4, DataManagement.LEVEL5 };
         (levelButton, levelIsPressed) = Buttons.Assignment(levelButtonsHeader, LevelButtonsBehaviour);
         #endregion
         #region FOCUS
-        focusByIndex = new string[4] { PagesAndFields.FOCUSNAME0, PagesAndFields.FOCUSNAME1, PagesAndFields.FOCUSNAME2, PagesAndFields.FOCUSNAME3 };
+        focusByIndex = new string[DataManagement.TOTALFOCUS] { DataManagement.FOCUSNAME0, DataManagement.FOCUSNAME1, DataManagement.FOCUSNAME2, DataManagement.FOCUSNAME3 };
         (focusButton, focusIsPressed) = Buttons.Assignment(focusButtonsHeader, FocusButtonsBehaviour);
         #endregion
         #region MORE
@@ -120,7 +105,7 @@ public class UserDataButtons : MonoBehaviour
         #endregion
         #region FOOTER
         saveButton.onClick.AddListener(() => SaveButtonFunction());
-        cancelButton.onClick.AddListener(() => CancelButtonFunction());        
+        cancelButton.onClick.AddListener(() => CancelButtonFunction());
         #endregion
     }
 
@@ -142,18 +127,18 @@ public class UserDataButtons : MonoBehaviour
 
         Image icon;
 
-        for (int i = 0; i < genreButtonByIndex.Length; i++)
+        for (int i = 0; i < genreButton.Length; i++)
         {
             if (i == index && genreIsPressed[index])
             {
-                icon = genreButtonByIndex[index].transform.GetChild(0).GetComponent<Image>();
-                genreButtonByIndex[index].image.color = genreColorPressed[index];
+                icon = genreButton[index].transform.GetChild(0).GetComponent<Image>();
+                genreButton[index].image.color = genreColorPressed[index];
                 icon.color = PalleteColors.BlueGray_White;
             }
             else
             {
-                icon = genreButtonByIndex[i].transform.GetChild(0).GetComponent<Image>();
-                genreButtonByIndex[i].image.color = PalleteColors.BlueGray_White;
+                icon = genreButton[i].transform.GetChild(0).GetComponent<Image>();
+                genreButton[i].image.color = PalleteColors.BlueGray_White;
                 icon.color = genreColorPressed[i];
                 genreIsPressed[i] = false;
             }
@@ -177,22 +162,22 @@ public class UserDataButtons : MonoBehaviour
         Image icon;
         TextMeshProUGUI tmp;
 
-        for (int i = 0; i < goalButtonByIndex.Length; i++)
+        for (int i = 0; i < goalButton.Length; i++)
         {
             if (i == index && goalIsPressed[index])
             {
-                icon = goalButtonByIndex[index].transform.GetChild(0).GetComponent<Image>();
-                tmp = goalButtonByIndex[index].transform.GetChild(1).GetComponent<TextMeshProUGUI>();
-                goalButtonByIndex[index].image.color = PalleteColors.Main;
+                icon = goalButton[index].transform.GetChild(0).GetComponent<Image>();
+                tmp = goalButton[index].transform.GetChild(1).GetComponent<TextMeshProUGUI>();
+                goalButton[index].image.color = PalleteColors.Main;
                 icon.color = PalleteColors.BlueGray_White;
                 tmp.color = PalleteColors.BlueGray_White;
                 tmp.fontStyle = FontStyles.Bold;
             }
             else
             {
-                icon = goalButtonByIndex[i].transform.GetChild(0).GetComponent<Image>();
-                tmp = goalButtonByIndex[i].transform.GetChild(1).GetComponent<TextMeshProUGUI>();
-                goalButtonByIndex[i].image.color = PalleteColors.BlueGray_White;
+                icon = goalButton[i].transform.GetChild(0).GetComponent<Image>();
+                tmp = goalButton[i].transform.GetChild(1).GetComponent<TextMeshProUGUI>();
+                goalButton[i].image.color = PalleteColors.BlueGray_White;
                 icon.color = PalleteColors.Main;
                 tmp.color = PalleteColors.BlueGrey(4);
                 tmp.fontStyle = FontStyles.Normal;
@@ -200,7 +185,7 @@ public class UserDataButtons : MonoBehaviour
             }
         }
 
-        Goal = ((ChosenGoal)index).ToString();
+        Goal = goalbyIndex[index];
         NextButtonInteraction = goalIsPressed[index];
     }
 
@@ -226,8 +211,12 @@ public class UserDataButtons : MonoBehaviour
 
     public string Level
     {
-        get => PagesAndFields.LevelName;
-        private set => PagesAndFields.LevelName = value;
+        get => chosenLevel;
+        private set
+        {
+            chosenLevel = value;
+            PagesAndFields.LevelName = chosenLevel;
+        }
     }
 
     #endregion
