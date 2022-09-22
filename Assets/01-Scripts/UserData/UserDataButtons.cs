@@ -98,10 +98,10 @@ public class UserDataButtons : MonoBehaviour
         (focusButton, focusIsPressed) = Buttons.Assignment(focusButtonsHeader, FocusButtonsBehaviour);
         #endregion
         #region MORE
-        editAge.onClick.AddListener(() => CallFooterField(0));
-        editCurrentWeight.onClick.AddListener(() => CallFooterField(1));
-        editWeightGoal.onClick.AddListener(() => CallFooterField(2));
-        editHeight.onClick.AddListener(() => CallFooterField(3));
+        editAge.onClick.AddListener(() => CallFooterField(DataManagement.FOOTER1INDEX));
+        editCurrentWeight.onClick.AddListener(() => CallFooterField(DataManagement.FOOTER2INDEX));
+        editWeightGoal.onClick.AddListener(() => CallFooterField(DataManagement.FOOTER3INDEX));
+        editHeight.onClick.AddListener(() => CallFooterField(DataManagement.FOOTER4INDEX));
         #endregion
         #region FOOTER
         saveButton.onClick.AddListener(() => SaveButtonFunction());
@@ -268,8 +268,15 @@ public class UserDataButtons : MonoBehaviour
 
     public void CallFooterField(int index)
     {
-        PagesAndFields.FooterActivation(index + 1);
+        PagesAndFields.FooterActivation(index);
     }
+
+    public bool SaveButtonInteraction
+    {
+        get => saveButton.IsInteractable();
+        set => Buttons.Interaction(value, saveButton);
+    }
+
     #endregion
     #region NEXT_BUTTON
     public void NextButtonFunction()

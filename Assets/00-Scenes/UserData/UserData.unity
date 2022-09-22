@@ -5807,7 +5807,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: input
+  m_text: value
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 4e7ee66db5a42724c9da5a7a88398bc2, type: 2}
   m_sharedMaterial: {fileID: 8259488994137735082, guid: 4e7ee66db5a42724c9da5a7a88398bc2,
@@ -5964,7 +5964,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: input
+  m_text: value
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 4e7ee66db5a42724c9da5a7a88398bc2, type: 2}
   m_sharedMaterial: {fileID: 8259488994137735082, guid: 4e7ee66db5a42724c9da5a7a88398bc2,
@@ -8452,12 +8452,28 @@ MonoBehaviour:
   footerHeader: {fileID: 577803303}
   userNameInput: {fileID: 339054861}
   nameLevel: {fileID: 915557221}
+  age: {fileID: 698067849}
+  currentWeight: {fileID: 1886637215}
+  weightGoal: {fileID: 638035864}
+  height: {fileID: 226978029}
+  ageInput: {fileID: 197544339}
+  currentWeightInput: {fileID: 2134901156}
+  weightGoalInput: {fileID: 1872754607}
+  heightInput: {fileID: 85041552}
   page: []
   footer: []
   currentPage: 0
   currentFooter: 0
   userNameInputIsEmpty: 0
   userNameString: 
+  ageInputIsEmpty: 0
+  ageValue: 0
+  currentWeightInputIsEmpty: 0
+  currentWeightValue: 0
+  weightGoalInputIsEmpty: 0
+  weightGoalValue: 0
+  heightInputIsEmpty: 0
+  heightValue: 0
   Animations: {fileID: 0}
   Buttons: {fileID: 0}
 --- !u!114 &1127046630
@@ -9624,7 +9640,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: input
+  m_text: value
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 4e7ee66db5a42724c9da5a7a88398bc2, type: 2}
   m_sharedMaterial: {fileID: 8259488994137735082, guid: 4e7ee66db5a42724c9da5a7a88398bc2,
@@ -11546,7 +11562,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: input
+  m_text: value
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 4e7ee66db5a42724c9da5a7a88398bc2, type: 2}
   m_sharedMaterial: {fileID: 8259488994137735082, guid: 4e7ee66db5a42724c9da5a7a88398bc2,
@@ -12455,7 +12471,7 @@ MonoBehaviour:
   m_CharacterValidation: 3
   m_RegexValue: 
   m_GlobalPointSize: 14
-  m_CharacterLimit: 4
+  m_CharacterLimit: 5
   m_OnEndEdit:
     m_PersistentCalls:
       m_Calls: []
@@ -14792,7 +14808,7 @@ MonoBehaviour:
   m_CharacterValidation: 3
   m_RegexValue: 
   m_GlobalPointSize: 14
-  m_CharacterLimit: 4
+  m_CharacterLimit: 5
   m_OnEndEdit:
     m_PersistentCalls:
       m_Calls: []

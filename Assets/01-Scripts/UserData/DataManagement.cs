@@ -17,15 +17,15 @@ public class DataManagement : MonoBehaviour
     [ReadOnly, SerializeField] private ButtonsManager Buttons;
     [ReadOnly, SerializeField] private PagesAndFields PagesAndFields;
     #region DATA_MANAGEMENT
-    private const string PAGE1KEY = "name";
-    private const string PAGE2KEY = "genre";
-    private const string PAGE3KEY = "goal";
-    private const string PAGE4KEY = "level";
-    private const string PAGE5KEY = "focus";
-    private const string PAGEK6EY = "more";
+    public const string PAGE1KEY = "name";
+    public const string PAGE2KEY = "genre";
+    public const string PAGE3KEY = "goal";
+    public const string PAGE4KEY = "level";
+    public const string PAGE5KEY = "focus";
+    public const string PAGEK6EY = "more";
 
-    private const string MALE = "Male";
-    private const string FEMALE = "Female";
+    public const string MALE = "Male";
+    public const string FEMALE = "Female";
 
     public const int PAGE1NUM = 1;
     public const int PAGE2NUM = 2;
@@ -34,10 +34,10 @@ public class DataManagement : MonoBehaviour
     public const int PAGE5NUM = 5;
     public const int PAGE6NUM = 6;
 
-    private const int FOOTER1INDEX = 1;
-    private const int FOOTER2INDEX = 2;
-    private const int FOOTER3INDEX = 3;
-    private const int FOOTER4INDEX = 4;
+    public const int FOOTER1INDEX = 0;
+    public const int FOOTER2INDEX = 1;
+    public const int FOOTER3INDEX = 2;
+    public const int FOOTER4INDEX = 3;
     #endregion
     #region DATA_VALUES_MANAGEMENT
     public const string GOAL0 = "Lose Weight";
