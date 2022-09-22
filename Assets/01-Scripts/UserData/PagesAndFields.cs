@@ -23,24 +23,7 @@ public class PagesAndFields
     [SerializeField] private TextMeshProUGUI nameLevel;
     [Space(-10, order = 0)]
     [Header("Page 6", order = 1)]
-    [SerializeField] private TextMeshProUGUI age;
-    [SerializeField] private TextMeshProUGUI currentWeight;
-    [SerializeField] private TextMeshProUGUI weightGoal;
-    [SerializeField] private TextMeshProUGUI height;
-
-    [Header("FOOTERS", order = 0)]
-    [Space(-10, order = 1)]
-    [Header("Footer 1", order = 2)]
-    [SerializeField] private TMP_InputField ageInput;
-    [Space(-10, order = 1)]
-    [Header("Footer 2", order = 2)]
-    [SerializeField] private TMP_InputField currentWeightInput;
-    [Space(-10, order = 1)]
-    [Header("Footer 3", order = 2)]
-    [SerializeField] private TMP_InputField weightGoalInput;
-    [Space(-10, order = 1)]
-    [Header("Footer 4", order = 2)]
-    [SerializeField] private TMP_InputField heightInput;
+    [SerializeField] private Transform blocksAreaHeader;
 
     [Header(" =========================== READY ONLY =========================== ", order = 0)]
     [Space(-10, order = 1)]
@@ -55,14 +38,10 @@ public class PagesAndFields
     [ReadOnly, SerializeField] private int currentFooter;
     [ReadOnly, SerializeField] private bool userNameInputIsEmpty;
     [ReadOnly, SerializeField] private string userNameString;
-    [ReadOnly, SerializeField] private bool ageInputIsEmpty;
-    [ReadOnly, SerializeField] private string ageValue;
-    [ReadOnly, SerializeField] private bool currentWeightInputIsEmpty;
-    [ReadOnly, SerializeField] private string currentWeightValue;
-    [ReadOnly, SerializeField] private bool weightGoalInputIsEmpty;
-    [ReadOnly, SerializeField] private string weightGoalValue;
-    [ReadOnly, SerializeField] private bool heightInputIsEmpty;
-    [ReadOnly, SerializeField] private string heightValue;
+    [ReadOnly, SerializeField] private TextMeshProUGUI[] moreValueTMP;
+    [ReadOnly, SerializeField] private TMP_InputField[] footerInput;
+    [ReadOnly, SerializeField] private bool[] footerInputIsEmpty;
+    [ReadOnly, SerializeField] private string[] footerValue;
 
     [Header("Scripts", order = 0)]
     [ReadOnly, SerializeField] private AnimationsManager Animations;
@@ -78,25 +57,16 @@ public class PagesAndFields
         userNameInput.onValueChanged.AddListener(OnValueChangedUserName);
         userNameInput.onEndEdit.AddListener(OnEndEditUserName);
 
-        ageInput.onSelect.AddListener(OnSelectAge);
-        ageInput.onDeselect.AddListener(OnDeselectAge);
-        ageInput.onValueChanged.AddListener(OnValueChangedAge);
-        ageInput.onEndEdit.AddListener(OnEndEditAge);
+        moreValueTMP = new TextMeshProUGUI[footerHeader.childCount];
+        footerInput = new TMP_InputField[footerHeader.childCount];
+        footerInputIsEmpty = new bool[footerHeader.childCount];
+        footerValue = new string[footerHeader.childCount];
 
-        currentWeightInput.onSelect.AddListener(OnSelectCurrentWeight);
-        currentWeightInput.onDeselect.AddListener(OnDeselectCurrentWeight);
-        currentWeightInput.onValueChanged.AddListener(OnValueChangedCurrentWeight);
-        currentWeightInput.onEndEdit.AddListener(OnEndEditCurrentWeight);
-
-        weightGoalInput.onSelect.AddListener(OnSelectWeightGoal);
-        weightGoalInput.onDeselect.AddListener(OnDeselectWeightGoal);
-        weightGoalInput.onValueChanged.AddListener(OnValueChangedWeightGoal);
-        weightGoalInput.onEndEdit.AddListener(OnEndEditWeightGoal);
-
-        heightInput.onSelect.AddListener(OnSelectHeight);
-        heightInput.onDeselect.AddListener(OnDeselectHeight);
-        heightInput.onValueChanged.AddListener(OnValueChangedHeight);
-        heightInput.onEndEdit.AddListener(OnEndEditHeight);
+        for (int i = 0; i < footerHeader.childCount; i++)
+        {
+            AssignFootersArrays(i);
+            AssignFootersListeners(i);
+        }
 
         Animations = this.GetComponent<AnimationsManager>();
         Buttons = this.GetComponent<ButtonsManager>();
@@ -112,10 +82,7 @@ public class PagesAndFields
         PageActivation(DataManagement.PAGE1NUM);
 
         userNameInputIsEmpty = true;
-        ageInputIsEmpty = true;
-        currentWeightInputIsEmpty = true;
-        weightGoalInputIsEmpty = true;
-        heightInputIsEmpty = true;
+        SetAllFooterInputIsEmpty(true);
     }
     #region PAGES_BEHAVIOURS
     public void PageActivation(int pageNumberToActive)
@@ -231,124 +198,69 @@ public class PagesAndFields
         get => currentFooter;
         private set => currentFooter = value;
     }
-    #endregion
-    #region FOOTER1
-    public void OnSelectAge(string age)
-    {
-        ageInput.placeholder.GetComponent<TextMeshProUGUI>().text = "";
-        ageInputIsEmpty = true;
-    }
 
-    public void OnDeselectAge(string age)
+    public void SetAllFooterInputIsEmpty(bool allIsEmpty)
     {
-        ageInputIsEmpty = (age == "");
-        ageInput.placeholder.GetComponent<TextMeshProUGUI>().text = "value";
-        Buttons.UserData.SaveButtonInteraction = !ageInputIsEmpty;
-    }
-
-    public void OnValueChangedAge(string age)
-    {
-        ageInputIsEmpty = (age == "");
-        Buttons.UserData.SaveButtonInteraction = !ageInputIsEmpty;
-    }
-
-    public void OnEndEditAge(string age)
-    {
-        Buttons.UserData.SaveButtonInteraction = !ageInputIsEmpty;
-        Age = age;
-    }
-
-    public string Age
-    {
-        get => ageValue + " years";
-        private set => ageValue = value;
+        for (int i = 0; i < footerInputIsEmpty.Length; i++)
+        {
+            footerInputIsEmpty[i] = allIsEmpty;
+        }
     }
     #endregion
-    #region FOOTER2
-    public void OnSelectCurrentWeight(string currentWeight)
+    #region FOOTERS
+    public void OnSelectFooter(string data)
     {
-        currentWeightInput.placeholder.GetComponent<TextMeshProUGUI>().text = "";
-        currentWeightInputIsEmpty = true;
+        footerInput[CurrentFooterIndex].placeholder.GetComponent<TextMeshProUGUI>().text = "";
+        footerInputIsEmpty[CurrentFooterIndex] = true;
     }
 
-    public void OnDeselectCurrentWeight(string currentWeight)
+    public void OnDeselectFooter(string data)
     {
-        currentWeightInputIsEmpty = (currentWeight == "");
-        currentWeightInput.placeholder.GetComponent<TextMeshProUGUI>().text = "value";
-        Buttons.UserData.SaveButtonInteraction = !currentWeightInputIsEmpty;
+        footerInputIsEmpty[CurrentFooterIndex] = (data == "");
+        footerInput[CurrentFooterIndex].placeholder.GetComponent<TextMeshProUGUI>().text = "value";
+        Buttons.UserData.SaveButtonInteraction = !footerInputIsEmpty[CurrentFooterIndex];
     }
 
-    public void OnValueChangedCurrentWeight(string currentWeight)
+    public void OnValueChangedFooter(string data)
     {
-        //CONTINUAR AQUI
+        footerInputIsEmpty[CurrentFooterIndex] = (data == "");
+        Buttons.UserData.SaveButtonInteraction = !footerInputIsEmpty[CurrentFooterIndex];
     }
 
-    public void OnEndEditCurrentWeight(string currentWeight)
+    public void OnEndEditFooter(string data)
     {
-
+        Buttons.UserData.SaveButtonInteraction = !footerInputIsEmpty[CurrentFooterIndex];
+        DataFooter = data;
     }
 
-    public string CurrentWeight
+    public string DataFooter
     {
-        get => currentWeightValue + " kg";
-        private set => currentWeightValue = value;
-    }
-    #endregion
-    #region FOOTER3
-    public void OnSelectWeightGoal(string weightGoal)
-    {
-
+        get => footerValue[CurrentFooterIndex];
+        private set => footerValue[CurrentFooterIndex] = value;
     }
 
-    public void OnDeselectWeightGoal(string weightGoal)
-    {
+    private int CurrentFooterIndex => CurrentFooter - 1;
 
+    public void ClearAllInputFooter()
+    {
+        foreach (TMP_InputField inputs in footerInput)
+        {
+            inputs.text = "";
+        }
     }
 
-    public void OnValueChangedWeightGoal(string weightGoal)
+    public void ClearAllInputFooter(float delay)
     {
-
+        StartCoroutine(Cor_ClearAllInputFooter(delay));
     }
 
-    public void OnEndEditWeightGoal(string weightGoal)
+    private IEnumerator Cor_ClearAllInputFooter(float time)
     {
-
-    }
-
-    public string WeightGoal
-    {
-        get => weightGoalValue + " kg";
-        private set => weightGoalValue = value;
+        yield return new WaitForSeconds(time);
+        ClearAllInputFooter();
     }
     #endregion
-    #region FOOTER4
-    public void OnSelectHeight(string height)
-    {
-
-    }
-
-    public void OnDeselectHeight(string height)
-    {
-
-    }
-
-    public void OnValueChangedHeight(string height)
-    {
-
-    }
-
-    public void OnEndEditHeight(string height)
-    {
-
-    }
-
-    public string Height
-    {
-        get => heightValue + " cm";
-        private set => heightValue = value;
-    }
-    #endregion
-    #region ASSIGNMENT
+    #region ASSIGNMENTS
     private GameObject[] AssignGameObjects(Transform header)
     {
         GameObject[] gameObjects;
@@ -361,6 +273,20 @@ public class PagesAndFields
         }
 
         return gameObjects;
+    }
+
+    private void AssignFootersListeners(int index)
+    {
+        footerInput[index].onSelect.AddListener(OnSelectFooter);
+        footerInput[index].onDeselect.AddListener(OnDeselectFooter);
+        footerInput[index].onValueChanged.AddListener(OnValueChangedFooter);
+        footerInput[index].onEndEdit.AddListener(OnEndEditFooter);
+    }
+
+    private void AssignFootersArrays(int index)
+    {
+        moreValueTMP[index] = blocksAreaHeader.GetChild(index).GetChild(0).GetComponent<TextMeshProUGUI>();
+        footerInput[index] = footerHeader.GetChild(index).GetChild(0).GetComponent<TMP_InputField>();
     }
     #endregion
 }

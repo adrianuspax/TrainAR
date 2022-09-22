@@ -255,20 +255,23 @@ public class UserDataButtons : MonoBehaviour
         private set => chosenFocus = value;
     }
     #endregion
-    #region FOOTER
+    #region FOOTERS
     public void SaveButtonFunction()
     {
         Animations.UserData.PlayFooterSaveClip();
+        PagesAndFields.ClearAllInputFooter(Animations.UserData.EnterClipTime);
     }
 
     public void CancelButtonFunction()
     {
         Animations.UserData.PlayFooterCancelClip();
+        PagesAndFields.ClearAllInputFooter();
     }
 
     public void CallFooterField(int index)
     {
         PagesAndFields.FooterActivation(index);
+        SaveButtonInteraction = false;
     }
 
     public bool SaveButtonInteraction
