@@ -4,18 +4,18 @@ using UnityEngine;
 
 public class PalleteColors : MonoBehaviour
 {
-    [SerializeField] private Color main;
-    [SerializeField] private Color[] analogous;
-    [SerializeField] private Color[] complementary;
-    [SerializeField] private Color[] compound;
-    [SerializeField] private Color[] double_split_complementary;
-    [SerializeField] private Color[] monochromatic;
-    [SerializeField] private Color[] shades;
-    [SerializeField] private Color[] split_complementary;
-    [SerializeField] private Color[] square;
-    [SerializeField] private Color[] triad;
-    [SerializeField] private Color[] gray_scale;
-    [SerializeField] private Color[] blueGrey;
+    [ReadOnly, SerializeField] private Color main;
+    [ReadOnly, SerializeField] private Color[] analogous;
+    [ReadOnly, SerializeField] private Color[] complementary;
+    [ReadOnly, SerializeField] private Color[] compound;
+    [ReadOnly, SerializeField] private Color[] double_split_complementary;
+    [ReadOnly, SerializeField] private Color[] monochromatic;
+    [ReadOnly, SerializeField] private Color[] shades;
+    [ReadOnly, SerializeField] private Color[] split_complementary;
+    [ReadOnly, SerializeField] private Color[] square;
+    [ReadOnly, SerializeField] private Color[] triad;
+    [ReadOnly, SerializeField] private Color[] gray_scale;
+    [ReadOnly, SerializeField] private Color[] blueGrey;
 
     public const string TAG = "PalleteColors";
 
@@ -152,7 +152,7 @@ public class PalleteColors : MonoBehaviour
             return gray_scale[level];
         }
     }
-    public Color BlueGrey(int level) //=> blueGrey[level];
+    public Color BlueGrey(int level)
     {
         if (level > 6 || level < 0)
         {

@@ -304,7 +304,7 @@ public class UserDataButtons : MonoBehaviour
         if (PagesAndFields.CurrentPage >= PagesAndFields.TotalPages)
         {
             Data.PagesSavePreferences(PagesAndFields.CurrentPage);
-            Debug.Log("Finished");
+            MyScenes.LoadTrainAR();
         }
         else
         {
