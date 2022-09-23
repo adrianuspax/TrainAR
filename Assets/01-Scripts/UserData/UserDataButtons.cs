@@ -24,12 +24,6 @@ public class UserDataButtons : MonoBehaviour
     [Header("Page Five Buttons", order = 1)]
     [SerializeField] private Transform focusButtonsHeader;
     [Space(-10, order = 0)]
-    [Header("Page Six Edit Buttons", order = 1)]
-    [SerializeField] private Button editAge;
-    [SerializeField] private Button editCurrentWeight;
-    [SerializeField] private Button editWeightGoal;
-    [SerializeField] private Button editHeight;
-    [Space(-10, order = 0)]
     [Header("Footer Buttons", order = 1)]
     [SerializeField] private Button saveButton;
     [SerializeField] private Button cancelButton;
@@ -61,6 +55,13 @@ public class UserDataButtons : MonoBehaviour
     [SerializeField, ReadOnly] private bool[] focusIsPressed;
     [SerializeField, ReadOnly] private string[] focusByIndex;
     [SerializeField, ReadOnly] private string chosenFocus;
+    [Space(-10, order = 0)]
+    [Header("Page6_(More)", order = 1)]
+    [SerializeField, ReadOnly] private Button[] moreEditButton;
+    [SerializeField, ReadOnly] private bool[] moreValueIsEdited;
+    [SerializeField, ReadOnly] private string[] moreEditByIndex;
+    [SerializeField, ReadOnly] private string chosenMoreEdit;
+
     [Header("Scripts", order = 0)]
     [SerializeField, ReadOnly] private ButtonsManager Buttons;
     [SerializeField, ReadOnly] private PagesAndFields PagesAndFields;
@@ -98,10 +99,8 @@ public class UserDataButtons : MonoBehaviour
         (focusButton, focusIsPressed) = Buttons.Assignment(focusButtonsHeader, FocusButtonsBehaviour);
         #endregion
         #region MORE
-        editAge.onClick.AddListener(() => CallFooterField(DataManagement.FOOTER1INDEX));
-        editCurrentWeight.onClick.AddListener(() => CallFooterField(DataManagement.FOOTER2INDEX));
-        editWeightGoal.onClick.AddListener(() => CallFooterField(DataManagement.FOOTER3INDEX));
-        editHeight.onClick.AddListener(() => CallFooterField(DataManagement.FOOTER4INDEX));
+        moreEditByIndex = new string[PagesAndFields.TotalBlocksArea];
+        (moreEditButton, moreValueIsEdited) = PagesAndFields.AssignmentEditMore(CallFooterField);
         #endregion
         #region FOOTER
         saveButton.onClick.AddListener(() => SaveButtonFunction());
@@ -253,6 +252,12 @@ public class UserDataButtons : MonoBehaviour
     {
         get => chosenFocus;
         private set => chosenFocus = value;
+    }
+    #endregion
+    #region PAGE6_(MORE)
+    public void FooterValueToMoreEdit(int index)
+    {
+
     }
     #endregion
     #region FOOTERS

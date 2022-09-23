@@ -56,6 +56,8 @@ public class DataManagement : MonoBehaviour
     public const string LEVEL5 = "I'm body builder!";
     public const int TOTALLEVELS = 5;
 
+    //public readonly int[] AAA = new int[5] { 0, 1, 2, 3, 4 };
+
     public const string FOCUSNAME0 = "Abdomen";
     public const string FOCUSNAME1 = "Chest";
     public const string FOCUSNAME2 = "Arms";

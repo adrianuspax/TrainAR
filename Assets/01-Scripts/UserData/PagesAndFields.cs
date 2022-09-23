@@ -1,7 +1,9 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PagesAndFields
     : MonoBehaviour
@@ -47,6 +49,8 @@ public class PagesAndFields
     [ReadOnly, SerializeField] private AnimationsManager Animations;
     [ReadOnly, SerializeField] private ButtonsManager Buttons;
 
+    public delegate void BehaviourButtons(int index);
+
     private void Awake()
     {
         page = AssignGameObjects(pagesHeader);
@@ -57,14 +61,14 @@ public class PagesAndFields
         userNameInput.onValueChanged.AddListener(OnValueChangedUserName);
         userNameInput.onEndEdit.AddListener(OnEndEditUserName);
 
-        moreValueTMP = new TextMeshProUGUI[footerHeader.childCount];
-        footerInput = new TMP_InputField[footerHeader.childCount];
         footerInputIsEmpty = new bool[footerHeader.childCount];
         footerValue = new string[footerHeader.childCount];
 
+        footerInput = FooterInputs;
+        moreValueTMP = TMPsEditValue;
+
         for (int i = 0; i < footerHeader.childCount; i++)
         {
-            AssignFootersArrays(i);
             AssignFootersListeners(i);
         }
 
@@ -180,6 +184,61 @@ public class PagesAndFields
         }
     }
     #endregion
+    #region PAGE6
+    public int TotalBlocksArea => blocksAreaHeader.childCount;
+
+    public TextMeshProUGUI[] TMPsEditValue
+    {
+        get
+        {
+            TextMeshProUGUI[] tmp;
+            tmp = new TextMeshProUGUI[blocksAreaHeader.childCount];
+
+            for (int i = 0; i < TotalBlocksArea; i++)
+            {
+                tmp[i] = blocksAreaHeader.GetChild(i).GetChild(0).GetComponent<TextMeshProUGUI>();
+            }
+
+            return tmp;
+        }
+    }
+
+    public (Button[], bool[]) AssignmentEditMore(params BehaviourButtons[] behaviour)
+    {
+        Button[] button;
+        bool[] itsEdited;
+        button = new Button[TotalBlocksArea];
+        itsEdited = new bool[TotalBlocksArea];
+
+        for (int index = 0; index < button.Length; index++)
+        {
+            for (int i = 0; i < behaviour.Length; i++)
+            {
+                StartCoroutine(Cor_AssignmentEditMore(index, button, behaviour[i]));
+            }
+        }
+
+        return (button, itsEdited);
+    }
+
+    private IEnumerator Cor_AssignmentEditMore(int index, Button[] button, BehaviourButtons behaviour)
+    {
+        Transform child;
+        child = blocksAreaHeader.GetChild(index);
+
+        for (int i = 0; i < child.childCount; i++)
+        {
+            if (child.GetChild(i).GetComponent<Button>() != null)
+            {
+                button[index] = child.GetChild(i).GetComponent<Button>();
+                button[index].onClick.AddListener(() => behaviour(index));
+            }
+        }
+
+        yield return null;
+    }
+
+    #endregion
     #region FOOTERS_BEHAVIOURS
     public void FooterActivation(int footerIndexToActive)
     {
@@ -293,10 +352,29 @@ public class PagesAndFields
         footerInput[index].onEndEdit.AddListener(OnEndEditFooter);
     }
 
-    private void AssignFootersArrays(int index)
+    public TMP_InputField[] FooterInputs
     {
-        moreValueTMP[index] = blocksAreaHeader.GetChild(index).GetChild(0).GetComponent<TextMeshProUGUI>();
-        footerInput[index] = footerHeader.GetChild(index).GetChild(0).GetComponent<TMP_InputField>();
+        get
+        {
+            TMP_InputField[] inputs;
+            inputs = new TMP_InputField[footerHeader.childCount];
+            Transform child;
+
+            for (int i = 0; i < footerHeader.childCount; i++)
+            {
+                child = footerHeader.GetChild(i);
+
+                for (int j = 0; j < child.childCount; j++)
+                {
+                    if (child.GetChild(j).GetComponent<TMP_InputField>() != null)
+                    {
+                        inputs[i] = child.GetChild(j).GetComponent<TMP_InputField>();
+                    }
+                }
+            }
+
+            return inputs;
+        }
     }
     #endregion
 }
