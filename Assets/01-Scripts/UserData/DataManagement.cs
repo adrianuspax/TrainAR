@@ -20,50 +20,32 @@ public class DataManagement : MonoBehaviour
     [Header("Scripts", order = 0)]
     [ReadOnly, SerializeField] private ButtonsManager Buttons;
     [ReadOnly, SerializeField] private PagesAndFields PagesAndFields;
-    #region DATA_MANAGEMENT
-    public const string PAGE1KEY = "name";
-    public const string PAGE2KEY = "genre";
-    public const string PAGE3KEY = "goal";
-    public const string PAGE4KEY = "level";
-    public const string PAGE5KEY = "focus";
-    public const string PAGEK6EY = "more";
 
+    #region DATA_MANAGEMENT
     public const string MALE = "Male";
     public const string FEMALE = "Female";
 
-    public const int PAGE1NUM = 1;
-    public const int PAGE2NUM = 2;
-    public const int PAGE3NUM = 3;
-    public const int PAGE4NUM = 4;
-    public const int PAGE5NUM = 5;
-    public const int PAGE6NUM = 6;
+    public readonly string[] pageKey = new string[] { "name", "genre", "goal", "level", "focus"};
+    public readonly string[] footerKey = new string[] { "age", "currentWeight", "weightGoal", "height" };
 
-    public const int FOOTER1INDEX = 0;
-    public const int FOOTER2INDEX = 1;
-    public const int FOOTER3INDEX = 2;
-    public const int FOOTER4INDEX = 3;
+    public const int PAGE1 = 1;
+    public const int PAGE2 = 2;
+    public const int PAGE3 = 3;
+    public const int PAGE4 = 4;
+    public const int PAGE5 = 5;
+    public const int PAGE6 = 6;
+
+    public const int FOOTER1 = 0;
+    public const int FOOTER2 = 1;
+    public const int FOOTER3 = 2;
+    public const int FOOTER4 = 3;
     #endregion
     #region DATA_VALUES_MANAGEMENT
-    public const string GOAL0 = "Lose Weight";
-    public const string GOAL1 = "More Muscles";
-    public const string GOAL2 = "Keep Shape";
-    public const int TOTALGOALS = 3;
-
-    public const string LEVEL1 = "I'm sedentary!";
-    public const string LEVEL2 = "I'm walker!";
-    public const string LEVEL3 = "I'm runner!";
-    public const string LEVEL4 = "I'm athletic!";
-    public const string LEVEL5 = "I'm body builder!";
-    public const int TOTALLEVELS = 5;
-
-    //public readonly int[] AAA = new int[5] { 0, 1, 2, 3, 4 };
-
-    public const string FOCUSNAME0 = "Abdomen";
-    public const string FOCUSNAME1 = "Chest";
-    public const string FOCUSNAME2 = "Arms";
-    public const string FOCUSNAME3 = "Legs";
-    public const int TOTALFOCUS = 4;
+    public readonly string[] goalName = new string[] { "Lose Weight", "More Muscles", "Keep Shape" };
+    public readonly string[] levelPhrase = new string[] { "I'm sedentary!", "I'm walker!", "I'm runner!", "I'm athletic!", "I'm body builder!" };
+    public readonly string[] focusName = new string[] { "Abdomen", "Chest", "Arms", "Legs" };
     #endregion
+
     public void Awake()
     {
         Buttons = this.GetComponent<ButtonsManager>();
@@ -78,46 +60,54 @@ public class DataManagement : MonoBehaviour
         goal = Goal;
         level = Level;
         focus = Focus;
+        age = MoreEdit[0];
+        currentWeight = MoreEdit[1];
+        weightGoal = MoreEdit[2];
+        height = MoreEdit[3];
     }
 
     public void PagesSavePreferences(int page)
     {
         switch (page)
         {
-            case PAGE1NUM:
+            case PAGE1:
                 UserName = PagesAndFields.UserName;
-                Debug.Log("Page1: " + "UserName = " + userName);
+                Debug.Log("Page1: UserName = " + UserName);
                 break;
-            case PAGE2NUM:
+            case PAGE2:
                 IsMale = Buttons.UserData.Genre;
-                Debug.Log("Page2: " + "Genre = " + genre);
+                Debug.Log("Page2: Genre = " + (IsMale ? MALE : FEMALE));
                 break;
-            case PAGE3NUM:
+            case PAGE3:
                 Goal = Buttons.UserData.Goal;
                 Buttons.UserData.LevelButtonsBehaviour(2);
-                Debug.Log("Page3: " + "Goal = " + goal);
+                Debug.Log("Page3: Goal = " + Goal);
                 break;
-            case PAGE4NUM:
+            case PAGE4:
                 Level = Buttons.UserData.Level;
-                Debug.Log("Page4: " + "Level = " + level);
+                Debug.Log("Page4: Level = " + Level);
                 break;
-            case PAGE5NUM:
+            case PAGE5:
                 Focus = Buttons.UserData.Focus;
-                Debug.Log("Page5: " + "Level = " + focus);
+                Debug.Log("Page5: Focus = " + Focus);
                 break;
-            case PAGE6NUM:
-
+            case PAGE6:
+                MoreEdit = PagesAndFields.FooterArray;
+                Debug.Log("Page6: Age = " + MoreEdit[0]);
+                Debug.Log("Page6: Current Weight = " + MoreEdit[1]);
+                Debug.Log("Page6: Weight Goal = " + MoreEdit[2]);
+                Debug.Log("Page6: Height = " + MoreEdit[3]);
                 break;
         }
     }
 
     public string UserName
     {
-        get  => PlayerPrefs.GetString(PAGE1KEY);
+        get  => PlayerPrefs.GetString(pageKey[0]);
         private set
         {
-            PlayerPrefs.SetString(PAGE1KEY, value);
-            userName = PlayerPrefs.GetString(PAGE1KEY);
+            PlayerPrefs.SetString(pageKey[0], value);
+            userName = PlayerPrefs.GetString(pageKey[0]);
         }
     }
 
@@ -133,42 +123,66 @@ public class DataManagement : MonoBehaviour
 
     private int GenreByIndex
     {
-        get => PlayerPrefs.GetInt(PAGE2KEY);
-        set => PlayerPrefs.SetInt(PAGE2KEY, value);
+        get => PlayerPrefs.GetInt(pageKey[1]);
+        set => PlayerPrefs.SetInt(pageKey[1], value);
     }
 
     public string Goal
     {
-        get => PlayerPrefs.GetString(PAGE3KEY);
+        get => PlayerPrefs.GetString(pageKey[2]);
         private set
         {
-            PlayerPrefs.SetString(PAGE3KEY, value);
-            goal = PlayerPrefs.GetString(PAGE3KEY);
+            PlayerPrefs.SetString(pageKey[2], value);
+            goal = PlayerPrefs.GetString(pageKey[2]);
         }
     }
 
     public string Level
     {
-        get => PlayerPrefs.GetString(PAGE4KEY);
+        get => PlayerPrefs.GetString(pageKey[3]);
         private set
         {
-            PlayerPrefs.SetString(PAGE4KEY, value);
-            level = PlayerPrefs.GetString(PAGE4KEY);
+            PlayerPrefs.SetString(pageKey[3], value);
+            level = PlayerPrefs.GetString(pageKey[3]);
         }
     }
 
     public string Focus
     {
-        get => PlayerPrefs.GetString(PAGE5KEY);
+        get => PlayerPrefs.GetString(pageKey[4]);
         private set
         {
-            PlayerPrefs.SetString(PAGE5KEY, value);
-            focus = PlayerPrefs.GetString(PAGE5KEY);
+            PlayerPrefs.SetString(pageKey[4], value);
+            focus = PlayerPrefs.GetString(pageKey[4]);
         }
     }
 
-    /*public string Age
+    public string[] MoreEdit
     {
         get
-    }*/
+        {
+            string[] data;
+            data = new string[footerKey.Length];
+
+            for (int i = 0; i < footerKey.Length; i++)
+            {
+                data[i] = PlayerPrefs.GetString(footerKey[i]);
+            }
+
+            return data;
+        }
+
+        set
+        {
+            for (int i = 0; i < footerKey.Length; i++)
+            {
+                PlayerPrefs.SetString(footerKey[i], value[i]);
+            }
+
+            age = MoreEdit[0];
+            currentWeight = MoreEdit[1];
+            weightGoal = MoreEdit[2];
+            height = MoreEdit[3];
+        }
+    }
 }

@@ -1,4 +1,3 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -64,8 +63,8 @@ public class PagesAndFields
         footerInputIsEmpty = new bool[footerHeader.childCount];
         footerValue = new string[footerHeader.childCount];
 
-        footerInput = FooterInputs;
-        moreValueTMP = TMPsEditValue;
+        footerInput = AssignFooterInputs;
+        moreValueTMP = AssignTMPsEditValue;
 
         for (int i = 0; i < footerHeader.childCount; i++)
         {
@@ -83,7 +82,7 @@ public class PagesAndFields
         foreach (GameObject pages in page) { pages.SetActive(false); }
         foreach (GameObject footers in footer) { footers.SetActive(false); }
 
-        PageActivation(DataManagement.PAGE1NUM);
+        PageActivation(DataManagement.PAGE1);
 
         userNameInputIsEmpty = true;
         SetAllFooterInputIsEmpty(true);
@@ -187,7 +186,7 @@ public class PagesAndFields
     #region PAGE6
     public int TotalBlocksArea => blocksAreaHeader.childCount;
 
-    public TextMeshProUGUI[] TMPsEditValue
+    public TextMeshProUGUI[] AssignTMPsEditValue
     {
         get
         {
@@ -238,6 +237,21 @@ public class PagesAndFields
         yield return null;
     }
 
+    public void SetMoreValueTMP(int index, string data)
+    {
+        if (index == DataManagement.FOOTER2 || index == DataManagement.FOOTER3)
+        {
+            moreValueTMP[index].text = data + " kg";
+        }
+        else if (index == DataManagement.FOOTER1)
+        {
+            moreValueTMP[index].text = data + " years";
+        }
+        else
+        {
+            moreValueTMP[index].text = data + " cm";
+        }
+    }
     #endregion
     #region FOOTERS_BEHAVIOURS
     public void FooterActivation(int footerIndexToActive)
@@ -308,11 +322,13 @@ public class PagesAndFields
         private set => footerValue[CurrentFooterIndex] = value;
     }
 
+    public string[] FooterArray => footerValue;
+
     private int CurrentFooterIndex => CurrentFooter - 1;
 
     public void ClearAllInputFooter()
     {
-        foreach (TMP_InputField inputs in footerInput)
+        foreach (TMP_InputField inputs in footerInput) //Resolver isso (colocar index)
         {
             inputs.text = "";
         }
@@ -352,7 +368,7 @@ public class PagesAndFields
         footerInput[index].onEndEdit.AddListener(OnEndEditFooter);
     }
 
-    public TMP_InputField[] FooterInputs
+    public TMP_InputField[] AssignFooterInputs
     {
         get
         {

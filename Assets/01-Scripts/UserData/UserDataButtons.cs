@@ -59,8 +59,6 @@ public class UserDataButtons : MonoBehaviour
     [Header("Page6_(More)", order = 1)]
     [SerializeField, ReadOnly] private Button[] moreEditButton;
     [SerializeField, ReadOnly] private bool[] moreValueIsEdited;
-    [SerializeField, ReadOnly] private string[] moreEditByIndex;
-    [SerializeField, ReadOnly] private string chosenMoreEdit;
 
     [Header("Scripts", order = 0)]
     [SerializeField, ReadOnly] private ButtonsManager Buttons;
@@ -87,19 +85,18 @@ public class UserDataButtons : MonoBehaviour
         (genreButton, genreIsPressed) = Buttons.Assignment(genreButtonsHeader, GenreButtonBehaviour);
         #endregion
         #region GOAL
-        goalbyIndex = new string[DataManagement.TOTALGOALS] { DataManagement.GOAL0, DataManagement.GOAL1, DataManagement.GOAL2 };
+        goalbyIndex = new string[] { Data.goalName[0], Data.goalName[1], Data.goalName[2] };
         (goalButton, goalIsPressed) = Buttons.Assignment(goalButtonsHeader, GoalButtonsBehaviour);
         #endregion
         #region LEVEL
-        levelByIndex = new string[DataManagement.TOTALLEVELS] { DataManagement.LEVEL1, DataManagement.LEVEL2, DataManagement.LEVEL3, DataManagement.LEVEL4, DataManagement.LEVEL5 };
+        levelByIndex = new string[] { Data.levelPhrase[0], Data.levelPhrase[1], Data.levelPhrase[2], Data.levelPhrase[3], Data.levelPhrase[4] };
         (levelButton, levelIsPressed) = Buttons.Assignment(levelButtonsHeader, LevelButtonsBehaviour);
         #endregion
         #region FOCUS
-        focusByIndex = new string[DataManagement.TOTALFOCUS] { DataManagement.FOCUSNAME0, DataManagement.FOCUSNAME1, DataManagement.FOCUSNAME2, DataManagement.FOCUSNAME3 };
+        focusByIndex = new string[] { Data.focusName[0], Data.focusName[1], Data.focusName[2], Data.focusName[3] };
         (focusButton, focusIsPressed) = Buttons.Assignment(focusButtonsHeader, FocusButtonsBehaviour);
         #endregion
         #region MORE
-        moreEditByIndex = new string[PagesAndFields.TotalBlocksArea];
         (moreEditButton, moreValueIsEdited) = PagesAndFields.AssignmentEditMore(CallFooterField);
         #endregion
         #region FOOTER
@@ -244,6 +241,7 @@ public class UserDataButtons : MonoBehaviour
                 focusIsPressed[i] = false;
             }
         }
+
         Focus = focusByIndex[index];
         NextButtonInteraction = focusIsPressed[index];
     }
@@ -254,17 +252,31 @@ public class UserDataButtons : MonoBehaviour
         private set => chosenFocus = value;
     }
     #endregion
-    #region PAGE6_(MORE)
-    public void FooterValueToMoreEdit(int index)
-    {
-
-    }
-    #endregion
     #region FOOTERS
     public void SaveButtonFunction()
     {
+        int index;
+        index = PagesAndFields.CurrentFooter - 1;
+        moreValueIsEdited[index] = true;
+        PagesAndFields.SetMoreValueTMP(index, PagesAndFields.DataFooter);
         Animations.UserData.PlayFooterSaveClip();
         PagesAndFields.ClearAllInputFooter(Animations.UserData.EnterClipTime);
+        Buttons.UserData.NextButtonInteraction = AllFooterValuesItsEdited;
+    }
+
+    public bool AllFooterValuesItsEdited
+    {
+        get
+        {
+            int totalFootersEdited = 0;
+
+            foreach (bool edited in moreValueIsEdited)
+            {
+                if (edited) { totalFootersEdited++; }
+            }
+
+            return totalFootersEdited == 4;
+        }
     }
 
     public void CancelButtonFunction()
@@ -291,8 +303,8 @@ public class UserDataButtons : MonoBehaviour
     {
         if (PagesAndFields.CurrentPage >= PagesAndFields.TotalPages)
         {
+            Data.PagesSavePreferences(PagesAndFields.CurrentPage);
             Debug.Log("Finished");
-            return;
         }
         else
         {
