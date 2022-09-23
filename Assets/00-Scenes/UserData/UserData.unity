@@ -8516,6 +8516,10 @@ MonoBehaviour:
   goal: 
   level: 
   focus: 
+  age: 
+  currentWeight: 
+  weightGoal: 
+  height: 
   Buttons: {fileID: 0}
   PagesAndFields: {fileID: 0}
 --- !u!1 &1130995706

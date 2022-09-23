@@ -83,6 +83,7 @@ public class PagesAndFields
 
         userNameInputIsEmpty = true;
         SetAllFooterInputIsEmpty(true);
+        SetTextAllMoreValueTMP("edit");
     }
     #region PAGES_BEHAVIOURS
     public void PageActivation(int pageNumberToActive)
@@ -168,6 +169,15 @@ public class PagesAndFields
     {
         get => nameLevel.text;
         set => nameLevel.text = value;
+    }
+    #endregion
+    #region PAGE5
+    public void SetTextAllMoreValueTMP(string setText)
+    {
+        foreach (TextMeshProUGUI tmp in moreValueTMP)
+        {
+            tmp.text = setText;
+        }
     }
     #endregion
     #region FOOTERS_BEHAVIOURS

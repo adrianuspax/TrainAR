@@ -12,6 +12,10 @@ public class DataManagement : MonoBehaviour
     [ReadOnly, SerializeField] private string goal;
     [ReadOnly, SerializeField] private string level;
     [ReadOnly, SerializeField] private string focus;
+    [ReadOnly, SerializeField] private string age;
+    [ReadOnly, SerializeField] private string currentWeight;
+    [ReadOnly, SerializeField] private string weightGoal;
+    [ReadOnly, SerializeField] private string height;
 
     [Header("Scripts", order = 0)]
     [ReadOnly, SerializeField] private ButtonsManager Buttons;
@@ -58,7 +62,6 @@ public class DataManagement : MonoBehaviour
     public const string FOCUSNAME3 = "Legs";
     public const int TOTALFOCUS = 4;
     #endregion
-
     public void Awake()
     {
         Buttons = this.GetComponent<ButtonsManager>();
@@ -98,7 +101,7 @@ public class DataManagement : MonoBehaviour
                 break;
             case PAGE5NUM:
                 Focus = Buttons.UserData.Focus;
-                Debug.Log("Page4: " + "Level = " + focus);
+                Debug.Log("Page5: " + "Level = " + focus);
                 break;
             case PAGE6NUM:
 
@@ -161,4 +164,9 @@ public class DataManagement : MonoBehaviour
             focus = PlayerPrefs.GetString(PAGE5KEY);
         }
     }
+
+    /*public string Age
+    {
+        get
+    }*/
 }
