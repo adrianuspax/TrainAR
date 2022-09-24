@@ -1,9 +1,12 @@
+#region USED_NAMESPACES
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+#endregion
+#region CLASS
 public class DataManagement : MonoBehaviour
 {
+    #region READY_INSPECTOR
     [Header(" =========================== READY ONLY =========================== ", order = 0)]
     [Space(-10, order = 1)]
     [Header("SAVED DATA", order = 2)]
@@ -20,7 +23,7 @@ public class DataManagement : MonoBehaviour
     [Header("Scripts", order = 0)]
     [ReadOnly, SerializeField] private ButtonsManager Buttons;
     [ReadOnly, SerializeField] private PagesAndFields PagesAndFields;
-
+    #endregion
     #region DATA_MANAGEMENT
     public const string MALE = "Male";
     public const string FEMALE = "Female";
@@ -45,7 +48,7 @@ public class DataManagement : MonoBehaviour
     public readonly string[] levelPhrase = new string[] { "I'm sedentary!", "I'm walker!", "I'm runner!", "I'm athletic!", "I'm body builder!" };
     public readonly string[] focusName = new string[] { "Abdomen", "Chest", "Arms", "Legs" };
     #endregion
-
+    #region UNITY_MONOBEHAVIOUR
     public void Awake()
     {
         Buttons = this.GetComponent<ButtonsManager>();
@@ -65,7 +68,8 @@ public class DataManagement : MonoBehaviour
         weightGoal = MoreEdit[2];
         height = MoreEdit[3];
     }
-
+    #endregion
+    #region SAVE_DATA
     public void PagesSavePreferences(int page)
     {
         switch (page)
@@ -100,7 +104,8 @@ public class DataManagement : MonoBehaviour
                 break;
         }
     }
-
+    #endregion
+    #region GET_SET_FUNCTIONS
     public string UserName
     {
         get  => PlayerPrefs.GetString(pageKey[0]);
@@ -185,4 +190,6 @@ public class DataManagement : MonoBehaviour
             height = MoreEdit[3];
         }
     }
+    #endregion
 }
+#endregion

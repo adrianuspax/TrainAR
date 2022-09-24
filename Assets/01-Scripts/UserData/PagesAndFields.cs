@@ -1,12 +1,14 @@
+#region USED_NAMESPACES
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
-
-public class PagesAndFields
-    : MonoBehaviour
+#endregion
+#region CLASS
+public class PagesAndFields : MonoBehaviour
 {
+    #region UNITY_INSPECTOR
     [Header("HEADERS", order = 0)]
     [Space(-10, order = 1)]
     [Header("Header Pages", order = 2)]
@@ -25,7 +27,8 @@ public class PagesAndFields
     [Space(-10, order = 0)]
     [Header("Page 6", order = 1)]
     [SerializeField] private Transform blocksAreaHeader;
-
+    #endregion
+    #region READY_INSPECTOR
     [Header(" =========================== READY ONLY =========================== ", order = 0)]
     [Space(-10, order = 1)]
     [Header("Pages", order = 2)]
@@ -47,9 +50,9 @@ public class PagesAndFields
     [Header("Scripts", order = 0)]
     [ReadOnly, SerializeField] private AnimationsManager Animations;
     [ReadOnly, SerializeField] private ButtonsManager Buttons;
-
+    #endregion
     public delegate void BehaviourButtons(int index);
-
+    #region UNITY_MONOBEHAVIOUR
     private void Awake()
     {
         page = AssignGameObjects(pagesHeader);
@@ -88,6 +91,7 @@ public class PagesAndFields
         SetAllFooterInputIsEmpty(true);
         SetTextAllMoreValueTMP("edit");
     }
+    #endregion
     #region PAGES_BEHAVIOURS
     public void PageActivation(int pageNumberToActive)
     {
@@ -394,3 +398,4 @@ public class PagesAndFields
     }
     #endregion
 }
+#endregion

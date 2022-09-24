@@ -1,11 +1,14 @@
+#region USED_NAMESPACES
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
-
+#endregion
+#region CLASS
 public class UserDataButtons : MonoBehaviour
 {
+    #region UNITY_INSPECTOR
     [Header("BUTTONS", order = 0)]
     [Space(-10, order = 1)]
     [Header("Canvas Buttons", order = 2)]
@@ -27,7 +30,8 @@ public class UserDataButtons : MonoBehaviour
     [Header("Footer Buttons", order = 1)]
     [SerializeField] private Button saveButton;
     [SerializeField] private Button cancelButton;
-
+    #endregion
+    #region READY_INSPECTOR
     [Header(" =========================== READY ONLY =========================== ", order = 0)]
     [Space(-10, order = 1)]
     [Header("Variables", order = 2)]
@@ -66,7 +70,8 @@ public class UserDataButtons : MonoBehaviour
     [SerializeField, ReadOnly] private AnimationsManager Animations;
     [SerializeField, ReadOnly] private DataManagement Data;
     [SerializeField, ReadOnly] private PalleteColors PalleteColors;
-
+    #endregion
+    #region UNITY_MONOBEHAVIOUR
     private void Awake()
     {
         #region SCRIPTS
@@ -104,7 +109,7 @@ public class UserDataButtons : MonoBehaviour
         cancelButton.onClick.AddListener(() => CancelButtonFunction());
         #endregion
     }
-
+    #endregion
     #region CLOSE_BUTTON
     public void CloseApplication()
     {
@@ -321,3 +326,4 @@ public class UserDataButtons : MonoBehaviour
     }
     #endregion
 }
+#endregion
