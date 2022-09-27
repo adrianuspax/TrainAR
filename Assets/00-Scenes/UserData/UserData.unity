@@ -226,7 +226,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Weight goal
+  m_text: "\uBAA9\uD45C\uCCB4\uC911"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 080d8f1716f453148ba7482474672b18, type: 2}
   m_sharedMaterial: {fileID: 3065921934497872612, guid: 080d8f1716f453148ba7482474672b18,
@@ -257,9 +257,9 @@ MonoBehaviour:
   m_fontSize: 63
   m_fontSizeBase: 63
   m_fontWeight: 400
-  m_enableAutoSizing: 0
-  m_fontSizeMin: 18
-  m_fontSizeMax: 72
+  m_enableAutoSizing: 1
+  m_fontSizeMin: 32
+  m_fontSizeMax: 63
   m_fontStyle: 0
   m_HorizontalAlignment: 1
   m_VerticalAlignment: 512
@@ -582,7 +582,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Next
+  m_text: "\uB2E4\uC74C"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: fe720cbd7b9ca9b4c9d35b1db8b30fae, type: 2}
   m_sharedMaterial: {fileID: -7511069553996601242, guid: fe720cbd7b9ca9b4c9d35b1db8b30fae,
@@ -626,7 +626,7 @@ MonoBehaviour:
   m_lineSpacingMax: 0
   m_paragraphSpacing: 0
   m_charWidthMaxAdj: 0
-  m_enableWordWrapping: 1
+  m_enableWordWrapping: 0
   m_wordWrappingRatios: 0.4
   m_overflowMode: 0
   m_linkedTextComponent: {fileID: 0}
@@ -894,7 +894,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Height
+  m_text: "\uC2E0\uC7A5"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 080d8f1716f453148ba7482474672b18, type: 2}
   m_sharedMaterial: {fileID: 3065921934497872612, guid: 080d8f1716f453148ba7482474672b18,
@@ -925,9 +925,9 @@ MonoBehaviour:
   m_fontSize: 63
   m_fontSizeBase: 63
   m_fontWeight: 400
-  m_enableAutoSizing: 0
-  m_fontSizeMin: 18
-  m_fontSizeMax: 72
+  m_enableAutoSizing: 1
+  m_fontSizeMin: 32
+  m_fontSizeMax: 63
   m_fontStyle: 0
   m_HorizontalAlignment: 1
   m_VerticalAlignment: 512
@@ -1030,7 +1030,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: What is your focus?
+  m_text: "\uC9D1\uC911\uC801 \uC6B4\uB3D9 \uBD80\uC704"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: fe720cbd7b9ca9b4c9d35b1db8b30fae, type: 2}
   m_sharedMaterial: {fileID: -7511069553996601242, guid: fe720cbd7b9ca9b4c9d35b1db8b30fae,
@@ -1058,7 +1058,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 120.95
+  m_fontSize: 133.76
   m_fontSizeBase: 133.76
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -1074,7 +1074,7 @@ MonoBehaviour:
   m_lineSpacingMax: 0
   m_paragraphSpacing: 0
   m_charWidthMaxAdj: 0
-  m_enableWordWrapping: 1
+  m_enableWordWrapping: 0
   m_wordWrappingRatios: 0.4
   m_overflowMode: 0
   m_linkedTextComponent: {fileID: 0}
@@ -1319,7 +1319,7 @@ RectTransform:
   - {fileID: 1604860764}
   - {fileID: 560747049}
   m_Father: {fileID: 903882326}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.26186356}
   m_AnchorMax: {x: 1, y: 0.52400005}
@@ -1763,9 +1763,9 @@ MonoBehaviour:
   m_fontSize: 50
   m_fontSizeBase: 50
   m_fontWeight: 400
-  m_enableAutoSizing: 0
-  m_fontSizeMin: 18
-  m_fontSizeMax: 72
+  m_enableAutoSizing: 1
+  m_fontSizeMin: 25
+  m_fontSizeMax: 50
   m_fontStyle: 0
   m_HorizontalAlignment: 4
   m_VerticalAlignment: 512
@@ -1776,7 +1776,7 @@ MonoBehaviour:
   m_lineSpacingMax: 0
   m_paragraphSpacing: 0
   m_charWidthMaxAdj: 0
-  m_enableWordWrapping: 1
+  m_enableWordWrapping: 0
   m_wordWrappingRatios: 0.4
   m_overflowMode: 0
   m_linkedTextComponent: {fileID: 0}
@@ -1889,7 +1889,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: ' Enter your name here...'
+  m_text: "\uC5EC\uAE30\uC5D0 \uC785\uB825\uD558\uC138\uC694"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: a0842cbe0db9701428500bade3144e75, type: 2}
   m_sharedMaterial: {fileID: -597507554641646966, guid: a0842cbe0db9701428500bade3144e75,
@@ -1924,7 +1924,7 @@ MonoBehaviour:
   m_fontSizeMin: 50
   m_fontSizeMax: 100
   m_fontStyle: 2
-  m_HorizontalAlignment: 1
+  m_HorizontalAlignment: 2
   m_VerticalAlignment: 4096
   m_textAlignment: 65535
   m_characterSpacing: 0
@@ -2358,7 +2358,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Keep Shape
+  m_text: "\uBAB8\uB9E4\uAC00\uAFB8\uAE30"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 9e17a4d7301d030419efa655530704da, type: 2}
   m_sharedMaterial: {fileID: -652241395867093120, guid: 9e17a4d7301d030419efa655530704da,
@@ -2402,7 +2402,7 @@ MonoBehaviour:
   m_lineSpacingMax: 0
   m_paragraphSpacing: 0
   m_charWidthMaxAdj: 0
-  m_enableWordWrapping: 1
+  m_enableWordWrapping: 0
   m_wordWrappingRatios: 0.4
   m_overflowMode: 0
   m_linkedTextComponent: {fileID: 0}
@@ -2817,7 +2817,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: What is your height?
+  m_text: "\uBCF8\uC778 \uD0A4 \uC785\uB825 "
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 080d8f1716f453148ba7482474672b18, type: 2}
   m_sharedMaterial: {fileID: 3065921934497872612, guid: 080d8f1716f453148ba7482474672b18,
@@ -2861,7 +2861,7 @@ MonoBehaviour:
   m_lineSpacingMax: 0
   m_paragraphSpacing: 0
   m_charWidthMaxAdj: 0
-  m_enableWordWrapping: 1
+  m_enableWordWrapping: 0
   m_wordWrappingRatios: 0.4
   m_overflowMode: 0
   m_linkedTextComponent: {fileID: 0}
@@ -3029,7 +3029,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: More Muscles
+  m_text: "\uADFC\uB825\uAC15\uD654"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 9e17a4d7301d030419efa655530704da, type: 2}
   m_sharedMaterial: {fileID: -652241395867093120, guid: 9e17a4d7301d030419efa655530704da,
@@ -3057,7 +3057,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 80.4
+  m_fontSize: 90
   m_fontSizeBase: 100
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -3165,7 +3165,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: What's Your Name?
+  m_text: "\uC774\uB984\uC744 \uC785\uB825\uD558\uC138\uC694"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: fe720cbd7b9ca9b4c9d35b1db8b30fae, type: 2}
   m_sharedMaterial: {fileID: -7511069553996601242, guid: fe720cbd7b9ca9b4c9d35b1db8b30fae,
@@ -3193,7 +3193,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 120.95
+  m_fontSize: 123.85
   m_fontSizeBase: 133.76
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -3209,7 +3209,7 @@ MonoBehaviour:
   m_lineSpacingMax: 0
   m_paragraphSpacing: 0
   m_charWidthMaxAdj: 0
-  m_enableWordWrapping: 1
+  m_enableWordWrapping: 0
   m_wordWrappingRatios: 0.4
   m_overflowMode: 0
   m_linkedTextComponent: {fileID: 0}
@@ -3301,7 +3301,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: What is your current weight?
+  m_text: "\uD604\uC7AC \uCCB4\uC911 \uC785\uB825"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 080d8f1716f453148ba7482474672b18, type: 2}
   m_sharedMaterial: {fileID: 3065921934497872612, guid: 080d8f1716f453148ba7482474672b18,
@@ -3345,7 +3345,7 @@ MonoBehaviour:
   m_lineSpacingMax: 0
   m_paragraphSpacing: 0
   m_charWidthMaxAdj: 0
-  m_enableWordWrapping: 1
+  m_enableWordWrapping: 0
   m_wordWrappingRatios: 0.4
   m_overflowMode: 0
   m_linkedTextComponent: {fileID: 0}
@@ -3691,7 +3691,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: What is your gender?
+  m_text: "\uC131\uBCC4\uC744 \uC785\uB825\uD558\uC138\uC694"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: fe720cbd7b9ca9b4c9d35b1db8b30fae, type: 2}
   m_sharedMaterial: {fileID: -7511069553996601242, guid: fe720cbd7b9ca9b4c9d35b1db8b30fae,
@@ -3719,7 +3719,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 120.95
+  m_fontSize: 123.85
   m_fontSizeBase: 133.76
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -3735,7 +3735,7 @@ MonoBehaviour:
   m_lineSpacingMax: 0
   m_paragraphSpacing: 0
   m_charWidthMaxAdj: 0
-  m_enableWordWrapping: 1
+  m_enableWordWrapping: 0
   m_wordWrappingRatios: 0.4
   m_overflowMode: 0
   m_linkedTextComponent: {fileID: 0}
@@ -3827,7 +3827,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Abdomen
+  m_text: "\uBCF5\uADFC"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 9e17a4d7301d030419efa655530704da, type: 2}
   m_sharedMaterial: {fileID: -652241395867093120, guid: 9e17a4d7301d030419efa655530704da,
@@ -3871,7 +3871,7 @@ MonoBehaviour:
   m_lineSpacingMax: 0
   m_paragraphSpacing: 0
   m_charWidthMaxAdj: 0
-  m_enableWordWrapping: 1
+  m_enableWordWrapping: 0
   m_wordWrappingRatios: 0.4
   m_overflowMode: 0
   m_linkedTextComponent: {fileID: 0}
@@ -3920,7 +3920,7 @@ GameObject:
   - component: {fileID: 529985454}
   - component: {fileID: 529985458}
   m_Layer: 0
-  m_Name: btnAbdomen
+  m_Name: btnArms
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4295,7 +4295,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Save
+  m_text: "\uC800\uC7A5"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: fe720cbd7b9ca9b4c9d35b1db8b30fae, type: 2}
   m_sharedMaterial: {fileID: -7511069553996601242, guid: fe720cbd7b9ca9b4c9d35b1db8b30fae,
@@ -4339,7 +4339,7 @@ MonoBehaviour:
   m_lineSpacingMax: 0
   m_paragraphSpacing: 0
   m_charWidthMaxAdj: 0
-  m_enableWordWrapping: 1
+  m_enableWordWrapping: 0
   m_wordWrappingRatios: 0.4
   m_overflowMode: 0
   m_linkedTextComponent: {fileID: 0}
@@ -4431,7 +4431,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Arms
+  m_text: "\uD314 \uBD80\uC704 "
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 9e17a4d7301d030419efa655530704da, type: 2}
   m_sharedMaterial: {fileID: -652241395867093120, guid: 9e17a4d7301d030419efa655530704da,
@@ -4475,7 +4475,7 @@ MonoBehaviour:
   m_lineSpacingMax: 0
   m_paragraphSpacing: 0
   m_charWidthMaxAdj: 0
-  m_enableWordWrapping: 1
+  m_enableWordWrapping: 0
   m_wordWrappingRatios: 0.4
   m_overflowMode: 0
   m_linkedTextComponent: {fileID: 0}
@@ -4598,9 +4598,9 @@ MonoBehaviour:
   m_fontSize: 50
   m_fontSizeBase: 50
   m_fontWeight: 400
-  m_enableAutoSizing: 0
-  m_fontSizeMin: 18
-  m_fontSizeMax: 72
+  m_enableAutoSizing: 1
+  m_fontSizeMin: 25
+  m_fontSizeMax: 50
   m_fontStyle: 0
   m_HorizontalAlignment: 4
   m_VerticalAlignment: 512
@@ -4611,7 +4611,7 @@ MonoBehaviour:
   m_lineSpacingMax: 0
   m_paragraphSpacing: 0
   m_charWidthMaxAdj: 0
-  m_enableWordWrapping: 1
+  m_enableWordWrapping: 0
   m_wordWrappingRatios: 0.4
   m_overflowMode: 0
   m_linkedTextComponent: {fileID: 0}
@@ -5008,7 +5008,7 @@ MonoBehaviour:
   m_lineSpacingMax: 0
   m_paragraphSpacing: 0
   m_charWidthMaxAdj: 0
-  m_enableWordWrapping: 1
+  m_enableWordWrapping: 0
   m_wordWrappingRatios: 0.4
   m_overflowMode: 0
   m_linkedTextComponent: {fileID: 0}
@@ -5144,7 +5144,7 @@ MonoBehaviour:
   m_lineSpacingMax: 0
   m_paragraphSpacing: 0
   m_charWidthMaxAdj: 0
-  m_enableWordWrapping: 1
+  m_enableWordWrapping: 0
   m_wordWrappingRatios: 0.4
   m_overflowMode: 0
   m_linkedTextComponent: {fileID: 0}
@@ -5236,7 +5236,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Cancel
+  m_text: "\uCDE8\uC18C"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: fe720cbd7b9ca9b4c9d35b1db8b30fae, type: 2}
   m_sharedMaterial: {fileID: -7511069553996601242, guid: fe720cbd7b9ca9b4c9d35b1db8b30fae,
@@ -5280,7 +5280,7 @@ MonoBehaviour:
   m_lineSpacingMax: 0
   m_paragraphSpacing: 0
   m_charWidthMaxAdj: 0
-  m_enableWordWrapping: 1
+  m_enableWordWrapping: 0
   m_wordWrappingRatios: 0.4
   m_overflowMode: 0
   m_linkedTextComponent: {fileID: 0}
@@ -5462,7 +5462,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Years
+  m_text: "\uC138"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: c5e9b28229cd30f47a1b957e7e8aa467, type: 2}
   m_sharedMaterial: {fileID: -241065826414792663, guid: c5e9b28229cd30f47a1b957e7e8aa467,
@@ -5506,7 +5506,7 @@ MonoBehaviour:
   m_lineSpacingMax: 0
   m_paragraphSpacing: 0
   m_charWidthMaxAdj: 0
-  m_enableWordWrapping: 1
+  m_enableWordWrapping: 0
   m_wordWrappingRatios: 0.4
   m_overflowMode: 0
   m_linkedTextComponent: {fileID: 0}
@@ -5807,7 +5807,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: value
+  m_text: "\uD0A4 \uAC12"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 4e7ee66db5a42724c9da5a7a88398bc2, type: 2}
   m_sharedMaterial: {fileID: 8259488994137735082, guid: 4e7ee66db5a42724c9da5a7a88398bc2,
@@ -5964,7 +5964,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: value
+  m_text: "\uCCB4\uC911\uAC12"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 4e7ee66db5a42724c9da5a7a88398bc2, type: 2}
   m_sharedMaterial: {fileID: 8259488994137735082, guid: 4e7ee66db5a42724c9da5a7a88398bc2,
@@ -6343,9 +6343,9 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1508923578}
+  - {fileID: 915557220}
   - {fileID: 918351488}
   - {fileID: 174273522}
-  - {fileID: 915557220}
   m_Father: {fileID: 646936484}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -6571,7 +6571,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 903882326}
-  m_RootOrder: 3
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.15743178}
   m_AnchorMax: {x: 1, y: 0.20915891}
@@ -6642,7 +6642,7 @@ MonoBehaviour:
   m_lineSpacingMax: 0
   m_paragraphSpacing: 0
   m_charWidthMaxAdj: 0
-  m_enableWordWrapping: 1
+  m_enableWordWrapping: 0
   m_wordWrappingRatios: 0.4
   m_overflowMode: 0
   m_linkedTextComponent: {fileID: 0}
@@ -6707,7 +6707,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 903882326}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.57613647}
   m_AnchorMax: {x: 1, y: 0.7334542}
@@ -6734,7 +6734,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: What is your fitness level?
+  m_text: "\uCCB4\uB825\uC218\uC900  \uC120\uD0DD"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: fe720cbd7b9ca9b4c9d35b1db8b30fae, type: 2}
   m_sharedMaterial: {fileID: -7511069553996601242, guid: fe720cbd7b9ca9b4c9d35b1db8b30fae,
@@ -6762,7 +6762,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 120.95
+  m_fontSize: 133.76
   m_fontSizeBase: 133.76
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -6778,7 +6778,7 @@ MonoBehaviour:
   m_lineSpacingMax: 0
   m_paragraphSpacing: 0
   m_charWidthMaxAdj: 0
-  m_enableWordWrapping: 1
+  m_enableWordWrapping: 0
   m_wordWrappingRatios: 0.4
   m_overflowMode: 0
   m_linkedTextComponent: {fileID: 0}
@@ -6870,7 +6870,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: What's your goal?
+  m_text: "\uBAA9\uC801\uC744 \uC120\uD0DD\uD558\uC138\uC694"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: fe720cbd7b9ca9b4c9d35b1db8b30fae, type: 2}
   m_sharedMaterial: {fileID: -7511069553996601242, guid: fe720cbd7b9ca9b4c9d35b1db8b30fae,
@@ -6898,7 +6898,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 120.95
+  m_fontSize: 123.85
   m_fontSizeBase: 133.76
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -6914,7 +6914,7 @@ MonoBehaviour:
   m_lineSpacingMax: 0
   m_paragraphSpacing: 0
   m_charWidthMaxAdj: 0
-  m_enableWordWrapping: 1
+  m_enableWordWrapping: 0
   m_wordWrappingRatios: 0.4
   m_overflowMode: 0
   m_linkedTextComponent: {fileID: 0}
@@ -7142,7 +7142,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Legs
+  m_text: "\uB2E4\uB9AC\uBD80\uC704"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 9e17a4d7301d030419efa655530704da, type: 2}
   m_sharedMaterial: {fileID: -652241395867093120, guid: 9e17a4d7301d030419efa655530704da,
@@ -7186,7 +7186,7 @@ MonoBehaviour:
   m_lineSpacingMax: 0
   m_paragraphSpacing: 0
   m_charWidthMaxAdj: 0
-  m_enableWordWrapping: 1
+  m_enableWordWrapping: 0
   m_wordWrappingRatios: 0.4
   m_overflowMode: 0
   m_linkedTextComponent: {fileID: 0}
@@ -7636,7 +7636,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: More about you!
+  m_text: "\uCD94\uAC00 \uC815\uBCF4 \uC785\uB825"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: fe720cbd7b9ca9b4c9d35b1db8b30fae, type: 2}
   m_sharedMaterial: {fileID: -7511069553996601242, guid: fe720cbd7b9ca9b4c9d35b1db8b30fae,
@@ -7664,7 +7664,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 120.95
+  m_fontSize: 133.76
   m_fontSizeBase: 133.76
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -7680,7 +7680,7 @@ MonoBehaviour:
   m_lineSpacingMax: 0
   m_paragraphSpacing: 0
   m_charWidthMaxAdj: 0
-  m_enableWordWrapping: 1
+  m_enableWordWrapping: 0
   m_wordWrappingRatios: 0.4
   m_overflowMode: 0
   m_linkedTextComponent: {fileID: 0}
@@ -8305,7 +8305,7 @@ MonoBehaviour:
   m_lineSpacingMax: 0
   m_paragraphSpacing: 0
   m_charWidthMaxAdj: 0
-  m_enableWordWrapping: 1
+  m_enableWordWrapping: 0
   m_wordWrappingRatios: 0.4
   m_overflowMode: 0
   m_linkedTextComponent: {fileID: 0}
@@ -9172,7 +9172,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Lose weight
+  m_text: "\uCCB4\uC911\uAC10\uB7C9"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 9e17a4d7301d030419efa655530704da, type: 2}
   m_sharedMaterial: {fileID: -652241395867093120, guid: 9e17a4d7301d030419efa655530704da,
@@ -9216,7 +9216,7 @@ MonoBehaviour:
   m_lineSpacingMax: 0
   m_paragraphSpacing: 0
   m_charWidthMaxAdj: 0
-  m_enableWordWrapping: 1
+  m_enableWordWrapping: 0
   m_wordWrappingRatios: 0.4
   m_overflowMode: 0
   m_linkedTextComponent: {fileID: 0}
@@ -9631,7 +9631,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: value
+  m_text: "\uCCB4\uC911\uAC12"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 4e7ee66db5a42724c9da5a7a88398bc2, type: 2}
   m_sharedMaterial: {fileID: 8259488994137735082, guid: 4e7ee66db5a42724c9da5a7a88398bc2,
@@ -10109,7 +10109,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Current weight
+  m_text: "\uD604\uC7AC \uCCB4\uC911"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 080d8f1716f453148ba7482474672b18, type: 2}
   m_sharedMaterial: {fileID: 3065921934497872612, guid: 080d8f1716f453148ba7482474672b18,
@@ -10140,9 +10140,9 @@ MonoBehaviour:
   m_fontSize: 63
   m_fontSizeBase: 63
   m_fontWeight: 400
-  m_enableAutoSizing: 0
-  m_fontSizeMin: 18
-  m_fontSizeMax: 72
+  m_enableAutoSizing: 1
+  m_fontSizeMin: 32
+  m_fontSizeMax: 63
   m_fontStyle: 0
   m_HorizontalAlignment: 1
   m_VerticalAlignment: 512
@@ -10665,7 +10665,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Age
+  m_text: "\uB098\uC774"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 080d8f1716f453148ba7482474672b18, type: 2}
   m_sharedMaterial: {fileID: 3065921934497872612, guid: 080d8f1716f453148ba7482474672b18,
@@ -11189,7 +11189,7 @@ MonoBehaviour:
   m_lineSpacingMax: 0
   m_paragraphSpacing: 0
   m_charWidthMaxAdj: 0
-  m_enableWordWrapping: 1
+  m_enableWordWrapping: 0
   m_wordWrappingRatios: 0.4
   m_overflowMode: 0
   m_linkedTextComponent: {fileID: 0}
@@ -11553,7 +11553,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: value
+  m_text: "\uB098\uC774"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 4e7ee66db5a42724c9da5a7a88398bc2, type: 2}
   m_sharedMaterial: {fileID: 8259488994137735082, guid: 4e7ee66db5a42724c9da5a7a88398bc2,
@@ -12599,7 +12599,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: What is your weight goal?
+  m_text: "\uBAA9\uD45C\uCCB4\uC911 \uC785\uB825"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 080d8f1716f453148ba7482474672b18, type: 2}
   m_sharedMaterial: {fileID: 3065921934497872612, guid: 080d8f1716f453148ba7482474672b18,
@@ -12643,7 +12643,7 @@ MonoBehaviour:
   m_lineSpacingMax: 0
   m_paragraphSpacing: 0
   m_charWidthMaxAdj: 0
-  m_enableWordWrapping: 1
+  m_enableWordWrapping: 0
   m_wordWrappingRatios: 0.4
   m_overflowMode: 0
   m_linkedTextComponent: {fileID: 0}
@@ -12766,9 +12766,9 @@ MonoBehaviour:
   m_fontSize: 50
   m_fontSizeBase: 50
   m_fontWeight: 400
-  m_enableAutoSizing: 0
-  m_fontSizeMin: 18
-  m_fontSizeMax: 72
+  m_enableAutoSizing: 1
+  m_fontSizeMin: 25
+  m_fontSizeMax: 50
   m_fontStyle: 0
   m_HorizontalAlignment: 4
   m_VerticalAlignment: 512
@@ -12779,7 +12779,7 @@ MonoBehaviour:
   m_lineSpacingMax: 0
   m_paragraphSpacing: 0
   m_charWidthMaxAdj: 0
-  m_enableWordWrapping: 1
+  m_enableWordWrapping: 0
   m_wordWrappingRatios: 0.4
   m_overflowMode: 0
   m_linkedTextComponent: {fileID: 0}
@@ -13045,7 +13045,7 @@ GameObject:
   - component: {fileID: 1931407066}
   - component: {fileID: 1931407065}
   m_Layer: 0
-  m_Name: btnArm
+  m_Name: btnAbdomen
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -13588,7 +13588,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: How old are you?
+  m_text: "\uB098\uC774\uB97C \uC785\uB825\uD558\uC138\uC694"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 080d8f1716f453148ba7482474672b18, type: 2}
   m_sharedMaterial: {fileID: 3065921934497872612, guid: 080d8f1716f453148ba7482474672b18,
@@ -13632,7 +13632,7 @@ MonoBehaviour:
   m_lineSpacingMax: 0
   m_paragraphSpacing: 0
   m_charWidthMaxAdj: 0
-  m_enableWordWrapping: 1
+  m_enableWordWrapping: 0
   m_wordWrappingRatios: 0.4
   m_overflowMode: 0
   m_linkedTextComponent: {fileID: 0}
@@ -13913,7 +13913,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Chest
+  m_text: "\uAC00\uC2B4\uBD80\uC704"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 9e17a4d7301d030419efa655530704da, type: 2}
   m_sharedMaterial: {fileID: -652241395867093120, guid: 9e17a4d7301d030419efa655530704da,
@@ -13957,7 +13957,7 @@ MonoBehaviour:
   m_lineSpacingMax: 0
   m_paragraphSpacing: 0
   m_charWidthMaxAdj: 0
-  m_enableWordWrapping: 1
+  m_enableWordWrapping: 0
   m_wordWrappingRatios: 0.4
   m_overflowMode: 0
   m_linkedTextComponent: {fileID: 0}

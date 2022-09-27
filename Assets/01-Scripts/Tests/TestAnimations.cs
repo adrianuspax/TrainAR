@@ -1,4 +1,4 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine.UI;
 using UnityEngine;
@@ -9,11 +9,8 @@ public class TestAnimations : MonoBehaviour
     private CoachAnimations animations;
     [SerializeField]
     private Transform gridHeader;
-    //[SerializeField]
     private Button[] gridButton;
-    //[SerializeField]
     private bool[] gridPressed;
-    //[SerializeField]
     private TextMeshProUGUI[] tmpButton;
     [SerializeField]
     private Slider breathing;

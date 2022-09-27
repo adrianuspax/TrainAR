@@ -43,18 +43,13 @@ SpriteAtlas:
       enableAlphaDilation: 0
     secondaryTextureSettings: {}
     variantMultiplier: 1
-    packables:
-    - {fileID: 102900000, guid: 620c419a954a92042a57f06327cd0f23, type: 3}
+    packables: []
     bindAsDefault: 1
     isAtlasV2: 0
     cachedData: {fileID: 0}
   m_MasterAtlas: {fileID: 0}
-  m_PackedSprites:
-  - {fileID: 21300000, guid: c90772011de989641966664fa8df4ea1, type: 3}
-  - {fileID: 21300000, guid: d956ebeec28e41c48abf03c5e2405f2b, type: 3}
-  m_PackedSpriteNamesToIndex:
-  - roundedSquare
-  - distortedRectangle
+  m_PackedSprites: []
+  m_PackedSpriteNamesToIndex: []
   m_RenderDataMap: {}
   m_Tag: Legacy
   m_IsVariant: 0

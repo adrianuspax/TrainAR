@@ -1,4 +1,4 @@
-#region USED_NAMESPACES
+﻿#region USED_NAMESPACES
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -6,7 +6,7 @@ using UnityEngine;
 #region CLASS
 public class DataManagement : MonoBehaviour
 {
-    #region READY_INSPECTOR
+    #region READ_INSPECTOR
     [Header(" =========================== READY ONLY =========================== ", order = 0)]
     [Space(-10, order = 1)]
     [Header("SAVED DATA", order = 2)]
@@ -45,7 +45,7 @@ public class DataManagement : MonoBehaviour
     #endregion
     #region DATA_VALUES_MANAGEMENT
     public readonly string[] goalName = new string[] { "Lose Weight", "More Muscles", "Keep Shape" };
-    public readonly string[] levelPhrase = new string[] { "I'm sedentary!", "I'm walker!", "I'm runner!", "I'm athletic!", "I'm body builder!" };
+    public readonly string[] levelPhrase = LanguageManager.levelPhrase;
     public readonly string[] focusName = new string[] { "Abdomen", "Chest", "Arms", "Legs" };
     #endregion
     #region UNITY_MONOBEHAVIOUR
@@ -53,6 +53,19 @@ public class DataManagement : MonoBehaviour
     {
         Buttons = this.GetComponent<ButtonsManager>();
         PagesAndFields = this.GetComponent<PagesAndFields>();
+
+        PagesAndFields.PagesQuestionString = LanguageManager.pageQuestion;
+        Buttons.UserData.NextButtonString = LanguageManager.nextButton;
+        PagesAndFields.Page1PlaceHolder = LanguageManager.page1PlaceHolder;
+        Buttons.UserData.GoalButtonsName = LanguageManager.buttonGoal;
+        Buttons.UserData.FocusButtonsName = LanguageManager.buttonFocus;
+        PagesAndFields.BlockAreaName = LanguageManager.blockAreaName;
+        PagesAndFields.MoreValuesStringEdit = LanguageManager.valueDefaultButtonsEdit;
+        PagesAndFields.FooterTitle = LanguageManager.footerTitle;
+        PagesAndFields.FooterYerarsString = LanguageManager.valueUnits[0];
+        PagesAndFields.FootersPlaceholer = LanguageManager.footerPlaceholder;
+        Buttons.UserData.SaveButtonString = LanguageManager.saveButton;
+        Buttons.UserData.CancelButtonString = LanguageManager.cancelButton;
     }
 
     public void Start()

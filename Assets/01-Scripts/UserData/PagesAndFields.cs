@@ -1,4 +1,4 @@
-#region USED_NAMESPACES
+﻿#region USED_NAMESPACES
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -66,7 +66,7 @@ public class PagesAndFields : MonoBehaviour
         footerInputIsEmpty = new bool[footerHeader.childCount];
         footerValue = new string[footerHeader.childCount];
 
-        footerInput = AssignFooterInputs;
+        footerInput = FooterInputs;
         moreValueTMP = AssignTMPsEditValue;
 
         for (int i = 0; i < footerHeader.childCount; i++)
@@ -89,7 +89,6 @@ public class PagesAndFields : MonoBehaviour
 
         userNameInputIsEmpty = true;
         SetAllFooterInputIsEmpty(true);
-        SetTextAllMoreValueTMP("edit");
     }
     #endregion
     #region PAGES_BEHAVIOURS
@@ -138,18 +137,68 @@ public class PagesAndFields : MonoBehaviour
         get => currentPage;
         private set => currentPage = value;
     }
+    public Transform[] Page
+    {
+        get
+        {
+            Transform[] pageT;
+            pageT = new Transform[TotalPages];
+
+            for (int i = 0; i < TotalPages; i++)
+            {
+                pageT[i] = page[i].transform;
+            }
+
+            return pageT;
+        }
+    }
+    public TextMeshProUGUI[] PageQuestion
+    {
+        get
+        {
+            TextMeshProUGUI[] tmp;
+            Transform child;
+            tmp = new TextMeshProUGUI[TotalPages];
+
+            for (int i = 0; i < TotalPages; i++)
+            {
+                child = Page[i].GetChild(0);
+
+                for (int j = 0; j < child.childCount; j++)
+                {
+                    if (child.GetChild(j).GetComponent<TextMeshProUGUI>() != null)
+                    {
+                        tmp[i] = child.GetChild(j).GetComponent<TextMeshProUGUI>();
+                    }
+                }
+            }
+
+            return tmp;
+        }
+    }
+    public string[] PagesQuestionString
+    {
+        set
+        {
+            for (int i = 0; i < value.Length; i++)
+            {
+                PageQuestion[i].text = value[i];
+            }
+        }
+    }
+
     #endregion
     #region PAGE1
     public void OnSelectUserName(string name)
     {
-        userNameInput.placeholder.GetComponent<TextMeshProUGUI>().text = "";
+        Page1PlaceHolder = "";
         userNameInputIsEmpty = true;
     }
 
     public void OnDeselectUserName(string name)
     {
         userNameInputIsEmpty = (name == "");
-        userNameInput.placeholder.GetComponent<TextMeshProUGUI>().text = "Enter your name here...";
+        Page1PlaceHolder = LanguageManager.page1PlaceHolder;
         Buttons.UserData.NextButtonInteraction = !userNameInputIsEmpty;
     }
 
@@ -170,6 +219,13 @@ public class PagesAndFields : MonoBehaviour
         get => userNameString;
         private set => userNameString = value;
     }
+    public string Page1PlaceHolder
+    {
+        set
+        {
+            userNameInput.placeholder.GetComponent<TextMeshProUGUI>().text = value;
+        }
+    }
     #endregion
     #region PAGE4
     public string LevelName
@@ -178,16 +234,19 @@ public class PagesAndFields : MonoBehaviour
         set => nameLevel.text = value;
     }
     #endregion
-    #region PAGE5
-    public void SetTextAllMoreValueTMP(string setText)
+    #region PAGE6
+    
+    public string MoreValuesStringEdit
     {
-        foreach (TextMeshProUGUI tmp in moreValueTMP)
+        set
         {
-            tmp.text = setText;
+            foreach (TextMeshProUGUI tmp in moreValueTMP)
+            {
+                tmp.text = value;
+            }
         }
     }
-    #endregion
-    #region PAGE6
+
     public int TotalBlocksArea => blocksAreaHeader.childCount;
 
     public TextMeshProUGUI[] AssignTMPsEditValue
@@ -203,6 +262,17 @@ public class PagesAndFields : MonoBehaviour
             }
 
             return tmp;
+        }
+    }
+
+    public string[] BlockAreaName
+    {
+        set
+        {
+            for (int i = 0; i < value.Length; i++)
+            {
+                blocksAreaHeader.GetChild(i).GetChild(2).GetComponent<TextMeshProUGUI>().text = value[i];
+            }
         }
     }
 
@@ -243,18 +313,7 @@ public class PagesAndFields : MonoBehaviour
 
     public void SetMoreValueTMP(int index, string data)
     {
-        if (index == DataManagement.FOOTER2 || index == DataManagement.FOOTER3)
-        {
-            moreValueTMP[index].text = data + " kg";
-        }
-        else if (index == DataManagement.FOOTER1)
-        {
-            moreValueTMP[index].text = data + " years";
-        }
-        else
-        {
-            moreValueTMP[index].text = data + " cm";
-        }
+        moreValueTMP[index].text = data + LanguageManager.valueUnits[index];
     }
     #endregion
     #region FOOTERS_BEHAVIOURS
@@ -304,7 +363,7 @@ public class PagesAndFields : MonoBehaviour
     public void OnDeselectFooter(string data)
     {
         footerInputIsEmpty[CurrentFooterIndex] = (data == "");
-        footerInput[CurrentFooterIndex].placeholder.GetComponent<TextMeshProUGUI>().text = "value";
+        footerInput[CurrentFooterIndex].placeholder.GetComponent<TextMeshProUGUI>().text = LanguageManager.footerPlaceholder;
         Buttons.UserData.SaveButtonInteraction = !footerInputIsEmpty[CurrentFooterIndex];
     }
 
@@ -332,7 +391,7 @@ public class PagesAndFields : MonoBehaviour
 
     public void ClearAllInputFooter()
     {
-        foreach (TMP_InputField inputs in footerInput) //Resolver isso (colocar index)
+        foreach (TMP_InputField inputs in footerInput)
         {
             inputs.text = "";
         }
@@ -348,6 +407,37 @@ public class PagesAndFields : MonoBehaviour
         yield return new WaitForSeconds(time);
         ClearAllInputFooter();
     }
+
+    public string[] FooterTitle
+    {
+        set
+        {
+            for (int i = 0; i < value.Length; i++)
+            {
+                footer[i].transform.GetChild(1).GetComponent<TextMeshProUGUI>().text = value[i];
+            }
+        }
+    }
+
+    public string FooterYerarsString
+    {
+        set
+        {
+            footer[0].transform.GetChild(2).GetComponent<TextMeshProUGUI>().text = value;
+        }
+    }
+
+    public string FootersPlaceholer
+    {
+        set
+        {
+            for (int i = 0; i < footerInput.Length; i++)
+            {
+                footerInput[i].placeholder.GetComponent<TextMeshProUGUI>().text = value;
+            }
+        }
+    }
+
     #endregion
     #region ASSIGNMENTS
     private GameObject[] AssignGameObjects(Transform header)
@@ -372,7 +462,7 @@ public class PagesAndFields : MonoBehaviour
         footerInput[index].onEndEdit.AddListener(OnEndEditFooter);
     }
 
-    public TMP_InputField[] AssignFooterInputs
+    public TMP_InputField[] FooterInputs
     {
         get
         {

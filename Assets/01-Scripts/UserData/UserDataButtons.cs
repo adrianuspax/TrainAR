@@ -1,4 +1,4 @@
-#region USED_NAMESPACES
+﻿#region USED_NAMESPACES
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -31,7 +31,7 @@ public class UserDataButtons : MonoBehaviour
     [SerializeField] private Button saveButton;
     [SerializeField] private Button cancelButton;
     #endregion
-    #region READY_INSPECTOR
+    #region READ_INSPECTOR
     [Header(" =========================== READY ONLY =========================== ", order = 0)]
     [Space(-10, order = 1)]
     [Header("Variables", order = 2)]
@@ -162,26 +162,53 @@ public class UserDataButtons : MonoBehaviour
 
         Image icon;
         TextMeshProUGUI tmp;
+        Transform child;
 
         for (int i = 0; i < goalButton.Length; i++)
         {
             if (i == index && goalIsPressed[index])
             {
-                icon = goalButton[index].transform.GetChild(0).GetComponent<Image>();
-                tmp = goalButton[index].transform.GetChild(1).GetComponent<TextMeshProUGUI>();
+                child = goalButton[index].transform;
+
+                for (int j = 0; j < child.childCount; j++)
+                {
+                    if (child.GetChild(j).GetComponent<Image>() != null)
+                    {
+                        icon = child.GetChild(j).GetComponent<Image>();
+                        icon.color = PalleteColors.BlueGray_White;
+                    }
+
+                    if (child.GetChild(j).GetComponent<TextMeshProUGUI>() != null)
+                    {
+                        tmp = child.GetChild(j).GetComponent<TextMeshProUGUI>();
+                        tmp.color = PalleteColors.BlueGray_White;
+                        tmp.fontStyle = FontStyles.Bold;
+                    }
+                }
+
                 goalButton[index].image.color = PalleteColors.Main;
-                icon.color = PalleteColors.BlueGray_White;
-                tmp.color = PalleteColors.BlueGray_White;
-                tmp.fontStyle = FontStyles.Bold;
             }
             else
             {
-                icon = goalButton[i].transform.GetChild(0).GetComponent<Image>();
-                tmp = goalButton[i].transform.GetChild(1).GetComponent<TextMeshProUGUI>();
+                child = goalButton[i].transform;
+
+                for (int j = 0; j < child.childCount; j++)
+                {
+                    if (child.GetChild(j).GetComponent<Image>() != null)
+                    {
+                        icon = child.GetChild(j).GetComponent<Image>();
+                        icon.color = PalleteColors.Main;
+                    }
+
+                    if (child.GetChild(j).GetComponent<TextMeshProUGUI>() != null)
+                    {
+                        tmp = child.GetChild(j).GetComponent<TextMeshProUGUI>();
+                        tmp.color = PalleteColors.BlueGrey(4);
+                        tmp.fontStyle = FontStyles.Normal;
+                    }
+                }
+
                 goalButton[i].image.color = PalleteColors.BlueGray_White;
-                icon.color = PalleteColors.Main;
-                tmp.color = PalleteColors.BlueGrey(4);
-                tmp.fontStyle = FontStyles.Normal;
                 goalIsPressed[i] = false;
             }
         }
@@ -195,7 +222,26 @@ public class UserDataButtons : MonoBehaviour
         get => chosenGoal;
         private set => chosenGoal = value;
     }
+    public string[] GoalButtonsName
+    {
+        set
+        {
+            Transform child;
 
+            for (int i = 0; i < value.Length; i++)
+            {
+                child = goalButton[i].transform;
+
+                for (int j = 0; j < child.childCount; j++)
+                {
+                    if (child.GetChild(j).GetComponent<TextMeshProUGUI>() != null)
+                    {
+                        child.GetChild(j).GetComponent<TextMeshProUGUI>().text = value[i];
+                    }
+                }
+            }
+        }
+    }
     #endregion
     #region PAGE4_(LEVEL)
     public void LevelButtonsBehaviour(int index)
@@ -226,23 +272,42 @@ public class UserDataButtons : MonoBehaviour
     {
         focusIsPressed[index] = !focusIsPressed[index];
 
+        Transform child;
         TextMeshProUGUI tmp;
 
         for (int i = 0; i < focusButton.Length; i++)
         {
             if (i == index && focusIsPressed[index])
             {
-                tmp = focusButton[index].transform.GetChild(1).GetComponent<TextMeshProUGUI>();
+                child = focusButton[index].transform;
+
+                for (int j = 0; j < child.childCount; j++)
+                {
+                    if (child.GetChild(j).GetComponent<TextMeshProUGUI>() != null)
+                    {
+                        tmp = child.GetChild(j).GetComponent<TextMeshProUGUI>();
+                        tmp.color = PalleteColors.BlueGray_White;
+                        tmp.fontStyle = FontStyles.Bold;
+                    }
+                }
+
                 focusButton[index].image.color = PalleteColors.Main;
-                tmp.color = PalleteColors.BlueGray_White;
-                tmp.fontStyle = FontStyles.Bold;
             }
             else
             {
-                tmp = focusButton[i].transform.GetChild(1).GetComponent<TextMeshProUGUI>();
+                child = focusButton[i].transform;
+
+                for (int j = 0; j < child.childCount; j++)
+                {
+                    if (child.GetChild(j).GetComponent<TextMeshProUGUI>() != null)
+                    {
+                        tmp = child.GetChild(j).GetComponent<TextMeshProUGUI>();
+                        tmp.color = PalleteColors.BlueGrey(4);
+                        tmp.fontStyle = FontStyles.Normal;
+                    }
+                }
+
                 focusButton[i].image.color = PalleteColors.BlueGray_White;
-                tmp.color = PalleteColors.BlueGrey(4);
-                tmp.fontStyle = FontStyles.Normal;
                 focusIsPressed[i] = false;
             }
         }
@@ -250,11 +315,30 @@ public class UserDataButtons : MonoBehaviour
         Focus = focusByIndex[index];
         NextButtonInteraction = focusIsPressed[index];
     }
-
     public string Focus
     {
         get => chosenFocus;
         private set => chosenFocus = value;
+    }
+    public string[] FocusButtonsName
+    {
+        set
+        {
+            Transform child;
+
+            for (int i = 0; i < value.Length; i++)
+            {
+                child = focusButton[i].transform;
+
+                for (int j = 0; j < child.childCount; j++)
+                {
+                    if (child.GetChild(j).GetComponent<TextMeshProUGUI>() != null)
+                    {
+                        child.GetChild(j).GetComponent<TextMeshProUGUI>().text = value[i];
+                    }
+                }
+            }
+        }
     }
     #endregion
     #region FOOTERS
@@ -302,6 +386,22 @@ public class UserDataButtons : MonoBehaviour
         set => Buttons.Interaction(value, saveButton);
     }
 
+    public string SaveButtonString
+    {
+        set
+        {
+            saveButton.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = value;
+        }
+    }
+
+    public string CancelButtonString
+    {
+        set
+        {
+            cancelButton.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = value;
+        }
+    }
+
     #endregion
     #region NEXT_BUTTON
     public void NextButtonFunction()
@@ -323,6 +423,14 @@ public class UserDataButtons : MonoBehaviour
     {
         get => nextButton.IsInteractable();
         set => Buttons.Interaction(value, nextButton);
+    }
+
+    public string NextButtonString
+    {
+        set
+        {
+            nextButton.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = value;
+        }
     }
     #endregion
 }

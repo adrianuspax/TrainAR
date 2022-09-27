@@ -59,15 +59,18 @@ SpriteAtlas:
   - {fileID: 21300000, guid: 5c7deea223a69a046aba09d77b3fad10, type: 3}
   - {fileID: 21300000, guid: c203ddb2cd0167c4e81b99d62b306913, type: 3}
   - {fileID: 21300000, guid: 25656fc2cb5e6ed4abe9175d143a5ee2, type: 3}
+  - {fileID: 21300000, guid: 15cdc643c1c200a46bf8a17d40c2c5c5, type: 3}
   - {fileID: 21300000, guid: 945b0c43b89d6a344a5e57b8a69a8596, type: 3}
   - {fileID: 21300000, guid: a7983d632259ecb49adde4d7e48c3475, type: 3}
   - {fileID: 21300000, guid: 158f018327af6b24f9888663b464412e, type: 3}
+  - {fileID: 21300000, guid: ff4dca8322560cd4facbbb585c2abc60, type: 3}
   - {fileID: 21300000, guid: d6468c047d0231f4f927a57e70a2fd49, type: 3}
   - {fileID: 21300000, guid: 5d3e1e4417c6bc246974ee497d585dcb, type: 3}
   - {fileID: 21300000, guid: a861ffc4d37ce064986a23cd68fcae21, type: 3}
   - {fileID: 21300000, guid: d7d2aff4b9131244f9940c7855c464de, type: 3}
   - {fileID: 21300000, guid: b8027a156df40d64ea678d2f14145439, type: 3}
   - {fileID: 21300000, guid: 877ad695a23c56343a7a2e898b689e5a, type: 3}
+  - {fileID: 21300000, guid: 97a424d5dac5e334193befb79114fe3f, type: 3}
   - {fileID: 21300000, guid: 1ba8de16797e3824688aa5206a7815bd, type: 3}
   - {fileID: 21300000, guid: 9460f846d5e681d4eb8d2f784afb6fd2, type: 3}
   - {fileID: 21300000, guid: 1ff357171d1453e40b14527e731ed192, type: 3}
@@ -81,6 +84,7 @@ SpriteAtlas:
   - {fileID: 21300000, guid: da4a142bc72e9e845894fcbb00f5a132, type: 3}
   - {fileID: 21300000, guid: 688af6cbff630544cb04752a7316d588, type: 3}
   - {fileID: 21300000, guid: 67cfef9cfb7a7c44a84088d7e0569d16, type: 3}
+  - {fileID: 21300000, guid: 1e7c93ec0ab20084b8099a9bf6655b2d, type: 3}
   - {fileID: 21300000, guid: 63e08cadf6b7fa04599375dfaca20c23, type: 3}
   - {fileID: 21300000, guid: c1f810cd76297c143a03dc228cd66d6e, type: 3}
   - {fileID: 21300000, guid: c4282eedac2ea23428bc26d1f1a83291, type: 3}
@@ -99,15 +103,18 @@ SpriteAtlas:
   - thumb_up
   - manage_accounts
   - linear_scale
+  - play_circle_outline
   - expand_circle_left
   - undo-Handler
   - search
+  - play_arrow
   - visibilityOn
   - settings
   - login
   - help_outline
   - visibilityOff
   - help
+  - smart_display
   - check_circle
   - phone_android
   - report_problem
@@ -121,6 +128,7 @@ SpriteAtlas:
   - ReplaceCoachButton
   - touch_app
   - do_not_disturb_on
+  - play_circle_filled
   - CircleHandler
   - view_in_ar
   - home
