@@ -19,6 +19,8 @@ public class DataManagement : MonoBehaviour
     [ReadOnly, SerializeField] private string currentWeight;
     [ReadOnly, SerializeField] private string weightGoal;
     [ReadOnly, SerializeField] private string height;
+    [ReadOnly, SerializeField] private string language;
+
 
     [Header("Scripts", order = 0)]
     [ReadOnly, SerializeField] private ButtonsManager Buttons;
@@ -30,6 +32,7 @@ public class DataManagement : MonoBehaviour
 
     public readonly string[] pageKey = new string[] { "name", "genre", "goal", "level", "focus"};
     public readonly string[] footerKey = new string[] { "age", "currentWeight", "weightGoal", "height" };
+    public const string LangKey = "language";
 
     public const int PAGE1 = 1;
     public const int PAGE2 = 2;
@@ -51,6 +54,8 @@ public class DataManagement : MonoBehaviour
     #region UNITY_MONOBEHAVIOUR
     public void Awake()
     {
+        LanguageManager.LoadLang(Language);
+
         Buttons = this.GetComponent<ButtonsManager>();
         PagesAndFields = this.GetComponent<PagesAndFields>();
 
@@ -80,6 +85,7 @@ public class DataManagement : MonoBehaviour
         currentWeight = MoreEdit[1];
         weightGoal = MoreEdit[2];
         height = MoreEdit[3];
+        language = LanguageByindex;
     }
     #endregion
     #region SAVE_DATA
@@ -203,6 +209,23 @@ public class DataManagement : MonoBehaviour
             height = MoreEdit[3];
         }
     }
+
+    public static int Language
+    {
+        get => PlayerPrefs.GetInt(LangKey);
+        set
+        {
+            PlayerPrefs.SetInt(LangKey, value);
+        }
+    }
+
+    private string LanguageByindex => Language switch
+    {
+        0 => "English",
+        1 => "Korean",
+        2 => "Portuguese BR",
+        _ => "English",
+    };
     #endregion
 }
 #endregion

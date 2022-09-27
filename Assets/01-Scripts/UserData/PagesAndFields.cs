@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 #endregion
@@ -152,37 +153,14 @@ public class PagesAndFields : MonoBehaviour
             return pageT;
         }
     }
-    public TextMeshProUGUI[] PageQuestion
-    {
-        get
-        {
-            TextMeshProUGUI[] tmp;
-            Transform child;
-            tmp = new TextMeshProUGUI[TotalPages];
-
-            for (int i = 0; i < TotalPages; i++)
-            {
-                child = Page[i].GetChild(0);
-
-                for (int j = 0; j < child.childCount; j++)
-                {
-                    if (child.GetChild(j).GetComponent<TextMeshProUGUI>() != null)
-                    {
-                        tmp[i] = child.GetChild(j).GetComponent<TextMeshProUGUI>();
-                    }
-                }
-            }
-
-            return tmp;
-        }
-    }
+    
     public string[] PagesQuestionString
     {
         set
         {
             for (int i = 0; i < value.Length; i++)
             {
-                PageQuestion[i].text = value[i];
+                Page[i].GetChild(0).GetChild(1).GetComponent<TextMeshProUGUI>().text = value[i];
             }
         }
     }

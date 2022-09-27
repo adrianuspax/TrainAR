@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -51,130 +52,129 @@ public class LanguageManager : MonoBehaviour
     public static string cancelButton;
     #endregion
     #region ENGLISH
-    private readonly string[] pageQuestionEN = new string[]
+    private readonly static string[] pageQuestionEN = new string[]
     {
         "What is your name?", "What is your gender?", "What is your goal?", "What's your fitness level?", "What is your focus?", "More about you!"
     };
-    private readonly string nextButtonEN = 
+    private readonly static string nextButtonEN = 
         "Next";
-    private readonly string page1PlaceHolderEN = 
+    private readonly static string page1PlaceHolderEN = 
         "Enter your name here...";
-    private readonly string[] buttonGoalEN = new string[]
+    private readonly static string[] buttonGoalEN = new string[]
     {
         "Lose weight", "More muscle", "Keep shape"
     };
-    private readonly string[] levelPhraseEN = new string[]
+    private readonly static string[] levelPhraseEN = new string[]
     {
         "I'm sedentary!", "I'm walker!", "I'm runner!", "I'm athletic!", "I'm body builder!"
     };
-    private readonly string[] buttonFocusEN = new string[]
+    private readonly static string[] buttonFocusEN = new string[]
     {
         "Abdomen", "Chest", "Arms", "Legs"
     };
-    private readonly string[] blockAreaNameEN = new string[]
+    private readonly static string[] blockAreaNameEN = new string[]
     {
         "Age", "Current weight", "Weight goal", "Height"
     };
-    private readonly string valueDfaultButtonsEditEN = 
+    private readonly static string valueDfaultButtonsEditEN = 
         "edit";
-    private readonly string[] footerTitleEN = new string[]
+    private readonly static string[] footerTitleEN = new string[]
     {
         "Enter your age", "Enter your current weight", "Enter your desired weight", "Enter your height"
     };
-    private readonly string footerPlaceholderEN = 
+    private readonly static string footerPlaceholderEN = 
         "value";
-    private readonly string[] footerUnitEN = new string[]
+    private readonly static string[] footerUnitEN = new string[]
     {
         " Years", " kg", " kg", " cm"
     };
-    //private readonly string[]
-    private readonly string saveButtonEN = 
+    private readonly static string saveButtonEN = 
         "Save";
-    private readonly string cancelButtonEN = 
+    private readonly static string cancelButtonEN = 
         "Cancel";
     #endregion
     #region KOREAN
-    private readonly string[] pageQuestionKO = new string[]
+    private readonly static string[] pageQuestionKO = new string[]
     {
         "이름을 입력하세요", "성별을 입력하세요", "목적을 선택하세요", "체력수준  선택", "집중적 운동 부위", "추가 정보 입력"
     };
-    private readonly string nextButtonKO =
+    private readonly static string nextButtonKO =
         "다음";
-    private readonly string page1PlaceHolderKO =
+    private readonly static string page1PlaceHolderKO =
         "여기에 입력하세요";
-    private readonly string[] buttonGoalKO = new string[]
+    private readonly static string[] buttonGoalKO = new string[]
     {
         "체중감량", "근력강화", "몸매가꾸기"
     };
-    private readonly string[] levelPhraseKO = new string[]
+    private readonly static string[] levelPhraseKO = new string[]
     {
         "운동거의 안함", "필수적인 걷기운동만", "러닝과 체조정도 운동만", "운동량이 충분히 많음", "전문적인 운동선수 급"
     };
-    private readonly string[] buttonFocusKO = new string[]
+    private readonly static string[] buttonFocusKO = new string[]
     {
         "복근", "가슴부위", "팔 부위", "다리부위"
     };
-    private readonly string[] blockAreaNameKO = new string[]
+    private readonly static string[] blockAreaNameKO = new string[]
     {
         "나이", "현재 체중", "목표체중", "신장"
     };
-    private readonly string valueDfaultButtonsEditKO =
+    private readonly static string valueDfaultButtonsEditKO =
         "수정";
-    private readonly string[] footerTitleKO = new string[]
+    private readonly static string[] footerTitleKO = new string[]
     {
         "나이를 입력하세요", "현재 체중 입력", "현재 체중 입력", "본인 키 입력"
     };
-    private readonly string footerPlaceholderKO =
+    private readonly static string footerPlaceholderKO =
         "값";
-    private readonly string[] footerUnitKO = new string[]
+    private readonly static string[] footerUnitKO = new string[]
     {
         " 세", " kg", " kg", " cm"
     };
-    private readonly string saveButtonKO =
+    private readonly static string saveButtonKO =
         "저장";
-    private readonly string cancelButtonKO =
+    private readonly static string cancelButtonKO =
         "취소";
     #endregion
     #region PORTUGUESE_BRAZILIAN
-    private readonly string[] pageQuestionBR = new string[]
+    private readonly static string[] pageQuestionBR = new string[]
     {
         "Qual é o seu nome?", "Qual é o seu sexo?", "Qual é o seu objetivo?", "Qual o seu nível físico?", "Qual o seu foco?", "Mais sobre você:"
     };
-    private readonly string nextButtonBR =
+    private readonly static string nextButtonBR =
         "Próximo";
-    private readonly string page1PlaceHolderBR =
+    private readonly static string page1PlaceHolderBR =
         "Insira o seu nome aqui...";
-    private readonly string[] buttonGoalBR = new string[]
+    private readonly static string[] buttonGoalBR = new string[]
     {
         "Perder peso", "Ter músculos", "Manter a forma"
     };
-    private readonly string[] levelPhraseBR = new string[]
+    private readonly static string[] levelPhraseBR = new string[]
     {
         "Estou sedentário", "Eu caminho", "Eu corro", "Sou atético", "Sou Body Builder"
     };
-    private readonly string[] buttonFocusBR = new string[]
+    private readonly static string[] buttonFocusBR = new string[]
     {
         "Abdomen", "Peito", "Braços", "Pernas"
     };
-    private readonly string[] blockAreaNameBR = new string[]
+    private readonly static string[] blockAreaNameBR = new string[]
     {
         "Idade", "Peso atual", "Peso desejado", "Altura"
     };
-    private readonly string valueDfaultButtonsEditBR = 
+    private readonly static string valueDfaultButtonsEditBR = 
         "edit";
-    private readonly string[] footerTitleBR = new string[]
+    private readonly static string[] footerTitleBR = new string[]
     {
         "Insira a sua idade", "Insira o seu peso atual", "Insira o peso desejado", "Insira a sua altura"
     };
-    private readonly string footerPlaceholderBR = 
+    private readonly static string footerPlaceholderBR = 
         "valor";
-    private readonly string[] footerUnitBR = new string[]
+    private readonly static string[] footerUnitBR = new string[]
     {
         " anos", " kg", " kg", " cm"
     };
-    private readonly string saveButtonBR = 
+    private readonly static string saveButtonBR = 
         "Salvar";
-    private readonly string cancelButtonBR = 
+    private readonly static string cancelButtonBR = 
         "Cancelar";
     #endregion
 
@@ -189,7 +189,7 @@ public class LanguageManager : MonoBehaviour
 
     private void Start()
     {
-        LangButtonsBehaviour(0);
+        LangButtonsBehaviour(DataManagement.Language);
     }
 
     public void LangButtonsBehaviour(int index)
@@ -225,6 +225,13 @@ public class LanguageManager : MonoBehaviour
     }
 
     public void OkFunction()
+    {
+        DataManagement.Language = (int)Language;
+        LoadLang(DataManagement.Language);
+        MyScenes.LoadUserData();
+    }
+
+    public static void LoadLang(int index)
     {
         switch (Language)
         {
@@ -275,7 +282,7 @@ public class LanguageManager : MonoBehaviour
                 break;
         }
 
-        MyScenes.LoadUserData();
+        Language = (Language)index;
     }
 
     public static Language Language
