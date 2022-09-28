@@ -10,7 +10,7 @@ public enum Language
     KO = 1,
     BR = 2
 };
-
+[RequireComponent(typeof(ButtonsManager))]
 public class LanguageManager : MonoBehaviour
 {
     #region UNITY_INSPECTOR
@@ -28,12 +28,11 @@ public class LanguageManager : MonoBehaviour
                                private static Language langStatic;
     [Space(-10, order = 0)]
     [Header("BUTTONS", order = 1)]
-    [ReadOnly, SerializeField] private Button[] langButton;
-    [ReadOnly, SerializeField] private bool[] langPressed;
+    [NonReorderable][ReadOnly, SerializeField] private Button[] langButton;
+    [NonReorderable][ReadOnly, SerializeField] private bool[] langPressed;
 
     [Header("Scripts", order = 0)]
     [ReadOnly, SerializeField] private ButtonsManager Buttons;
-    [ReadOnly, SerializeField] private PagesAndFields PagesAndFields;
     [ReadOnly, SerializeField] private PalleteColors Pallete;
     #endregion
     #region STATIC_STRINGS

@@ -8,7 +8,8 @@ public enum StateButtonAR
     ReadyToSet = 0,
     Refresh = 1
 };
-
+[RequireComponent(typeof(ButtonsManager), typeof(AnimationsMain))]
+[RequireComponent(typeof(AugmentedReality), typeof(ImagesManager))]
 public class ButtonsMain : MonoBehaviour
 {
     [Header("BUTTONS", order = 0)]
@@ -21,7 +22,6 @@ public class ButtonsMain : MonoBehaviour
     [SerializeField] private Button btnBarL;
     [SerializeField] private Button btnBarC;
     [SerializeField] private Button btnBarR;
-
     [Header("READY ONLY", order = 0)]
     [Space(-10, order = 1)]
     [Header("Variables", order = 2)]
@@ -29,7 +29,7 @@ public class ButtonsMain : MonoBehaviour
     [Space(-10, order = 1)]
     [Header("Scripts", order = 2)]
     [SerializeField, ReadOnly] private AugmentedReality AR;
-    [SerializeField, ReadOnly] private DropDownMenu DropDownMenu;
+    [SerializeField, ReadOnly] private ButtonsManager Buttons;
     [SerializeField, ReadOnly] private AnimationsMain Animations;
     [SerializeField, ReadOnly] private ImagesManager Sprites;
 
@@ -43,7 +43,7 @@ public class ButtonsMain : MonoBehaviour
 
         AR = this.GetComponent<AugmentedReality>();
         Animations = this.GetComponent<AnimationsMain>();
-        DropDownMenu = this.GetComponent<DropDownMenu>();
+        Buttons = this.GetComponent<ButtonsManager>();
         Sprites = this.GetComponent<ImagesManager>();
     }
 
@@ -79,8 +79,8 @@ public class ButtonsMain : MonoBehaviour
     {
         called = !called;
 
-        if (called) { DropDownMenu.ButtonOpenDropDown(); }
-        if (!called) { DropDownMenu.ButtonCloseDropDown(); }
+        if (called) { Buttons.DropDownMenu.ButtonOpenDropDown(); }
+        if (!called) { Buttons.DropDownMenu.ButtonCloseDropDown(); }
         btnBarR.image.transform.localScale = new Vector2(called ? -1 : 1, 1);
 
         dropDownIsOpen = called;

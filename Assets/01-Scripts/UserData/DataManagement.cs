@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 #endregion
 #region CLASS
+[RequireComponent(typeof(UserDataButtons),typeof(PagesAndFields))]
 public class DataManagement : MonoBehaviour
 {
     #region READ_INSPECTOR
@@ -20,7 +21,6 @@ public class DataManagement : MonoBehaviour
     [ReadOnly, SerializeField] private string weightGoal;
     [ReadOnly, SerializeField] private string height;
     [ReadOnly, SerializeField] private string language;
-
 
     [Header("Scripts", order = 0)]
     [ReadOnly, SerializeField] private ButtonsManager Buttons;
@@ -49,7 +49,7 @@ public class DataManagement : MonoBehaviour
     #region DATA_VALUES_MANAGEMENT
     public readonly string[] goalName = new string[] { "Lose Weight", "More Muscles", "Keep Shape" };
     public readonly string[] focusName = new string[] { "Abdomen", "Chest", "Arms", "Legs" };
-    [ReadOnly] public string[] levelPhrase;
+    [NonReorderable][ReadOnly] public string[] levelPhrase;
     #endregion
     #region UNITY_MONOBEHAVIOUR
     public void Awake()

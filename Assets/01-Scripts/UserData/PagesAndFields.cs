@@ -6,6 +6,7 @@ using UnityEngine;
 using UnityEngine.UI;
 #endregion
 #region CLASS
+[RequireComponent(typeof(UserDataAnimations))]
 public class PagesAndFields : MonoBehaviour
 {
     #region UNITY_INSPECTOR
@@ -32,18 +33,18 @@ public class PagesAndFields : MonoBehaviour
     [Header(" =========================== READY ONLY =========================== ", order = 0)]
     [Space(-10, order = 1)]
     [Header("Pages", order = 2)]
-    [ReadOnly, SerializeField] private GameObject[] page;
+    [NonReorderable][ReadOnly, SerializeField] private GameObject[] page;
     [Space(-10, order = 0)]
     [Header("Footers", order = 1)]
-    [ReadOnly, SerializeField] private GameObject[] footer;
+    [NonReorderable][ReadOnly, SerializeField] private GameObject[] footer;
     [Space(-10, order = 0)]
     [Header("Variables", order = 1)]
     [ReadOnly, SerializeField] private int currentPage;
     [ReadOnly, SerializeField] private int currentFooter;
     [ReadOnly, SerializeField] private bool userNameInputIsEmpty;
     [ReadOnly, SerializeField] private string userNameString;
-    [ReadOnly, SerializeField] private TextMeshProUGUI[] moreValueTMP;
-    [ReadOnly, SerializeField] private TMP_InputField[] footerInput;
+    [NonReorderable][ReadOnly, SerializeField] private TextMeshProUGUI[] moreValueTMP;
+    [NonReorderable][ReadOnly, SerializeField] private TMP_InputField[] footerInput;
     [ReadOnly, SerializeField] private bool[] footerInputIsEmpty;
     [ReadOnly, SerializeField] private string[] footerValue;
 

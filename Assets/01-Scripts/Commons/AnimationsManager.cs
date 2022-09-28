@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+[RequireComponent(typeof(AnimationsManager))]
 public class AnimationsManager : MonoBehaviour
 {
     [Header(" =========================== READY ONLY =========================== ", order = 0)]

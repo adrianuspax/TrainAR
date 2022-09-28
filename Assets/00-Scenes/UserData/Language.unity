@@ -930,7 +930,6 @@ MonoBehaviour:
   langButton: []
   langPressed: 
   Buttons: {fileID: 0}
-  PagesAndFields: {fileID: 0}
   Pallete: {fileID: 0}
 --- !u!114 &1127046628
 MonoBehaviour:

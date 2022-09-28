@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+[RequireComponent(typeof(CoachAnimations))]
 public class AnimationsMain : MonoBehaviour
 {
     [Header("ANCHOR", order = 0)]

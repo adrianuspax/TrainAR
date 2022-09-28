@@ -6,6 +6,7 @@ using UnityEngine.UI;
 using TMPro;
 #endregion
 #region CLASS
+[RequireComponent(typeof(ButtonsManager))]
 public class UserDataButtons : MonoBehaviour
 {
     #region UNITY_INSPECTOR
@@ -37,32 +38,32 @@ public class UserDataButtons : MonoBehaviour
     [Header("Variables", order = 2)]
     [Space(-10, order = 3)]
     [Header("Page2_(Genre)", order = 4)]
-    [SerializeField, ReadOnly] private Button[] genreButton;
-    [SerializeField, ReadOnly] private bool[] genreIsPressed;
+    [NonReorderable][SerializeField, ReadOnly] private Button[] genreButton;
+    [NonReorderable][SerializeField, ReadOnly] private bool[] genreIsPressed;
     [SerializeField, ReadOnly] private bool isMale;
-    [SerializeField, ReadOnly] private Color[] genreColorPressed;
+    [NonReorderable][SerializeField, ReadOnly] private Color[] genreColorPressed;
     [Space(-10, order = 0)]
     [Header("Page3_(Goal)", order = 1)]
-    [SerializeField, ReadOnly] private Button[] goalButton;
-    [SerializeField, ReadOnly] private bool[] goalIsPressed;
-    [SerializeField, ReadOnly] private string[] goalbyIndex;
+    [NonReorderable][SerializeField, ReadOnly] private Button[] goalButton;
+    [NonReorderable][SerializeField, ReadOnly] private bool[] goalIsPressed;
+    [NonReorderable][SerializeField, ReadOnly] private string[] goalbyIndex;
     [SerializeField, ReadOnly] private string chosenGoal;
     [Space(-10, order = 0)]
     [Header("Page4_(Level)", order = 1)]
-    [SerializeField, ReadOnly] private Button[] levelButton;
-    [SerializeField, ReadOnly] private bool[] levelIsPressed;
-    [SerializeField, ReadOnly] private string[] levelByIndex;
+    [NonReorderable][SerializeField, ReadOnly] private Button[] levelButton;
+    [NonReorderable][SerializeField, ReadOnly] private bool[] levelIsPressed;
+    [NonReorderable][SerializeField, ReadOnly] private string[] levelByIndex;
     [SerializeField, ReadOnly] private string chosenLevel;
     [Space(-10, order = 0)]
     [Header("Page5_(Focus)", order = 1)]
-    [SerializeField, ReadOnly] private Button[] focusButton;
-    [SerializeField, ReadOnly] private bool[] focusIsPressed;
-    [SerializeField, ReadOnly] private string[] focusByIndex;
+    [NonReorderable][SerializeField, ReadOnly] private Button[] focusButton;
+    [NonReorderable][SerializeField, ReadOnly] private bool[] focusIsPressed;
+    [NonReorderable][SerializeField, ReadOnly] private string[] focusByIndex;
     [SerializeField, ReadOnly] private string chosenFocus;
     [Space(-10, order = 0)]
     [Header("Page6_(More)", order = 1)]
-    [SerializeField, ReadOnly] private Button[] moreEditButton;
-    [SerializeField, ReadOnly] private bool[] moreValueIsEdited;
+    [NonReorderable][SerializeField, ReadOnly] private Button[] moreEditButton;
+    [NonReorderable][SerializeField, ReadOnly] private bool[] moreValueIsEdited;
 
     [Header("Scripts", order = 0)]
     [SerializeField, ReadOnly] private ButtonsManager Buttons;

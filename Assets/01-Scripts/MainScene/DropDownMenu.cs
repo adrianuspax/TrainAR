@@ -4,6 +4,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
+[RequireComponent(typeof(ButtonsManager), typeof(AnimationsMain))]
 public class DropDownMenu : MonoBehaviour
 {
     [Header("DROP-DOWN MENU BEHAVIOUR", order = 0)]
@@ -29,8 +30,8 @@ public class DropDownMenu : MonoBehaviour
     [Header("Variables", order = 2)]
     [SerializeField, ReadOnly] private bool panelDropDownOpen;
     [SerializeField, ReadOnly] private Transform buttonsHeader;
-    [SerializeField, ReadOnly] private Button[] gridButtonDDM;
-    [SerializeField, ReadOnly] private bool[] isPressDDM;
+    [NonReorderable][SerializeField, ReadOnly] private Button[] gridButtonDDM;
+    [NonReorderable][SerializeField, ReadOnly] private bool[] isPressDDM;
     [SerializeField, ReadOnly] private Color unpressedColor;
     [SerializeField, ReadOnly] private Color unpressedTxtColor;
     [Space(-10, order = 1)]

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.XR.ARFoundation;
 using UnityEngine.XR.ARSubsystems;
-
+[RequireComponent(typeof(ButtonsManager), typeof(AnimationsMain))]
 public class AugmentedReality : MonoBehaviour
 {
     [Header("AR MANAGEMENT", order = 0)]

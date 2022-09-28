@@ -5363,8 +5363,8 @@ GameObject:
   - component: {fileID: 2045423148}
   - component: {fileID: 2045423150}
   - component: {fileID: 2045423151}
-  - component: {fileID: 2045423152}
   - component: {fileID: 2045423153}
+  - component: {fileID: 2045423152}
   m_Layer: 0
   m_Name: CodeManager
   m_TagString: Untagged
@@ -5436,7 +5436,7 @@ MonoBehaviour:
   btnBarR: {fileID: 1679993066}
   stateButtonAR: 0
   AR: {fileID: 0}
-  DropDownMenu: {fileID: 0}
+  Buttons: {fileID: 0}
   Animations: {fileID: 0}
   Sprites: {fileID: 0}
 --- !u!114 &2045423148
