@@ -101,4 +101,16 @@ public class ButtonsManager : MonoBehaviour
 
         button.transform.GetChild(index).GetComponent<TextMeshProUGUI>().color = color;
     }
+
+    #region CLOSE_BUTTON
+    public static void CloseApplication()
+    {
+#if UNITY_EDITOR
+        Debug.Log("CloseApplication() called!");
+        UnityEditor.EditorApplication.isPlaying = false;
+#else
+            Application.Quit();
+#endif
+    }
+    #endregion
 }

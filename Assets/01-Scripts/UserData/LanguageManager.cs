@@ -185,6 +185,7 @@ public class LanguageManager : MonoBehaviour
 
         (langButton, langPressed) = Buttons.Assignment(buttonsLangHeader, LangButtonsBehaviour);
         okButton.onClick.AddListener(OkFunction);
+        closeButton.onClick.AddListener(ButtonsManager.CloseApplication);
     }
 
     private void Start()
@@ -233,6 +234,8 @@ public class LanguageManager : MonoBehaviour
 
     public static void LoadLang(int index)
     {
+        Language = (Language)index;
+
         switch (Language)
         {
             case Language.EN:
@@ -281,8 +284,6 @@ public class LanguageManager : MonoBehaviour
                 cancelButton = cancelButtonBR;
                 break;
         }
-
-        Language = (Language)index;
     }
 
     public static Language Language

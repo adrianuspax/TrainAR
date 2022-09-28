@@ -82,7 +82,7 @@ public class UserDataButtons : MonoBehaviour
         Data = this.GetComponent<DataManagement>();
         #endregion
         #region CANVAS_MAIN
-        closeButton.onClick.AddListener(() => CloseApplication());
+        closeButton.onClick.AddListener(ButtonsManager.CloseApplication);
         nextButton.onClick.AddListener(() => NextButtonFunction());
         #endregion
         #region GENRE
@@ -90,15 +90,11 @@ public class UserDataButtons : MonoBehaviour
         (genreButton, genreIsPressed) = Buttons.Assignment(genreButtonsHeader, GenreButtonBehaviour);
         #endregion
         #region GOAL
-        goalbyIndex = new string[] { Data.goalName[0], Data.goalName[1], Data.goalName[2] };
+        goalbyIndex = Data.goalName;
         (goalButton, goalIsPressed) = Buttons.Assignment(goalButtonsHeader, GoalButtonsBehaviour);
         #endregion
-        #region LEVEL
-        levelByIndex = new string[] { Data.levelPhrase[0], Data.levelPhrase[1], Data.levelPhrase[2], Data.levelPhrase[3], Data.levelPhrase[4] };
-        (levelButton, levelIsPressed) = Buttons.Assignment(levelButtonsHeader, LevelButtonsBehaviour);
-        #endregion
         #region FOCUS
-        focusByIndex = new string[] { Data.focusName[0], Data.focusName[1], Data.focusName[2], Data.focusName[3] };
+        focusByIndex = Data.focusName;
         (focusButton, focusIsPressed) = Buttons.Assignment(focusButtonsHeader, FocusButtonsBehaviour);
         #endregion
         #region MORE
@@ -108,19 +104,17 @@ public class UserDataButtons : MonoBehaviour
         saveButton.onClick.AddListener(() => SaveButtonFunction());
         cancelButton.onClick.AddListener(() => CancelButtonFunction());
         #endregion
+        #region LEVEL
+        (levelButton, levelIsPressed) = Buttons.Assignment(levelButtonsHeader, LevelButtonsBehaviour);
+        #endregion
     }
-    #endregion
-    #region CLOSE_BUTTON
-    public void CloseApplication()
+
+    private void Start()
     {
-#if UNITY_EDITOR
-        Debug.Log("CloseApplication() called!");
-        UnityEditor.EditorApplication.isPlaying = false;
-#else
-            Application.Quit();
-#endif
+        levelByIndex = Data.levelPhrase;
     }
-    #endregion
+
+    #endregion    
     #region PAGE2_(GENRE)
     public void GenreButtonBehaviour(int index)
     {

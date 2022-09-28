@@ -37,7 +37,7 @@ public class ButtonsMain : MonoBehaviour
 
     private void Awake()
     {
-        btnTopR.onClick.AddListener(() => CloseApplication());
+        btnTopR.onClick.AddListener(ButtonsManager.CloseApplication);
         btnBarC.onClick.AddListener(() => AR.PlaceCoachAR());
         btnBarR.onClick.AddListener(() => CallDropDownMenu(dropDownIsOpen));
 
@@ -45,16 +45,6 @@ public class ButtonsMain : MonoBehaviour
         Animations = this.GetComponent<AnimationsMain>();
         DropDownMenu = this.GetComponent<DropDownMenu>();
         Sprites = this.GetComponent<ImagesManager>();
-    }
-
-    public void CloseApplication()
-    {
-#if UNITY_EDITOR
-            Debug.Log("CloseApplication() called!");
-            UnityEditor.EditorApplication.isPlaying = false;
-#else
-            Application.Quit();
-#endif
     }
 
     public void ButtonARBehaviour(StateButtonAR state, bool isInteractable)

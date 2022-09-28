@@ -48,17 +48,15 @@ public class DataManagement : MonoBehaviour
     #endregion
     #region DATA_VALUES_MANAGEMENT
     public readonly string[] goalName = new string[] { "Lose Weight", "More Muscles", "Keep Shape" };
-    public readonly string[] levelPhrase = LanguageManager.levelPhrase;
     public readonly string[] focusName = new string[] { "Abdomen", "Chest", "Arms", "Legs" };
+    [ReadOnly] public string[] levelPhrase;
     #endregion
     #region UNITY_MONOBEHAVIOUR
     public void Awake()
     {
-        LanguageManager.LoadLang(Language);
-
         Buttons = this.GetComponent<ButtonsManager>();
         PagesAndFields = this.GetComponent<PagesAndFields>();
-
+        LanguageManager.LoadLang(Language);
         PagesAndFields.PagesQuestionString = LanguageManager.pageQuestion;
         Buttons.UserData.NextButtonString = LanguageManager.nextButton;
         PagesAndFields.Page1PlaceHolder = LanguageManager.page1PlaceHolder;
@@ -71,6 +69,7 @@ public class DataManagement : MonoBehaviour
         PagesAndFields.FootersPlaceholer = LanguageManager.footerPlaceholder;
         Buttons.UserData.SaveButtonString = LanguageManager.saveButton;
         Buttons.UserData.CancelButtonString = LanguageManager.cancelButton;
+        levelPhrase = LanguageManager.levelPhrase;
     }
 
     public void Start()
