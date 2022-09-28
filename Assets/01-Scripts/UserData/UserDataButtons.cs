@@ -70,13 +70,11 @@ public class UserDataButtons : MonoBehaviour
     [SerializeField, ReadOnly] private PagesAndFields PagesAndFields;
     [SerializeField, ReadOnly] private AnimationsManager Animations;
     [SerializeField, ReadOnly] private DataManagement Data;
-    [SerializeField, ReadOnly] private PalleteColors PalleteColors;
     #endregion
     #region UNITY_MONOBEHAVIOUR
     private void Awake()
     {
         #region SCRIPTS
-        PalleteColors = GameObject.FindGameObjectWithTag(PalleteColors.TAG).GetComponent<PalleteColors>();
         Buttons = this.GetComponent<ButtonsManager>();
         PagesAndFields = this.GetComponent<PagesAndFields>();
         Animations = this.GetComponent<AnimationsManager>();

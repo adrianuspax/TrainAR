@@ -12,8 +12,6 @@ public class DropDownMenu : MonoBehaviour
     [Header("Buttons", order = 2)]
     [SerializeField] private Button btnOpenDropDown;
     [SerializeField] private Button btnCloseDropDown;
-    [SerializeField] private Color pressedColor;
-    [SerializeField] private Color pressedTxtColor;
     [Space(-10, order = 0)]
     [Header("Animations", order = 1)]
     [SerializeField] private Animator aniDropDownMenu;
@@ -32,6 +30,8 @@ public class DropDownMenu : MonoBehaviour
     [SerializeField, ReadOnly] private Transform buttonsHeader;
     [NonReorderable][SerializeField, ReadOnly] private Button[] gridButtonDDM;
     [NonReorderable][SerializeField, ReadOnly] private bool[] isPressDDM;
+    [SerializeField, ReadOnly] private Color pressedColor = PalleteColors.DoubleSplitComplementary(2);
+    [SerializeField, ReadOnly] private Color pressedTxtColor = PalleteColors.Square(1);
     [SerializeField, ReadOnly] private Color unpressedColor;
     [SerializeField, ReadOnly] private Color unpressedTxtColor;
     [Space(-10, order = 1)]

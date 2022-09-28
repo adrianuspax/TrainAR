@@ -33,7 +33,6 @@ public class LanguageManager : MonoBehaviour
 
     [Header("Scripts", order = 0)]
     [ReadOnly, SerializeField] private ButtonsManager Buttons;
-    [ReadOnly, SerializeField] private PalleteColors Pallete;
     #endregion
     #region STATIC_STRINGS
     public static string[] pageQuestion;
@@ -180,7 +179,6 @@ public class LanguageManager : MonoBehaviour
     private void Awake()
     {
         Buttons = this.GetComponent<ButtonsManager>();
-        Pallete = GameObject.FindGameObjectWithTag(PalleteColors.TAG).GetComponent<PalleteColors>();
 
         (langButton, langPressed) = Buttons.Assignment(buttonsLangHeader, LangButtonsBehaviour);
         okButton.onClick.AddListener(OkFunction);
@@ -206,15 +204,15 @@ public class LanguageManager : MonoBehaviour
                 ring = langButton[index].transform.GetChild(1).GetComponent<Image>();
                 shadow = langButton[index].transform.GetChild(1).GetComponent<Shadow>();
                 langButton[index].image.color = Color.white;
-                ring.color = Pallete.Main;
+                ring.color = PalleteColors.Main;
                 shadow.effectDistance = new Vector2(1, -1);
             }
             else
             {
                 ring = langButton[i].transform.GetChild(1).GetComponent<Image>();
                 shadow = langButton[i].transform.GetChild(1).GetComponent<Shadow>();
-                langButton[i].image.color = Pallete.BlueGrey(3);
-                ring.color = Pallete.BlueGray_WhiteBlue;
+                langButton[i].image.color = PalleteColors.BlueGrey(3);
+                ring.color = PalleteColors.BlueGray_WhiteBlue;
                 shadow.effectDistance = new Vector2(7, -1);
                 langPressed[i] = false;
             }
