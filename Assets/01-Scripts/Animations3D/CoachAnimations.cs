@@ -168,12 +168,11 @@ public class CoachAnimations : MonoBehaviour
     public bool GetClipLooping(int index) => clipByIndex[index].isLooping;
     public Trigger GetTrigger(int index) => (Trigger)index;
     public string GetName(int index) => GetTrigger(index).ToString();
-
     public void AssignAnimator()
     {
         Animator control;
 
-        if (AR.CoachIsInstantiated)
+        if (AugmentedReality.CoachIsInstantiated)
         {
             control = GameObject.FindGameObjectWithTag(COACH).GetComponent<Animator>();
             coachControl = control;

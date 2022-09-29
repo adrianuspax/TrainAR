@@ -25,12 +25,12 @@ PrefabInstance:
     - target: {fileID: 1521642562577060060, guid: 89eaab225e7f09748882c1b6116f4fb6,
         type: 3}
       propertyPath: m_Name
-      value: lineRenderer2
+      value: lineRenderer
       objectReference: {fileID: 0}
     - target: {fileID: 2473004072249157846, guid: 89eaab225e7f09748882c1b6116f4fb6,
         type: 3}
       propertyPath: m_Name
-      value: btnAbdomen
+      value: btnFloat
       objectReference: {fileID: 0}
     - target: {fileID: 3672227420020539127, guid: 89eaab225e7f09748882c1b6116f4fb6,
         type: 3}
@@ -120,12 +120,12 @@ PrefabInstance:
     - target: {fileID: 7076839815926114675, guid: 89eaab225e7f09748882c1b6116f4fb6,
         type: 3}
       propertyPath: m_Name
-      value: cnvAbdomen
+      value: cnvFloat
       objectReference: {fileID: 0}
     - target: {fileID: 8285338362365831914, guid: 89eaab225e7f09748882c1b6116f4fb6,
         type: 3}
       propertyPath: m_Name
-      value: pvtLine2
+      value: pvtLine
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 89eaab225e7f09748882c1b6116f4fb6, type: 3}

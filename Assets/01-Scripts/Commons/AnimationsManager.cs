@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-[RequireComponent(typeof(AnimationsManager))]
+
 public class AnimationsManager : MonoBehaviour
 {
     [Header(" =========================== READY ONLY =========================== ", order = 0)]
@@ -9,13 +9,20 @@ public class AnimationsManager : MonoBehaviour
     [Header("Scripts", order = 0)]
     [SerializeField, ReadOnly] private UserDataAnimations userData;
     [SerializeField, ReadOnly] private AnimationsMain main;
+    [SerializeField, ReadOnly] private FloatMenu floatMenu;
+    [SerializeField, ReadOnly] private CoachAnimations coach;
+
 
     private void Awake()
     {
         if (this.GetComponent<UserDataAnimations>() != null) { userData = this.GetComponent<UserDataAnimations>(); }
         if (this.GetComponent<AnimationsMain>() != null) { main = this.GetComponent<AnimationsMain>(); }
+        if (this.GetComponent<FloatMenu>() != null) { floatMenu = this.GetComponent<FloatMenu>(); }
+        if (this.GetComponent<CoachAnimations>() != null) { coach = this.GetComponent<CoachAnimations>(); }
     }
 
     public UserDataAnimations UserData => userData;
     public AnimationsMain Main => main;
+    public FloatMenu FloatMenu => floatMenu;
+    public CoachAnimations Coach => coach;
 }

@@ -30,19 +30,19 @@ public class DropDownMenu : MonoBehaviour
     [SerializeField, ReadOnly] private Transform buttonsHeader;
     [NonReorderable][SerializeField, ReadOnly] private Button[] gridButtonDDM;
     [NonReorderable][SerializeField, ReadOnly] private bool[] isPressDDM;
-    [SerializeField, ReadOnly] private Color pressedColor = PalleteColors.DoubleSplitComplementary(2);
-    [SerializeField, ReadOnly] private Color pressedTxtColor = PalleteColors.Square(1);
+    [SerializeField, ReadOnly] private Color pressedColor;
+    [SerializeField, ReadOnly] private Color pressedTxtColor;
     [SerializeField, ReadOnly] private Color unpressedColor;
     [SerializeField, ReadOnly] private Color unpressedTxtColor;
     [Space(-10, order = 1)]
     [Header("Scripts", order = 2)]
     [SerializeField, ReadOnly] private ButtonsManager Buttons;
-    [SerializeField, ReadOnly] private AnimationsMain Animations;
+    [SerializeField, ReadOnly] private AnimationsManager Animations;
 
     private void Awake()
     {
         Buttons = this.GetComponent<ButtonsManager>();
-        Animations = this.GetComponent<AnimationsMain>();
+        Animations = this.GetComponent<AnimationsManager>();
 
         btnOpenDropDown.onClick.AddListener(() => ButtonOpenDropDown());
         btnCloseDropDown.onClick.AddListener(() => ButtonCloseDropDown());
@@ -50,6 +50,8 @@ public class DropDownMenu : MonoBehaviour
         buttonsHeader = content.transform;
         (gridButtonDDM, isPressDDM) = Buttons.Assignment(buttonsHeader, ButtonsDDMBehaviour);
 
+        pressedColor = PalleteColors.DoubleSplitComplementary(2);
+        pressedTxtColor = PalleteColors.Square(1);
         unpressedColor = gridButtonDDM[0].image.color;
         unpressedTxtColor = gridButtonDDM[0].transform.GetChild(0).GetComponent<TextMeshProUGUI>().color;
     }
@@ -105,7 +107,7 @@ public class DropDownMenu : MonoBehaviour
                 gridButtonDDM[index].image.color = pressedColor;
                 gridButtonDDM[index].transform.localPosition = deslocation;
 
-                Animations.coach.StartAnimation(index + 3);
+                Animations.Main.coach.StartAnimation(index + 3);
             }
             else
             {
@@ -122,7 +124,9 @@ public class DropDownMenu : MonoBehaviour
 
         if (!isPressDDM[index])
         {
-            Animations.coach.StartAnimation(0);
+            Animations.Main.coach.StartAnimation(0);
         }
+
+        Animations.FloatMenu.FloatsIsOpen = isPressDDM[index];
     }
 }

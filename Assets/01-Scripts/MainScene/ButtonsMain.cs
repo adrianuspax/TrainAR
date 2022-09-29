@@ -30,7 +30,7 @@ public class ButtonsMain : MonoBehaviour
     [Header("Scripts", order = 2)]
     [SerializeField, ReadOnly] private AugmentedReality AR;
     [SerializeField, ReadOnly] private ButtonsManager Buttons;
-    [SerializeField, ReadOnly] private AnimationsMain Animations;
+    [SerializeField, ReadOnly] private AnimationsManager Animations;
     [SerializeField, ReadOnly] private ImagesManager Sprites;
 
     private bool dropDownIsOpen;
@@ -42,7 +42,7 @@ public class ButtonsMain : MonoBehaviour
         btnBarR.onClick.AddListener(() => CallDropDownMenu(dropDownIsOpen));
 
         AR = this.GetComponent<AugmentedReality>();
-        Animations = this.GetComponent<AnimationsMain>();
+        Animations = this.GetComponent<AnimationsManager>();
         Buttons = this.GetComponent<ButtonsManager>();
         Sprites = this.GetComponent<ImagesManager>();
     }
@@ -62,7 +62,7 @@ public class ButtonsMain : MonoBehaviour
         }
 
         condition = CurrentStateButtonAR == StateButtonAR.Refresh || isInteractable;
-        ButtonSetCoachInteraction = condition && !Animations.coach.IsStarted;
+        ButtonSetCoachInteraction = condition && !Animations.Main.coach.IsStarted;
 
         if (ButtonSetCoachInteraction)
         {
@@ -71,7 +71,7 @@ public class ButtonsMain : MonoBehaviour
             btnBarC.image.rectTransform.anchoredPosition = Vector3.zero;
         }
 
-        Animations.MovePhoneButton(!condition);
+        Animations.Main.MovePhoneButton(!condition);
         stateButtonAR = state;
     }
 

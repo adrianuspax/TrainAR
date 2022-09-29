@@ -65,12 +65,12 @@ PrefabInstance:
     - target: {fileID: 1557558775087012486, guid: 3c3848dcc6161204297403655bf26b4c,
         type: 3}
       propertyPath: m_Name
-      value: btnArm
+      value: btnFloat
       objectReference: {fileID: 0}
     - target: {fileID: 2508956567569605260, guid: 3c3848dcc6161204297403655bf26b4c,
         type: 3}
       propertyPath: m_Name
-      value: lineRenderer4
+      value: lineRenderer
       objectReference: {fileID: 0}
     - target: {fileID: 3701063223960745645, guid: 3c3848dcc6161204297403655bf26b4c,
         type: 3}
@@ -100,12 +100,12 @@ PrefabInstance:
     - target: {fileID: 4987455361643485370, guid: 3c3848dcc6161204297403655bf26b4c,
         type: 3}
       propertyPath: m_Name
-      value: pvtLine4
+      value: pvtLine
       objectReference: {fileID: 0}
     - target: {fileID: 6195144651146926883, guid: 3c3848dcc6161204297403655bf26b4c,
         type: 3}
       propertyPath: m_Name
-      value: cnvArm
+      value: cnvFloat
       objectReference: {fileID: 0}
     - target: {fileID: 6217931519355677200, guid: 3c3848dcc6161204297403655bf26b4c,
         type: 3}

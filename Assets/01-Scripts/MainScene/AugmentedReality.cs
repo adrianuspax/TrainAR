@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.XR.ARFoundation;
 using UnityEngine.XR.ARSubsystems;
 [RequireComponent(typeof(ButtonsManager), typeof(AnimationsMain))]
+[RequireComponent(typeof(DropDownMenu), typeof(FloatMenu))]
 public class AugmentedReality : MonoBehaviour
 {
     [Header("AR MANAGEMENT", order = 0)]
@@ -25,7 +26,7 @@ public class AugmentedReality : MonoBehaviour
     [SerializeField, ReadOnly] private StateButtonAR stateButtonAR;
     [Space(-10, order = 0)]
     [Header("Scrips")]
-    [SerializeField, ReadOnly] private AnimationsMain Animations;
+    [SerializeField, ReadOnly] private AnimationsManager Animations;
     [SerializeField, ReadOnly] private ButtonsManager Buttons;
 
     static readonly List<ARRaycastHit> hitResults = new();
@@ -35,7 +36,7 @@ public class AugmentedReality : MonoBehaviour
     private void Awake()
     {
         cameraPivot = GameObject.FindGameObjectWithTag(ARCAMERA).transform;
-        Animations = this.GetComponent<AnimationsMain>();
+        Animations = this.GetComponent<AnimationsManager>();
         Buttons = this.GetComponent<ButtonsManager>();
     }
 
@@ -53,6 +54,7 @@ public class AugmentedReality : MonoBehaviour
     private void Update()
     {
         AnchorBehaviour();
+        Animations.FloatMenu.LookingAtCam(CoachIsInstantiated);
     }
 
     public void AnchorBehaviour()
@@ -89,7 +91,7 @@ public class AugmentedReality : MonoBehaviour
         }
 
         anchorIsHitting = isHit;
-        Animations.AnchorIsHit(isHit);
+        Animations.Main.AnchorIsHit(isHit);
         Buttons.CanvasMain.ButtonARBehaviour(stateButtonAR, isHit);
     }
 
@@ -103,25 +105,25 @@ public class AugmentedReality : MonoBehaviour
             {
                 coachInstantiated.SetActive(false);
                 stateButtonAR = StateButtonAR.ReadyToSet;
-                Animations.AnchorVisible(true);
+                Animations.Main.AnchorVisible(true);
             }
             else if (AnchorIsHitting)
             {
                 coachInstantiated.transform.position = anchorPosSaver;
                 coachInstantiated.SetActive(true);
                 stateButtonAR = StateButtonAR.Refresh;
-                Animations.AnchorVisible(false);
+                Animations.Main.AnchorVisible(false);
             }
         }
         else if (AnchorIsHitting)
         {
             coachInstantiated = Instantiate(this.coach3DPrefab, pool3DPivot);
-            Animations.coach.AssignAnimator();
+            Animations.Coach.AssignAnimator();
             coachInstantiated.transform.localScale = Vector3.one;
             coachInstantiated.transform.position = anchorPosSaver;
             coachPlaced = true;
             stateButtonAR = StateButtonAR.Refresh;
-            Animations.AnchorVisible(false);
+            Animations.Main.AnchorVisible(false);
         }
 
         coachInstantiated.transform.LookAt(cameraPivot);
@@ -130,7 +132,7 @@ public class AugmentedReality : MonoBehaviour
         Buttons.CanvasMain.ButtonDDMInteraction = CoachIsInstantiated;
     }
 
-    public bool CoachIsInstantiated => GameObject.FindWithTag("Coach");
+    public static bool CoachIsInstantiated => GameObject.FindWithTag("Coach");
     public bool AnchorIsHitting => anchorIsHitting;
     public bool CoachIsPlaced => coachPlaced;
 }
