@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+
 [RequireComponent(typeof(AnimationsManager))]
 public class FloatMenu : MonoBehaviour
 {
@@ -120,12 +121,12 @@ public class FloatMenu : MonoBehaviour
         }
     }
 
-    public void AssignCamera()
+    /*public void AssignCamera()
     {
         foreach (Canvas canvas in CanvasFloat)
         {
             canvas.worldCamera = Camera.main;
         }
-    }
+    }*/
     #endregion
 }

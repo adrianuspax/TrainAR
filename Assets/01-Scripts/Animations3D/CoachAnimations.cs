@@ -168,7 +168,7 @@ public class CoachAnimations : MonoBehaviour
     public bool GetClipLooping(int index) => clipByIndex[index].isLooping;
     public Trigger GetTrigger(int index) => (Trigger)index;
     public string GetName(int index) => GetTrigger(index).ToString();
-    public void AssignAnimator()
+    /*public void AssignAnimator()
     {
         Animator control;
 
@@ -184,7 +184,7 @@ public class CoachAnimations : MonoBehaviour
             Debug.Log("3D object not instantiated in scene!");
 #endif
         }
-    }
+    }*/
 
     public int TotalCount => System.Enum.GetValues(typeof(Trigger)).Length;
     public bool IsStarted => AnimationStarted;

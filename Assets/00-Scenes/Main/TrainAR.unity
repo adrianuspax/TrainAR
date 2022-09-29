@@ -1476,7 +1476,7 @@ PrefabInstance:
     - target: {fileID: 5140996330594624828, guid: 9a5c1fc3537363f48a0d052de1354224,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5481914563225829254, guid: 9a5c1fc3537363f48a0d052de1354224,
         type: 3}
@@ -1491,7 +1491,7 @@ PrefabInstance:
     - target: {fileID: 5481914563225829254, guid: 9a5c1fc3537363f48a0d052de1354224,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.72
+      value: -0.75
       objectReference: {fileID: 0}
     - target: {fileID: 5481914563225829254, guid: 9a5c1fc3537363f48a0d052de1354224,
         type: 3}
@@ -4137,6 +4137,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ca8444d6f7c753844a95a012b9a60252, type: 3}
+--- !u!1 &1576220127 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5140996330594624828, guid: 9a5c1fc3537363f48a0d052de1354224,
+    type: 3}
+  m_PrefabInstance: {fileID: 532455038}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1659859597
 GameObject:
   m_ObjectHideFlags: 0
@@ -5542,7 +5548,6 @@ MonoBehaviour:
   triggered: 0
   clipByIndex: []
   AnimationStarted: 0
-  AR: {fileID: 0}
 --- !u!114 &2045423149
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5558,12 +5563,9 @@ MonoBehaviour:
   arRaycastManager: {fileID: 1659859601}
   pvtAnchorAR: {fileID: 986298669}
   pool3DPivot: {fileID: 1284178634}
-  coach3DPrefab: {fileID: 5140996330594624828, guid: 9a5c1fc3537363f48a0d052de1354224,
-    type: 3}
-  coachPlaced: 0
+  coach3D: {fileID: 1576220127}
   anchorIsHitting: 0
   screenPoint: {x: 0, y: 0}
-  coachInstantiated: {fileID: 0}
   cameraPivot: {fileID: 0}
   anchorPosSaver: {x: 0, y: 0, z: 0}
   trackableTypes: 0
@@ -5651,8 +5653,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   buttonsFloatHeader: {fileID: 1395890264}
-  buttonFloat: []
+  buttonFloatButton: []
   buttonFloatPivot: []
+  buttonFloatCanvas: []
   buttonFloatAnimator: []
 --- !u!114 &2045423155
 MonoBehaviour:

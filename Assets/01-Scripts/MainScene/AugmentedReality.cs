@@ -11,16 +11,13 @@ public class AugmentedReality : MonoBehaviour
     [SerializeField] private ARRaycastManager arRaycastManager;
     [SerializeField] private Transform pvtAnchorAR;
     [SerializeField] private Transform pool3DPivot;
-    [SerializeField] private GameObject coach3DPrefab;
+    [SerializeField] private GameObject coach3D;
 
     [Header("READY ONLY", order = 0)]
     [Space(-10, order = 1)]
     [Header("Variables", order = 2)]
-    [SerializeField, ReadOnly] private bool coachPlaced;
     [SerializeField, ReadOnly] private bool anchorIsHitting;
     [SerializeField, ReadOnly] private Vector2 screenPoint;
-    [SerializeField, ReadOnly] private GameObject coachInstantiated;
-    [SerializeField, ReadOnly] private Transform cameraPivot;
     [SerializeField, ReadOnly] private Vector3 anchorPosSaver;
     [SerializeField, ReadOnly] private TrackableType trackableTypes;
     [SerializeField, ReadOnly] private StateButtonAR stateButtonAR;
@@ -31,18 +28,15 @@ public class AugmentedReality : MonoBehaviour
 
     static readonly List<ARRaycastHit> hitResults = new();
 
-    public const string ARCAMERA = "MainCamera";
-
     private void Awake()
     {
-        cameraPivot = GameObject.FindGameObjectWithTag(ARCAMERA).transform;
         Animations = this.GetComponent<AnimationsManager>();
         Buttons = this.GetComponent<ButtonsManager>();
     }
 
     private void Start()
     {
-        coachPlaced = false;
+        coach3D.SetActive(false);
         anchorIsHitting = false;
         trackableTypes = TrackableType.PlaneWithinPolygon;
         Buttons.CanvasMain.ButtonDDMInteraction = false;
@@ -54,7 +48,7 @@ public class AugmentedReality : MonoBehaviour
     private void Update()
     {
         AnchorBehaviour();
-        Animations.FloatMenu.LookingAtCam(CoachIsInstantiated);
+        Animations.FloatMenu.LookingAtCam(CoachIsActivated);
     }
 
     public void AnchorBehaviour()
@@ -84,10 +78,16 @@ public class AugmentedReality : MonoBehaviour
             pvtAnchorAR.localScale = new Vector3(hitDistance, hitDistance, hitDistance);
             pvtAnchorAR.SetPositionAndRotation(anchorPos, anchorRot);
 
-            if (CoachIsPlaced)
+            if (!CoachIsActivated)
             {
-                coach3DPrefab.transform.position = hitPose.position;
+                coach3D.transform.position = hitPose.position;
+                coach3D.transform.LookAt(Camera.main.transform);
             }
+        }
+        else
+        {
+            pvtAnchorAR.localPosition = Vector3.zero;
+            pvtAnchorAR.localRotation = Quaternion.Euler(Vector3.zero);
         }
 
         anchorIsHitting = isHit;
@@ -98,42 +98,29 @@ public class AugmentedReality : MonoBehaviour
     public void PlaceCoachAR()
     {
         Vector3 vectorCorrection;
+        Quaternion rotationCorrection;
 
-        if (CoachIsPlaced)
-        {
-            if (coachInstantiated.activeInHierarchy)
+            if (coach3D.activeInHierarchy)
             {
-                coachInstantiated.SetActive(false);
+                coach3D.SetActive(false);
                 stateButtonAR = StateButtonAR.ReadyToSet;
                 Animations.Main.AnchorVisible(true);
             }
             else if (AnchorIsHitting)
             {
-                coachInstantiated.transform.position = anchorPosSaver;
-                coachInstantiated.SetActive(true);
+                coach3D.transform.position = anchorPosSaver;
+                coach3D.SetActive(true);
                 stateButtonAR = StateButtonAR.Refresh;
                 Animations.Main.AnchorVisible(false);
             }
-        }
-        else if (AnchorIsHitting)
-        {
-            coachInstantiated = Instantiate(this.coach3DPrefab, pool3DPivot);
-            Animations.Coach.AssignAnimator();
-            Animations.FloatMenu.AssignCamera();
-            coachInstantiated.transform.localScale = Vector3.one;
-            coachInstantiated.transform.position = anchorPosSaver;
-            coachPlaced = true;
-            stateButtonAR = StateButtonAR.Refresh;
-            Animations.Main.AnchorVisible(false);
-        }
 
-        coachInstantiated.transform.LookAt(cameraPivot);
-        vectorCorrection = new Vector3(0, coachInstantiated.transform.rotation.eulerAngles.y, 0);
-        coachInstantiated.transform.rotation = Quaternion.Euler(vectorCorrection);
-        Buttons.CanvasMain.ButtonDDMInteraction = CoachIsInstantiated;
+        vectorCorrection = new Vector3(0, coach3D.transform.rotation.eulerAngles.y, 0);
+        rotationCorrection = Quaternion.Euler(vectorCorrection);
+
+        coach3D.transform.rotation = rotationCorrection;
+        Buttons.CanvasMain.ButtonDDMInteraction = CoachIsActivated;
     }
 
-    public static bool CoachIsInstantiated => GameObject.FindWithTag("Coach");
     public bool AnchorIsHitting => anchorIsHitting;
-    public bool CoachIsPlaced => coachPlaced;
+    public bool CoachIsActivated => coach3D.activeInHierarchy;
 }
