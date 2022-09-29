@@ -127,6 +127,6 @@ public class DropDownMenu : MonoBehaviour
             Animations.Main.coach.StartAnimation(0);
         }
 
-        Animations.FloatMenu.FloatsIsOpen = isPressDDM[index];
+        Animations.FloatMenu.FloatsIsOpen = !isPressDDM[index];
     }
 }

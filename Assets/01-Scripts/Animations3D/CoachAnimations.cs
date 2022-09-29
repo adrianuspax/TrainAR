@@ -111,9 +111,9 @@ public class CoachAnimations : MonoBehaviour
     [Space(-10f, order = 0)]
     [Header("Booleans", order = 1)]
     [SerializeField, ReadOnly] private bool AnimationStarted;
-    [Space(-10f, order = 0)]
+    /*[Space(-10f, order = 0)]
     [Header("Scripts", order = 1)]
-    [SerializeField, ReadOnly] private AugmentedReality AR;
+    [SerializeField, ReadOnly] private AugmentedReality AR;*/
 
     private const string BREATHING = "BreathingBlend";
     public const string COACH = "Coach";
@@ -139,7 +139,7 @@ public class CoachAnimations : MonoBehaviour
         clipByIndex[(int)Trigger.QuickSteps] = quickStepsClip;
         clipByIndex[(int)Trigger.Situps] = situpClip;
 
-        AR = this.GetComponent<AugmentedReality>();
+        //AR = this.GetComponent<AugmentedReality>();
     }
 
     public void Breathing(float weight)

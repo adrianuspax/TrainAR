@@ -119,6 +119,7 @@ public class AugmentedReality : MonoBehaviour
         {
             coachInstantiated = Instantiate(this.coach3DPrefab, pool3DPivot);
             Animations.Coach.AssignAnimator();
+            Animations.FloatMenu.AssignCamera();
             coachInstantiated.transform.localScale = Vector3.one;
             coachInstantiated.transform.position = anchorPosSaver;
             coachPlaced = true;

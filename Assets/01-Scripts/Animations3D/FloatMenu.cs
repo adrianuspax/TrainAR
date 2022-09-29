@@ -13,8 +13,9 @@ public class FloatMenu : MonoBehaviour
     [Header("READY ONLY", order = 0)]
     [Space(-10, order = 1)]
     [Header("Variables", order = 2)]
-    [NonReorderable][SerializeField, ReadOnly] private Button[] buttonFloat;
+    [NonReorderable][SerializeField, ReadOnly] private Button[] buttonFloatButton;
     [NonReorderable][SerializeField, ReadOnly] private Transform[] buttonFloatPivot;
+    [NonReorderable][SerializeField, ReadOnly] private Canvas[] buttonFloatCanvas;
     [NonReorderable][SerializeField, ReadOnly] private Animator[] buttonFloatAnimator;
 
     private const string animationParameter = "floatIsOpen";
@@ -23,12 +24,13 @@ public class FloatMenu : MonoBehaviour
     {
         buttonFloatAnimator = AssignAnimators(FloatHeader);
         buttonFloatPivot = AssignPivots(AnimatorFloat);
-        buttonFloat = AssignButtons(PivotFloat);
+        buttonFloatCanvas = AssignCanvas(PivotFloat);
+        buttonFloatButton = AssignButtons(CanvasFloat);
     }
 
     public int TotalFloats => FloatHeader.childCount;
     public Transform FloatHeader => buttonsFloatHeader;
-
+    #region ANIMATORS
     private Animator[] AssignAnimators(Transform header)
     {
         Animator[] animator;
@@ -42,7 +44,8 @@ public class FloatMenu : MonoBehaviour
         return animator;
     }
     public Animator[] AnimatorFloat => buttonFloatAnimator;
-
+    #endregion
+    #region PIVOTS
     private Transform[] AssignPivots(Animator[] animator)
     {
         Transform[] pivot;
@@ -56,21 +59,38 @@ public class FloatMenu : MonoBehaviour
         return pivot;
     }
     public Transform[] PivotFloat => buttonFloatPivot;
+    #endregion
+    #region CANVAS
+    private Canvas[] AssignCanvas(Transform[] pivot)
+    {
+        Canvas[] canvas;
+        canvas = new Canvas[TotalFloats];
 
-    private Button[] AssignButtons(Transform[] pivot)
+        for (int i = 0; i < TotalFloats; i++)
+        {
+            canvas[i] = pivot[i].GetChild(0).GetChild(1).GetComponent<Canvas>();
+        }
+
+        return canvas;
+    }
+    public Canvas[] CanvasFloat => buttonFloatCanvas;
+    #endregion
+    #region BUTTONS
+    private Button[] AssignButtons(Canvas[] canvas)
     {
         Button[] button;
         button = new Button[TotalFloats];
 
         for (int i = 0; i < TotalFloats; i++)
         {
-            button[i] = pivot[i].GetChild(0).GetChild(1).GetChild(0).GetComponent<Button>();
+            button[i] = canvas[i].transform.GetChild(0).GetComponent<Button>();
         }
 
         return button;
     }
-    public Button[] ButtonFloat => buttonFloat;
-
+    public Button[] ButtonFloat => buttonFloatButton;
+    #endregion
+    #region MANAGEMENT
     public void LookingAtCam(bool isLooking)
     {
         if (isLooking)
@@ -99,4 +119,13 @@ public class FloatMenu : MonoBehaviour
             }
         }
     }
+
+    public void AssignCamera()
+    {
+        foreach (Canvas canvas in CanvasFloat)
+        {
+            canvas.worldCamera = Camera.main;
+        }
+    }
+    #endregion
 }
