@@ -68,7 +68,7 @@ public class TestAnimations : MonoBehaviour
         if (!gridPressed[index])
         {
             StartCoroutine(Cor_ButtonsWaiting(index));
-            animations.StartAnimation(0);
+            animations.StartAnimation(Trigger.Idle);
         }
 
         ExceptionsBehaviour();

@@ -111,9 +111,6 @@ public class CoachAnimations : MonoBehaviour
     [Space(-10f, order = 0)]
     [Header("Booleans", order = 1)]
     [SerializeField, ReadOnly] private bool AnimationStarted;
-    /*[Space(-10f, order = 0)]
-    [Header("Scripts", order = 1)]
-    [SerializeField, ReadOnly] private AugmentedReality AR;*/
 
     private const string BREATHING = "BreathingBlend";
     public const string COACH = "Coach";
@@ -138,8 +135,6 @@ public class CoachAnimations : MonoBehaviour
         clipByIndex[(int)Trigger.PushUp] = pushUpClip;
         clipByIndex[(int)Trigger.QuickSteps] = quickStepsClip;
         clipByIndex[(int)Trigger.Situps] = situpClip;
-
-        //AR = this.GetComponent<AugmentedReality>();
     }
 
     public void Breathing(float weight)
@@ -168,24 +163,6 @@ public class CoachAnimations : MonoBehaviour
     public bool GetClipLooping(int index) => clipByIndex[index].isLooping;
     public Trigger GetTrigger(int index) => (Trigger)index;
     public string GetName(int index) => GetTrigger(index).ToString();
-    /*public void AssignAnimator()
-    {
-        Animator control;
-
-        if (AugmentedReality.CoachIsInstantiated)
-        {
-            control = GameObject.FindGameObjectWithTag(COACH).GetComponent<Animator>();
-            coachControl = control;
-            Breathing(-0.5f);
-        }
-        else
-        {
-#if UNITY_EDITOR
-            Debug.Log("3D object not instantiated in scene!");
-#endif
-        }
-    }*/
-
     public int TotalCount => System.Enum.GetValues(typeof(Trigger)).Length;
     public bool IsStarted => AnimationStarted;
 }

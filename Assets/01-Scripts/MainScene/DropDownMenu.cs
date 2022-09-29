@@ -48,10 +48,10 @@ public class DropDownMenu : MonoBehaviour
         btnCloseDropDown.onClick.AddListener(() => ButtonCloseDropDown());
 
         buttonsHeader = content.transform;
-        (gridButtonDDM, isPressDDM) = Buttons.Assignment(buttonsHeader, ButtonsDDMBehaviour);
 
         pressedColor = PalleteColors.DoubleSplitComplementary(2);
         pressedTxtColor = PalleteColors.Square(1);
+        (gridButtonDDM, isPressDDM) = Buttons.Assignment(buttonsHeader, ButtonsDDMBehaviour);
         unpressedColor = gridButtonDDM[0].image.color;
         unpressedTxtColor = gridButtonDDM[0].transform.GetChild(0).GetComponent<TextMeshProUGUI>().color;
     }
@@ -80,6 +80,13 @@ public class DropDownMenu : MonoBehaviour
         {
             panelDropDownOpen = false;
             aniDropDownMenu.Play(dropDownCloseClip.name);
+            Animations.FloatMenu.FloatsIsOpen = true;
+
+            if (Animations.Coach.IsStarted)
+            {
+                Animations.Coach.StartAnimation(Trigger.Idle);
+                AllButtonsDefault();
+            }
         }
     }
 
@@ -124,9 +131,43 @@ public class DropDownMenu : MonoBehaviour
 
         if (!isPressDDM[index])
         {
-            Animations.Main.coach.StartAnimation(0);
+            Animations.Main.coach.StartAnimation(Trigger.Idle);
         }
+    }
 
-        Animations.FloatMenu.FloatsIsOpen = !isPressDDM[index];
+    public void AllButtonsDefault()
+    {
+        Vector3 deslocation;
+        TextMeshProUGUI text;
+
+        for (int i = 0; i < TotalButtons; i++)
+        {
+            deslocation = new Vector3(gridButtonDDM[i].transform.localPosition.x, gridButtonDDM[i].transform.localPosition.y, 0);
+            text = gridButtonDDM[i].transform.GetChild(0).GetComponent<TextMeshProUGUI>();
+
+            text.color = unpressedTxtColor;
+            gridButtonDDM[i].image.color = unpressedColor;
+            gridButtonDDM[i].transform.localPosition = deslocation;
+            Buttons.Interaction(true, gridButtonDDM);
+            isPressDDM[i] = false;
+        }
+    }
+
+    public int TotalButtons => buttonsHeader.childCount;
+
+    public GameObject[] ButtonGameObject
+    {
+        get
+        {
+            GameObject[] gameObj;
+            gameObj = new GameObject[TotalButtons];
+
+            for (int i = 0; i < TotalButtons; i++)
+            {
+                gameObj[i] = gridButtonDDM[i].gameObject;
+            }
+
+            return gameObj;
+        }
     }
 }

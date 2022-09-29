@@ -3300,7 +3300,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1260345303
 RectTransform:
   m_ObjectHideFlags: 0
@@ -5566,7 +5566,6 @@ MonoBehaviour:
   coach3D: {fileID: 1576220127}
   anchorIsHitting: 0
   screenPoint: {x: 0, y: 0}
-  cameraPivot: {fileID: 0}
   anchorPosSaver: {x: 0, y: 0, z: 0}
   trackableTypes: 0
   stateButtonAR: 0
@@ -5640,6 +5639,7 @@ MonoBehaviour:
   CanvasButtons: {fileID: 0}
   DDM: {fileID: 0}
   UserDataButtons: {fileID: 0}
+  FloatMenuButtuns: {fileID: 0}
 --- !u!114 &2045423154
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5657,6 +5657,7 @@ MonoBehaviour:
   buttonFloatPivot: []
   buttonFloatCanvas: []
   buttonFloatAnimator: []
+  Buttons: {fileID: 0}
 --- !u!114 &2045423155
 MonoBehaviour:
   m_ObjectHideFlags: 0

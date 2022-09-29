@@ -12,6 +12,8 @@ public class ButtonsManager : MonoBehaviour
     [SerializeField, ReadOnly] private ButtonsMain CanvasButtons;
     [SerializeField, ReadOnly] private DropDownMenu DDM;
     [SerializeField, ReadOnly] private UserDataButtons UserDataButtons;
+    [SerializeField, ReadOnly] private FloatMenu FloatMenuButtuns;
+
 
     public delegate void BehaviourButtons(int index);
 
@@ -20,11 +22,13 @@ public class ButtonsManager : MonoBehaviour
         if (this.GetComponent<ButtonsMain>() != null) { CanvasButtons = this.GetComponent<ButtonsMain>(); }
         if (this.GetComponent<DropDownMenu>() != null) { DDM = this.GetComponent<DropDownMenu>(); }
         if (this.GetComponent<UserDataButtons>() != null) { UserDataButtons = this.GetComponent<UserDataButtons>(); }
+        if (this.GetComponent<FloatMenu>() != null) { FloatMenuButtuns = this.GetComponent<FloatMenu>(); }
     }
 
     public ButtonsMain CanvasMain => CanvasButtons;
     public DropDownMenu DropDownMenu => DDM;
     public UserDataButtons UserData => UserDataButtons;
+    public FloatMenu FloatMenu => FloatMenuButtuns;
 
     public (Button[], bool[]) Assignment(Transform header, params BehaviourButtons[] behaviour)
     {
