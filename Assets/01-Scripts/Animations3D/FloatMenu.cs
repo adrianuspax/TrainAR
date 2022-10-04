@@ -155,68 +155,68 @@ public class FloatMenu : MonoBehaviour
                 }
                 break;
             case BodyPart.Chest:
-                Buttons.DropDownMenu.ButtonGameObject[0].SetActive(false);  //Pernas
-                Buttons.DropDownMenu.ButtonGameObject[1].SetActive(false);  //Pernas e braços
-                Buttons.DropDownMenu.ButtonGameObject[2].SetActive(false);  //Braços
-                Buttons.DropDownMenu.ButtonGameObject[3].SetActive(false);  //Pernas
-                Buttons.DropDownMenu.ButtonGameObject[4].SetActive(true);   //Tudo
-                Buttons.DropDownMenu.ButtonGameObject[5].SetActive(true);   //Peito e pernas
-                Buttons.DropDownMenu.ButtonGameObject[6].SetActive(true);   //Peito
-                Buttons.DropDownMenu.ButtonGameObject[7].SetActive(false);  //braço e pernas
-                Buttons.DropDownMenu.ButtonGameObject[8].SetActive(false);  //Pernas
-                Buttons.DropDownMenu.ButtonGameObject[9].SetActive(false);  //braços e pernas
-                Buttons.DropDownMenu.ButtonGameObject[10].SetActive(true);  //Peito e braços
-                Buttons.DropDownMenu.ButtonGameObject[11].SetActive(true);  //Braços e peito
-                Buttons.DropDownMenu.ButtonGameObject[12].SetActive(false); //Pernas
-                Buttons.DropDownMenu.ButtonGameObject[13].SetActive(true);  //Peito
+                Buttons.DropDownMenu.ButtonGameObject[DropDownMenu.SQUAT].SetActive(false);  //Pernas
+                Buttons.DropDownMenu.ButtonGameObject[DropDownMenu.SQUATBENTARMS].SetActive(false);  //Pernas e braços
+                Buttons.DropDownMenu.ButtonGameObject[DropDownMenu.BICEPCURL].SetActive(false);  //Braços
+                Buttons.DropDownMenu.ButtonGameObject[DropDownMenu.BOXJUMP].SetActive(false);  //Pernas
+                Buttons.DropDownMenu.ButtonGameObject[DropDownMenu.BURPEE].SetActive(true);   //Tudo
+                Buttons.DropDownMenu.ButtonGameObject[DropDownMenu.BICYCLECRUNCH].SetActive(true);   //Peito e pernas
+                Buttons.DropDownMenu.ButtonGameObject[DropDownMenu.CIRCLECRUNCH].SetActive(true);   //Peito
+                Buttons.DropDownMenu.ButtonGameObject[DropDownMenu.JUMPINGJACKS].SetActive(false);  //braço e pernas
+                Buttons.DropDownMenu.ButtonGameObject[DropDownMenu.PISTOL].SetActive(false);  //Pernas
+                Buttons.DropDownMenu.ButtonGameObject[DropDownMenu.PLANK].SetActive(false);  //braços e pernas
+                Buttons.DropDownMenu.ButtonGameObject[DropDownMenu.PIKEWALK].SetActive(true);  //Peito e braços
+                Buttons.DropDownMenu.ButtonGameObject[DropDownMenu.PUSHUP].SetActive(true);  //Braços e peito
+                Buttons.DropDownMenu.ButtonGameObject[DropDownMenu.QUICKSTEPS].SetActive(false); //Pernas
+                Buttons.DropDownMenu.ButtonGameObject[DropDownMenu.SITUPS].SetActive(true);  //Peito
                 break;
             case BodyPart.Abdomen:
-                Buttons.DropDownMenu.ButtonGameObject[0].SetActive(false);
-                Buttons.DropDownMenu.ButtonGameObject[1].SetActive(false);
-                Buttons.DropDownMenu.ButtonGameObject[2].SetActive(false);
-                Buttons.DropDownMenu.ButtonGameObject[3].SetActive(false);
-                Buttons.DropDownMenu.ButtonGameObject[4].SetActive(true);
-                Buttons.DropDownMenu.ButtonGameObject[5].SetActive(true);
-                Buttons.DropDownMenu.ButtonGameObject[6].SetActive(false);
-                Buttons.DropDownMenu.ButtonGameObject[7].SetActive(false);
-                Buttons.DropDownMenu.ButtonGameObject[8].SetActive(false);
-                Buttons.DropDownMenu.ButtonGameObject[9].SetActive(false);
-                Buttons.DropDownMenu.ButtonGameObject[10].SetActive(true);
-                Buttons.DropDownMenu.ButtonGameObject[11].SetActive(true);
-                Buttons.DropDownMenu.ButtonGameObject[12].SetActive(false);
-                Buttons.DropDownMenu.ButtonGameObject[13].SetActive(true);
+                Buttons.DropDownMenu.ButtonGameObject[DropDownMenu.SQUAT].SetActive(false);
+                Buttons.DropDownMenu.ButtonGameObject[DropDownMenu.SQUATBENTARMS].SetActive(false);
+                Buttons.DropDownMenu.ButtonGameObject[DropDownMenu.BICEPCURL].SetActive(false);
+                Buttons.DropDownMenu.ButtonGameObject[DropDownMenu.BOXJUMP].SetActive(false);
+                Buttons.DropDownMenu.ButtonGameObject[DropDownMenu.BURPEE].SetActive(true);
+                Buttons.DropDownMenu.ButtonGameObject[DropDownMenu.BICYCLECRUNCH].SetActive(true);
+                Buttons.DropDownMenu.ButtonGameObject[DropDownMenu.CIRCLECRUNCH].SetActive(false);
+                Buttons.DropDownMenu.ButtonGameObject[DropDownMenu.JUMPINGJACKS].SetActive(false);
+                Buttons.DropDownMenu.ButtonGameObject[DropDownMenu.PISTOL].SetActive(false);
+                Buttons.DropDownMenu.ButtonGameObject[DropDownMenu.PLANK].SetActive(false);
+                Buttons.DropDownMenu.ButtonGameObject[DropDownMenu.PIKEWALK].SetActive(true);
+                Buttons.DropDownMenu.ButtonGameObject[DropDownMenu.PUSHUP].SetActive(true);
+                Buttons.DropDownMenu.ButtonGameObject[DropDownMenu.QUICKSTEPS].SetActive(false);
+                Buttons.DropDownMenu.ButtonGameObject[DropDownMenu.SITUPS].SetActive(true);
                 break;
             case BodyPart.Legs:
-                Buttons.DropDownMenu.ButtonGameObject[0].SetActive(true);
-                Buttons.DropDownMenu.ButtonGameObject[1].SetActive(true);
-                Buttons.DropDownMenu.ButtonGameObject[2].SetActive(false);
-                Buttons.DropDownMenu.ButtonGameObject[3].SetActive(true);
-                Buttons.DropDownMenu.ButtonGameObject[4].SetActive(true);
-                Buttons.DropDownMenu.ButtonGameObject[5].SetActive(true);
-                Buttons.DropDownMenu.ButtonGameObject[6].SetActive(false);
-                Buttons.DropDownMenu.ButtonGameObject[7].SetActive(true);
-                Buttons.DropDownMenu.ButtonGameObject[8].SetActive(true);
-                Buttons.DropDownMenu.ButtonGameObject[9].SetActive(true);
-                Buttons.DropDownMenu.ButtonGameObject[10].SetActive(false);
-                Buttons.DropDownMenu.ButtonGameObject[11].SetActive(false);
-                Buttons.DropDownMenu.ButtonGameObject[12].SetActive(true);
-                Buttons.DropDownMenu.ButtonGameObject[13].SetActive(false);
+                Buttons.DropDownMenu.ButtonGameObject[DropDownMenu.SQUAT].SetActive(true);
+                Buttons.DropDownMenu.ButtonGameObject[DropDownMenu.SQUATBENTARMS].SetActive(true);
+                Buttons.DropDownMenu.ButtonGameObject[DropDownMenu.BICEPCURL].SetActive(false);
+                Buttons.DropDownMenu.ButtonGameObject[DropDownMenu.BOXJUMP].SetActive(true);
+                Buttons.DropDownMenu.ButtonGameObject[DropDownMenu.BURPEE].SetActive(true);
+                Buttons.DropDownMenu.ButtonGameObject[DropDownMenu.BICYCLECRUNCH].SetActive(true);
+                Buttons.DropDownMenu.ButtonGameObject[DropDownMenu.CIRCLECRUNCH].SetActive(false);
+                Buttons.DropDownMenu.ButtonGameObject[DropDownMenu.JUMPINGJACKS].SetActive(true);
+                Buttons.DropDownMenu.ButtonGameObject[DropDownMenu.PISTOL].SetActive(true);
+                Buttons.DropDownMenu.ButtonGameObject[DropDownMenu.PLANK].SetActive(true);
+                Buttons.DropDownMenu.ButtonGameObject[DropDownMenu.PIKEWALK].SetActive(false);
+                Buttons.DropDownMenu.ButtonGameObject[DropDownMenu.PUSHUP].SetActive(false);
+                Buttons.DropDownMenu.ButtonGameObject[DropDownMenu.QUICKSTEPS].SetActive(true);
+                Buttons.DropDownMenu.ButtonGameObject[DropDownMenu.SITUPS].SetActive(false);
                 break;
             case BodyPart.Arms:
-                Buttons.DropDownMenu.ButtonGameObject[0].SetActive(false);
-                Buttons.DropDownMenu.ButtonGameObject[1].SetActive(true);
-                Buttons.DropDownMenu.ButtonGameObject[2].SetActive(true);
-                Buttons.DropDownMenu.ButtonGameObject[3].SetActive(false);
-                Buttons.DropDownMenu.ButtonGameObject[4].SetActive(true);
-                Buttons.DropDownMenu.ButtonGameObject[5].SetActive(false);
-                Buttons.DropDownMenu.ButtonGameObject[6].SetActive(false);
-                Buttons.DropDownMenu.ButtonGameObject[7].SetActive(true);
-                Buttons.DropDownMenu.ButtonGameObject[8].SetActive(false);
-                Buttons.DropDownMenu.ButtonGameObject[9].SetActive(true);
-                Buttons.DropDownMenu.ButtonGameObject[10].SetActive(true);
-                Buttons.DropDownMenu.ButtonGameObject[11].SetActive(true);
-                Buttons.DropDownMenu.ButtonGameObject[12].SetActive(false);
-                Buttons.DropDownMenu.ButtonGameObject[13].SetActive(false);
+                Buttons.DropDownMenu.ButtonGameObject[DropDownMenu.SQUAT].SetActive(false);
+                Buttons.DropDownMenu.ButtonGameObject[DropDownMenu.SQUATBENTARMS].SetActive(true);
+                Buttons.DropDownMenu.ButtonGameObject[DropDownMenu.BICEPCURL].SetActive(true);
+                Buttons.DropDownMenu.ButtonGameObject[DropDownMenu.BOXJUMP].SetActive(false);
+                Buttons.DropDownMenu.ButtonGameObject[DropDownMenu.BURPEE].SetActive(true);
+                Buttons.DropDownMenu.ButtonGameObject[DropDownMenu.BICYCLECRUNCH].SetActive(false);
+                Buttons.DropDownMenu.ButtonGameObject[DropDownMenu.CIRCLECRUNCH].SetActive(false);
+                Buttons.DropDownMenu.ButtonGameObject[DropDownMenu.JUMPINGJACKS].SetActive(true);
+                Buttons.DropDownMenu.ButtonGameObject[DropDownMenu.PISTOL].SetActive(false);
+                Buttons.DropDownMenu.ButtonGameObject[DropDownMenu.PLANK].SetActive(true);
+                Buttons.DropDownMenu.ButtonGameObject[DropDownMenu.PIKEWALK].SetActive(true);
+                Buttons.DropDownMenu.ButtonGameObject[DropDownMenu.PUSHUP].SetActive(true);
+                Buttons.DropDownMenu.ButtonGameObject[DropDownMenu.QUICKSTEPS].SetActive(false);
+                Buttons.DropDownMenu.ButtonGameObject[DropDownMenu.SITUPS].SetActive(false);
                 break;
             default:
                 foreach (GameObject go in Buttons.DropDownMenu.ButtonGameObject)
