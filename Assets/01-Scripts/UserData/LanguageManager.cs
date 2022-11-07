@@ -226,7 +226,7 @@ public class LanguageManager : MonoBehaviour
     {
         DataManagement.Language = (int)Language;
         LoadLang(DataManagement.Language);
-        MyScenes.LoadUserData();
+        ScenesManagement.LoadUserData();
     }
 
     public static void LoadLang(int index)

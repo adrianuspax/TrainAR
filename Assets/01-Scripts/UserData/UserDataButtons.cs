@@ -402,7 +402,7 @@ public class UserDataButtons : MonoBehaviour
         if (PagesAndFields.CurrentPage >= PagesAndFields.TotalPages)
         {
             Data.PagesSavePreferences(PagesAndFields.CurrentPage);
-            MyScenes.LoadTrainAR();
+            ScenesManagement.LoadTrainAR();
         }
         else
         {

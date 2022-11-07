@@ -49,8 +49,16 @@ SpriteAtlas:
     isAtlasV2: 0
     cachedData: {fileID: 0}
   m_MasterAtlas: {fileID: 0}
-  m_PackedSprites: []
-  m_PackedSpriteNamesToIndex: []
+  m_PackedSprites:
+  - {fileID: 21300000, guid: d8860bc119d18e04ca96805130401408, type: 3}
+  - {fileID: 21300000, guid: 1de80b537fd7e1e469b74310fd64943a, type: 3}
+  - {fileID: 21300000, guid: a8dd3447e27388c4ea0eb2d4a263120e, type: 3}
+  - {fileID: 21300000, guid: a2e13d4be45b5e7449e4fe6288b438c2, type: 3}
+  m_PackedSpriteNamesToIndex:
+  - chestIcon
+  - legIcon
+  - waistIcon
+  - armIcon
   m_RenderDataMap: {}
   m_Tag: ButtonsFloat
   m_IsVariant: 0

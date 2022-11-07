@@ -3,13 +3,14 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class MyScenes : MonoBehaviour
+public class ScenesManagement : MonoBehaviour
 {
     private static readonly string[] scene = new string[]
     {
         "Language",
         "UserData",
-        "TrainAR"
+        "TrainAR",
+        "Menu"
     };
 
     public static void LoadLanguageScene() => SceneManager.LoadScene(scene[0]);
@@ -18,4 +19,6 @@ public class MyScenes : MonoBehaviour
     public static string UserData => scene[1];
     public static void LoadTrainAR() => SceneManager.LoadScene(scene[2]);
     public static string TrainAR => scene[2];
+    public static void LoadMenu() => SceneManager.LoadScene(scene[3]);
+    public static string Menu => scene[3];
 }
