@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 #endregion
 #region CLASS
-[RequireComponent(typeof(UserDataButtons),typeof(PagesAndFields))]
+[RequireComponent(typeof(AnimationsManager),typeof(PagesAndFields), typeof(UserDataButtons))]
 public class DataManagement : MonoBehaviour
 {
     #region READ_INSPECTOR
@@ -25,6 +25,8 @@ public class DataManagement : MonoBehaviour
     [Header("Scripts", order = 0)]
     [ReadOnly, SerializeField] private ButtonsManager Buttons;
     [ReadOnly, SerializeField] private PagesAndFields PagesAndFields;
+    [ReadOnly, SerializeField] private AnimationsManager Animations;
+
     #endregion
     #region DATA_MANAGEMENT
     public const string MALE = "Male";
@@ -56,6 +58,7 @@ public class DataManagement : MonoBehaviour
     {
         Buttons = this.GetComponent<ButtonsManager>();
         PagesAndFields = this.GetComponent<PagesAndFields>();
+        Animations = this.GetComponent<AnimationsManager>();
         LanguageManager.LoadLang(Language);
         PagesAndFields.PagesQuestionString = LanguageManager.pageQuestion;
         Buttons.UserData.NextButtonString = LanguageManager.nextButton;
@@ -74,6 +77,7 @@ public class DataManagement : MonoBehaviour
 
     public void Start()
     {
+        Animations.Transition.EndClip();
         Buttons.UserData.NextButtonInteraction = false;
         userName = UserName;
         genre = (IsMale ? MALE : FEMALE);

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.XR.ARFoundation;
 using UnityEngine.XR.ARSubsystems;
-[RequireComponent(typeof(ButtonsManager), typeof(AnimationsMain))]
+[RequireComponent(typeof(ButtonsManager), typeof(AnimationsMain), typeof(AnimationsManager))]
 [RequireComponent(typeof(DropDownMenu), typeof(FloatMenu))]
 public class AugmentedReality : MonoBehaviour
 {
@@ -36,6 +36,7 @@ public class AugmentedReality : MonoBehaviour
 
     private void Start()
     {
+        Animations.Transition.EndClip();
         coach3D.SetActive(false);
         anchorIsHitting = false;
         trackableTypes = TrackableType.PlaneWithinPolygon;

@@ -9,6 +9,7 @@ TagManager:
   - aniButtonAR
   - CodeManager
   - PalleteColors
+  - Transition
   layers:
   - Default
   - TransparentFX

@@ -10,7 +10,8 @@ public enum Language
     KO = 1,
     BR = 2
 };
-[RequireComponent(typeof(ButtonsManager))]
+
+[RequireComponent(typeof(AnimationsManager), typeof(ButtonsManager))]
 public class LanguageManager : MonoBehaviour
 {
     #region UNITY_INSPECTOR
@@ -33,6 +34,7 @@ public class LanguageManager : MonoBehaviour
 
     [Header("Scripts", order = 0)]
     [ReadOnly, SerializeField] private ButtonsManager Buttons;
+    [SerializeField, ReadOnly] private AnimationsManager Animations;
     #endregion
     #region STATIC_STRINGS
     public static string[] pageQuestion;
@@ -179,6 +181,7 @@ public class LanguageManager : MonoBehaviour
     private void Awake()
     {
         Buttons = this.GetComponent<ButtonsManager>();
+        Animations = this.GetComponent<AnimationsManager>();
 
         (langButton, langPressed) = Buttons.Assignment(buttonsLangHeader, LangButtonsBehaviour);
         okButton.onClick.AddListener(OkFunction);
@@ -187,6 +190,7 @@ public class LanguageManager : MonoBehaviour
 
     private void Start()
     {
+        Animations.Transition.EndClip();
         LangButtonsBehaviour(DataManagement.Language);
     }
 

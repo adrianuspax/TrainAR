@@ -11,6 +11,7 @@ public class AnimationsManager : MonoBehaviour
     [SerializeField, ReadOnly] private AnimationsMain main;
     [SerializeField, ReadOnly] private FloatMenu floatMenu;
     [SerializeField, ReadOnly] private CoachAnimations coach;
+    [SerializeField, ReadOnly] private Transition transition;
 
 
     private void Awake()
@@ -21,8 +22,14 @@ public class AnimationsManager : MonoBehaviour
         if (this.GetComponent<CoachAnimations>() != null) { coach = this.GetComponent<CoachAnimations>(); }
     }
 
+    private void OnEnable()
+    {
+        transition = GameObject.FindGameObjectWithTag("Transition").GetComponent<Transition>();
+    }
+
     public UserDataAnimations UserData => userData;
     public AnimationsMain Main => main;
     public FloatMenu FloatMenu => floatMenu;
     public CoachAnimations Coach => coach;
+    public Transition Transition => transition;
 }
