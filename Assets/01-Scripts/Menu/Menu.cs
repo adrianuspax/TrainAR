@@ -47,14 +47,12 @@ public class Menu : MonoBehaviour
 
     public void UpdateProfile()
     {
-        Animations.Transition.StartClip();
-        ScenesManagement.LoadUserData(Animations.Transition.StartClipTime);
+        ScenesManagement.LoadUserData();
     }
 
     public void Language()
     {
-        Animations.Transition.StartClip();
-        ScenesManagement.LoadLanguage(Animations.Transition.StartClipTime);
+        ScenesManagement.LoadLanguage();
     }
 
     public void DeleteAccount()
@@ -69,13 +67,11 @@ public class Menu : MonoBehaviour
 
     public void Back()
     {
-        Animations.Transition.StartClip();
-        ScenesManagement.LoadTrainAR(Animations.Transition.StartClipTime);
+        ScenesManagement.LoadTrainAR();
     }
 
     public void Ok()
     {
-        Animations.Transition.StartClip();
-        ScenesManagement.LoadRedirection(Animations.Transition.StartClipTime);
+        ScenesManagement.LoadRedirection();
     }
 }

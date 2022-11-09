@@ -1765,6 +1765,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 661ece0273d68924a95e3aca661addd9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  signInButton: {fileID: 2090738484}
+  signOnButton: {fileID: 1833519772}
   Animations: {fileID: 0}
 --- !u!1 &1293201597
 GameObject:

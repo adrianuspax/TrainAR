@@ -5,8 +5,8 @@ using UnityEngine;
 public class Redirection : MonoBehaviour
 {
     [Header(" =========================== READY ONLY =========================== ", order = 0)]
-    [Space(-10, order = 1)]
-    [Header("Scripts", order = 2)]
+    
+    [Header("Scripts", order = 1)]
     [SerializeField, ReadOnly] private AnimationsManager Animations;
 
     private void Awake()
@@ -17,6 +17,17 @@ public class Redirection : MonoBehaviour
     private void Start()
     {
         Animations.Transition.StartClip();
-        ScenesManagement.LoadTrainAR(Animations.Transition.StartClipTime);
+    }
+
+    public void RedirectionScene()
+    {
+        if (AccountData.HasLanguage)
+        {
+            ScenesManagement.LoadSignIn();
+        }
+        else
+        {
+            ScenesManagement.LoadLanguage();
+        }
     }
 }

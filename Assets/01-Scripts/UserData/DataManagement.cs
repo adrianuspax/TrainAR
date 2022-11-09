@@ -32,8 +32,8 @@ public class DataManagement : MonoBehaviour
     public const string MALE = "Male";
     public const string FEMALE = "Female";
 
-    public readonly string[] pageKey = new string[] { "name", "genre", "goal", "level", "focus"};
-    public readonly string[] footerKey = new string[] { "age", "currentWeight", "weightGoal", "height" };
+    public readonly static string[] pageKey = new string[] { "name", "genre", "goal", "level", "focus"};
+    public readonly static string[] footerKey = new string[] { "age", "currentWeight", "weightGoal", "height" };
     public const string LangKey = "language";
 
     public const int PAGE1 = 1;
@@ -126,6 +126,22 @@ public class DataManagement : MonoBehaviour
                 break;
         }
     }
+
+    public static void DeleteAllData()
+    {
+        foreach (string pages in pageKey)
+        {
+            PlayerPrefs.DeleteKey(pages);
+        }
+
+        foreach (string footers in footerKey)
+        {
+            PlayerPrefs.DeleteKey(footers);
+        }
+
+        PlayerPrefs.DeleteKey(LangKey);
+    }
+
     #endregion
     #region GET_SET_FUNCTIONS
     public string UserName
@@ -216,10 +232,7 @@ public class DataManagement : MonoBehaviour
     public static int Language
     {
         get => PlayerPrefs.GetInt(LangKey);
-        set
-        {
-            PlayerPrefs.SetInt(LangKey, value);
-        }
+        set =>  PlayerPrefs.SetInt(LangKey, value);
     }
 
     private string LanguageByindex => Language switch

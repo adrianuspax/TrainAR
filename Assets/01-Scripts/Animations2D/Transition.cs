@@ -59,14 +59,15 @@ public class Transition : MonoBehaviour
         EndClip();
     }
 
-    private void DelegateDelayToCallScenes(float time, string scene)
+    private void DelegateDelayToCallScenes(string scene)
     {
-        StartCoroutine(Cor_Delay(time, scene));
+        StartCoroutine(Cor_Delay(scene));
     }
 
-    private IEnumerator Cor_Delay(float time, string scene)
+    private IEnumerator Cor_Delay(string scene)
     {
-        yield return new WaitForSeconds(time);
+        StartClip();
+        yield return new WaitForSeconds(StartClipTime);
         SceneManager.LoadScene(scene);
     }
 

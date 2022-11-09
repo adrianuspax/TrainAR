@@ -113,7 +113,7 @@ public class UserDataButtons : MonoBehaviour
         levelByIndex = Data.levelPhrase;
     }
 
-    #endregion    
+    #endregion
     #region PAGE2_(GENRE)
     public void GenreButtonBehaviour(int index)
     {

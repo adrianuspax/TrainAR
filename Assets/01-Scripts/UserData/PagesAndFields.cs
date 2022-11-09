@@ -197,13 +197,7 @@ public class PagesAndFields : MonoBehaviour
         get => userNameString;
         private set => userNameString = value;
     }
-    public string Page1PlaceHolder
-    {
-        set
-        {
-            userNameInput.placeholder.GetComponent<TextMeshProUGUI>().text = value;
-        }
-    }
+    public string Page1PlaceHolder { set => userNameInput.placeholder.GetComponent<TextMeshProUGUI>().text = value; }
     #endregion
     #region PAGE4
     public string LevelName
