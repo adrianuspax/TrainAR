@@ -18,7 +18,7 @@ public class SignOn : MonoBehaviour
     [SerializeField] private TMP_InputField newPasswordInput;
     [SerializeField] private TMP_InputField repeatPasswordInput;
     [Space(-10, order = 0)]
-    [Header("Input", order = 1)]
+    [Header("TMP", order = 1)]
     [SerializeField] private TextMeshProUGUI warning;
 
     [Header(" =========================== READY ONLY =========================== ", order = 0)]
@@ -31,6 +31,7 @@ public class SignOn : MonoBehaviour
     [Header("Variables", order = 0)]
     [SerializeField, ReadOnly] private bool usernameReleased;
     [SerializeField, ReadOnly] private bool passwordReleased;
+    [SerializeField, ReadOnly] private bool buttonOkRealeased;
     [SerializeField, ReadOnly] private bool usernameIsEmpty;
     [SerializeField, ReadOnly] private bool newPasswordIsEmpty;
     [SerializeField, ReadOnly] private bool repeatPasswordIsEmpty;
@@ -67,33 +68,32 @@ public class SignOn : MonoBehaviour
     {
         Animations.Transition.EndClip();
         warning.text = string.Empty;
-        usernameReleased = true;
-        passwordReleased = true;
         newPasswordIsEmpty = true;
         repeatPasswordIsEmpty = true;
         Buttons.Interaction(false, okButton);
 
-        Debug.Log("HasUsername = " + PlayerPrefs.HasKey("username") + " || username = " + PlayerPrefs.GetString("username"));
+        Debug.Log(PlayerPrefs.HasKey(AccountData.USERNAME) ? "username = " + PlayerPrefs.GetString(AccountData.USERNAME) : "username = EMPTY");
+        Debug.Log(PlayerPrefs.HasKey(AccountData.PASSWORD) ? "password = " + PlayerPrefs.GetString(AccountData.PASSWORD) : "password = EMPTY");
     }
     #region BUTTONS
     public void Ok()
     {
-        if (usernameReleased && passwordReleased)
+        if (buttonOkRealeased)
         {
             AccountData.Username = username;
             AccountData.Password = newPassword;
+            ScenesManagement.LoadSignIn();
         }
     }
 
     public void Return()
     {
-        PlayerPrefs.DeleteKey("username");
+       
     }
     #endregion
     #region newUsername
     public void OnSelectNewUsername(string newUsername)
     {
-        usernameIsEmpty = true;
         PlaceHolderNewUsername = string.Empty;
     }
 
@@ -113,16 +113,29 @@ public void OnDeselectNewUsername(string newUsername)
     {
         if (AccountData.HasUsername)
         {
-            warning.text = (newUsername == AccountData.Username) ? "Este username já está em uso!" : usernameIsEmpty ? string.Empty : "username válido!";
+            if (newUsername == AccountData.Username)
+            {
+                warning.text = "Este username já está em uso!";
+            }
+            else if (usernameIsEmpty)
+            {
+                warning.text = string.Empty;
+            }
+
             usernameReleased = !(newUsername == AccountData.Username);
+        }
+        else if (usernameIsEmpty)
+        {
+            warning.text = string.Empty;
         }
         else
         {
-            warning.text = usernameIsEmpty ? string.Empty : "username válido!";
             usernameReleased = true;
         }
 
-         username = newUsername;
+        username = newUsername;
+        ValidationPasswords();
+        ValidationRealease();
     }
 
     public string PlaceHolderNewUsername { set => newUsernameInput.placeholder.GetComponent<TextMeshProUGUI>().text = value; }
@@ -130,14 +143,13 @@ public void OnDeselectNewUsername(string newUsername)
     #region newPassword
     public void OnSelectNewPassword(string newPassword)
     {
-        newPasswordIsEmpty = true;
         PlaceHolderNewPassword = string.Empty;
     }
 
     public void OnDeselectNewPassword(string newPassword)
     {
         newPasswordIsEmpty = (newPassword == string.Empty);
-        PlaceHolderNewPassword = "New Password";
+        PlaceHolderNewPassword = "New password";
     }
 
     public void OnValueChangedNewPassword(string newPassword)
@@ -148,9 +160,8 @@ public void OnDeselectNewUsername(string newUsername)
     public void OnEndEditNewPassword(string newPassword)
     {
         this.newPassword = newPassword;
-        if (!repeatPasswordIsEmpty) { warning.text = (newPassword != repeatPassword) ? "As senhas não coincidem!" : string.Empty; }
-        passwordReleased = (newPassword == repeatPassword) && !newPasswordIsEmpty && !repeatPasswordIsEmpty && !usernameIsEmpty;
-        Buttons.Interaction(passwordReleased, okButton);
+        ValidationPasswords();
+        ValidationRealease();
     }
 
     public string PlaceHolderNewPassword { set => newPasswordInput.placeholder.GetComponent<TextMeshProUGUI>().text = value; }
@@ -158,14 +169,13 @@ public void OnDeselectNewUsername(string newUsername)
     #region repeatPassword
     public void OnSelectRepeatPassword(string repeatPassword)
     {
-        repeatPasswordIsEmpty = true;
         PlaceHolderRepeatPassword = string.Empty;
     }
 
     public void OnDeselectRepeatPassword(string repeatPassword)
     {
         repeatPasswordIsEmpty = (repeatPassword == string.Empty);
-        PlaceHolderRepeatPassword = "Repeat Password";
+        PlaceHolderRepeatPassword = "Repeat password";
     }
 
     public void OnValueChangedRepeatPassword(string repeatPassword)
@@ -176,9 +186,23 @@ public void OnDeselectNewUsername(string newUsername)
     public void OnEndEditRepeatPassword(string repeatPassword)
     {
         this.repeatPassword = repeatPassword;
-        warning.text = (newPassword != repeatPassword) ? "As senhas não coincidem!" :  string.Empty;
-        passwordReleased = (newPassword == repeatPassword) && !newPasswordIsEmpty && !repeatPasswordIsEmpty && !usernameIsEmpty;
-        Buttons.Interaction(passwordReleased, okButton);
+        ValidationPasswords();
+        ValidationRealease();
+    }
+
+    private void ValidationPasswords()
+    {
+        if (usernameReleased)
+        {
+            warning.text = (newPasswordIsEmpty && repeatPasswordIsEmpty) || (newPassword == repeatPassword) ? string.Empty : "As senhas não coincidem!";
+        }
+    }
+
+    private void ValidationRealease()
+    {
+        passwordReleased = (newPassword == repeatPassword) && (!newPasswordIsEmpty && !repeatPasswordIsEmpty);
+        buttonOkRealeased = usernameReleased && passwordReleased;
+        Buttons.Interaction(buttonOkRealeased, okButton);
     }
 
     public string PlaceHolderRepeatPassword { set => repeatPasswordInput.placeholder.GetComponent<TextMeshProUGUI>().text = value; }

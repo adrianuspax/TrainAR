@@ -10,7 +10,7 @@ public class DataManagement : MonoBehaviour
     #region READ_INSPECTOR
     [Header(" =========================== READY ONLY =========================== ", order = 0)]
     [Space(-10, order = 1)]
-    [Header("SAVED DATA", order = 2)]
+    [Header("SAVED DATA PROFILE", order = 2)]
     [ReadOnly, SerializeField] private string userName;
     [ReadOnly, SerializeField] private string genre;
     [ReadOnly, SerializeField] private string goal;
@@ -21,6 +21,10 @@ public class DataManagement : MonoBehaviour
     [ReadOnly, SerializeField] private string weightGoal;
     [ReadOnly, SerializeField] private string height;
     [ReadOnly, SerializeField] private string language;
+    [Space(-10, order = 1)]
+    [Header("SAVED DATA ACCOUNT", order = 2)]
+    [ReadOnly, SerializeField] private string username;
+    [ReadOnly, SerializeField] private string password;
 
     [Header("Scripts", order = 0)]
     [ReadOnly, SerializeField] private ButtonsManager Buttons;
@@ -89,6 +93,9 @@ public class DataManagement : MonoBehaviour
         weightGoal = MoreEdit[2];
         height = MoreEdit[3];
         language = LanguageByindex;
+
+        username = AccountData.Username;
+        password = AccountData.Password;
     }
     #endregion
     #region SAVE_DATA
