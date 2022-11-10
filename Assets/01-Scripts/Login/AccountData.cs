@@ -3,7 +3,7 @@ using UnityEngine;
 public static class AccountData
 {
     public const string USERNAME = "username";
-    public const string PASSWORD = "password";
+    public const string PASSWORD = "newPassword";
     public const string LANGUAGECHOSEN = "HasLanguage";
 
     public static string Username
