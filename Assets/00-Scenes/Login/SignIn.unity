@@ -213,7 +213,7 @@ GameObject:
   - component: {fileID: 175951939}
   - component: {fileID: 175951938}
   m_Layer: 0
-  m_Name: InputFieldTMPLogin
+  m_Name: InputFieldTMPUsername
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -488,7 +488,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Enter login...
+  m_text: Enter username...
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 080d8f1716f453148ba7482474672b18, type: 2}
   m_sharedMaterial: {fileID: 3065921934497872612, guid: 080d8f1716f453148ba7482474672b18,
@@ -1096,7 +1096,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Password...
+  m_text: Enter password...
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 080d8f1716f453148ba7482474672b18, type: 2}
   m_sharedMaterial: {fileID: 3065921934497872612, guid: 080d8f1716f453148ba7482474672b18,
@@ -1904,10 +1904,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   signInButton: {fileID: 2090738484}
   signOnButton: {fileID: 1833519772}
-  loginInput: {fileID: 175951938}
+  usernameInput: {fileID: 175951938}
   passwordInput: {fileID: 1847811882}
+  warning: {fileID: 709297834}
   username: 
   password: 
+  usernameIsEmpty: 0
+  passwordIsEmpty: 0
   Animations: {fileID: 0}
 --- !u!1 &1293201597
 GameObject:

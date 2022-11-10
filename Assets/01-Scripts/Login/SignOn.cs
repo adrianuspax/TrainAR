@@ -23,7 +23,7 @@ public class SignOn : MonoBehaviour
 
     [Header(" =========================== READY ONLY =========================== ", order = 0)]
     [Space(-10, order = 1)]
-    [Header("DATA", order = 2)]
+    [Header("DATA INPUTED", order = 2)]
     [SerializeField, ReadOnly] private string username;
     [SerializeField, ReadOnly] private string newPassword;
     [SerializeField, ReadOnly] private string repeatPassword;
@@ -88,7 +88,7 @@ public class SignOn : MonoBehaviour
 
     public void Return()
     {
-       
+        ScenesManagement.LoadSignIn();
     }
     #endregion
     #region newUsername
