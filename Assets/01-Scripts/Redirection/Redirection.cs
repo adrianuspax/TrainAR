@@ -16,14 +16,28 @@ public class Redirection : MonoBehaviour
 
     private void Start()
     {
-        Animations.Transition.StartClip();
+        RedirectionScene();
     }
 
     public void RedirectionScene()
     {
-        if (AccountData.HasLanguage)
+        if (AccountData.HasAccount)
         {
-            ScenesManagement.LoadSignIn();
+            if (AccountData.Signed)
+            {
+                ScenesManagement.LoadTrainAR();
+            }
+            else
+            {
+                if (AccountData.HasLanguage)
+                {
+                    ScenesManagement.LoadSignIn();
+                }
+                else
+                {
+                    ScenesManagement.LoadLanguage();
+                }
+            }
         }
         else
         {

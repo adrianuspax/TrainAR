@@ -1,5 +1,4 @@
-﻿using System.Collections;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class ScenesManagement : MonoBehaviour
@@ -22,4 +21,10 @@ public class ScenesManagement : MonoBehaviour
     public static void LoadUserData() => coroutineDelegate(UserData);
     public static void LoadTrainAR() => coroutineDelegate(TrainAR);
     public static void LoadMenu() => coroutineDelegate( Menu);
+
+    public static string PreviousScene
+    {
+        get => PlayerPrefs.GetString("currentScene");
+        set => PlayerPrefs.SetString("currentScene", value);
+    }
 }

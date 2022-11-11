@@ -82,13 +82,30 @@ public class SignOn : MonoBehaviour
         {
             AccountData.Username = username;
             AccountData.Password = newPassword;
-            ScenesManagement.LoadSignIn();
+
+            switch (ScenesManagement.PreviousScene)
+            {
+                case ScenesManagement.Menu:
+                    ScenesManagement.LoadMenu();
+                    break;
+                default:
+                    ScenesManagement.LoadSignIn();
+                    break;
+            }
         }
     }
 
     public void Return()
     {
-        ScenesManagement.LoadSignIn();
+        switch (ScenesManagement.PreviousScene)
+        {
+            case ScenesManagement.Menu:
+                ScenesManagement.LoadMenu();
+                break;
+            default:
+                ScenesManagement.LoadSignIn();
+                break;
+        }
     }
     #endregion
     #region newUsername

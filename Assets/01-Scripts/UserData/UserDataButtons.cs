@@ -399,15 +399,23 @@ public class UserDataButtons : MonoBehaviour
     #region NEXT_BUTTON
     public void NextButtonFunction()
     {
+        Data.PagesSavePreferences(PagesAndFields.CurrentPage);
+
         if (PagesAndFields.CurrentPage >= PagesAndFields.TotalPages)
         {
-            Data.PagesSavePreferences(PagesAndFields.CurrentPage);
-            ScenesManagement.LoadTrainAR();
+            switch (ScenesManagement.PreviousScene)
+            {
+                case ScenesManagement.Menu:
+                    ScenesManagement.LoadMenu();
+                    break;
+                default:
+                    ScenesManagement.LoadTrainAR();
+                    break;
+            }
         }
         else
         {
-            NextButtonInteraction = false;
-            Data.PagesSavePreferences(PagesAndFields.CurrentPage);
+            NextButtonInteraction = false;            
             PagesAndFields.PageActivation(PagesAndFields.CurrentPage + 1);
         }
     }

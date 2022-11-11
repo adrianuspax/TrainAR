@@ -4,7 +4,11 @@ public static class AccountData
 {
     public const string USERNAME = "username";
     public const string PASSWORD = "newPassword";
-    public const string LANGUAGECHOSEN = "HasLanguage";
+    public const string LANGUAGE = "language";
+    public const string SIGNED = "signed";
+
+
+
 
     public static string Username
     {
@@ -12,24 +16,19 @@ public static class AccountData
         set => PlayerPrefs.SetString(USERNAME, value);
     }
 
-    public static bool HasUsername => PlayerPrefs.HasKey(USERNAME);
-
     public static string Password
     {
         get => PlayerPrefs.GetString(PASSWORD);
         set => PlayerPrefs.SetString(PASSWORD, value);
     }
 
+    public static bool HasUsername => PlayerPrefs.HasKey(USERNAME);
     public static bool HasPassword => PlayerPrefs.HasKey(PASSWORD);
-
-    public static void DeleteAccount()
+    public static bool HasAccount => HasUsername && HasPassword;
+    public static bool HasLanguage => PlayerPrefs.HasKey(LANGUAGE);
+    public static bool Signed
     {
-        PlayerPrefs.DeleteKey(USERNAME);
-        PlayerPrefs.DeleteKey(PASSWORD);
-        PlayerPrefs.DeleteKey(LANGUAGECHOSEN);
-        DataManagement.DeleteAllData();
+        get => PlayerPrefs.HasKey(SIGNED) && PlayerPrefs.GetInt(SIGNED) == 1;
+        set => PlayerPrefs.SetInt(SIGNED, value ? 1 : 0);
     }
-
-    public static bool HasAccount => PlayerPrefs.HasKey(USERNAME) && PlayerPrefs.HasKey(PASSWORD);
-    public static bool HasLanguage => PlayerPrefs.HasKey(DataManagement.LangKey);
 }

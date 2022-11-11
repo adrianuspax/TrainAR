@@ -26,6 +26,7 @@ public class SignIn : MonoBehaviour
     [Header("DATA INPUTED", order = 2)]
     [SerializeField, ReadOnly] private string username;
     [SerializeField, ReadOnly] private string password;
+    [SerializeField, ReadOnly] private bool signed;
 
     [Header("Variables", order = 0)]
     [SerializeField, ReadOnly] private bool usernameIsEmpty;
@@ -57,6 +58,7 @@ public class SignIn : MonoBehaviour
         warning.text = string.Empty;
         usernameIsEmpty = true;
         passwordIsEmpty = true;
+        signed = AccountData.Signed;
         Debug.Log(PlayerPrefs.HasKey(AccountData.USERNAME) ? "username = " + PlayerPrefs.GetString(AccountData.USERNAME) : "username = EMPTY");
         Debug.Log(PlayerPrefs.HasKey(AccountData.PASSWORD) ? "password = " + PlayerPrefs.GetString(AccountData.PASSWORD) : "password = EMPTY");
     }
@@ -68,11 +70,21 @@ public class SignIn : MonoBehaviour
 
         if (AccountData.HasAccount && validationData)
         {
-            ScenesManagement.LoadTrainAR();
+            AccountData.Signed = true;
+
+            switch (ScenesManagement.PreviousScene)
+            {
+                case ScenesManagement.SignOn:
+                    ScenesManagement.LoadUserData();
+                    break;
+                default:
+                    ScenesManagement.LoadTrainAR();
+                    break;
+            }
         }
         else
         {
-            warning.text = "Incorrect: username or password!";
+            warning.text = (usernameIsEmpty || passwordIsEmpty) ? "Preencha os campos!" : "Incorrect: username or password!";
         }
     }
 

@@ -230,7 +230,18 @@ public class LanguageManager : MonoBehaviour
     {
         DataManagement.Language = (int)Language;
         LoadLang(DataManagement.Language);
-        ScenesManagement.LoadUserData();
+
+        switch (ScenesManagement.PreviousScene)
+        {
+            case ScenesManagement.Menu:
+                ScenesManagement.LoadMenu();
+                break;
+            default:
+                ScenesManagement.LoadSignIn();
+                break;
+        }
+
+
     }
 
     public static void LoadLang(int index)

@@ -19,6 +19,7 @@ public class Transition : MonoBehaviour
         this.transform.GetChild(0).gameObject.SetActive(true);
         ScenesManagement.coroutineDelegate = DelegateDelayToCallScenes;
         transitionAnimation = this.transform.GetChild(0).GetComponent<Animator>();
+        Debug.Log("Previous Scene = " + ScenesManagement.PreviousScene);
     }
 
     public void StartClip()
@@ -61,6 +62,7 @@ public class Transition : MonoBehaviour
 
     private void DelegateDelayToCallScenes(string scene)
     {
+        ScenesManagement.PreviousScene = SceneManager.GetActiveScene().name;
         StartCoroutine(Cor_Delay(scene));
     }
 

@@ -40,6 +40,7 @@ public class ButtonsMain : MonoBehaviour
         btnTopR.onClick.AddListener(ButtonsManager.CloseApplication);
         btnBarC.onClick.AddListener(() => AR.PlaceCoachAR());
         btnBarR.onClick.AddListener(() => CallDropDownMenu(dropDownIsOpen));
+        btnBarL.onClick.AddListener(() => ScenesManagement.LoadMenu());
 
         AR = this.GetComponent<AugmentedReality>();
         Animations = this.GetComponent<AnimationsManager>();
