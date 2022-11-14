@@ -1,5 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -20,17 +19,14 @@ public class Transition : MonoBehaviour
         ScenesManagement.coroutineDelegate = DelegateDelayToCallScenes;
         transitionAnimation = this.transform.GetChild(0).GetComponent<Animator>();
         Debug.Log("Previous Scene = " + ScenesManagement.PreviousScene);
+        LanguageManager.LoadLang(AccountData.Language);
     }
 
     public void StartClip()
-    {
-        transitionAnimation.Play(transitionStartClip.name);
-    }
+    { transitionAnimation.Play(transitionStartClip.name); }
 
     public void StartClip(float delay)
-    {
-        StartCoroutine(Cor_DelayStartClip(delay));
-    }
+    { StartCoroutine(Cor_DelayStartClip(delay)); }
 
     private IEnumerator Cor_DelayStartClip(float time)
     {
@@ -39,14 +35,10 @@ public class Transition : MonoBehaviour
     }
 
     public void EndClip()
-    {
-        transitionAnimation.Play(transitionEndClip.name);
-    }
+    { transitionAnimation.Play(transitionEndClip.name); }
 
     public void EndClip(float delay)
-    {
-        StartCoroutine(Cor_DelayEndClip(delay));
-    }
+    { StartCoroutine(Cor_DelayEndClip(delay)); }
 
     public void CompleteClip()
     {

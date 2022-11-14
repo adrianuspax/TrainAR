@@ -433,7 +433,7 @@ MonoBehaviour:
   m_GlobalFontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_OnFocusSelectAll: 1
   m_ResetOnDeActivation: 1
-  m_RestoreOriginalTextOnEscape: 1
+  m_RestoreOriginalTextOnEscape: 0
   m_isRichTextEditingAllowed: 0
   m_LineLimit: 0
   m_InputValidator: {fileID: 0}
@@ -1593,7 +1593,7 @@ MonoBehaviour:
   m_GlobalFontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_OnFocusSelectAll: 1
   m_ResetOnDeActivation: 1
-  m_RestoreOriginalTextOnEscape: 1
+  m_RestoreOriginalTextOnEscape: 0
   m_isRichTextEditingAllowed: 0
   m_LineLimit: 0
   m_InputValidator: {fileID: 0}
@@ -2594,7 +2594,7 @@ MonoBehaviour:
   m_AsteriskChar: 42
   m_KeyboardType: 0
   m_LineType: 0
-  m_HideMobileInput: 0
+  m_HideMobileInput: 1
   m_HideSoftKeyboard: 0
   m_CharacterValidation: 5
   m_RegexValue: 
@@ -2635,7 +2635,7 @@ MonoBehaviour:
   m_GlobalFontAsset: {fileID: 11400000, guid: a0842cbe0db9701428500bade3144e75, type: 2}
   m_OnFocusSelectAll: 1
   m_ResetOnDeActivation: 1
-  m_RestoreOriginalTextOnEscape: 1
+  m_RestoreOriginalTextOnEscape: 0
   m_isRichTextEditingAllowed: 0
   m_LineLimit: 0
   m_InputValidator: {fileID: 0}
@@ -8510,7 +8510,11 @@ MonoBehaviour:
   CanvasButtons: {fileID: 0}
   DDM: {fileID: 0}
   UserDataButtons: {fileID: 0}
-  FloatMenuButtuns: {fileID: 0}
+  FloatMenuButtons: {fileID: 0}
+  SignInButtons: {fileID: 0}
+  SignOnButtons: {fileID: 0}
+  LanguageButtons: {fileID: 0}
+  MenuButtons: {fileID: 0}
 --- !u!114 &1127046628
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8641,8 +8645,11 @@ MonoBehaviour:
   weightGoal: 
   height: 
   language: 
+  username: 
+  password: 
   Buttons: {fileID: 0}
   PagesAndFields: {fileID: 0}
+  Animations: {fileID: 0}
   levelPhrase: []
 --- !u!1 &1130995706
 GameObject:
@@ -12623,7 +12630,7 @@ MonoBehaviour:
   m_GlobalFontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_OnFocusSelectAll: 1
   m_ResetOnDeActivation: 1
-  m_RestoreOriginalTextOnEscape: 1
+  m_RestoreOriginalTextOnEscape: 0
   m_isRichTextEditingAllowed: 0
   m_LineLimit: 0
   m_InputValidator: {fileID: 0}
@@ -14960,7 +14967,7 @@ MonoBehaviour:
   m_GlobalFontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_OnFocusSelectAll: 1
   m_ResetOnDeActivation: 1
-  m_RestoreOriginalTextOnEscape: 1
+  m_RestoreOriginalTextOnEscape: 0
   m_isRichTextEditingAllowed: 0
   m_LineLimit: 0
   m_InputValidator: {fileID: 0}

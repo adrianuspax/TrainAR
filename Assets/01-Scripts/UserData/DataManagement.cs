@@ -1,6 +1,4 @@
 ﻿#region USED_NAMESPACES
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 #endregion
 #region CLASS
@@ -38,7 +36,6 @@ public class DataManagement : MonoBehaviour
 
     public readonly static string[] pageKey = new string[] { "name", "genre", "goal", "level", "focus"};
     public readonly static string[] footerKey = new string[] { "age", "currentWeight", "weightGoal", "height" };
-    public const string LangKey = "language";
 
     public const int PAGE1 = 1;
     public const int PAGE2 = 2;
@@ -63,7 +60,7 @@ public class DataManagement : MonoBehaviour
         Buttons = this.GetComponent<ButtonsManager>();
         PagesAndFields = this.GetComponent<PagesAndFields>();
         Animations = this.GetComponent<AnimationsManager>();
-        LanguageManager.LoadLang(Language);
+        //LanguageManager.LoadLang(Language);
         PagesAndFields.PagesQuestionString = LanguageManager.pageQuestion;
         Buttons.UserData.NextButtonString = LanguageManager.nextButton;
         PagesAndFields.Page1PlaceHolder = LanguageManager.page1PlaceHolder;
@@ -200,9 +197,7 @@ public class DataManagement : MonoBehaviour
             data = new string[footerKey.Length];
 
             for (int i = 0; i < footerKey.Length; i++)
-            {
-                data[i] = PlayerPrefs.GetString(footerKey[i]);
-            }
+            { data[i] = PlayerPrefs.GetString(footerKey[i]); }
 
             return data;
         }
@@ -221,13 +216,7 @@ public class DataManagement : MonoBehaviour
         }
     }
 
-    public static int Language
-    {
-        get => PlayerPrefs.GetInt(LangKey);
-        set =>  PlayerPrefs.SetInt(LangKey, value);
-    }
-
-    private string LanguageByindex => Language switch
+    private string LanguageByindex => AccountData.Language switch
     {
         0 => "English",
         1 => "Korean",

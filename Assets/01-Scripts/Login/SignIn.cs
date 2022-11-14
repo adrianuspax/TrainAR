@@ -1,9 +1,6 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
-using Unity.VisualScripting;
 
 [RequireComponent(typeof(AnimationsManager))]
 public class SignIn : MonoBehaviour
@@ -19,7 +16,9 @@ public class SignIn : MonoBehaviour
     [SerializeField] private TMP_InputField passwordInput;
     [Space(-10, order = 0)]
     [Header("TMP", order = 1)]
-    [SerializeField] private TextMeshProUGUI warning;
+    [SerializeField] private TextMeshProUGUI idTMP;
+    [SerializeField] private TextMeshProUGUI passwordTMP;
+    [SerializeField] private TextMeshProUGUI warningTMP;
 
     [Header(" =========================== READY ONLY =========================== ", order = 0)]
     [Space(-10, order = 1)]
@@ -50,12 +49,19 @@ public class SignIn : MonoBehaviour
         passwordInput.onDeselect.AddListener(OnDeselectPassword);
         passwordInput.onValueChanged.AddListener(OnValueChangedPassword);
         passwordInput.onEndEdit.AddListener(OnEndEditPassword);
+
+        PlaceHolderUsername = LanguageManager.placeHolderID;
+        PlaceHolderPassword = LanguageManager.placeHolderPassword;
+        IDString = LanguageManager.id;
+        PasswordString = LanguageManager.password;
+        SignInButtonsString = LanguageManager.signIn;
+        SignOnButtonsString = LanguageManager.signOn;
     }
 
     private void Start()
     {
         Animations.Transition.EndClip();
-        warning.text = string.Empty;
+        warningTMP.text = string.Empty;
         usernameIsEmpty = true;
         passwordIsEmpty = true;
         signed = AccountData.Signed;
@@ -74,72 +80,77 @@ public class SignIn : MonoBehaviour
 
             switch (ScenesManagement.PreviousScene)
             {
-                case ScenesManagement.SignOn:
-                    ScenesManagement.LoadUserData();
+                case ScenesManagement.SignOn: ScenesManagement.LoadUserData();
                     break;
-                default:
-                    ScenesManagement.LoadTrainAR();
+                default: ScenesManagement.LoadTrainAR();
                     break;
             }
         }
         else
         {
-            warning.text = (usernameIsEmpty || passwordIsEmpty) ? "Preencha os campos!" : "Incorrect: username or password!";
+            WarningString = (usernameIsEmpty || passwordIsEmpty) ?
+                LanguageManager.fieldEmptyWarning : LanguageManager.incorrectWarning;
         }
     }
 
     public void SignOnFunction()
-    {
-        ScenesManagement.LoadSignOn();
-    }
+    { ScenesManagement.LoadSignOn(); }
     #region USERNAME
     public void OnSelectUsername(string username)
     {
-        warning.text = string.Empty;
+        WarningString = string.Empty;
         PlaceHolderUsername = string.Empty;
     }
 
     public void OnDeselectUsername(string username)
     {
         usernameIsEmpty = (username == string.Empty);
-        PlaceHolderUsername = "Enter username...";
+        PlaceHolderUsername = LanguageManager.placeHolderID;
     }
 
     public void OnValueChangedUsername(string username)
-    {
-        usernameIsEmpty = (username == string.Empty);
-    }
+    { usernameIsEmpty = (username == string.Empty); }
 
     public void OnEndEditUsername(string username)
-    {
-        this.username = username;
-    }
+    { this.username = username; }
 
     public string PlaceHolderUsername { set => usernameInput.placeholder.GetComponent<TextMeshProUGUI>().text = value; }
     #endregion
     #region PASSWORD
     public void OnSelectPassword(string password)
     {
-        warning.text = string.Empty;
+        WarningString = string.Empty;
         PlaceHolderPassword = string.Empty;
     }
 
     public void OnDeselectPassword(string password)
     {
         passwordIsEmpty = (password == string.Empty);
-        PlaceHolderPassword = "Enter password...";
+        PlaceHolderPassword = LanguageManager.placeHolderPassword;
     }
 
     public void OnValueChangedPassword(string password)
-    {
-        passwordIsEmpty = (password == string.Empty);
-    }
+    { passwordIsEmpty = (password == string.Empty); }
 
     public void OnEndEditPassword(string password)
-    {
-        this.password = password;
-    }
+    { this.password = password; }
 
-    public string PlaceHolderPassword { set => passwordInput.placeholder.GetComponent<TextMeshProUGUI>().text = value; }
+    public string PlaceHolderPassword
+    { set => passwordInput.placeholder.GetComponent<TextMeshProUGUI>().text = value; }
     #endregion
+
+    public string IDString
+    { set => idTMP.text = value; }
+
+    public string PasswordString
+    { set => passwordTMP.text = value; }
+
+    public string SignInButtonsString
+    { set => signInButton.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = value; }
+
+    public string SignOnButtonsString
+    { set => signOnButton.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = value; }
+
+    public string WarningString
+    { set => warningTMP.text = value; }
 }

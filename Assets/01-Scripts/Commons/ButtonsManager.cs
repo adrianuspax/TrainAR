@@ -1,5 +1,4 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -12,8 +11,11 @@ public class ButtonsManager : MonoBehaviour
     [SerializeField, ReadOnly] private ButtonsMain CanvasButtons;
     [SerializeField, ReadOnly] private DropDownMenu DDM;
     [SerializeField, ReadOnly] private UserDataButtons UserDataButtons;
-    [SerializeField, ReadOnly] private FloatMenu FloatMenuButtuns;
-
+    [SerializeField, ReadOnly] private FloatMenu FloatMenuButtons;
+    [SerializeField, ReadOnly] private SignIn SignInButtons;
+    [SerializeField, ReadOnly] private SignOn SignOnButtons;
+    [SerializeField, ReadOnly] private LanguageManager LanguageButtons;
+    [SerializeField, ReadOnly] private Menu MenuButtons;
 
     public delegate void BehaviourButtons(int index);
 
@@ -22,13 +24,20 @@ public class ButtonsManager : MonoBehaviour
         if (this.GetComponent<ButtonsMain>() != null) { CanvasButtons = this.GetComponent<ButtonsMain>(); }
         if (this.GetComponent<DropDownMenu>() != null) { DDM = this.GetComponent<DropDownMenu>(); }
         if (this.GetComponent<UserDataButtons>() != null) { UserDataButtons = this.GetComponent<UserDataButtons>(); }
-        if (this.GetComponent<FloatMenu>() != null) { FloatMenuButtuns = this.GetComponent<FloatMenu>(); }
+        if (this.GetComponent<FloatMenu>() != null) { FloatMenuButtons = this.GetComponent<FloatMenu>(); }
+        if (this.GetComponent<SignIn>() != null) { SignInButtons = this.GetComponent<SignIn>(); }
+        if (this.GetComponent<SignOn>() != null) { SignOnButtons = this.GetComponent<SignOn>(); }
+        if (this.GetComponent<LanguageManager>() != null) { LanguageButtons = this.GetComponent<LanguageManager>(); }
+        if (this.GetComponent<Menu>() != null) { MenuButtons = this.GetComponent<Menu>(); }
     }
 
     public ButtonsMain CanvasMain => CanvasButtons;
     public DropDownMenu DropDownMenu => DDM;
     public UserDataButtons UserData => UserDataButtons;
-    public FloatMenu FloatMenu => FloatMenuButtuns;
+    public FloatMenu FloatMenu => FloatMenuButtons;
+    public SignIn SingIn => SignInButtons;
+    public LanguageManager Language => LanguageButtons;
+    public Menu Menu => MenuButtons;
 
     public (Button[], bool[]) Assignment(Transform header, params BehaviourButtons[] behaviour)
     {
@@ -40,9 +49,7 @@ public class ButtonsManager : MonoBehaviour
         for (int index = 0; index < button.Length; index++)
         {
             for (int i = 0; i < behaviour.Length; i++)
-            {
-                StartCoroutine(Cor_AssignmentButtons(index, button, header, behaviour[i]));
-            }
+            { StartCoroutine(Cor_AssignmentButtons(index, button, header, behaviour[i])); }
         }
 
         return (button, isPressed);
@@ -59,9 +66,7 @@ public class ButtonsManager : MonoBehaviour
     public void Interaction(bool interactable, params Button[][] array)
     {
         foreach (Button[] buttons in array)
-        {
-            Interaction(interactable, buttons);
-        }
+        { Interaction(interactable, buttons); }
     }
 
     public void Interaction(bool interactable, params Button[] button)
@@ -84,9 +89,7 @@ public class ButtonsManager : MonoBehaviour
                 }
             }
             else
-            {
-                button[i].interactable = interactable;
-            }
+            { button[i].interactable = interactable; }
         }
     }
 
@@ -104,6 +107,11 @@ public class ButtonsManager : MonoBehaviour
         yield return null;
 
         button.transform.GetChild(index).GetComponent<TextMeshProUGUI>().color = color;
+    }
+
+    public static string PlaceHolderBehaviour(string text, bool activation)
+    {
+        return activation ? text : string.Empty;
     }
 
     #region CLOSE_BUTTON

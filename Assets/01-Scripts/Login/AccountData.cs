@@ -7,9 +7,6 @@ public static class AccountData
     public const string LANGUAGE = "language";
     public const string SIGNED = "signed";
 
-
-
-
     public static string Username
     {
         get => PlayerPrefs.GetString(USERNAME);
@@ -26,6 +23,13 @@ public static class AccountData
     public static bool HasPassword => PlayerPrefs.HasKey(PASSWORD);
     public static bool HasAccount => HasUsername && HasPassword;
     public static bool HasLanguage => PlayerPrefs.HasKey(LANGUAGE);
+
+    public static int Language
+    {
+        get => PlayerPrefs.GetInt(LANGUAGE);
+        set => PlayerPrefs.SetInt(LANGUAGE, value);
+    }
+
     public static bool Signed
     {
         get => PlayerPrefs.HasKey(SIGNED) && PlayerPrefs.GetInt(SIGNED) == 1;

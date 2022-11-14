@@ -602,7 +602,7 @@ GameObject:
   - component: {fileID: 175951939}
   - component: {fileID: 175951938}
   m_Layer: 0
-  m_Name: InputFieldTMPLogin
+  m_Name: InputFieldTMPNewID
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -682,7 +682,7 @@ MonoBehaviour:
   m_AsteriskChar: 42
   m_KeyboardType: 1
   m_LineType: 0
-  m_HideMobileInput: 0
+  m_HideMobileInput: 1
   m_HideSoftKeyboard: 0
   m_CharacterValidation: 4
   m_RegexValue: 
@@ -723,7 +723,7 @@ MonoBehaviour:
   m_GlobalFontAsset: {fileID: 11400000, guid: 080d8f1716f453148ba7482474672b18, type: 2}
   m_OnFocusSelectAll: 1
   m_ResetOnDeActivation: 1
-  m_RestoreOriginalTextOnEscape: 1
+  m_RestoreOriginalTextOnEscape: 0
   m_isRichTextEditingAllowed: 0
   m_LineLimit: 0
   m_InputValidator: {fileID: 0}
@@ -2124,7 +2124,10 @@ MonoBehaviour:
   newUsernameInput: {fileID: 175951938}
   newPasswordInput: {fileID: 1847811882}
   repeatPasswordInput: {fileID: 1886151082}
-  warning: {fileID: 225814913}
+  enterNewUsernameTMP: {fileID: 1293201599}
+  enterNewPasswordTMP: {fileID: 1743277440}
+  repeatNewPasswordTMP: {fileID: 43479036}
+  warningTMP: {fileID: 225814913}
   username: 
   newPassword: 
   repeatPassword: 
@@ -2151,7 +2154,11 @@ MonoBehaviour:
   CanvasButtons: {fileID: 0}
   DDM: {fileID: 0}
   UserDataButtons: {fileID: 0}
-  FloatMenuButtuns: {fileID: 0}
+  FloatMenuButtons: {fileID: 0}
+  SignInButtons: {fileID: 0}
+  SignOnButtons: {fileID: 0}
+  LanguageButtons: {fileID: 0}
+  MenuButtons: {fileID: 0}
 --- !u!1 &1228576382
 GameObject:
   m_ObjectHideFlags: 0
@@ -2392,7 +2399,7 @@ GameObject:
   - component: {fileID: 1293201600}
   - component: {fileID: 1293201599}
   m_Layer: 0
-  m_Name: tmpLogin
+  m_Name: tmpNewID
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3524,7 +3531,7 @@ GameObject:
   - component: {fileID: 1847811883}
   - component: {fileID: 1847811882}
   m_Layer: 0
-  m_Name: InputFieldTMPPassword
+  m_Name: InputFieldTMPNewPassword
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3604,7 +3611,7 @@ MonoBehaviour:
   m_AsteriskChar: 42
   m_KeyboardType: 0
   m_LineType: 0
-  m_HideMobileInput: 0
+  m_HideMobileInput: 1
   m_HideSoftKeyboard: 0
   m_CharacterValidation: 0
   m_RegexValue: 
@@ -3645,7 +3652,7 @@ MonoBehaviour:
   m_GlobalFontAsset: {fileID: 11400000, guid: 080d8f1716f453148ba7482474672b18, type: 2}
   m_OnFocusSelectAll: 1
   m_ResetOnDeActivation: 1
-  m_RestoreOriginalTextOnEscape: 1
+  m_RestoreOriginalTextOnEscape: 0
   m_isRichTextEditingAllowed: 0
   m_LineLimit: 0
   m_InputValidator: {fileID: 0}
@@ -3734,7 +3741,7 @@ GameObject:
   - component: {fileID: 1886151083}
   - component: {fileID: 1886151082}
   m_Layer: 0
-  m_Name: InputFieldTMPPassword
+  m_Name: InputFieldTMPRepeatPassword
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3814,7 +3821,7 @@ MonoBehaviour:
   m_AsteriskChar: 42
   m_KeyboardType: 0
   m_LineType: 0
-  m_HideMobileInput: 0
+  m_HideMobileInput: 1
   m_HideSoftKeyboard: 0
   m_CharacterValidation: 0
   m_RegexValue: 
@@ -3855,7 +3862,7 @@ MonoBehaviour:
   m_GlobalFontAsset: {fileID: 11400000, guid: 080d8f1716f453148ba7482474672b18, type: 2}
   m_OnFocusSelectAll: 1
   m_ResetOnDeActivation: 1
-  m_RestoreOriginalTextOnEscape: 1
+  m_RestoreOriginalTextOnEscape: 0
   m_isRichTextEditingAllowed: 0
   m_LineLimit: 0
   m_InputValidator: {fileID: 0}

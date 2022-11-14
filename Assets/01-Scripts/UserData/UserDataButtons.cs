@@ -1,6 +1,4 @@
 ﻿#region USED_NAMESPACES
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
@@ -228,9 +226,7 @@ public class UserDataButtons : MonoBehaviour
                 for (int j = 0; j < child.childCount; j++)
                 {
                     if (child.GetChild(j).GetComponent<TextMeshProUGUI>() != null)
-                    {
-                        child.GetChild(j).GetComponent<TextMeshProUGUI>().text = value[i];
-                    }
+                    { child.GetChild(j).GetComponent<TextMeshProUGUI>().text = value[i]; }
                 }
             }
         }
@@ -326,9 +322,7 @@ public class UserDataButtons : MonoBehaviour
                 for (int j = 0; j < child.childCount; j++)
                 {
                     if (child.GetChild(j).GetComponent<TextMeshProUGUI>() != null)
-                    {
-                        child.GetChild(j).GetComponent<TextMeshProUGUI>().text = value[i];
-                    }
+                    { child.GetChild(j).GetComponent<TextMeshProUGUI>().text = value[i]; }
                 }
             }
         }
@@ -353,9 +347,7 @@ public class UserDataButtons : MonoBehaviour
             int totalFootersEdited = 0;
 
             foreach (bool edited in moreValueIsEdited)
-            {
-                if (edited) { totalFootersEdited++; }
-            }
+            { if (edited) { totalFootersEdited++; } }
 
             return totalFootersEdited == 4;
         }
@@ -380,20 +372,10 @@ public class UserDataButtons : MonoBehaviour
     }
 
     public string SaveButtonString
-    {
-        set
-        {
-            saveButton.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = value;
-        }
-    }
+    { set => saveButton.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = value; }
 
     public string CancelButtonString
-    {
-        set
-        {
-            cancelButton.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = value;
-        }
-    }
+    { set => cancelButton.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = value; }
 
     #endregion
     #region NEXT_BUTTON
@@ -405,11 +387,9 @@ public class UserDataButtons : MonoBehaviour
         {
             switch (ScenesManagement.PreviousScene)
             {
-                case ScenesManagement.Menu:
-                    ScenesManagement.LoadMenu();
+                case ScenesManagement.Menu: ScenesManagement.LoadMenu();
                     break;
-                default:
-                    ScenesManagement.LoadTrainAR();
+                default: ScenesManagement.LoadTrainAR();
                     break;
             }
         }
@@ -427,12 +407,7 @@ public class UserDataButtons : MonoBehaviour
     }
 
     public string NextButtonString
-    {
-        set
-        {
-            nextButton.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = value;
-        }
-    }
+    { set =>  nextButton.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = value; }
     #endregion
 }
 #endregion

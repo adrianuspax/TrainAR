@@ -52,6 +52,7 @@ SpriteAtlas:
   m_PackedSprites:
   - {fileID: 21300000, guid: 20a0eb00642f927459e3be13a61835cc, type: 3}
   - {fileID: 21300000, guid: 593c92a05a7a6314b88da70a93f6c816, type: 3}
+  - {fileID: 21300000, guid: 2c1e9f91c9e21cc458c0b31cfc78da86, type: 3}
   - {fileID: 21300000, guid: 7276c2e1b87031a4ba09e58cb58a84c2, type: 3}
   - {fileID: 21300000, guid: b2f00302da6ffaf4da0e8c6a4570e616, type: 3}
   - {fileID: 21300000, guid: ff02733287b122e47b6ef724ea6f8d51, type: 3}
@@ -61,19 +62,23 @@ SpriteAtlas:
   - {fileID: 21300000, guid: 25656fc2cb5e6ed4abe9175d143a5ee2, type: 3}
   - {fileID: 21300000, guid: 15cdc643c1c200a46bf8a17d40c2c5c5, type: 3}
   - {fileID: 21300000, guid: 945b0c43b89d6a344a5e57b8a69a8596, type: 3}
+  - {fileID: 21300000, guid: c2499653a3357bb468d15bbb7fed5423, type: 3}
   - {fileID: 21300000, guid: a7983d632259ecb49adde4d7e48c3475, type: 3}
   - {fileID: 21300000, guid: 158f018327af6b24f9888663b464412e, type: 3}
   - {fileID: 21300000, guid: ff4dca8322560cd4facbbb585c2abc60, type: 3}
   - {fileID: 21300000, guid: d6468c047d0231f4f927a57e70a2fd49, type: 3}
+  - {fileID: 21300000, guid: 6c7de31488365cc49bb901947086f814, type: 3}
   - {fileID: 21300000, guid: 5d3e1e4417c6bc246974ee497d585dcb, type: 3}
   - {fileID: 21300000, guid: a861ffc4d37ce064986a23cd68fcae21, type: 3}
   - {fileID: 21300000, guid: d7d2aff4b9131244f9940c7855c464de, type: 3}
   - {fileID: 21300000, guid: b8027a156df40d64ea678d2f14145439, type: 3}
   - {fileID: 21300000, guid: 877ad695a23c56343a7a2e898b689e5a, type: 3}
+  - {fileID: 21300000, guid: eb0a1cc53dd8060409cb62d8aa019969, type: 3}
   - {fileID: 21300000, guid: 97a424d5dac5e334193befb79114fe3f, type: 3}
   - {fileID: 21300000, guid: 1ba8de16797e3824688aa5206a7815bd, type: 3}
   - {fileID: 21300000, guid: 9460f846d5e681d4eb8d2f784afb6fd2, type: 3}
   - {fileID: 21300000, guid: 1ff357171d1453e40b14527e731ed192, type: 3}
+  - {fileID: 21300000, guid: 5c26285739c600f45a371db96912ff9f, type: 3}
   - {fileID: 21300000, guid: db59d5a7280eb5b4d887b64da5e7b6ac, type: 3}
   - {fileID: 21300000, guid: f51cfb78a834d1e448fdc4d5351c720b, type: 3}
   - {fileID: 21300000, guid: 0af6dbd890f6f9f41be7af9ef5b7c8cd, type: 3}
@@ -89,6 +94,7 @@ SpriteAtlas:
   - {fileID: 21300000, guid: c1f810cd76297c143a03dc228cd66d6e, type: 3}
   - {fileID: 21300000, guid: c4282eedac2ea23428bc26d1f1a83291, type: 3}
   - {fileID: 21300000, guid: 6e2bc95e5b2440c46b328fa8c706f52c, type: 3}
+  - {fileID: 21300000, guid: fe279ace0b8422d46aa07dec9ababec3, type: 3}
   - {fileID: 21300000, guid: 9a5087ef0b8dcb043a8d9eccec950465, type: 3}
   - {fileID: 21300000, guid: a0a028ef79184614e9663639cdf0e542, type: 3}
   - {fileID: 21300000, guid: 27a451ff8faee0b4ea2e2be27b51d39d, type: 3}
@@ -96,6 +102,7 @@ SpriteAtlas:
   m_PackedSpriteNamesToIndex:
   - loop
   - info
+  - poll
   - 3d_rotation
   - RingHandler
   - account_circle
@@ -105,19 +112,23 @@ SpriteAtlas:
   - linear_scale
   - play_circle_outline
   - expand_circle_left
+  - language
   - undo-Handler
   - search
   - play_arrow
   - visibilityOn
+  - fitness_center
   - settings
   - login
   - help_outline
   - visibilityOff
   - help
+  - add_alt
   - smart_display
   - check_circle
   - phone_android
   - report_problem
+  - menu_open
   - close
   - exit_to_app
   - closeButton
@@ -133,6 +144,7 @@ SpriteAtlas:
   - view_in_ar
   - home
   - arrow_back_ios
+  - password
   - MDDButton
   - cancel
   - task_alt

@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class UserDataAnimations : MonoBehaviour
 {
@@ -23,24 +21,16 @@ public class UserDataAnimations : MonoBehaviour
     [ReadOnly, SerializeField] private PagesAndFields PagesAndFields;
 
     public void PlayPageOutAnimation(int page)
-    {
-        animatorsPages[page - 1].Play(pageOutClip.name);
-    }
+    { animatorsPages[page - 1].Play(pageOutClip.name); }
 
     public void PlayFooterEnterClip()
-    {
-        footerAnimator.Play(footerEnterClip.name);
-    }
+    { footerAnimator.Play(footerEnterClip.name); }
 
     public void PlayFooterSaveClip()
-    {
-        footerAnimator.Play(footerSaveClip.name);
-    }
+    { footerAnimator.Play(footerSaveClip.name); }
 
     public void PlayFooterCancelClip()
-    {
-        footerAnimator.Play(footerCancelClip.name);
-    }
+    { footerAnimator.Play(footerCancelClip.name); }
 
     public Animator[] AssignAnimatorsPages(GameObject[] page)
     {
@@ -48,14 +38,13 @@ public class UserDataAnimations : MonoBehaviour
         animator = new Animator[page.Length];
 
         for (int i = 0; i < page.Length; i++)
-        {
-            animator[i] = page[i].transform.GetChild(0).GetComponent<Animator>();
-        }
+        { animator[i] = page[i].transform.GetChild(0).GetComponent<Animator>(); }
 
         return animator;
     }
 
-    public Animator[] AnimatorsPage { set => animatorsPages = value; }
+    public Animator[] AnimatorsPage 
+    { set => animatorsPages = value; }
     public float EnterClipTime => pageEnterClip.length;
     public float OutClipTime => pageOutClip.length;
 }

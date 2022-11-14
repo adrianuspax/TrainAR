@@ -141,7 +141,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &62667933
 RectTransform:
   m_ObjectHideFlags: 0
@@ -4362,7 +4362,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1679993065
 RectTransform:
   m_ObjectHideFlags: 0
@@ -5766,7 +5766,11 @@ MonoBehaviour:
   CanvasButtons: {fileID: 0}
   DDM: {fileID: 0}
   UserDataButtons: {fileID: 0}
-  FloatMenuButtuns: {fileID: 0}
+  FloatMenuButtons: {fileID: 0}
+  SignInButtons: {fileID: 0}
+  SignOnButtons: {fileID: 0}
+  LanguageButtons: {fileID: 0}
+  MenuButtons: {fileID: 0}
 --- !u!114 &2045423154
 MonoBehaviour:
   m_ObjectHideFlags: 0

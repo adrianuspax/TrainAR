@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.UI;
 
 public enum Language
@@ -37,6 +34,7 @@ public class LanguageManager : MonoBehaviour
     [SerializeField, ReadOnly] private AnimationsManager Animations;
     #endregion
     #region STATIC_STRINGS
+    //pages and fields
     public static string[] pageQuestion;
     public static string nextButton;
     public static string page1PlaceHolder;
@@ -50,128 +48,281 @@ public class LanguageManager : MonoBehaviour
     public static string[] valueUnits;
     public static string saveButton;
     public static string cancelButton;
+    //Login
+    public static string id;
+    public static string password;
+    public static string placeHolderID;
+    public static string placeHolderPassword;
+    public static string signIn;
+    public static string signOn;
+    public static string fieldEmptyWarning;
+    public static string incorrectWarning;
+    //edit
+    public static string newID;
+    public static string newPassword;
+    public static string repeatPassword;
+    public static string placeHolderNewID;
+    public static string placeHolderNewPassword;
+    public static string placeHolderRepeatPassword;
+    public static string alreadyIDWarning;
+    public static string passwordsDontMatch;
+    public static string okButtonString;
+    //menu
+    public static string signedInAs;
+    public static string updateProfile;
+    public static string editAccount;
+    public static string language;
+    public static string deleteAccount;
+    public static string signOut;
+    public static string areYouSure;
+    public static string yes;
+    public static string nop;
+
     #endregion
     #region ENGLISH
+    private readonly static string idEN =
+        "ID";
+    private readonly static string passwordEN =
+        "Password";
+    private readonly static string placeHolderIDEN =
+        "Enter username";
+    private readonly static string placeHolderPasswordEN =
+        "Enter password";
+    private readonly static string signInEN =
+        "Sign in";
+    private readonly static string signOnEN =
+        "Sign up";
+    private readonly static string fieldEmptyWarningEN =
+        "There are empty fields!";
+    private readonly static string incorrectWarningEN =
+        "Wrong username or password!";
+    /* ======================================================================================================================================= */
+    private readonly static string newIDEN =
+        "Enter new username:";
+    private readonly static string newPasswordEN =
+        "Enter new password:";
+    private readonly static string repeatPasswordEN =
+        "Repeat new password:";
+    private readonly static string placeHolderNewIDEN =
+        "New username";
+    private readonly static string placeHolderNewPasswordEN =
+        "New password";
+    private readonly static string placeHolderRepeatPasswordEN =
+        "Repeat password";
+    private readonly static string alreadyIDWarningEN =
+        "This username is already used!";
+    private readonly static string passwordsDontMatchEN =
+        "Passwords don't match!";
+    private readonly static string okButtonEN =
+        "OK";
+    /* ======================================================================================================================================= */
+    private readonly static string signedInAsEN = 
+        "Signed in as";
+    private readonly static string updateProfileEN = 
+        "Update Profile";
+    private readonly static string editAccountEN = 
+        "Edit Account";
+    private readonly static string languageEN = 
+        "Language";
+    private readonly static string deleteAccountEN = 
+        "Delete Account";
+    private readonly static string signOutEN = 
+        "Sign out";
+    private readonly static string areYouSureEN =
+        "Are you sure you want to cancel the account?";
+    private readonly static string yesEN = 
+        "Yes";
+    private readonly static string nopEN = 
+        "No";
+    /* ======================================================================================================================================= */
     private readonly static string[] pageQuestionEN = new string[]
-    {
-        "What is your name?", "What is your gender?", "What is your goal?", "What's your fitness level?", "What is your focus?", "More about you!"
-    };
+    { "What is your name?", "What is your gender?", "What is your goal?", "What's your fitness level?", "What is your focus?", "More about you!" };
     private readonly static string nextButtonEN = 
         "Next";
     private readonly static string page1PlaceHolderEN = 
         "Enter your name here...";
     private readonly static string[] buttonGoalEN = new string[]
-    {
-        "Lose weight", "More muscle", "Keep shape"
-    };
+    { "Lose weight", "More muscle", "Keep shape" };
     private readonly static string[] levelPhraseEN = new string[]
-    {
-        "I'm sedentary!", "I'm walker!", "I'm runner!", "I'm athletic!", "I'm body builder!"
-    };
+    { "I'm sedentary!", "I'm walker!", "I'm runner!", "I'm athletic!", "I'm body builder!" };
     private readonly static string[] buttonFocusEN = new string[]
-    {
-        "Abdomen", "Chest", "Arms", "Legs"
-    };
+    { "Abdomen", "Chest", "Arms", "Legs" };
     private readonly static string[] blockAreaNameEN = new string[]
-    {
-        "Age", "Current weight", "Weight goal", "Height"
-    };
+    { "Age", "Current weight", "Weight goal", "Height" };
     private readonly static string valueDfaultButtonsEditEN = 
         "edit";
     private readonly static string[] footerTitleEN = new string[]
-    {
-        "Enter your age", "Enter your current weight", "Enter your desired weight", "Enter your height"
-    };
+    { "Enter your age", "Enter your current weight", "Enter your desired weight", "Enter your height" };
     private readonly static string footerPlaceholderEN = 
         "value";
     private readonly static string[] footerUnitEN = new string[]
-    {
-        " Years", " kg", " kg", " cm"
-    };
+    { " Years", " kg", " kg", " cm" };
     private readonly static string saveButtonEN = 
         "Save";
     private readonly static string cancelButtonEN = 
         "Cancel";
     #endregion
     #region KOREAN
+    private readonly static string idKO =
+        "아이디";
+    private readonly static string passwordKO =
+        "패스워드";
+    private readonly static string placeHolderIDKO =
+        "사용자 이름";
+    private readonly static string placeHolderPasswordKO =
+        "비밀번호 입력";
+    private readonly static string signInKO =
+        "로그인";
+    private readonly static string signOnKO =
+        "회원가입";
+    private readonly static string fieldEmptyWarningKO =
+        "입력된 정보가 없습니다";
+    private readonly static string incorrectWarningKO =
+        "잘못된 유저 정보거나 비밀번호입니다";
+    /* ======================================================================================================================================= */
+    private readonly static string newIDKO =
+        "새로운 이름을 넣으세요:";
+    private readonly static string newPasswordKO =
+        "새로운 비밀번호를 넣으세요:";
+    private readonly static string repeatPasswordKO =
+        "다시한번더 비밀번호를 입력하세요:";
+    private readonly static string placeHolderNewIDKO =
+        "새로운 사용자명";
+    private readonly static string placeHolderNewPasswordKO =
+        "새 비밀번호";
+    private readonly static string placeHolderRepeatPasswordKO =
+        "비밀번호 다시 입력";
+    private readonly static string alreadyIDWarningKO =
+        "현재 사용자명은 이미 존재합니다!";
+    private readonly static string passwordsDontMatchKO =
+        "비밀번호가 일치하지 않습니다";
+    private readonly static string okButtonKO =
+        "OK";
+    /* ======================================================================================================================================= */
+    private readonly static string signedInAsKO =
+        "회원가입";
+    private readonly static string updateProfileKO =
+        "프로필 업데이트";
+    private readonly static string editAccountKO =
+        "계정 수정";
+    private readonly static string languageKO =
+        "언어";
+    private readonly static string deleteAccountKO =
+        "계정 삭제";
+    private readonly static string signOutKO =
+        "로그 아웃";
+    private readonly static string areYouSureKO =
+        "계정을 정말 삭제하겠습니까?";
+    private readonly static string yesKO =
+        "예";
+    private readonly static string nopKO =
+        "아니오";
+    /* ======================================================================================================================================= */
     private readonly static string[] pageQuestionKO = new string[]
-    {
-        "이름을 입력하세요", "성별을 입력하세요", "목적을 선택하세요", "체력수준  선택", "집중적 운동 부위", "추가 정보 입력"
-    };
+    { "이름을 입력하세요", "성별을 입력하세요", "목적을 선택하세요", "체력수준  선택", "집중적 운동 부위", "추가 정보 입력" };
     private readonly static string nextButtonKO =
         "다음";
     private readonly static string page1PlaceHolderKO =
         "여기에 입력하세요";
     private readonly static string[] buttonGoalKO = new string[]
-    {
-        "체중감량", "근력강화", "몸매가꾸기"
-    };
+    { "체중감량", "근력강화", "몸매가꾸기" };
     private readonly static string[] levelPhraseKO = new string[]
-    {
-        "운동거의 안함", "필수적인 걷기운동만", "러닝과 체조정도 운동만", "운동량이 충분히 많음", "전문적인 운동선수 급"
-    };
+    { "운동거의 안함", "필수적인 걷기운동만", "러닝과 체조정도 운동만", "운동량이 충분히 많음", "전문적인 운동선수 급" };
     private readonly static string[] buttonFocusKO = new string[]
-    {
-        "복근", "가슴부위", "팔 부위", "다리부위"
-    };
+    { "복근", "가슴부위", "팔 부위", "다리부위" };
     private readonly static string[] blockAreaNameKO = new string[]
-    {
-        "나이", "현재 체중", "목표체중", "신장"
-    };
+    { "나이", "현재 체중", "목표체중", "신장" };
     private readonly static string valueDfaultButtonsEditKO =
         "수정";
     private readonly static string[] footerTitleKO = new string[]
-    {
-        "나이를 입력하세요", "현재 체중 입력", "현재 체중 입력", "본인 키 입력"
-    };
+    { "나이를 입력하세요", "현재 체중 입력", "현재 체중 입력", "본인 키 입력" };
     private readonly static string footerPlaceholderKO =
         "값";
     private readonly static string[] footerUnitKO = new string[]
-    {
-        " 세", " kg", " kg", " cm"
-    };
+    { " 세", " kg", " kg", " cm" };
     private readonly static string saveButtonKO =
         "저장";
     private readonly static string cancelButtonKO =
         "취소";
     #endregion
     #region PORTUGUESE_BRAZILIAN
+    private readonly static string idBR =
+        "Usuário";
+    private readonly static string passwordBR =
+        "Senha";
+    private readonly static string placeHolderIDBR =
+        "Nome de usuário";
+    private readonly static string placeHolderPasswordBR =
+        "Sua senha";
+    private readonly static string signInBR =
+        "Entrar";
+    private readonly static string signOnBR =
+        "Inscreva-se";
+    private readonly static string fieldEmptyWarningBR =
+        "Preencha campos vazios!";
+    private readonly static string incorrectWarningBR =
+        "Nome de usuário ou senha incorretos!";
+    /* ======================================================================================================================================= */
+    private readonly static string newIDBR =
+        "Novo nome de usuário:";
+    private readonly static string newPasswordBR =
+        "Insira a nova senha:";
+    private readonly static string repeatPasswordBR =
+        "Repita a nova senha:";
+    private readonly static string placeHolderNewIDBR =
+        "Novo usuário";
+    private readonly static string placeHolderNewPasswordBR =
+        "Nova senha";
+    private readonly static string placeHolderRepeatPasswordBR =
+        "Repita a senha";
+    private readonly static string alreadyIDWarningBR =
+        "Este nome de usuário está indisponível!";
+    private readonly static string passwordsDontMatchBR =
+        "As senhas não coincidem!";
+    private readonly static string okButtonBR =
+        "OK";
+    /* ======================================================================================================================================= */
+    private readonly static string signedInAsBR =
+        "Registrado como";
+    private readonly static string updateProfileBR =
+        "Editar Perfil";
+    private readonly static string editAccountBR =
+        "Editar Conta";
+    private readonly static string languageBR =
+        "Idioma";
+    private readonly static string deleteAccountBR =
+        "Excluir conta";
+    private readonly static string signOutBR =
+        "Sair";
+    private readonly static string areYouSureBR =
+        "Tem certeza que deseja excluir a sua conta?";
+    private readonly static string yesBR =
+        "Sim";
+    private readonly static string nopBR =
+        "Não";
+    /* ======================================================================================================================================= */
     private readonly static string[] pageQuestionBR = new string[]
-    {
-        "Qual é o seu nome?", "Qual é o seu sexo?", "Qual é o seu objetivo?", "Qual o seu nível físico?", "Qual o seu foco?", "Mais sobre você:"
-    };
+    { "Qual é o seu nome?", "Qual é o seu sexo?", "Qual é o seu objetivo?", "Qual o seu nível físico?", "Qual o seu foco?", "Mais sobre você:" };
     private readonly static string nextButtonBR =
         "Próximo";
     private readonly static string page1PlaceHolderBR =
         "Insira o seu nome aqui...";
     private readonly static string[] buttonGoalBR = new string[]
-    {
-        "Perder peso", "Ter músculos", "Manter a forma"
-    };
+    { "Perder peso", "Ter músculos", "Manter a forma" };
     private readonly static string[] levelPhraseBR = new string[]
-    {
-        "Estou sedentário", "Eu caminho", "Eu corro", "Sou atético", "Sou Body Builder"
-    };
+    { "Estou sedentário", "Eu caminho", "Eu corro", "Sou atético", "Sou Body Builder" };
     private readonly static string[] buttonFocusBR = new string[]
-    {
-        "Abdomen", "Peito", "Braços", "Pernas"
-    };
+    { "Abdomen", "Peito", "Braços", "Pernas" };
     private readonly static string[] blockAreaNameBR = new string[]
-    {
-        "Idade", "Peso atual", "Peso desejado", "Altura"
-    };
+    { "Idade", "Peso atual", "Peso desejado", "Altura" };
     private readonly static string valueDfaultButtonsEditBR = 
         "edit";
     private readonly static string[] footerTitleBR = new string[]
-    {
-        "Insira a sua idade", "Insira o seu peso atual", "Insira o peso desejado", "Insira a sua altura"
-    };
+    { "Insira a sua idade", "Insira o seu peso atual", "Insira o peso desejado", "Insira a sua altura" };
     private readonly static string footerPlaceholderBR = 
         "valor";
     private readonly static string[] footerUnitBR = new string[]
-    {
-        " anos", " kg", " kg", " cm"
-    };
+    { " anos", " kg", " kg", " cm" };
     private readonly static string saveButtonBR = 
         "Salvar";
     private readonly static string cancelButtonBR = 
@@ -191,7 +342,7 @@ public class LanguageManager : MonoBehaviour
     private void Start()
     {
         Animations.Transition.EndClip();
-        LangButtonsBehaviour(DataManagement.Language);
+        LangButtonsBehaviour(AccountData.Language);
     }
 
     public void LangButtonsBehaviour(int index)
@@ -228,8 +379,8 @@ public class LanguageManager : MonoBehaviour
 
     public void OkFunction()
     {
-        DataManagement.Language = (int)Language;
-        LoadLang(DataManagement.Language);
+        AccountData.Language = (int)Language;
+        LoadLang(AccountData.Language);
 
         switch (ScenesManagement.PreviousScene)
         {
@@ -251,6 +402,35 @@ public class LanguageManager : MonoBehaviour
         switch (Language)
         {
             case Language.EN:
+                id = idEN;
+                password = passwordEN;
+                placeHolderID = placeHolderIDEN;
+                placeHolderPassword = placeHolderPasswordEN;
+                signIn = signInEN;
+                signOn = signOnEN;
+                fieldEmptyWarning = fieldEmptyWarningEN;
+                incorrectWarning = incorrectWarningEN;
+
+                newID = newIDEN;
+                newPassword = newPasswordEN;
+                repeatPassword = repeatPasswordEN;
+                placeHolderNewID = placeHolderNewIDEN;
+                placeHolderNewPassword = placeHolderNewPasswordEN;
+                placeHolderRepeatPassword = placeHolderRepeatPasswordEN;
+                alreadyIDWarning = alreadyIDWarningEN;
+                passwordsDontMatch = passwordsDontMatchEN;
+                okButtonString = okButtonEN;
+
+                signedInAs = signedInAsEN;
+                updateProfile = updateProfileEN;
+                editAccount = editAccountEN;
+                language = languageEN;
+                deleteAccount = deleteAccountEN;
+                signOut = signOutEN;
+                areYouSure = areYouSureEN;
+                yes = yesEN;
+                nop = nopEN;
+
                 pageQuestion = pageQuestionEN;
                 nextButton = nextButtonEN;
                 page1PlaceHolder = page1PlaceHolderEN;
@@ -266,6 +446,35 @@ public class LanguageManager : MonoBehaviour
                 cancelButton = cancelButtonEN;
                 break;
             case Language.KO:
+                id = idKO;
+                password = passwordKO;
+                placeHolderID = placeHolderIDKO;
+                placeHolderPassword = placeHolderPasswordKO;
+                signIn = signInKO;
+                signOn = signOnKO;
+                fieldEmptyWarning = fieldEmptyWarningKO;
+                incorrectWarning = incorrectWarningKO;
+
+                newID = newIDKO;
+                newPassword = newPasswordKO;
+                repeatPassword = repeatPasswordKO;
+                placeHolderNewID = placeHolderNewIDKO;
+                placeHolderNewPassword = placeHolderNewPasswordKO;
+                placeHolderRepeatPassword = placeHolderRepeatPasswordKO;
+                alreadyIDWarning = alreadyIDWarningKO;
+                passwordsDontMatch = passwordsDontMatchKO;
+                okButtonString = okButtonKO;
+
+                signedInAs = signedInAsKO;
+                updateProfile = updateProfileKO;
+                editAccount = editAccountKO;
+                language = languageKO;
+                deleteAccount = deleteAccountKO;
+                signOut = signOutKO;
+                areYouSure = areYouSureKO;
+                yes = yesKO;
+                nop = nopKO;
+
                 pageQuestion = pageQuestionKO;
                 nextButton = nextButtonKO;
                 page1PlaceHolder = page1PlaceHolderKO;
@@ -281,6 +490,35 @@ public class LanguageManager : MonoBehaviour
                 cancelButton = cancelButtonKO;
                 break;
             case Language.BR:
+                id = idBR;
+                password = passwordBR;
+                placeHolderID = placeHolderIDBR;
+                placeHolderPassword = placeHolderPasswordBR;
+                signIn = signInBR;
+                signOn = signOnBR;
+                fieldEmptyWarning = fieldEmptyWarningBR;
+                incorrectWarning = incorrectWarningBR;
+
+                newID = newIDBR;
+                newPassword = newPasswordBR;
+                repeatPassword = repeatPasswordBR;
+                placeHolderNewID = placeHolderNewIDBR;
+                placeHolderNewPassword = placeHolderNewPasswordBR;
+                placeHolderRepeatPassword = placeHolderRepeatPasswordBR;
+                alreadyIDWarning = alreadyIDWarningBR;
+                passwordsDontMatch = passwordsDontMatchBR;
+                okButtonString = okButtonBR;
+
+                signedInAs = signedInAsBR;
+                updateProfile = updateProfileBR;
+                editAccount = editAccountBR;
+                language = languageBR;
+                deleteAccount = deleteAccountBR;
+                signOut = signOutBR;
+                areYouSure = areYouSureBR;
+                yes = yesBR;
+                nop = nopBR;
+
                 pageQuestion = pageQuestionBR;
                 nextButton = nextButtonBR;
                 page1PlaceHolder = page1PlaceHolderBR;
@@ -300,14 +538,7 @@ public class LanguageManager : MonoBehaviour
 
     public static Language Language
     {
-        get
-        {
-            return langStatic;
-        }
-
-        private set
-        {
-            langStatic = value;
-        }
+        get => langStatic;
+        private set => langStatic = value;
     }
 }

@@ -52,12 +52,10 @@ SpriteAtlas:
   m_PackedSprites:
   - {fileID: 21300000, guid: 260b0f3041745af4eb3014d494c99810, type: 3}
   - {fileID: 21300000, guid: bef29f73360fc664eaf13500c97a1ae5, type: 3}
-  - {fileID: 21300000, guid: dcfc8994bdb93a04e9bb05d7cc326e12, type: 3}
   - {fileID: 21300000, guid: ddabbf79533e4a14da67c550da12ad4f, type: 3}
   m_PackedSpriteNamesToIndex:
   - ExpersINC
   - TrainAR Brending
-  - Beta
   - Logo
   m_RenderDataMap: {}
   m_Tag: icons

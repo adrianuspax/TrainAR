@@ -71,9 +71,7 @@ public class PagesAndFields : MonoBehaviour
         moreValueTMP = AssignTMPsEditValue;
 
         for (int i = 0; i < footerHeader.childCount; i++)
-        {
-            AssignFootersListeners(i);
-        }
+        { AssignFootersListeners(i); }
 
         Animations = this.GetComponent<AnimationsManager>();
         Buttons = this.GetComponent<ButtonsManager>();
@@ -117,19 +115,13 @@ public class PagesAndFields : MonoBehaviour
             yield return new WaitForSeconds(Animations.UserData.EnterClipTime);
 
             for (int i = 0; i < index; i++)
-            {
-                page[i].SetActive(false);
-            }
+            { page[i].SetActive(false); }
 
             for (int j = TotalPages - 1; j > index; j--)
-            {
-                page[j].SetActive(false);
-            }
+            { page[j].SetActive(false); }
         }
         else
-        {
-            Debug.LogError("Page Activation: Parameter value out of range. You moke!");
-        }
+        { Debug.LogError("Page Activation: Parameter value out of range. You moke!"); }
     }
 
     public int TotalPages => page.Length;
@@ -146,9 +138,7 @@ public class PagesAndFields : MonoBehaviour
             pageT = new Transform[TotalPages];
 
             for (int i = 0; i < TotalPages; i++)
-            {
-                pageT[i] = page[i].transform;
-            }
+            { pageT[i] = page[i].transform; }
 
             return pageT;
         }
@@ -159,9 +149,7 @@ public class PagesAndFields : MonoBehaviour
         set
         {
             for (int i = 0; i < value.Length; i++)
-            {
-                Page[i].GetChild(0).GetChild(1).GetComponent<TextMeshProUGUI>().text = value[i];
-            }
+            { Page[i].GetChild(0).GetChild(1).GetComponent<TextMeshProUGUI>().text = value[i]; }
         }
     }
 
@@ -213,9 +201,7 @@ public class PagesAndFields : MonoBehaviour
         set
         {
             foreach (TextMeshProUGUI tmp in moreValueTMP)
-            {
-                tmp.text = value;
-            }
+            { tmp.text = value; }
         }
     }
 
@@ -229,9 +215,7 @@ public class PagesAndFields : MonoBehaviour
             tmp = new TextMeshProUGUI[blocksAreaHeader.childCount];
 
             for (int i = 0; i < TotalBlocksArea; i++)
-            {
-                tmp[i] = blocksAreaHeader.GetChild(i).GetChild(0).GetComponent<TextMeshProUGUI>();
-            }
+            { tmp[i] = blocksAreaHeader.GetChild(i).GetChild(0).GetComponent<TextMeshProUGUI>(); }
 
             return tmp;
         }
@@ -242,9 +226,7 @@ public class PagesAndFields : MonoBehaviour
         set
         {
             for (int i = 0; i < value.Length; i++)
-            {
-                blocksAreaHeader.GetChild(i).GetChild(2).GetComponent<TextMeshProUGUI>().text = value[i];
-            }
+            { blocksAreaHeader.GetChild(i).GetChild(2).GetComponent<TextMeshProUGUI>().text = value[i]; }
         }
     }
 
@@ -258,9 +240,7 @@ public class PagesAndFields : MonoBehaviour
         for (int index = 0; index < button.Length; index++)
         {
             for (int i = 0; i < behaviour.Length; i++)
-            {
-                StartCoroutine(Cor_AssignmentEditMore(index, button, behaviour[i]));
-            }
+            { StartCoroutine(Cor_AssignmentEditMore(index, button, behaviour[i])); }
         }
 
         return (button, itsEdited);
@@ -294,9 +274,7 @@ public class PagesAndFields : MonoBehaviour
         if (footerIndexToActive < TotalFooters && footerIndexToActive >= 0)
         {
             foreach (GameObject footers in footer)
-            {
-                footers.SetActive(false);
-            }
+            { footers.SetActive(false); }
 
             footer[footerIndexToActive].SetActive(true);
             Animations.UserData.PlayFooterEnterClip();
@@ -304,9 +282,7 @@ public class PagesAndFields : MonoBehaviour
             CurrentFooter = footerIndexToActive + 1;
         }
         else
-        {
-            Debug.LogError("Footer Activation: Parameter value out of range. You moke!" + "// footerIndexToActive = " + footerIndexToActive);
-        }
+        { Debug.LogError("Footer Activation: Parameter value out of range. You moke!" + "// footerIndexToActive = " + footerIndexToActive); }
     }
 
     public int TotalFooters => footer.Length;
@@ -320,9 +296,7 @@ public class PagesAndFields : MonoBehaviour
     public void SetAllFooterInputIsEmpty(bool allIsEmpty)
     {
         for (int i = 0; i < footerInputIsEmpty.Length; i++)
-        {
-            footerInputIsEmpty[i] = allIsEmpty;
-        }
+        { footerInputIsEmpty[i] = allIsEmpty; }
     }
     #endregion
     #region FOOTERS
@@ -364,15 +338,11 @@ public class PagesAndFields : MonoBehaviour
     public void ClearAllInputFooter()
     {
         foreach (TMP_InputField inputs in footerInput)
-        {
-            inputs.text = "";
-        }
+        { inputs.text = string.Empty; }
     }
 
     public void ClearAllInputFooter(float delay)
-    {
-        StartCoroutine(Cor_ClearAllInputFooter(delay));
-    }
+    { StartCoroutine(Cor_ClearAllInputFooter(delay)); }
 
     private IEnumerator Cor_ClearAllInputFooter(float time)
     {
@@ -385,28 +355,19 @@ public class PagesAndFields : MonoBehaviour
         set
         {
             for (int i = 0; i < value.Length; i++)
-            {
-                footer[i].transform.GetChild(1).GetComponent<TextMeshProUGUI>().text = value[i];
-            }
+            { footer[i].transform.GetChild(1).GetComponent<TextMeshProUGUI>().text = value[i]; }
         }
     }
 
     public string FooterYerarsString
-    {
-        set
-        {
-            footer[0].transform.GetChild(2).GetComponent<TextMeshProUGUI>().text = value;
-        }
-    }
+    { set => footer[0].transform.GetChild(2).GetComponent<TextMeshProUGUI>().text = value; }
 
     public string FootersPlaceholer
     {
         set
         {
             for (int i = 0; i < footerInput.Length; i++)
-            {
-                footerInput[i].placeholder.GetComponent<TextMeshProUGUI>().text = value;
-            }
+            { footerInput[i].placeholder.GetComponent<TextMeshProUGUI>().text = value; }
         }
     }
 
@@ -419,9 +380,7 @@ public class PagesAndFields : MonoBehaviour
         gameObjects = new GameObject[header.childCount];
 
         for (int i = 0; i < header.childCount; i++)
-        {
-            gameObjects[i] = header.GetChild(i).gameObject;
-        }
+        { gameObjects[i] = header.GetChild(i).gameObject; }
 
         return gameObjects;
     }
@@ -449,9 +408,7 @@ public class PagesAndFields : MonoBehaviour
                 for (int j = 0; j < child.childCount; j++)
                 {
                     if (child.GetChild(j).GetComponent<TMP_InputField>() != null)
-                    {
-                        inputs[i] = child.GetChild(j).GetComponent<TMP_InputField>();
-                    }
+                    { inputs[i] = child.GetChild(j).GetComponent<TMP_InputField>(); }
                 }
             }
 

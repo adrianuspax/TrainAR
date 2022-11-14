@@ -3,7 +3,11 @@ guid: 806e262ad8609e147ad1c5d17c87e774
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - setCoachAR: {instanceID: 0}
+  - replaceCoachAR: {instanceID: 0}
+  - visibilityOn: {instanceID: 0}
+  - visibilityOff: {instanceID: 0}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

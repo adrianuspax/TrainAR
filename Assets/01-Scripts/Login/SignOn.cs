@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
@@ -19,7 +17,10 @@ public class SignOn : MonoBehaviour
     [SerializeField] private TMP_InputField repeatPasswordInput;
     [Space(-10, order = 0)]
     [Header("TMP", order = 1)]
-    [SerializeField] private TextMeshProUGUI warning;
+    [SerializeField] private TextMeshProUGUI enterNewUsernameTMP;
+    [SerializeField] private TextMeshProUGUI enterNewPasswordTMP;
+    [SerializeField] private TextMeshProUGUI repeatNewPasswordTMP;
+    [SerializeField] private TextMeshProUGUI warningTMP;
 
     [Header(" =========================== READY ONLY =========================== ", order = 0)]
     [Space(-10, order = 1)]
@@ -62,12 +63,20 @@ public class SignOn : MonoBehaviour
 
         okButton.onClick.AddListener(() => Ok());
         returnButton.onClick.AddListener(() => Return());
+
+        enterNewUsernameTMP.text = LanguageManager.newID;
+        enterNewPasswordTMP.text = LanguageManager.newPassword;
+        repeatNewPasswordTMP.text = LanguageManager.repeatPassword;
+        PlaceHolderNewUsername = LanguageManager.placeHolderNewID;
+        PlaceHolderNewPassword = LanguageManager.placeHolderNewPassword;
+        PlaceHolderRepeatPassword = LanguageManager.placeHolderRepeatPassword;
+        OkButtonString = LanguageManager.okButtonString;
     }
 
     private void Start()
     {
         Animations.Transition.EndClip();
-        warning.text = string.Empty;
+        warningTMP.text = string.Empty;
         newPasswordIsEmpty = true;
         repeatPasswordIsEmpty = true;
         Buttons.Interaction(false, okButton);
@@ -85,11 +94,9 @@ public class SignOn : MonoBehaviour
 
             switch (ScenesManagement.PreviousScene)
             {
-                case ScenesManagement.Menu:
-                    ScenesManagement.LoadMenu();
+                case ScenesManagement.Menu: ScenesManagement.LoadMenu();
                     break;
-                default:
-                    ScenesManagement.LoadSignIn();
+                default: ScenesManagement.LoadSignIn();
                     break;
             }
         }
@@ -110,20 +117,18 @@ public class SignOn : MonoBehaviour
     #endregion
     #region newUsername
     public void OnSelectNewUsername(string newUsername)
-    {
-        PlaceHolderNewUsername = string.Empty;
-    }
+    { PlaceHolderNewUsername = string.Empty; }
 
 public void OnDeselectNewUsername(string newUsername)
     {
         usernameIsEmpty = (newUsername == string.Empty);
-        PlaceHolderNewUsername = "New username";
+        PlaceHolderNewUsername = LanguageManager.placeHolderNewID;
     }
 
     public void OnValueChangedNewUsername(string newUsername)
     {
         usernameIsEmpty = (newUsername == string.Empty);
-        warning.text = string.Empty;
+        warningTMP.text = string.Empty;
     }
 
     public void OnEndEditNewUsername(string newUsername)
@@ -131,48 +136,37 @@ public void OnDeselectNewUsername(string newUsername)
         if (AccountData.HasUsername)
         {
             if (newUsername == AccountData.Username)
-            {
-                warning.text = "Este username já está em uso!";
-            }
+            { warningTMP.text = LanguageManager.alreadyIDWarning; }
             else if (usernameIsEmpty)
-            {
-                warning.text = string.Empty;
-            }
+            { warningTMP.text = string.Empty; }
 
             usernameReleased = !(newUsername == AccountData.Username);
         }
         else if (usernameIsEmpty)
-        {
-            warning.text = string.Empty;
-        }
+        { warningTMP.text = string.Empty; }
         else
-        {
-            usernameReleased = true;
-        }
+        { usernameReleased = true; }
 
         username = newUsername;
         ValidationPasswords();
         ValidationRealease();
     }
 
-    public string PlaceHolderNewUsername { set => newUsernameInput.placeholder.GetComponent<TextMeshProUGUI>().text = value; }
+    public string PlaceHolderNewUsername
+    { set => newUsernameInput.placeholder.GetComponent<TextMeshProUGUI>().text = value; }
     #endregion
     #region newPassword
     public void OnSelectNewPassword(string newPassword)
-    {
-        PlaceHolderNewPassword = string.Empty;
-    }
+    { PlaceHolderNewPassword = string.Empty; }
 
     public void OnDeselectNewPassword(string newPassword)
     {
         newPasswordIsEmpty = (newPassword == string.Empty);
-        PlaceHolderNewPassword = "New password";
+        PlaceHolderNewPassword = LanguageManager.placeHolderNewPassword;
     }
 
     public void OnValueChangedNewPassword(string newPassword)
-    {
-        newPasswordIsEmpty = (newPassword == string.Empty);
-    }
+    { newPasswordIsEmpty = (newPassword == string.Empty); }
 
     public void OnEndEditNewPassword(string newPassword)
     {
@@ -181,24 +175,21 @@ public void OnDeselectNewUsername(string newUsername)
         ValidationRealease();
     }
 
-    public string PlaceHolderNewPassword { set => newPasswordInput.placeholder.GetComponent<TextMeshProUGUI>().text = value; }
+    public string PlaceHolderNewPassword
+    { set => newPasswordInput.placeholder.GetComponent<TextMeshProUGUI>().text = value; }
     #endregion
     #region repeatPassword
     public void OnSelectRepeatPassword(string repeatPassword)
-    {
-        PlaceHolderRepeatPassword = string.Empty;
-    }
+    { PlaceHolderRepeatPassword = string.Empty; }
 
     public void OnDeselectRepeatPassword(string repeatPassword)
     {
         repeatPasswordIsEmpty = (repeatPassword == string.Empty);
-        PlaceHolderRepeatPassword = "Repeat password";
+        PlaceHolderRepeatPassword = LanguageManager.placeHolderRepeatPassword;
     }
 
     public void OnValueChangedRepeatPassword(string repeatPassword)
-    {
-        repeatPasswordIsEmpty = (repeatPassword == string.Empty);
-    }
+    { repeatPasswordIsEmpty = (repeatPassword == string.Empty); }
 
     public void OnEndEditRepeatPassword(string repeatPassword)
     {
@@ -211,7 +202,9 @@ public void OnDeselectNewUsername(string newUsername)
     {
         if (usernameReleased)
         {
-            warning.text = (newPasswordIsEmpty && repeatPasswordIsEmpty) || (newPassword == repeatPassword) ? string.Empty : "As senhas não coincidem!";
+            warningTMP.text =
+                (newPasswordIsEmpty && repeatPasswordIsEmpty) ||
+                (newPassword == repeatPassword) ? string.Empty : LanguageManager.passwordsDontMatch;
         }
     }
 
@@ -222,6 +215,10 @@ public void OnDeselectNewUsername(string newUsername)
         Buttons.Interaction(buttonOkRealeased, okButton);
     }
 
-    public string PlaceHolderRepeatPassword { set => repeatPasswordInput.placeholder.GetComponent<TextMeshProUGUI>().text = value; }
+    public string PlaceHolderRepeatPassword
+    { set => repeatPasswordInput.placeholder.GetComponent<TextMeshProUGUI>().text = value; }
     #endregion
+
+    public string OkButtonString
+    { set => okButton.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = value; }
 }

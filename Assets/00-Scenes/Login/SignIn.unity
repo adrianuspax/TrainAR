@@ -293,7 +293,7 @@ MonoBehaviour:
   m_AsteriskChar: 42
   m_KeyboardType: 1
   m_LineType: 0
-  m_HideMobileInput: 0
+  m_HideMobileInput: 1
   m_HideSoftKeyboard: 0
   m_CharacterValidation: 4
   m_RegexValue: 
@@ -334,7 +334,7 @@ MonoBehaviour:
   m_GlobalFontAsset: {fileID: 11400000, guid: 080d8f1716f453148ba7482474672b18, type: 2}
   m_OnFocusSelectAll: 1
   m_ResetOnDeActivation: 1
-  m_RestoreOriginalTextOnEscape: 1
+  m_RestoreOriginalTextOnEscape: 0
   m_isRichTextEditingAllowed: 0
   m_LineLimit: 0
   m_InputValidator: {fileID: 0}
@@ -597,7 +597,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1833519770}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.15, y: 0}
   m_AnchorMax: {x: 0.85, y: 1}
@@ -957,7 +957,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1833519770}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 1}
@@ -1454,7 +1454,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 2090738482}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.15, y: 0}
   m_AnchorMax: {x: 0.85, y: 1}
@@ -1708,7 +1708,7 @@ GameObject:
   - component: {fileID: 772190852}
   - component: {fileID: 772190851}
   m_Layer: 0
-  m_Name: imgIconLogin
+  m_Name: imgIconID
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1906,9 +1906,12 @@ MonoBehaviour:
   signOnButton: {fileID: 1833519772}
   usernameInput: {fileID: 175951938}
   passwordInput: {fileID: 1847811882}
-  warning: {fileID: 709297834}
+  idTMP: {fileID: 1293201599}
+  passwordTMP: {fileID: 1743277440}
+  warningTMP: {fileID: 709297834}
   username: 
   password: 
+  signed: 0
   usernameIsEmpty: 0
   passwordIsEmpty: 0
   Animations: {fileID: 0}
@@ -1924,7 +1927,7 @@ GameObject:
   - component: {fileID: 1293201600}
   - component: {fileID: 1293201599}
   m_Layer: 0
-  m_Name: tmpLogin
+  m_Name: tmpID
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1970,7 +1973,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Login
+  m_text: ID
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: c5e9b28229cd30f47a1b957e7e8aa467, type: 2}
   m_sharedMaterial: {fileID: -241065826414792663, guid: c5e9b28229cd30f47a1b957e7e8aa467,
@@ -2058,7 +2061,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1321592514}
   m_Layer: 0
-  m_Name: Login
+  m_Name: ID
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2220,7 +2223,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 2090738482}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 1}
@@ -2812,8 +2815,8 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 440213020}
   - {fileID: 286859563}
+  - {fileID: 440213020}
   m_Father: {fileID: 1901319890}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -3050,7 +3053,7 @@ MonoBehaviour:
   m_AsteriskChar: 42
   m_KeyboardType: 0
   m_LineType: 0
-  m_HideMobileInput: 0
+  m_HideMobileInput: 1
   m_HideSoftKeyboard: 0
   m_CharacterValidation: 0
   m_RegexValue: 
@@ -3091,7 +3094,7 @@ MonoBehaviour:
   m_GlobalFontAsset: {fileID: 11400000, guid: 080d8f1716f453148ba7482474672b18, type: 2}
   m_OnFocusSelectAll: 1
   m_ResetOnDeActivation: 1
-  m_RestoreOriginalTextOnEscape: 1
+  m_RestoreOriginalTextOnEscape: 0
   m_isRichTextEditingAllowed: 0
   m_LineLimit: 0
   m_InputValidator: {fileID: 0}
@@ -3510,8 +3513,8 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 1529128783}
   - {fileID: 698071457}
+  - {fileID: 1529128783}
   m_Father: {fileID: 328505134}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

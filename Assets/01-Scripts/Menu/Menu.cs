@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
@@ -22,6 +20,8 @@ public class Menu : MonoBehaviour
     [Space(-10, order = 0)]
     [Header("Text Mesh Pro", order = 1)]
     [SerializeField] private TextMeshProUGUI usernameTMP;
+    [SerializeField] private TextMeshProUGUI signedInAsTMP;
+    [SerializeField] private TextMeshProUGUI areYouSureTMP;
     [Space(-10, order = 0)]
     [Header("Animation Panel", order = 1)]
     [SerializeField] private Animator questionPanelAnimator;
@@ -47,6 +47,16 @@ public class Menu : MonoBehaviour
         backButton.onClick.AddListener(() => Back());
         yesButton.onClick.AddListener(() => Yes());
         noButton.onClick.AddListener(() => No());
+
+        signedInAsTMP.text = LanguageManager.signedInAs;
+        areYouSureTMP.text = LanguageManager.areYouSure;
+        UpdateProfileButtonName = LanguageManager.updateProfile;
+        EditAccountButtonName = LanguageManager.editAccount;
+        LanguageButtonName = LanguageManager.language;
+        DeleteAccountButtonName = LanguageManager.deleteAccount;
+        SignOutButtonName = LanguageManager.signOut;
+        YesButtonName = LanguageManager.yes;
+        NoButtonName = LanguageManager.nop;
     }
 
     private void Start()
@@ -56,24 +66,16 @@ public class Menu : MonoBehaviour
     }
 
     public void UpdateProfile()
-    {
-        ScenesManagement.LoadUserData();
-    }
+    { ScenesManagement.LoadUserData(); }
 
     public void EditAccount()
-    {
-        ScenesManagement.LoadSignOn();
-    }
+    { ScenesManagement.LoadSignOn(); }
 
     public void Language()
-    {
-        ScenesManagement.LoadLanguage();
-    }
+    { ScenesManagement.LoadLanguage(); }
 
     public void DeleteAccount()
-    {
-        PanelQuestionAnimation(animationPanelStart);
-    }
+    { PanelQuestionAnimation(animationPanelStart); }
 
     public void SignOut()
     {
@@ -82,9 +84,7 @@ public class Menu : MonoBehaviour
     }
 
     public void Back()
-    {
-        ScenesManagement.LoadTrainAR();
-    }
+    { ScenesManagement.LoadTrainAR(); }
 
     public void Yes()
     {
@@ -94,9 +94,21 @@ public class Menu : MonoBehaviour
     }
 
     public void No()
-    {
-        PanelQuestionAnimation(animationPanelEnd);
-    }
+    { PanelQuestionAnimation(animationPanelEnd); }
 
     private void PanelQuestionAnimation(string animationName) => questionPanelAnimator.Play(animationName);
+    public string UpdateProfileButtonName
+    { set => updateProfileButton.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = value; }
+    public string EditAccountButtonName
+    { set => editAccountButton.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = value; }
+    public string LanguageButtonName
+    { set => languageButton.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = value; }
+    public string DeleteAccountButtonName
+    { set => deleteAccountButton.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = value; }
+    public string SignOutButtonName
+    { set => signOutButton.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = value; }
+    public string YesButtonName
+    { set => yesButton.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = value; }
+    public string NoButtonName
+    { set => noButton.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = value; }
 }

@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 [RequireComponent(typeof(CoachAnimations), typeof(AnimationsManager))]
 public class AnimationsMain : MonoBehaviour
 {
@@ -28,8 +26,10 @@ public class AnimationsMain : MonoBehaviour
     private void Awake()
     {
         coach = this.GetComponent<CoachAnimations>();
-        if (IsOnTheScene(TagAnchor)) { anchorAnimator = GetAnimator(TagAnchor); }
-        if (IsOnTheScene(TagButtonAR)) { movePhoneAnimator = GetAnimator(TagButtonAR); }
+        if (IsOnTheScene(TagAnchor))
+        { anchorAnimator = GetAnimator(TagAnchor); }
+        if (IsOnTheScene(TagButtonAR))
+        { movePhoneAnimator = GetAnimator(TagButtonAR); }
     }
 
     private bool IsOnTheScene(string tag) => GameObject.FindWithTag(tag) != null;
@@ -44,9 +44,7 @@ public class AnimationsMain : MonoBehaviour
         movePhoneAnimator.enabled = isPlaying;
 
         if (movePhoneAnimator.enabled)
-        {
-            movePhoneAnimator.Play(movePhoneStart.name);
-        }
+        { movePhoneAnimator.Play(movePhoneStart.name); }
     }
     #endregion
 }

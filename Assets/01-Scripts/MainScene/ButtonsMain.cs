@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.UI;
 
 public enum StateButtonAR
@@ -8,6 +6,7 @@ public enum StateButtonAR
     ReadyToSet = 0,
     Refresh = 1
 };
+
 [RequireComponent(typeof(ButtonsManager), typeof(AnimationsMain))]
 [RequireComponent(typeof(AugmentedReality), typeof(ImagesManager))]
 public class ButtonsMain : MonoBehaviour
@@ -62,7 +61,7 @@ public class ButtonsMain : MonoBehaviour
                 break;
         }
 
-        condition = CurrentStateButtonAR == StateButtonAR.Refresh || isInteractable;
+        condition = (CurrentStateButtonAR == StateButtonAR.Refresh) || isInteractable;
         ButtonSetCoachInteraction = condition && !Animations.Main.coach.IsStarted;
 
         if (ButtonSetCoachInteraction)
@@ -80,8 +79,11 @@ public class ButtonsMain : MonoBehaviour
     {
         called = !called;
 
-        if (called) { Buttons.DropDownMenu.ButtonOpenDropDown(); }
-        if (!called) { Buttons.DropDownMenu.ButtonCloseDropDown(); }
+        if (called)
+        { Buttons.DropDownMenu.ButtonOpenDropDown(); }
+        if (!called)
+        { Buttons.DropDownMenu.ButtonCloseDropDown(); }
+
         btnBarR.image.transform.localScale = new Vector2(called ? -1 : 1, 1);
 
         dropDownIsOpen = called;
@@ -99,8 +101,5 @@ public class ButtonsMain : MonoBehaviour
         set => btnBarR.interactable = value;
     }
 
-    public StateButtonAR CurrentStateButtonAR
-    {
-        get => stateButtonAR;
-    }
+    public StateButtonAR CurrentStateButtonAR => stateButtonAR;
 }

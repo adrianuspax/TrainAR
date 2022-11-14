@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+
 [RequireComponent(typeof(AnimationsManager))]
 public class Redirection : MonoBehaviour
 {
@@ -24,24 +25,16 @@ public class Redirection : MonoBehaviour
         if (AccountData.HasAccount)
         {
             if (AccountData.Signed)
-            {
-                ScenesManagement.LoadTrainAR();
-            }
+            { ScenesManagement.LoadTrainAR(); }
             else
             {
                 if (AccountData.HasLanguage)
-                {
-                    ScenesManagement.LoadSignIn();
-                }
+                { ScenesManagement.LoadSignIn(); }
                 else
-                {
-                    ScenesManagement.LoadLanguage();
-                }
+                { ScenesManagement.LoadLanguage(); }
             }
         }
         else
-        {
-            ScenesManagement.LoadLanguage();
-        }
+        { ScenesManagement.LoadLanguage(); }
     }
 }

@@ -1,5 +1,4 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -179,9 +178,7 @@ public class DropDownMenu : MonoBehaviour
             gameObj = new GameObject[TotalButtons];
 
             for (int i = 0; i < TotalButtons; i++)
-            {
-                gameObj[i] = gridButtonDDM[i].gameObject;
-            }
+            { gameObj[i] = gridButtonDDM[i].gameObject; }
 
             return gameObj;
         }
