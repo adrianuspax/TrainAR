@@ -25,11 +25,17 @@ public class SignIn : MonoBehaviour
     [Header("DATA INPUTED", order = 2)]
     [SerializeField, ReadOnly] private string username;
     [SerializeField, ReadOnly] private string password;
-    [SerializeField, ReadOnly] private bool signed;
+    [Space(-10, order = 1)]
+    [Header("fix behaviour strings", order = 2)]
+    [SerializeField, ReadOnly] private string oldEditTextUsername;
+    [SerializeField, ReadOnly] private string editTextUsername;
+    [SerializeField, ReadOnly] private string oldEditTextPassword;
+    [SerializeField, ReadOnly] private string editTextPassword;
 
     [Header("Variables", order = 0)]
-    [SerializeField, ReadOnly] private bool usernameIsEmpty;
-    [SerializeField, ReadOnly] private bool passwordIsEmpty;
+    [SerializeField, ReadOnly] private bool keepOldTextUsername;
+    [SerializeField, ReadOnly] private bool keepOldTextPassword;
+    [SerializeField, ReadOnly] private bool signed;
 
     [Header("Scripts", order = 0)]
     [SerializeField, ReadOnly] private AnimationsManager Animations;
@@ -39,16 +45,18 @@ public class SignIn : MonoBehaviour
         Animations = this.GetComponent<AnimationsManager>();
         signInButton.onClick.AddListener(() => SignInFunction());
         signOnButton.onClick.AddListener(() => SignOnFunction());
-
+        //username
         usernameInput.onSelect.AddListener(OnSelectUsername);
         usernameInput.onDeselect.AddListener(OnDeselectUsername);
         usernameInput.onValueChanged.AddListener(OnValueChangedUsername);
         usernameInput.onEndEdit.AddListener(OnEndEditUsername);
-
+        usernameInput.onTouchScreenKeyboardStatusChanged.AddListener(ReportChangeStatusUsername);
+        //pssword
         passwordInput.onSelect.AddListener(OnSelectPassword);
         passwordInput.onDeselect.AddListener(OnDeselectPassword);
         passwordInput.onValueChanged.AddListener(OnValueChangedPassword);
         passwordInput.onEndEdit.AddListener(OnEndEditPassword);
+        passwordInput.onTouchScreenKeyboardStatusChanged.AddListener(ReportChangeStatusPassword);
 
         PlaceHolderUsername = LanguageManager.placeHolderID;
         PlaceHolderPassword = LanguageManager.placeHolderPassword;
@@ -62,8 +70,6 @@ public class SignIn : MonoBehaviour
     {
         Animations.Transition.EndClip();
         warningTMP.text = string.Empty;
-        usernameIsEmpty = true;
-        passwordIsEmpty = true;
         signed = AccountData.Signed;
         Debug.Log(PlayerPrefs.HasKey(AccountData.USERNAME) ? "username = " + PlayerPrefs.GetString(AccountData.USERNAME) : "username = EMPTY");
         Debug.Log(PlayerPrefs.HasKey(AccountData.PASSWORD) ? "password = " + PlayerPrefs.GetString(AccountData.PASSWORD) : "password = EMPTY");
@@ -88,7 +94,7 @@ public class SignIn : MonoBehaviour
         }
         else
         {
-            WarningString = (usernameIsEmpty || passwordIsEmpty) ?
+            WarningString = (string.IsNullOrEmpty(usernameInput.text) || string.IsNullOrEmpty(passwordInput.text)) ?
                 LanguageManager.fieldEmptyWarning : LanguageManager.incorrectWarning;
         }
     }
@@ -104,15 +110,41 @@ public class SignIn : MonoBehaviour
 
     public void OnDeselectUsername(string username)
     {
-        usernameIsEmpty = (username == string.Empty);
-        PlaceHolderUsername = LanguageManager.placeHolderID;
+        PlaceHolderUsername = usernameInput.isFocused ? string.Empty : LanguageManager.placeHolderID;
     }
 
     public void OnValueChangedUsername(string username)
-    { usernameIsEmpty = (username == string.Empty); }
+    {
+        PlaceHolderUsername = usernameInput.isFocused ? string.Empty : LanguageManager.placeHolderID;
+
+        oldEditTextUsername = editTextUsername;
+        editTextUsername = username;
+    }
 
     public void OnEndEditUsername(string username)
-    { this.username = username; }
+    {
+        this.username = username;
+        PlaceHolderUsername = usernameInput.isFocused ? string.Empty : LanguageManager.placeHolderID;
+
+        if (keepOldTextUsername && !string.IsNullOrEmpty(oldEditTextUsername))
+        {
+            editTextUsername = oldEditTextUsername;
+            usernameInput.text = oldEditTextUsername;
+            this.username = oldEditTextUsername;
+            keepOldTextUsername = false;
+        }
+
+        if (usernameInput.wasCanceled)
+        {
+            PlaceHolderUsername = string.Empty;
+        }
+    }
+
+    public void ReportChangeStatusUsername(TouchScreenKeyboard.Status newStatus)
+    {
+        if (newStatus == TouchScreenKeyboard.Status.Canceled)
+        { keepOldTextUsername = true; }
+    }
 
     public string PlaceHolderUsername { set => usernameInput.placeholder.GetComponent<TextMeshProUGUI>().text = value; }
     #endregion
@@ -125,15 +157,41 @@ public class SignIn : MonoBehaviour
 
     public void OnDeselectPassword(string password)
     {
-        passwordIsEmpty = (password == string.Empty);
-        PlaceHolderPassword = LanguageManager.placeHolderPassword;
+        PlaceHolderPassword = passwordInput.isFocused ? string.Empty : LanguageManager.placeHolderPassword;
     }
 
     public void OnValueChangedPassword(string password)
-    { passwordIsEmpty = (password == string.Empty); }
+    {
+        PlaceHolderPassword = passwordInput.isFocused ? string.Empty : LanguageManager.placeHolderPassword;
+
+        oldEditTextPassword = editTextPassword;
+        editTextPassword = password;
+    }
 
     public void OnEndEditPassword(string password)
-    { this.password = password; }
+    {
+        this.password = password;
+        PlaceHolderPassword = passwordInput.isFocused ? string.Empty : LanguageManager.placeHolderPassword;
+
+        if (keepOldTextPassword && !string.IsNullOrEmpty(oldEditTextPassword))
+        {
+            editTextPassword = oldEditTextPassword;
+            passwordInput.text = oldEditTextPassword;
+            this.password = oldEditTextPassword;
+            keepOldTextPassword = false;
+        }
+
+        if (passwordInput.wasCanceled)
+        {
+            PlaceHolderPassword = string.Empty;
+        }
+    }
+
+    public void ReportChangeStatusPassword(TouchScreenKeyboard.Status newStatus)
+    {
+        if (newStatus == TouchScreenKeyboard.Status.Canceled)
+        { keepOldTextPassword = true; }
+    }
 
     public string PlaceHolderPassword
     { set => passwordInput.placeholder.GetComponent<TextMeshProUGUI>().text = value; }

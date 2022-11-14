@@ -1,6 +1,5 @@
 ﻿#region USED_NAMESPACES
 using System.Collections;
-using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -41,12 +40,15 @@ public class PagesAndFields : MonoBehaviour
     [Header("Variables", order = 1)]
     [ReadOnly, SerializeField] private int currentPage;
     [ReadOnly, SerializeField] private int currentFooter;
-    [ReadOnly, SerializeField] private bool userNameInputIsEmpty;
     [ReadOnly, SerializeField] private string userNameString;
     [NonReorderable][ReadOnly, SerializeField] private TextMeshProUGUI[] moreValueTMP;
     [NonReorderable][ReadOnly, SerializeField] private TMP_InputField[] footerInput;
-    [ReadOnly, SerializeField] private bool[] footerInputIsEmpty;
     [ReadOnly, SerializeField] private string[] footerValue;
+    [SerializeField, ReadOnly] private bool keepOldTextUsername;
+    [Space(-10, order = 1)]
+    [Header("fix behaviour strings", order = 2)]
+    [SerializeField, ReadOnly] private string oldEditTextUsername;
+    [SerializeField, ReadOnly] private string editTextUsername;
 
     [Header("Scripts", order = 0)]
     [ReadOnly, SerializeField] private AnimationsManager Animations;
@@ -63,8 +65,8 @@ public class PagesAndFields : MonoBehaviour
         userNameInput.onDeselect.AddListener(OnDeselectUserName);
         userNameInput.onValueChanged.AddListener(OnValueChangedUserName);
         userNameInput.onEndEdit.AddListener(OnEndEditUserName);
+        userNameInput.onTouchScreenKeyboardStatusChanged.AddListener(ReportChangeStatusUsername);
 
-        footerInputIsEmpty = new bool[footerHeader.childCount];
         footerValue = new string[footerHeader.childCount];
 
         footerInput = FooterInputs;
@@ -85,9 +87,6 @@ public class PagesAndFields : MonoBehaviour
         foreach (GameObject footers in footer) { footers.SetActive(false); }
 
         PageActivation(DataManagement.PAGE1);
-
-        userNameInputIsEmpty = true;
-        SetAllFooterInputIsEmpty(true);
     }
     #endregion
     #region PAGES_BEHAVIOURS
@@ -157,27 +156,44 @@ public class PagesAndFields : MonoBehaviour
     #region PAGE1
     public void OnSelectUserName(string name)
     {
-        Page1PlaceHolder = "";
-        userNameInputIsEmpty = true;
+        Page1PlaceHolder = string.Empty;
     }
 
     public void OnDeselectUserName(string name)
     {
-        userNameInputIsEmpty = (name == "");
         Page1PlaceHolder = LanguageManager.page1PlaceHolder;
-        Buttons.UserData.NextButtonInteraction = !userNameInputIsEmpty;
+        Buttons.UserData.NextButtonInteraction = !string.IsNullOrEmpty(userNameInput.text);
     }
 
     public void OnValueChangedUserName(string name)
     {
-        userNameInputIsEmpty = (name == "");
-        Buttons.UserData.NextButtonInteraction = !userNameInputIsEmpty;
+        Buttons.UserData.NextButtonInteraction = !string.IsNullOrEmpty(userNameInput.text);
+        oldEditTextUsername = editTextUsername;
+        editTextUsername = name;
     }
 
     public void OnEndEditUserName(string name)
     {
-        Buttons.UserData.NextButtonInteraction = !userNameInputIsEmpty;
+        Buttons.UserData.NextButtonInteraction = !string.IsNullOrEmpty(userNameInput.text);
         UserName = name;
+        if (keepOldTextUsername && !string.IsNullOrEmpty(oldEditTextUsername))
+        {
+            editTextUsername = oldEditTextUsername;
+            userNameInput.text = oldEditTextUsername;
+            UserName = oldEditTextUsername;
+            keepOldTextUsername = false;
+        }
+
+        if (userNameInput.wasCanceled)
+        {
+            Page1PlaceHolder = string.Empty;
+        }
+    }
+
+    public void ReportChangeStatusUsername(TouchScreenKeyboard.Status newStatus)
+    {
+        if (newStatus == TouchScreenKeyboard.Status.Canceled)
+        { keepOldTextUsername = true; }
     }
 
     public string UserName
@@ -293,35 +309,27 @@ public class PagesAndFields : MonoBehaviour
         private set => currentFooter = value;
     }
 
-    public void SetAllFooterInputIsEmpty(bool allIsEmpty)
-    {
-        for (int i = 0; i < footerInputIsEmpty.Length; i++)
-        { footerInputIsEmpty[i] = allIsEmpty; }
-    }
     #endregion
     #region FOOTERS
     public void OnSelectFooter(string data)
     {
-        footerInput[CurrentFooterIndex].placeholder.GetComponent<TextMeshProUGUI>().text = "";
-        footerInputIsEmpty[CurrentFooterIndex] = true;
+        footerInput[CurrentFooterIndex].placeholder.GetComponent<TextMeshProUGUI>().text = string.Empty;
     }
 
     public void OnDeselectFooter(string data)
     {
-        footerInputIsEmpty[CurrentFooterIndex] = (data == "");
         footerInput[CurrentFooterIndex].placeholder.GetComponent<TextMeshProUGUI>().text = LanguageManager.footerPlaceholder;
-        Buttons.UserData.SaveButtonInteraction = !footerInputIsEmpty[CurrentFooterIndex];
+        Buttons.UserData.SaveButtonInteraction = !string.IsNullOrEmpty(footerInput[CurrentFooterIndex].text);
     }
 
     public void OnValueChangedFooter(string data)
     {
-        footerInputIsEmpty[CurrentFooterIndex] = (data == "");
-        Buttons.UserData.SaveButtonInteraction = !footerInputIsEmpty[CurrentFooterIndex];
+        Buttons.UserData.SaveButtonInteraction = !string.IsNullOrEmpty(footerInput[CurrentFooterIndex].text);
     }
 
     public void OnEndEditFooter(string data)
     {
-        Buttons.UserData.SaveButtonInteraction = !footerInputIsEmpty[CurrentFooterIndex];
+        Buttons.UserData.SaveButtonInteraction = !string.IsNullOrEmpty(footerInput[CurrentFooterIndex].text);
         DataFooter = data;
     }
 

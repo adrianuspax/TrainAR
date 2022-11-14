@@ -28,14 +28,22 @@ public class SignOn : MonoBehaviour
     [SerializeField, ReadOnly] private string username;
     [SerializeField, ReadOnly] private string newPassword;
     [SerializeField, ReadOnly] private string repeatPassword;
+    [Space(-10, order = 1)]
+    [Header("fix behaviour strings", order = 2)]
+    [SerializeField, ReadOnly] private string oldEditTextNewUsername;
+    [SerializeField, ReadOnly] private string editTextNewUsername;
+    [SerializeField, ReadOnly] private string oldEditTextNewPassword;
+    [SerializeField, ReadOnly] private string editTextNewPassword;
+    [SerializeField, ReadOnly] private string oldEditTextRepeatPassword;
+    [SerializeField, ReadOnly] private string editTextRepeatPassword;
 
     [Header("Variables", order = 0)]
     [SerializeField, ReadOnly] private bool usernameReleased;
     [SerializeField, ReadOnly] private bool passwordReleased;
     [SerializeField, ReadOnly] private bool buttonOkRealeased;
-    [SerializeField, ReadOnly] private bool usernameIsEmpty;
-    [SerializeField, ReadOnly] private bool newPasswordIsEmpty;
-    [SerializeField, ReadOnly] private bool repeatPasswordIsEmpty;
+    [SerializeField, ReadOnly] private bool keepOldTextNewUsername;
+    [SerializeField, ReadOnly] private bool keepOldTextNewPassword;
+    [SerializeField, ReadOnly] private bool keepOldTextRepeatPassword;
 
     [Header("Scripts", order = 0)]
     [SerializeField, ReadOnly] private AnimationsManager Animations;
@@ -50,16 +58,19 @@ public class SignOn : MonoBehaviour
         newUsernameInput.onDeselect.AddListener(OnDeselectNewUsername);
         newUsernameInput.onValueChanged.AddListener(OnValueChangedNewUsername);
         newUsernameInput.onEndEdit.AddListener(OnEndEditNewUsername);
+        newUsernameInput.onTouchScreenKeyboardStatusChanged.AddListener(ReportChangeStatusNewUsername);
 
         newPasswordInput.onSelect.AddListener(OnSelectNewPassword);
         newPasswordInput.onDeselect.AddListener(OnDeselectNewPassword);
         newPasswordInput.onValueChanged.AddListener(OnValueChangedNewPassword);
         newPasswordInput.onEndEdit.AddListener(OnEndEditNewPassword);
+        newPasswordInput.onTouchScreenKeyboardStatusChanged.AddListener(ReportChangeStatusNewPassword);
 
         repeatPasswordInput.onSelect.AddListener(OnSelectRepeatPassword);
         repeatPasswordInput.onDeselect.AddListener(OnDeselectRepeatPassword);
         repeatPasswordInput.onValueChanged.AddListener(OnValueChangedRepeatPassword);
         repeatPasswordInput.onEndEdit.AddListener(OnEndEditRepeatPassword);
+        repeatPasswordInput.onTouchScreenKeyboardStatusChanged.AddListener(ReportChangeStatusRepeatPassword);
 
         okButton.onClick.AddListener(() => Ok());
         returnButton.onClick.AddListener(() => Return());
@@ -77,8 +88,6 @@ public class SignOn : MonoBehaviour
     {
         Animations.Transition.EndClip();
         warningTMP.text = string.Empty;
-        newPasswordIsEmpty = true;
-        repeatPasswordIsEmpty = true;
         Buttons.Interaction(false, okButton);
 
         Debug.Log(PlayerPrefs.HasKey(AccountData.USERNAME) ? "username = " + PlayerPrefs.GetString(AccountData.USERNAME) : "username = EMPTY");
@@ -117,32 +126,43 @@ public class SignOn : MonoBehaviour
     #endregion
     #region newUsername
     public void OnSelectNewUsername(string newUsername)
-    { PlaceHolderNewUsername = string.Empty; }
-
-public void OnDeselectNewUsername(string newUsername)
     {
-        usernameIsEmpty = (newUsername == string.Empty);
+        PlaceHolderNewUsername = string.Empty;
+        warningTMP.text = string.Empty;
+    }
+
+    public void OnDeselectNewUsername(string newUsername)
+    {
         PlaceHolderNewUsername = LanguageManager.placeHolderNewID;
     }
 
     public void OnValueChangedNewUsername(string newUsername)
     {
-        usernameIsEmpty = (newUsername == string.Empty);
         warningTMP.text = string.Empty;
+        oldEditTextNewUsername = editTextNewUsername;
+        editTextNewUsername = newUsername;
     }
 
     public void OnEndEditNewUsername(string newUsername)
     {
+        if (keepOldTextNewUsername && !string.IsNullOrEmpty(oldEditTextNewUsername))
+        {
+            editTextNewUsername = oldEditTextNewUsername;
+            newUsernameInput.text = oldEditTextNewUsername;
+            this.username = oldEditTextNewUsername;
+            keepOldTextNewUsername = false;
+        }
+
         if (AccountData.HasUsername)
         {
             if (newUsername == AccountData.Username)
             { warningTMP.text = LanguageManager.alreadyIDWarning; }
-            else if (usernameIsEmpty)
+            else if (string.IsNullOrEmpty(newUsernameInput.text))
             { warningTMP.text = string.Empty; }
 
             usernameReleased = !(newUsername == AccountData.Username);
         }
-        else if (usernameIsEmpty)
+        else if (string.IsNullOrEmpty(newUsernameInput.text))
         { warningTMP.text = string.Empty; }
         else
         { usernameReleased = true; }
@@ -152,27 +172,52 @@ public void OnDeselectNewUsername(string newUsername)
         ValidationRealease();
     }
 
+    public void ReportChangeStatusNewUsername(TouchScreenKeyboard.Status newStatus)
+    {
+        if (newStatus == TouchScreenKeyboard.Status.Canceled)
+        { keepOldTextNewUsername = true; }
+    }
+
     public string PlaceHolderNewUsername
     { set => newUsernameInput.placeholder.GetComponent<TextMeshProUGUI>().text = value; }
     #endregion
     #region newPassword
     public void OnSelectNewPassword(string newPassword)
-    { PlaceHolderNewPassword = string.Empty; }
+    {
+        PlaceHolderNewPassword = string.Empty;
+    }
 
     public void OnDeselectNewPassword(string newPassword)
     {
-        newPasswordIsEmpty = (newPassword == string.Empty);
         PlaceHolderNewPassword = LanguageManager.placeHolderNewPassword;
     }
 
     public void OnValueChangedNewPassword(string newPassword)
-    { newPasswordIsEmpty = (newPassword == string.Empty); }
+    {
+        oldEditTextNewPassword = editTextNewPassword;
+        editTextNewPassword = newPassword;
+    }
 
     public void OnEndEditNewPassword(string newPassword)
     {
         this.newPassword = newPassword;
+
+        if (keepOldTextNewPassword && !string.IsNullOrEmpty(oldEditTextNewPassword))
+        {
+            editTextNewPassword = oldEditTextNewPassword;
+            newPasswordInput.text = oldEditTextNewPassword;
+            this.newPassword = oldEditTextNewPassword;
+            keepOldTextNewPassword = false;
+        }
+
         ValidationPasswords();
         ValidationRealease();
+    }
+
+    public void ReportChangeStatusNewPassword(TouchScreenKeyboard.Status newStatus)
+    {
+        if (newStatus == TouchScreenKeyboard.Status.Canceled)
+        { keepOldTextNewPassword = true; }
     }
 
     public string PlaceHolderNewPassword
@@ -180,22 +225,41 @@ public void OnDeselectNewUsername(string newUsername)
     #endregion
     #region repeatPassword
     public void OnSelectRepeatPassword(string repeatPassword)
-    { PlaceHolderRepeatPassword = string.Empty; }
+    {
+        PlaceHolderRepeatPassword = string.Empty;
+    }
 
     public void OnDeselectRepeatPassword(string repeatPassword)
     {
-        repeatPasswordIsEmpty = (repeatPassword == string.Empty);
         PlaceHolderRepeatPassword = LanguageManager.placeHolderRepeatPassword;
     }
 
     public void OnValueChangedRepeatPassword(string repeatPassword)
-    { repeatPasswordIsEmpty = (repeatPassword == string.Empty); }
+    {
+        oldEditTextRepeatPassword = editTextRepeatPassword;
+        editTextRepeatPassword = repeatPassword;
+    }
 
     public void OnEndEditRepeatPassword(string repeatPassword)
     {
         this.repeatPassword = repeatPassword;
+
+        if (keepOldTextRepeatPassword && !string.IsNullOrEmpty(oldEditTextRepeatPassword))
+        {
+            editTextRepeatPassword = oldEditTextRepeatPassword;
+            repeatPasswordInput.text = oldEditTextRepeatPassword;
+            this.repeatPassword = oldEditTextRepeatPassword;
+            keepOldTextRepeatPassword = false;
+        }
+
         ValidationPasswords();
         ValidationRealease();
+    }
+
+    public void ReportChangeStatusRepeatPassword(TouchScreenKeyboard.Status newStatus)
+    {
+        if (newStatus == TouchScreenKeyboard.Status.Canceled)
+        { keepOldTextRepeatPassword = true; }
     }
 
     private void ValidationPasswords()
@@ -203,14 +267,15 @@ public void OnDeselectNewUsername(string newUsername)
         if (usernameReleased)
         {
             warningTMP.text =
-                (newPasswordIsEmpty && repeatPasswordIsEmpty) ||
-                (newPassword == repeatPassword) ? string.Empty : LanguageManager.passwordsDontMatch;
+                (string.IsNullOrEmpty(newPasswordInput.text) && string.IsNullOrEmpty(repeatPasswordInput.text)) || (newPassword == repeatPassword) ? string.Empty : LanguageManager.passwordsDontMatch;
         }
     }
 
     private void ValidationRealease()
     {
-        passwordReleased = (newPassword == repeatPassword) && (!newPasswordIsEmpty && !repeatPasswordIsEmpty);
+        passwordReleased = (newPassword == repeatPassword) &&
+            (!string.IsNullOrEmpty(newPasswordInput.text) && !string.IsNullOrEmpty(repeatPasswordInput.text));
+
         buttonOkRealeased = usernameReleased && passwordReleased;
         Buttons.Interaction(buttonOkRealeased, okButton);
     }
