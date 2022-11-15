@@ -16,6 +16,7 @@ public class LanguageManager : MonoBehaviour
     [SerializeField] private Transform buttonsLangHeader;
     [SerializeField] private Button okButton;
     [SerializeField] private Button closeButton;
+    [SerializeField] private Button returnButton;
 
     #endregion
     #region READY_INSPECTOR
@@ -337,12 +338,14 @@ public class LanguageManager : MonoBehaviour
         (langButton, langPressed) = Buttons.Assignment(buttonsLangHeader, LangButtonsBehaviour);
         okButton.onClick.AddListener(OkFunction);
         closeButton.onClick.AddListener(ButtonsManager.CloseApplication);
+        returnButton.onClick.AddListener(() => ScenesManagement.LoadMenu());
     }
 
     private void Start()
     {
         Animations.Transition.EndClip();
         LangButtonsBehaviour(AccountData.Language);
+        returnButton.gameObject.SetActive(ScenesManagement.PreviousScene == ScenesManagement.Menu);
     }
 
     public void LangButtonsBehaviour(int index)
@@ -391,8 +394,6 @@ public class LanguageManager : MonoBehaviour
                 ScenesManagement.LoadSignIn();
                 break;
         }
-
-
     }
 
     public static void LoadLang(int index)

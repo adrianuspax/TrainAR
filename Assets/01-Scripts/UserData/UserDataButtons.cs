@@ -13,6 +13,7 @@ public class UserDataButtons : MonoBehaviour
     [Header("Canvas Buttons", order = 2)]
     [SerializeField] private Button nextButton;
     [SerializeField] private Button closeButton;
+    [SerializeField] private Button returnButton;
     [Space(-10, order = 0)]
     [Header("Page Two Header", order = 1)]
     [SerializeField] private Transform genreButtonsHeader;
@@ -81,6 +82,7 @@ public class UserDataButtons : MonoBehaviour
         #region CANVAS_MAIN
         closeButton.onClick.AddListener(ButtonsManager.CloseApplication);
         nextButton.onClick.AddListener(() => NextButtonFunction());
+        returnButton.onClick.AddListener(() => ScenesManagement.LoadMenu());
         #endregion
         #region GENRE
         genreColorPressed = new Color[2] { PalleteColors.Triad(3), PalleteColors.Main };
@@ -108,6 +110,7 @@ public class UserDataButtons : MonoBehaviour
 
     private void Start()
     {
+        returnButton.gameObject.SetActive(ScenesManagement.PreviousScene == ScenesManagement.Menu);
         levelByIndex = Data.levelPhrase;
     }
 

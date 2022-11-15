@@ -25,6 +25,7 @@ public class ButtonsMain : MonoBehaviour
     [Space(-10, order = 1)]
     [Header("Variables", order = 2)]
     [SerializeField, ReadOnly] private StateButtonAR stateButtonAR;
+    [SerializeField, ReadOnly] private bool btnBarRIsPressed;
     [Space(-10, order = 1)]
     [Header("Scripts", order = 2)]
     [SerializeField, ReadOnly] private AugmentedReality AR;
@@ -32,14 +33,14 @@ public class ButtonsMain : MonoBehaviour
     [SerializeField, ReadOnly] private AnimationsManager Animations;
     [SerializeField, ReadOnly] private ImagesManager Sprites;
 
-    private bool dropDownIsOpen;
-
     private void Awake()
     {
         btnTopR.onClick.AddListener(ButtonsManager.CloseApplication);
+        btnTopL.onClick.AddListener(() => ScenesManagement.LoadMenu());
         btnBarC.onClick.AddListener(() => AR.PlaceCoachAR());
-        btnBarR.onClick.AddListener(() => CallDropDownMenu(dropDownIsOpen));
-        btnBarL.onClick.AddListener(() => ScenesManagement.LoadMenu());
+        btnBarR.onClick.AddListener(() => ButtonSpeek(btnBarRIsPressed));
+        //btnBarL.onClick.AddListener(() => ScenesManagement.LoadMenu());
+
 
         AR = this.GetComponent<AugmentedReality>();
         Animations = this.GetComponent<AnimationsManager>();
@@ -75,7 +76,16 @@ public class ButtonsMain : MonoBehaviour
         stateButtonAR = state;
     }
 
-    public void CallDropDownMenu(bool called)
+    public void ButtonSpeek(bool isPressed)
+    {
+        isPressed = !isPressed;
+
+        btnBarR.image.sprite = isPressed ? Sprites.speekOff : Sprites.speekOn;
+
+        btnBarRIsPressed = isPressed;
+    }
+
+    /*public void CallDropDownMenu(bool called)
     {
         called = !called;
 
@@ -87,7 +97,7 @@ public class ButtonsMain : MonoBehaviour
         btnBarR.image.transform.localScale = new Vector2(called ? -1 : 1, 1);
 
         dropDownIsOpen = called;
-    }
+    }*/
 
     public bool ButtonSetCoachInteraction
     {

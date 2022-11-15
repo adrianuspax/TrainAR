@@ -4,6 +4,6 @@ public class ImagesManager : MonoBehaviour
 {
     public Sprite setCoachAR;
     public Sprite replaceCoachAR;
-    public Sprite visibilityOn;
-    public Sprite visibilityOff;
+    public Sprite speekOn;
+    public Sprite speekOff;
 }
