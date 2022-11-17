@@ -35,6 +35,7 @@ public static class AccountData
     public static bool IsMale => PlayerPrefs.GetInt(DataManagement.pageKey[1]) == 0;
     public static string Goal => PlayerPrefs.GetString(DataManagement.pageKey[2]);
     public static int Level => PlayerPrefs.GetInt(Key.levelValue);
+    public static string LevelPhrase => PlayerPrefs.GetString(DataManagement.pageKey[3]);
     public static string Focus => PlayerPrefs.GetString(DataManagement.pageKey[4]);
     public static int Age => int.Parse(PlayerPrefs.GetString(DataManagement.footerKey[0]));
     public static float CurrentWeight => float.Parse(PlayerPrefs.GetString(DataManagement.footerKey[1]));

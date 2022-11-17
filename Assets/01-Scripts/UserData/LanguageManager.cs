@@ -71,9 +71,35 @@ public class LanguageManager : MonoBehaviour
     public static string areYouSure;
     public static string yes;
     public static string nop;
+    //default
+    public static string _name;
+    public static string age;
+    public static string weight;
+    public static string height;
+    public static string gender;
+    public static string level;
+    public static string male;
+    public static string female;
 
     #endregion
     #region ENGLISH
+    private readonly static string nameEN = 
+        "Name";
+    private readonly static string ageEN =
+        "Age";
+    private readonly static string weightEN =
+        "Weight";
+    private readonly static string heightEN =
+        "Height";
+    private readonly static string genderEN =
+        "Gender";
+    private readonly static string levelEN =
+        "Level";
+    private readonly static string maleEN =
+        "Male";
+    private readonly static string femaleEN =
+        "Female";
+    /* ======================================================================================================================================= */
     private readonly static string idEN =
         "ID";
     private readonly static string passwordEN =
@@ -157,6 +183,23 @@ public class LanguageManager : MonoBehaviour
         "Cancel";
     #endregion
     #region KOREAN
+    private readonly static string nameKO =
+        "이름";
+    private readonly static string ageKO =
+        "나이";
+    private readonly static string weightKO =
+        "몸무게";
+    private readonly static string heightKO =
+        "신장";
+    private readonly static string genderKO =
+        "성별";
+    private readonly static string levelKO =
+        "레벨";
+    private readonly static string maleKO =
+        "남성";
+    private readonly static string femaleKO =
+        "여성";
+    /* ======================================================================================================================================= */
     private readonly static string idKO =
         "아이디";
     private readonly static string passwordKO =
@@ -240,6 +283,23 @@ public class LanguageManager : MonoBehaviour
         "취소";
     #endregion
     #region PORTUGUESE_BRAZILIAN
+    private readonly static string nameBR =
+        "Nome";
+    private readonly static string ageBR =
+        "Idade";
+    private readonly static string weightBR =
+        "Peso";
+    private readonly static string heightBR =
+        "Altura";
+    private readonly static string genderBR =
+        "Gênero";
+    private readonly static string levelBR =
+        "Nível";
+    private readonly static string maleBR =
+        "Masculino";
+    private readonly static string femaleBR =
+        "Feminino";
+    /* ======================================================================================================================================= */
     private readonly static string idBR =
         "Usuário";
     private readonly static string passwordBR =
@@ -396,6 +456,15 @@ public class LanguageManager : MonoBehaviour
         switch (Language)
         {
             case Language.EN:
+               _name = nameEN;
+                age = ageEN;
+                weight = weightEN;
+                height = heightEN;
+                gender = genderEN;
+                level = levelEN;
+                male = maleEN;
+                female = femaleEN;
+
                 id = idEN;
                 password = passwordEN;
                 placeHolderID = placeHolderIDEN;
@@ -440,6 +509,15 @@ public class LanguageManager : MonoBehaviour
                 cancelButton = cancelButtonEN;
                 break;
             case Language.KO:
+                _name = nameKO;
+                age = ageKO;
+                weight = weightKO;
+                height = heightKO;
+                gender = genderKO;
+                level = levelKO;
+                male = maleKO;
+                female = femaleKO;
+
                 id = idKO;
                 password = passwordKO;
                 placeHolderID = placeHolderIDKO;
@@ -484,6 +562,15 @@ public class LanguageManager : MonoBehaviour
                 cancelButton = cancelButtonKO;
                 break;
             case Language.BR:
+                _name = nameBR;
+                age = ageBR;
+                weight = weightBR;
+                height = heightBR;
+                gender = genderBR;
+                level = levelBR;
+                male = maleBR;
+                female = femaleBR;
+
                 id = idBR;
                 password = passwordBR;
                 placeHolderID = placeHolderIDBR;

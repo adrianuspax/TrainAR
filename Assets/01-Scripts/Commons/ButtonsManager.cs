@@ -16,6 +16,7 @@ public class ButtonsManager : MonoBehaviour
     [SerializeField, ReadOnly] private SignOn SignOnButtons;
     [SerializeField, ReadOnly] private LanguageManager LanguageButtons;
     [SerializeField, ReadOnly] private Menu MenuButtons;
+    [SerializeField, ReadOnly] private PanelCoach PanelCoachButtons;
 
     public delegate void BehaviourButtons(int index);
 
@@ -29,6 +30,7 @@ public class ButtonsManager : MonoBehaviour
         if (this.GetComponent<SignOn>() != null) { SignOnButtons = this.GetComponent<SignOn>(); }
         if (this.GetComponent<LanguageManager>() != null) { LanguageButtons = this.GetComponent<LanguageManager>(); }
         if (this.GetComponent<Menu>() != null) { MenuButtons = this.GetComponent<Menu>(); }
+        if (this.GetComponent<PanelCoach>() != null) { PanelCoachButtons = this.GetComponent<PanelCoach>(); }
     }
 
     public ButtonsMain CanvasMain => CanvasButtons;
@@ -38,6 +40,7 @@ public class ButtonsManager : MonoBehaviour
     public SignIn SingIn => SignInButtons;
     public LanguageManager Language => LanguageButtons;
     public Menu Menu => MenuButtons;
+    public PanelCoach PanelCoach => PanelCoachButtons;
 
     public (Button[], bool[]) Assignment(Transform header, params BehaviourButtons[] behaviour)
     {

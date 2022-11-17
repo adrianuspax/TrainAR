@@ -2,7 +2,7 @@
 using UnityEngine.UI;
 
 [RequireComponent(typeof(ButtonsManager), typeof(AnimationsMain))]
-[RequireComponent(typeof(AugmentedReality), typeof(ImagesManager))]
+[RequireComponent(typeof(AugmentedReality), typeof(ImagesManager), typeof(PanelCoach))]
 public class ButtonsMain : MonoBehaviour
 {
     [Header("BUTTONS", order = 0)]
@@ -26,13 +26,15 @@ public class ButtonsMain : MonoBehaviour
     [SerializeField, ReadOnly] private ButtonsManager Buttons;
     [SerializeField, ReadOnly] private AnimationsManager Animations;
     [SerializeField, ReadOnly] private ImagesManager Sprites;
+    [SerializeField, ReadOnly] private PanelCoach PanelCoach;
 
     private void Awake()
     {
         btnTopR.onClick.AddListener(ButtonsManager.CloseApplication);
         btnTopL.onClick.AddListener(() => ScenesManagement.LoadMenu());
         btnBarC.onClick.AddListener(() => AR.PlaceCoachAR());
-        btnBarR.onClick.AddListener(() => ButtonSpeek(btnBarRIsPressed));
+        btnBarR.onClick.AddListener(() => ButtonTalk(btnBarRIsPressed));
+        btnBarR.onClick.AddListener(() => PanelCoach.PanelCoachBehaviour(btnBarRIsPressed));
         //btnBarL.onClick.AddListener(() => ScenesManagement.LoadMenu());
 
 
@@ -40,6 +42,7 @@ public class ButtonsMain : MonoBehaviour
         Animations = this.GetComponent<AnimationsManager>();
         Buttons = this.GetComponent<ButtonsManager>();
         Sprites = this.GetComponent<ImagesManager>();
+        PanelCoach = this.GetComponent<PanelCoach>();
     }
 
     public void ButtonARBehaviour(StateButtonAR state, bool isInteractable)
@@ -70,7 +73,7 @@ public class ButtonsMain : MonoBehaviour
         stateButtonAR = state;
     }
 
-    public void ButtonSpeek(bool isPressed)
+    public void ButtonTalk(bool isPressed)
     {
         isPressed = !isPressed;
 
