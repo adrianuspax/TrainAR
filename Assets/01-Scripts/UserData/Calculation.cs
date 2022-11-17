@@ -4,14 +4,14 @@ using UnityEngine;
 public class Calculation : MonoBehaviour
 {
     [Header("Input", order = 0)]
-    [SerializeField, ReadOnly] private bool _isMale;
-    [SerializeField, ReadOnly] private int _age;
-    [SerializeField, ReadOnly] private float _height;
-    [SerializeField, ReadOnly] private float _currentWeight;
-    [SerializeField, ReadOnly] private float _targetWeight;
-    [SerializeField, ReadOnly] private Goal _goal;
-    [SerializeField, ReadOnly] private Level _level;
-    [SerializeField, ReadOnly] private Focus _focus;
+    [SerializeField] private bool _isMale;
+    [SerializeField][Range(5, 90)] private int _age;
+    [SerializeField][Range(60, 300)] private float _height;
+    [SerializeField][Range(20, 300)] private float _currentWeight;
+    [SerializeField][Range(20, 300)] private float _targetWeight;
+    [SerializeField] private Goal _goal;
+    [SerializeField] private Level _level;
+    [SerializeField] private Focus _focus;
 
     [Header("Output", order = 0)]
     [Space(-10, order = 1)]
@@ -47,7 +47,10 @@ public class Calculation : MonoBehaviour
         _goal = (Goal)Enum.Parse(typeof(Goal), AccountData.Goal);
         _level = (Level)AccountData.Level;
         _focus = (Focus)Enum.Parse(typeof(Focus), AccountData.Focus);
+    }
 
+    private void Update()
+    {
         isMale = _isMale;
         age = _age;
         height = _height;
@@ -56,14 +59,12 @@ public class Calculation : MonoBehaviour
         goal = _goal;
         level = _level;
         focus = _focus;
-    }
 
-    private void Start()
-    {
         bmi = BMI;
         statusBMI = SetStatusBMI(BMI);
         bodyFat = BodyFat;
         currentFat = CurrentFat;
+
         targetFat = TargetFat;
         targetBodyFat = TargetBodyFat;
         toLoseFat = ToLoseFat;
@@ -153,16 +154,8 @@ public class Calculation : MonoBehaviour
         }
     }
 
-    private static float CalcFat(float weight, float bodyFat)
-    {
-        return weight * bodyFat;
-    }
-
-    private static float CalcLoseFat(float currentFat, float targetFat)
-    {
-        return currentFat - targetFat;
-    }
-
+    private static float CalcFat(float weight, float bodyFat) => weight * bodyFat;
+    private static float CalcLoseFat(float currentFat, float targetFat) => currentFat - targetFat;
     public static float BMI => CalcBMI(height, currentWeight);
     public static float BodyFat => CalcBodyFat(age, isMale, level);
     public static Level TargetLevel
