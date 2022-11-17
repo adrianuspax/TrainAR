@@ -1,13 +1,6 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 
-public enum Language
-{
-    EN = 0,
-    KO = 1,
-    BR = 2
-};
-
 [RequireComponent(typeof(AnimationsManager), typeof(ButtonsManager))]
 public class LanguageManager : MonoBehaviour
 {
@@ -345,7 +338,7 @@ public class LanguageManager : MonoBehaviour
     {
         Animations.Transition.EndClip();
         LangButtonsBehaviour(AccountData.Language);
-        returnButton.gameObject.SetActive(ScenesManagement.PreviousScene == ScenesManagement.Menu);
+        returnButton.gameObject.SetActive(ScenesManagement.PreviousScene == SceneName.Menu);
     }
 
     public void LangButtonsBehaviour(int index)
@@ -387,7 +380,7 @@ public class LanguageManager : MonoBehaviour
 
         switch (ScenesManagement.PreviousScene)
         {
-            case ScenesManagement.Menu:
+            case SceneName.Menu:
                 ScenesManagement.LoadMenu();
                 break;
             default:

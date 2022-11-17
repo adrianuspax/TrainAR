@@ -1,12 +1,6 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 
-public enum StateButtonAR
-{
-    ReadyToSet = 0,
-    Refresh = 1
-};
-
 [RequireComponent(typeof(ButtonsManager), typeof(AnimationsMain))]
 [RequireComponent(typeof(AugmentedReality), typeof(ImagesManager))]
 public class ButtonsMain : MonoBehaviour

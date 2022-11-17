@@ -32,9 +32,6 @@ public class Menu : MonoBehaviour
     [Header("Scripts", order = 0)]
     [SerializeField, ReadOnly] private AnimationsManager Animations;
 
-    private const string animationPanelStart = "panelQuestionStart";
-    private const string animationPanelEnd = "panelQuestionEnd";
-
     private void Awake()
     {
         Animations = this.GetComponent<AnimationsManager>();
@@ -75,7 +72,7 @@ public class Menu : MonoBehaviour
     { ScenesManagement.LoadLanguage(); }
 
     public void DeleteAccount()
-    { PanelQuestionAnimation(animationPanelStart); }
+    { PanelQuestionAnimation(State.PanelStart); }
 
     public void SignOut()
     {
@@ -88,13 +85,13 @@ public class Menu : MonoBehaviour
 
     public void Yes()
     {
-        PanelQuestionAnimation(animationPanelEnd);
+        PanelQuestionAnimation(State.PanelEnd);
         PlayerPrefs.DeleteAll();
         ScenesManagement.LoadRedirection();
     }
 
     public void No()
-    { PanelQuestionAnimation(animationPanelEnd); }
+    { PanelQuestionAnimation(State.PanelEnd); }
 
     private void PanelQuestionAnimation(string animationName) => questionPanelAnimator.Play(animationName);
     public string UpdateProfileButtonName

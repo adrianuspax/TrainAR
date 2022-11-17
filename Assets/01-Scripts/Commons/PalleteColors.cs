@@ -231,13 +231,4 @@ public static class PalleteColors
             return blueGrey[level];
         }
     }
-
-
-
-
-
-
-
-
-
 }

@@ -1,5 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.XR.ARFoundation;
 using UnityEngine.XR.ARSubsystems;
@@ -26,7 +25,7 @@ public class AugmentedReality : MonoBehaviour
     [SerializeField, ReadOnly] private AnimationsManager Animations;
     [SerializeField, ReadOnly] private ButtonsManager Buttons;
 
-    static readonly List<ARRaycastHit> hitResults = new();
+    private static readonly List<ARRaycastHit> hitResults = new();
 
     private void Awake()
     {

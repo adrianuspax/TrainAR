@@ -53,6 +53,7 @@ public class UserDataButtons : MonoBehaviour
     [NonReorderable][SerializeField, ReadOnly] private bool[] levelIsPressed;
     [NonReorderable][SerializeField, ReadOnly] private string[] levelByIndex;
     [SerializeField, ReadOnly] private string chosenLevel;
+    [SerializeField, ReadOnly] private int levelValue;
     [Space(-10, order = 0)]
     [Header("Page5_(Focus)", order = 1)]
     [NonReorderable][SerializeField, ReadOnly] private Button[] focusButton;
@@ -110,7 +111,7 @@ public class UserDataButtons : MonoBehaviour
 
     private void Start()
     {
-        returnButton.gameObject.SetActive(ScenesManagement.PreviousScene == ScenesManagement.Menu);
+        returnButton.gameObject.SetActive(ScenesManagement.PreviousScene == SceneName.Menu);
         levelByIndex = Data.levelPhrase;
     }
 
@@ -246,6 +247,7 @@ public class UserDataButtons : MonoBehaviour
 
         Level = levelByIndex[index];
         NextButtonInteraction = levelIsPressed[index];
+        LevelValue = index;
     }
 
     public string Level
@@ -256,6 +258,12 @@ public class UserDataButtons : MonoBehaviour
             chosenLevel = value;
             PagesAndFields.LevelName = chosenLevel;
         }
+    }
+
+    public int LevelValue
+    {
+        get => levelValue;
+        set => levelValue = value + 1;
     }
 
     #endregion
@@ -390,7 +398,7 @@ public class UserDataButtons : MonoBehaviour
         {
             switch (ScenesManagement.PreviousScene)
             {
-                case ScenesManagement.Menu: ScenesManagement.LoadMenu();
+                case SceneName.Menu: ScenesManagement.LoadMenu();
                     break;
                 default: ScenesManagement.LoadTrainAR();
                     break;

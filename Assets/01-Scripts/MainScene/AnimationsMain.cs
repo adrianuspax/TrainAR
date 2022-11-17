@@ -18,25 +18,20 @@ public class AnimationsMain : MonoBehaviour
     [SerializeField, ReadOnly] private Animator anchorAnimator;
     [SerializeField, ReadOnly] private Animator movePhoneAnimator;
 
-    public const string TagAnchor = "aniAnchorAR";
-    public const string TagButtonAR = "aniButtonAR";
-    public const string ParameterAnchorHit = "isHit";
-    public const string ParameterAnchorEnable = "anchorEnable";
-
     private void Awake()
     {
         coach = this.GetComponent<CoachAnimations>();
-        if (IsOnTheScene(TagAnchor))
-        { anchorAnimator = GetAnimator(TagAnchor); }
-        if (IsOnTheScene(TagButtonAR))
-        { movePhoneAnimator = GetAnimator(TagButtonAR); }
+        if (IsOnTheScene(TAG.Anchor))
+        { anchorAnimator = GetAnimator(TAG.Anchor); }
+        if (IsOnTheScene(TAG.ButtonAR))
+        { movePhoneAnimator = GetAnimator(TAG.ButtonAR); }
     }
 
     private bool IsOnTheScene(string tag) => GameObject.FindWithTag(tag) != null;
     private Animator GetAnimator(string tag) => GameObject.FindGameObjectWithTag(tag).GetComponent<Animator>();
     #region ANCHOR_AR
-    public void AnchorIsHit(bool isHit) => anchorAnimator.SetBool(ParameterAnchorHit, isHit);
-    public void AnchorVisible(bool isVisible) => anchorAnimator.SetBool(ParameterAnchorEnable, isVisible);
+    public void AnchorIsHit(bool isHit) => anchorAnimator.SetBool(Parameter.AnchorHit, isHit);
+    public void AnchorVisible(bool isVisible) => anchorAnimator.SetBool(Parameter.AnchorEnable, isVisible);
     #endregion
     #region BUTTON_AR
     public void MovePhoneButton(bool isPlaying)

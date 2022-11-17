@@ -90,8 +90,8 @@ public class SignOn : MonoBehaviour
         warningTMP.text = string.Empty;
         Buttons.Interaction(false, okButton);
 
-        Debug.Log(PlayerPrefs.HasKey(AccountData.USERNAME) ? "username = " + PlayerPrefs.GetString(AccountData.USERNAME) : "username = EMPTY");
-        Debug.Log(PlayerPrefs.HasKey(AccountData.PASSWORD) ? "password = " + PlayerPrefs.GetString(AccountData.PASSWORD) : "password = EMPTY");
+        Debug.Log(PlayerPrefs.HasKey(Key.username) ? "username = " + PlayerPrefs.GetString(Key.username) : "username = EMPTY");
+        Debug.Log(PlayerPrefs.HasKey(Key.password) ? "password = " + PlayerPrefs.GetString(Key.password) : "password = EMPTY");
     }
     #region BUTTONS
     public void Ok()
@@ -103,7 +103,7 @@ public class SignOn : MonoBehaviour
 
             switch (ScenesManagement.PreviousScene)
             {
-                case ScenesManagement.Menu: ScenesManagement.LoadMenu();
+                case SceneName.Menu: ScenesManagement.LoadMenu();
                     break;
                 default: ScenesManagement.LoadSignIn();
                     break;
@@ -115,7 +115,7 @@ public class SignOn : MonoBehaviour
     {
         switch (ScenesManagement.PreviousScene)
         {
-            case ScenesManagement.Menu:
+            case SceneName.Menu:
                 ScenesManagement.LoadMenu();
                 break;
             default:

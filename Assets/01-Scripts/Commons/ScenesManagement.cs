@@ -3,28 +3,20 @@ using UnityEngine.SceneManagement;
 
 public class ScenesManagement : MonoBehaviour
 {
-    public const string Redirection = "Redirection";
-    public const string Language = "Language";
-    public const string SignIn = "SignIn";
-    public const string SignOn = "SignOn";
-    public const string UserData = "UserData";
-    public const string TrainAR = "TrainAR";
-    public const string Menu = "Menu";
-
     public delegate void CoroutineDelegate(string scene);
     public static CoroutineDelegate coroutineDelegate;
 
-    public static void LoadRedirection() => SceneManager.LoadScene(Redirection);
-    public static void LoadLanguage() => coroutineDelegate(Language);
-    public static void LoadSignIn() => coroutineDelegate(SignIn);
-    public static void LoadSignOn() => coroutineDelegate(SignOn);
-    public static void LoadUserData() => coroutineDelegate(UserData);
-    public static void LoadTrainAR() => coroutineDelegate(TrainAR);
-    public static void LoadMenu() => coroutineDelegate( Menu);
+    public static void LoadRedirection() => SceneManager.LoadScene(SceneName.Redirection);
+    public static void LoadLanguage() => coroutineDelegate(SceneName.Language);
+    public static void LoadSignIn() => coroutineDelegate(SceneName.SignIn);
+    public static void LoadSignOn() => coroutineDelegate(SceneName.SignOn);
+    public static void LoadUserData() => coroutineDelegate(SceneName.UserData);
+    public static void LoadTrainAR() => coroutineDelegate(SceneName.TrainAR);
+    public static void LoadMenu() => coroutineDelegate(SceneName.Menu);
 
     public static string PreviousScene
     {
-        get => PlayerPrefs.GetString("currentScene");
-        set => PlayerPrefs.SetString("currentScene", value);
+        get => PlayerPrefs.GetString(Key.CurrentScene);
+        set => PlayerPrefs.SetString(Key.CurrentScene, value);
     }
 }

@@ -50,8 +50,8 @@ public class DataManagement : MonoBehaviour
     public const int FOOTER4 = 3;
     #endregion
     #region DATA_VALUES_MANAGEMENT
-    public readonly string[] goalName = new string[] { "Lose Weight", "More Muscles", "Keep Shape" };
-    public readonly string[] focusName = new string[] { "Abdomen", "Chest", "Arms", "Legs" };
+    public readonly string[] goalName = new string[] { "loseWeight", "moreMuscles", "keepShape" };
+    public readonly string[] focusName = new string[] { "abdomen", "chest", "arms", "legs" };
     [NonReorderable][ReadOnly] public string[] levelPhrase;
     #endregion
     #region UNITY_MONOBEHAVIOUR
@@ -60,7 +60,6 @@ public class DataManagement : MonoBehaviour
         Buttons = this.GetComponent<ButtonsManager>();
         PagesAndFields = this.GetComponent<PagesAndFields>();
         Animations = this.GetComponent<AnimationsManager>();
-        //LanguageManager.LoadLang(Language);
         PagesAndFields.PagesQuestionString = LanguageManager.pageQuestion;
         Buttons.UserData.NextButtonString = LanguageManager.nextButton;
         PagesAndFields.Page1PlaceHolder = LanguageManager.page1PlaceHolder;
@@ -115,6 +114,7 @@ public class DataManagement : MonoBehaviour
                 break;
             case PAGE4:
                 Level = Buttons.UserData.Level;
+                LevelValue = Buttons.UserData.LevelValue;
                 Debug.Log("Page4: Level = " + Level);
                 break;
             case PAGE5:
@@ -177,6 +177,12 @@ public class DataManagement : MonoBehaviour
             PlayerPrefs.SetString(pageKey[3], value);
             level = PlayerPrefs.GetString(pageKey[3]);
         }
+    }
+
+    public int LevelValue
+    {
+        get => PlayerPrefs.GetInt(Key.levelValue);
+        set => PlayerPrefs.SetInt(Key.levelValue, value);
     }
 
     public string Focus

@@ -1,15 +1,6 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-public enum BodyPart
-{
-    Chest = 0,
-    Abdomen = 1,
-    Legs = 2,
-    Arms = 3,
-    All = 4
-}
-
 [RequireComponent(typeof(AnimationsManager))]
 public class FloatMenu : MonoBehaviour
 {
@@ -28,8 +19,6 @@ public class FloatMenu : MonoBehaviour
 
     [Header("Scripts", order = 0)]
     [SerializeField, ReadOnly] private ButtonsManager Buttons;
-
-    private const string animationParameter = "floatIsOpen";
 
     private void Awake()
     {
@@ -127,14 +116,14 @@ public class FloatMenu : MonoBehaviour
         {
             int index;
             index = Random.Range(0, TotalFloats);
-            return AnimatorFloat[index].GetBool(animationParameter);
+            return AnimatorFloat[index].GetBool(Parameter.floatIsOpen);
         }
 
         set
         {
             foreach (Animator animators in AnimatorFloat)
             {
-                animators.SetBool(animationParameter, value);
+                animators.SetBool(Parameter.floatIsOpen, value);
             }
         }
     }

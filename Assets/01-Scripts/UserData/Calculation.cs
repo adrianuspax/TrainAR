@@ -1,44 +1,23 @@
+using System;
 using UnityEngine;
+
 public class Calculation : MonoBehaviour
 {
-    public enum Goal
-    {
-        loseWeight = 0,
-        moreMuscles = 1,
-        keepShape = 2
-    }
-
-    public enum Level
-    {
-        lvl1 = 1,
-        lvl2 = 2,
-        lvl3 = 3,
-        lvl4 = 4,
-        lvl5 = 5
-    }
-
-    public enum StatusIMC
-    {
-        lean = 0,
-        normal = 1,
-        overweight = 2,
-        obese = 3
-    }
-
     [Header("Input", order = 0)]
-    [SerializeField] private bool _isMale;
-    [SerializeField] private int _age;
-    [SerializeField] private float _height;
-    [SerializeField] private float _currentWeight;
-    [SerializeField] private float _targetWeight;
-    [SerializeField] private Goal _goal;
-    [SerializeField] private Level _level;
+    [SerializeField, ReadOnly] private bool _isMale;
+    [SerializeField, ReadOnly] private int _age;
+    [SerializeField, ReadOnly] private float _height;
+    [SerializeField, ReadOnly] private float _currentWeight;
+    [SerializeField, ReadOnly] private float _targetWeight;
+    [SerializeField, ReadOnly] private Goal _goal;
+    [SerializeField, ReadOnly] private Level _level;
+    [SerializeField, ReadOnly] private Focus _focus;
 
     [Header("Output", order = 0)]
     [Space(-10, order = 1)]
     [Header("Current", order = 2)]
-    [SerializeField, ReadOnly] private float imc;
-    [SerializeField, ReadOnly] private StatusIMC statusIMC;
+    [SerializeField, ReadOnly] private float bmi;
+    [SerializeField, ReadOnly] private StatusBMI statusBMI;
     [SerializeField, ReadOnly] private float bodyFat;
     [SerializeField, ReadOnly] private float currentFat;
     [Space(-10, order = 0)]
@@ -46,8 +25,8 @@ public class Calculation : MonoBehaviour
     [SerializeField, ReadOnly] private Level targetLevel;
     [SerializeField, ReadOnly] private float targetFat;
     [SerializeField, ReadOnly] private float targetBodyFat;
-    [SerializeField, ReadOnly] private float loseFat;
-    [SerializeField, ReadOnly] private float burnCalories;
+    [SerializeField, ReadOnly] private float toLoseFat;
+    [SerializeField, ReadOnly] private float toBurnCalories;
 
     public static bool isMale;
     public static int age;
@@ -56,9 +35,19 @@ public class Calculation : MonoBehaviour
     public static float targetWeight;
     public static Goal goal;
     public static Level level;
+    public static Focus focus;
 
     private void Awake()
     {
+        _isMale = AccountData.IsMale;
+        _age = AccountData.Age;
+        _height = AccountData.Height;
+        _currentWeight = AccountData.CurrentWeight;
+        _targetWeight = AccountData.TargetWeight;
+        _goal = (Goal)Enum.Parse(typeof(Goal), AccountData.Goal);
+        _level = (Level)AccountData.Level;
+        _focus = (Focus)Enum.Parse(typeof(Focus), AccountData.Focus);
+
         isMale = _isMale;
         age = _age;
         height = _height;
@@ -66,22 +55,23 @@ public class Calculation : MonoBehaviour
         targetWeight = _targetWeight;
         goal = _goal;
         level = _level;
+        focus = _focus;
     }
 
     private void Start()
     {
-        imc = IMC;
-        statusIMC = CalcStatusIMC(IMC);
+        bmi = BMI;
+        statusBMI = SetStatusBMI(BMI);
         bodyFat = BodyFat;
         currentFat = CurrentFat;
         targetFat = TargetFat;
         targetBodyFat = TargetBodyFat;
-        loseFat = LoseFat;
-        burnCalories = BurnCalories;
+        toLoseFat = ToLoseFat;
+        toBurnCalories = ToBurnCalories;
         targetLevel = TargetLevel;
     }
 
-    private static float CalcIMC(float height, float weight)
+    private static float CalcBMI(float height, float weight)
     {
         float imc, heightInMeters;
 
@@ -91,23 +81,23 @@ public class Calculation : MonoBehaviour
         return imc;
     }
 
-    private static StatusIMC CalcStatusIMC(float imc)
+    private static StatusBMI SetStatusBMI(float bmi)
     {
-        if (imc < 18.5f)
+        if (bmi < 18.5f)
         {
-            return StatusIMC.lean;
+            return StatusBMI.lean;
         }
-        else if (imc < 25f)
+        else if (bmi < 25f)
         {
-            return StatusIMC.normal;
+            return StatusBMI.normal;
         }
-        else if (imc < 30f)
+        else if (bmi < 30f)
         {
-            return StatusIMC.overweight;
+            return StatusBMI.overweight;
         }
         else
         {
-            return StatusIMC.obese;
+            return StatusBMI.obese;
         }
     }
 
@@ -117,11 +107,11 @@ public class Calculation : MonoBehaviour
         {
             return level switch
             {
-                Level.lvl1 => isMale ? 0.23f : 0.31f,
-                Level.lvl2 => isMale ? 0.22f : 0.30f,
-                Level.lvl3 => isMale ? 0.17f : 0.24f,
-                Level.lvl4 => isMale ? 0.12f : 0.175f,
-                Level.lvl5 => isMale ? 0.11f : 0.16f,
+                Level.I => isMale ? 0.23f : 0.31f,
+                Level.II => isMale ? 0.22f : 0.30f,
+                Level.III => isMale ? 0.17f : 0.24f,
+                Level.IV => isMale ? 0.12f : 0.175f,
+                Level.V => isMale ? 0.11f : 0.16f,
                 _ => isMale ? 0.17f : 0.24f,
             };
         }
@@ -129,11 +119,11 @@ public class Calculation : MonoBehaviour
         {
             return level switch
             {
-                Level.lvl1 => isMale ? 0.24f : 0.32f,
-                Level.lvl2 => isMale ? 0.23f : 0.31f,
-                Level.lvl3 => isMale ? 0.18f : 0.25f,
-                Level.lvl4 => isMale ? 0.13f : 0.185f,
-                Level.lvl5 => isMale ? 0.12f : 0.17f,
+                Level.I => isMale ? 0.24f : 0.32f,
+                Level.II => isMale ? 0.23f : 0.31f,
+                Level.III => isMale ? 0.18f : 0.25f,
+                Level.IV => isMale ? 0.13f : 0.185f,
+                Level.V => isMale ? 0.12f : 0.17f,
                 _ => isMale ? 0.18f : 0.25f,
             };
         }
@@ -141,11 +131,11 @@ public class Calculation : MonoBehaviour
         {
             return level switch
             {
-                Level.lvl1 => isMale ? 0.26f : 0.33f,
-                Level.lvl2 => isMale ? 0.25f : 0.32f,
-                Level.lvl3 => isMale ? 0.20f : 0.26f,
-                Level.lvl4 => isMale ? 0.15f : 0.195f,
-                Level.lvl5 => isMale ? 0.14f : 0.18f,
+                Level.I => isMale ? 0.26f : 0.33f,
+                Level.II => isMale ? 0.25f : 0.32f,
+                Level.III => isMale ? 0.20f : 0.26f,
+                Level.IV => isMale ? 0.15f : 0.195f,
+                Level.V => isMale ? 0.14f : 0.18f,
                 _ => isMale ? 0.20f : 0.26f,
             };
         }
@@ -153,11 +143,11 @@ public class Calculation : MonoBehaviour
         {
             return level switch
             {
-                Level.lvl1 => isMale ? 0.27f : 0.34f,
-                Level.lvl2 => isMale ? 0.26f : 0.33f,
-                Level.lvl3 => isMale ? 0.21f : 0.27f,
-                Level.lvl4 => isMale ? 0.16f : 0.205f,
-                Level.lvl5 => isMale ? 0.15f : 0.19f,
+                Level.I => isMale ? 0.27f : 0.34f,
+                Level.II => isMale ? 0.26f : 0.33f,
+                Level.III => isMale ? 0.21f : 0.27f,
+                Level.IV => isMale ? 0.16f : 0.205f,
+                Level.V => isMale ? 0.15f : 0.19f,
                 _ => isMale ? 0.21f : 0.27f,
             };
         }
@@ -173,7 +163,7 @@ public class Calculation : MonoBehaviour
         return currentFat - targetFat;
     }
 
-    public static float IMC => CalcIMC(height, currentWeight);
+    public static float BMI => CalcBMI(height, currentWeight);
     public static float BodyFat => CalcBodyFat(age, isMale, level);
     public static Level TargetLevel
     {
@@ -181,45 +171,45 @@ public class Calculation : MonoBehaviour
         {
             Level targetLevel = StatusBMI switch
             {
-                StatusIMC.lean => goal switch
+                StatusBMI.lean => goal switch
                 {
-                    Goal.loseWeight => (level == Level.lvl5) ? Level.lvl5 : (Level)((int)level + 1),
-                    Goal.moreMuscles => (level == Level.lvl5) ? Level.lvl5 : (Level)((int)level + 1),
-                    Goal.keepShape => ((int)level > 3) ? level : Level.lvl3,
-                    _ => Level.lvl3,
+                    Goal.loseWeight => (level == Level.V) ? Level.V : (Level)((int)level + 1),
+                    Goal.moreMuscles => (level == Level.V) ? Level.V : (Level)((int)level + 1),
+                    Goal.keepShape => ((int)level > 3) ? level : Level.III,
+                    _ => Level.III,
                 },
-                StatusIMC.normal => goal switch
+                StatusBMI.normal => goal switch
                 {
-                    Goal.loseWeight => (level == Level.lvl5) ? Level.lvl5 : (Level)((int)level + 1),
-                    Goal.moreMuscles => ((int)level > 3) ? Level.lvl5 : (Level)((int)level + 2),
-                    Goal.keepShape => ((int)level > 3) ? level : Level.lvl3,
-                    _ => Level.lvl3,
+                    Goal.loseWeight => (level == Level.V) ? Level.V : (Level)((int)level + 1),
+                    Goal.moreMuscles => ((int)level > 3) ? Level.V : (Level)((int)level + 2),
+                    Goal.keepShape => ((int)level > 3) ? level : Level.III,
+                    _ => Level.III,
                 },
-                StatusIMC.overweight => goal switch
+                StatusBMI.overweight => goal switch
                 {
-                    Goal.loseWeight => ((int)level > 3) ? level : Level.lvl3,
-                    Goal.moreMuscles => ((int)level > 3) ? level : Level.lvl4,
-                    Goal.keepShape => ((int)level > 3) ? level : Level.lvl3,
-                    _ => Level.lvl3,
+                    Goal.loseWeight => ((int)level > 3) ? level : Level.III,
+                    Goal.moreMuscles => ((int)level > 3) ? level : Level.IV,
+                    Goal.keepShape => ((int)level > 3) ? level : Level.III,
+                    _ => Level.III,
                 },
-                StatusIMC.obese => goal switch
+                StatusBMI.obese => goal switch
                 {
-                    Goal.loseWeight => ((int)level > 3) ? level : Level.lvl3,
-                    Goal.moreMuscles => ((int)level > 3) ? level : Level.lvl3,
-                    Goal.keepShape => ((int)level > 3) ? level : Level.lvl3,
-                    _ => Level.lvl3,
+                    Goal.loseWeight => ((int)level > 3) ? level : Level.III,
+                    Goal.moreMuscles => ((int)level > 3) ? level : Level.III,
+                    Goal.keepShape => ((int)level > 3) ? level : Level.III,
+                    _ => Level.III,
                 },
-                _ => Level.lvl3,
+                _ => Level.III,
             };
 
             return targetLevel;
         }
     }
 
-    public static StatusIMC StatusBMI => CalcStatusIMC(IMC);
+    public static StatusBMI StatusBMI => SetStatusBMI(BMI);
     public static float TargetBodyFat => CalcBodyFat(age, isMale, TargetLevel);
     public static float CurrentFat => CalcFat(currentWeight, BodyFat);
     public static float TargetFat => CalcFat(targetWeight, TargetBodyFat);
-    public static float LoseFat => CalcLoseFat(CurrentFat, TargetFat);
-    public static float BurnCalories => LoseFat * 7000;
+    public static float ToLoseFat => CalcLoseFat(CurrentFat, TargetFat);
+    public static float ToBurnCalories => ToLoseFat * 7000;
 }

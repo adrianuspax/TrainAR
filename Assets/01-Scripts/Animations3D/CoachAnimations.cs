@@ -1,26 +1,4 @@
-﻿using System;
-using UnityEngine;
-
-public enum Trigger
-{
-    Idle = 0,
-    Bored = 1,
-    Offensive = 2,
-    Squat = 3,
-    SquatBentArms = 4,
-    BicepCurl = 5,
-    BoxJump = 6,
-    Burpee = 7,
-    BicycleCrunch = 8,
-    CircleCrunch = 9,
-    JumpingJacks = 10,
-    Pistol = 11,
-    Plank = 12,
-    PikeWalk = 13,
-    PushUp = 14,
-    QuickSteps = 15,
-    Situps = 16
-};
+﻿using UnityEngine;
 
 public class CoachAnimations : MonoBehaviour
 {
@@ -110,9 +88,6 @@ public class CoachAnimations : MonoBehaviour
     [Header("Booleans", order = 1)]
     [SerializeField, ReadOnly] private bool AnimationStarted;
 
-    private const string BREATHING = "BreathingBlend";
-    public const string COACH = "Coach";
-
     private void Awake()
     {
         clipByIndex = new AnimationClip[TotalCount];
@@ -137,7 +112,7 @@ public class CoachAnimations : MonoBehaviour
 
     public void Breathing(float weight)
     {
-        coachControl.SetFloat(BREATHING, weight);
+        coachControl.SetFloat(Parameter.Breathing, weight);
         breathingFloat = weight;
     }
 

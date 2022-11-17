@@ -71,8 +71,9 @@ public class SignIn : MonoBehaviour
         Animations.Transition.EndClip();
         warningTMP.text = string.Empty;
         signed = AccountData.Signed;
-        Debug.Log(PlayerPrefs.HasKey(AccountData.USERNAME) ? "username = " + PlayerPrefs.GetString(AccountData.USERNAME) : "username = EMPTY");
-        Debug.Log(PlayerPrefs.HasKey(AccountData.PASSWORD) ? "password = " + PlayerPrefs.GetString(AccountData.PASSWORD) : "password = EMPTY");
+
+        Debug.Log(PlayerPrefs.HasKey(Key.username) ? "username = " + PlayerPrefs.GetString(Key.username) : "username = EMPTY");
+        Debug.Log(PlayerPrefs.HasKey(Key.password) ? "password = " + PlayerPrefs.GetString(Key.password) : "password = EMPTY");
     }
 
     public void SignInFunction()
@@ -86,7 +87,7 @@ public class SignIn : MonoBehaviour
 
             switch (ScenesManagement.PreviousScene)
             {
-                case ScenesManagement.SignOn: ScenesManagement.LoadUserData();
+                case SceneName.SignOn: ScenesManagement.LoadUserData();
                     break;
                 default: ScenesManagement.LoadTrainAR();
                     break;
