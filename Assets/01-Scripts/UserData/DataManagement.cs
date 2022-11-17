@@ -10,7 +10,7 @@ public class DataManagement : MonoBehaviour
     [Space(-10, order = 1)]
     [Header("SAVED DATA PROFILE", order = 2)]
     [ReadOnly, SerializeField] private string userName;
-    [ReadOnly, SerializeField] private string genre;
+    [ReadOnly, SerializeField] private string gender;
     [ReadOnly, SerializeField] private string goal;
     [ReadOnly, SerializeField] private string level;
     [ReadOnly, SerializeField] private string focus;
@@ -34,7 +34,7 @@ public class DataManagement : MonoBehaviour
     public const string MALE = "Male";
     public const string FEMALE = "Female";
 
-    public readonly static string[] pageKey = new string[] { "name", "genre", "goal", "level", "focus"};
+    public readonly static string[] pageKey = new string[] { "name", "gender", "goal", "level", "focus"};
     public readonly static string[] footerKey = new string[] { "age", "currentWeight", "weightGoal", "height" };
 
     public const int PAGE1 = 1;
@@ -80,7 +80,7 @@ public class DataManagement : MonoBehaviour
         Animations.Transition.EndClip();
         Buttons.UserData.NextButtonInteraction = false;
         userName = UserName;
-        genre = (IsMale ? MALE : FEMALE);
+        gender = (IsMale ? MALE : FEMALE);
         goal = Goal;
         level = Level;
         focus = Focus;
@@ -149,7 +149,7 @@ public class DataManagement : MonoBehaviour
         private set
         {
             GenreByIndex = value ? 0 : 1;
-            genre = (GenreByIndex == 0) ? MALE : FEMALE;
+            gender = (GenreByIndex == 0) ? MALE : FEMALE;
         }
     }
 
