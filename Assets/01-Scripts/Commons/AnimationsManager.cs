@@ -22,7 +22,7 @@ public class AnimationsManager : MonoBehaviour
 
     private void OnEnable()
     {
-        transition = GameObject.FindGameObjectWithTag(TAG.Transition).GetComponent<Transition>();
+        transition = GameObject.FindGameObjectWithTag(Tag.Transition).GetComponent<Transition>();
     }
 
     public UserDataAnimations UserData => userData;

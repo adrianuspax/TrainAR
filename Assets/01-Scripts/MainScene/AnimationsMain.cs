@@ -21,10 +21,10 @@ public class AnimationsMain : MonoBehaviour
     private void Awake()
     {
         coach = this.GetComponent<CoachAnimations>();
-        if (IsOnTheScene(TAG.Anchor))
-        { anchorAnimator = GetAnimator(TAG.Anchor); }
-        if (IsOnTheScene(TAG.ButtonAR))
-        { movePhoneAnimator = GetAnimator(TAG.ButtonAR); }
+        if (IsOnTheScene(Tag.Anchor))
+        { anchorAnimator = GetAnimator(Tag.Anchor); }
+        if (IsOnTheScene(Tag.ButtonAR))
+        { movePhoneAnimator = GetAnimator(Tag.ButtonAR); }
     }
 
     private bool IsOnTheScene(string tag) => GameObject.FindWithTag(tag) != null;

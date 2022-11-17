@@ -8,7 +8,7 @@ public static class Key
     public const string CurrentScene = "currentScene";
 }
 
-public static class TAG
+public static class Tag
 {
     public const string Anchor = "aniAnchorAR";
     public const string ButtonAR = "aniButtonAR";
