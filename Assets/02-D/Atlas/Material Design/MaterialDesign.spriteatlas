@@ -57,6 +57,7 @@ SpriteAtlas:
   - {fileID: 21300000, guid: b2f00302da6ffaf4da0e8c6a4570e616, type: 3}
   - {fileID: 21300000, guid: ff02733287b122e47b6ef724ea6f8d51, type: 3}
   - {fileID: 21300000, guid: 55091062304c21c43b8e2ce710928588, type: 3}
+  - {fileID: 21300000, guid: aabe6292f7d089f45bcb1ab959eeee54, type: 3}
   - {fileID: 21300000, guid: 5c7deea223a69a046aba09d77b3fad10, type: 3}
   - {fileID: 21300000, guid: c203ddb2cd0167c4e81b99d62b306913, type: 3}
   - {fileID: 21300000, guid: 25656fc2cb5e6ed4abe9175d143a5ee2, type: 3}
@@ -72,22 +73,28 @@ SpriteAtlas:
   - {fileID: 21300000, guid: a861ffc4d37ce064986a23cd68fcae21, type: 3}
   - {fileID: 21300000, guid: d7d2aff4b9131244f9940c7855c464de, type: 3}
   - {fileID: 21300000, guid: b8027a156df40d64ea678d2f14145439, type: 3}
+  - {fileID: 21300000, guid: fabd60953c30aeb48bdf3bfb486c05b4, type: 3}
   - {fileID: 21300000, guid: 877ad695a23c56343a7a2e898b689e5a, type: 3}
   - {fileID: 21300000, guid: eb0a1cc53dd8060409cb62d8aa019969, type: 3}
   - {fileID: 21300000, guid: 97a424d5dac5e334193befb79114fe3f, type: 3}
   - {fileID: 21300000, guid: 1ba8de16797e3824688aa5206a7815bd, type: 3}
   - {fileID: 21300000, guid: 9460f846d5e681d4eb8d2f784afb6fd2, type: 3}
   - {fileID: 21300000, guid: 1ff357171d1453e40b14527e731ed192, type: 3}
+  - {fileID: 21300000, guid: f2f01d27b6dd90c4c84de1eaf8b3a775, type: 3}
   - {fileID: 21300000, guid: 5c26285739c600f45a371db96912ff9f, type: 3}
   - {fileID: 21300000, guid: db59d5a7280eb5b4d887b64da5e7b6ac, type: 3}
+  - {fileID: 21300000, guid: bda1ed68d17f6d745a1f6da33ac54a44, type: 3}
   - {fileID: 21300000, guid: f51cfb78a834d1e448fdc4d5351c720b, type: 3}
   - {fileID: 21300000, guid: 0af6dbd890f6f9f41be7af9ef5b7c8cd, type: 3}
   - {fileID: 21300000, guid: 8999d8f841b3a724b8a064c1265c2511, type: 3}
   - {fileID: 21300000, guid: 3cc2e6a92bc26c24db7bc7757302ef04, type: 3}
   - {fileID: 21300000, guid: d6131f9a3cc15f74dace1433f8079181, type: 3}
   - {fileID: 21300000, guid: c737c5aacac9f0949bd8cb13d0c6de08, type: 3}
+  - {fileID: 21300000, guid: 307c0aba329f95d4a812c4e6688a50b3, type: 3}
+  - {fileID: 21300000, guid: dc183d0bb5aa9d14d9e0928370fb4b93, type: 3}
   - {fileID: 21300000, guid: da4a142bc72e9e845894fcbb00f5a132, type: 3}
   - {fileID: 21300000, guid: 688af6cbff630544cb04752a7316d588, type: 3}
+  - {fileID: 21300000, guid: 4f4a234c2bc2494428d36c455451fec5, type: 3}
   - {fileID: 21300000, guid: 67cfef9cfb7a7c44a84088d7e0569d16, type: 3}
   - {fileID: 21300000, guid: 1e7c93ec0ab20084b8099a9bf6655b2d, type: 3}
   - {fileID: 21300000, guid: 63e08cadf6b7fa04599375dfaca20c23, type: 3}
@@ -107,6 +114,7 @@ SpriteAtlas:
   - RingHandler
   - account_circle
   - highlight_off
+  - speaker_notes_on
   - thumb_up
   - manage_accounts
   - linear_scale
@@ -122,22 +130,28 @@ SpriteAtlas:
   - login
   - help_outline
   - visibilityOff
+  - speaker_notes_off
   - help
   - add_alt
   - smart_display
   - check_circle
   - phone_android
   - report_problem
+  - edit_square
   - menu_open
   - close
+  - monitor_weight
   - exit_to_app
   - closeButton
   - logout
   - arrow_back
   - delete
   - SetCoachButton
+  - loyalty
+  - woman
   - ReplaceCoachButton
   - touch_app
+  - man
   - do_not_disturb_on
   - play_circle_filled
   - CircleHandler

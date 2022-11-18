@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using Unity.Tutorials.Core.Editor;
+using System.Runtime.Serialization;
 
 public class PanelCoach : MonoBehaviour
 {
@@ -36,7 +38,8 @@ public class PanelCoach : MonoBehaviour
 
     [Header("Pivot Rotation Canvas Coach", order = 0)]
     [SerializeField] private Transform pivotPanelCoach;
-    [SerializeField] private Transform pivotCorrection;
+    [SerializeField, ReadOnly] private Transform objectReference;
+    [SerializeField, ReadOnly] private Transform pivotCorrection;
 
     /*[Header(" =========================== READY ONLY =========================== ", order = 0)]
     [Space(-10, order = 1)]
@@ -52,7 +55,7 @@ public class PanelCoach : MonoBehaviour
         heightTMP.text = (AccountData.Height * 0.01f).ToString() + " m";
         levelTMP.text = AccountData.LevelPhrase;
 
-        bmiTMP.text = Calculation.BMI.ToString() + " kg/m²";
+        bmiTMP.text = Calculation.BMI.ToString("F2") + " kg/m²";
         statusTMP.text = Calculation.StatusBMI.ToString();
         bodyFatTMP.text = (Calculation.BodyFat * 100f).ToString("F2") + "%";
         totalFatTMP.text = Calculation.CurrentFat.ToString("F2") + " kg" ;
@@ -61,14 +64,18 @@ public class PanelCoach : MonoBehaviour
         targetLevelTMP.text = Calculation.TargetLevel.ToString();
         targetWeightTMP.text = AccountData.TargetWeight.ToString() + " kg";
         targetBodyFatTMP.text = (Calculation.TargetBodyFat * 100f).ToString("F2") + "%";
-        toLoseFatTMP.text = Calculation.ToLoseFat.ToString() + " kg";
-        toBurnCalTMP.text = (Calculation.ToBurnCalories * 1000f).ToString() + " kcal";
+        toLoseFatTMP.text = Calculation.ToLoseFat.ToString("F2") + " kg";
+        toBurnCalTMP.text = (Calculation.ToBurnCalories * 0.0001f).ToString("F2") + " kcal";
 
-        pivotCorrection.transform.localRotation =   Quaternion.Euler( new Vector3(-90, 0, 0));
+        pivotCorrection = pivotPanelCoach.GetChild(0);
+        objectReference = GameObject.FindGameObjectWithTag(Tag.Coach).transform;
+        pivotCorrection.transform.localRotation =   Quaternion.Euler( new Vector3(0, -180, 0));
+        pivotCorrection.transform.localPosition = Vector3.up;
     }
 
     private void Update()
     {
+        pivotPanelCoach.transform.position = Vector3.Lerp(pivotPanelCoach.transform.position, objectReference.position, 5 * Time.deltaTime);
         pivotPanelCoach.LookAt(Camera.main.transform);
     }
 
