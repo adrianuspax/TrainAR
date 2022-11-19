@@ -32,7 +32,7 @@ public class LanguageManager : MonoBehaviour
     public static string[] pageQuestion;
     public static string nextButton;
     public static string page1PlaceHolder;
-    public static string[] buttonGoal;
+    public static string[] goalPhrase;
     public static string[] levelPhrase;
     public static string[] buttonFocus;
     public static string[] blockAreaName;
@@ -80,6 +80,15 @@ public class LanguageManager : MonoBehaviour
     public static string level;
     public static string male;
     public static string female;
+    public static string[] statusBMI;
+    public static string yourData;
+    public static string calculation;
+    public static string target;
+    public static string bodyFat;
+    public static string totalFat;
+    public static string goal;
+    public static string toLoseFat;
+    public static string toBurnCal;
 
     #endregion
     #region ENGLISH
@@ -99,6 +108,24 @@ public class LanguageManager : MonoBehaviour
         "Male";
     private readonly static string femaleEN =
         "Female";
+    private readonly static string[] statusBMIEN = new string[]
+    { "Lean", "Normal", "Overweight", "Fat" };
+    private readonly static string yourDataEN =
+        "Your Data";
+    private readonly static string calculationEN =
+        "Calculation";
+    private readonly static string targetEN =
+        "Target";
+    private readonly static string bodyFatEN =
+        "Body Fat";
+    private readonly static string totalFatEN =
+        "Total Fat";
+    private readonly static string goalEN =
+        "Goal";
+    private readonly static string toLoseFatEN =
+        "To Lose Fat";
+    private readonly static string toBurnCalEN =
+        "To Burn Calories";
     /* ======================================================================================================================================= */
     private readonly static string idEN =
         "ID";
@@ -164,7 +191,7 @@ public class LanguageManager : MonoBehaviour
     private readonly static string[] buttonGoalEN = new string[]
     { "Lose weight", "More muscle", "Keep shape" };
     private readonly static string[] levelPhraseEN = new string[]
-    { "I'm sedentary!", "I'm walker!", "I'm runner!", "I'm athletic!", "I'm body builder!" };
+    { "Sedentary!", "Walker!", "Rrunner!", "Athletic!", "Body builder!" };
     private readonly static string[] buttonFocusEN = new string[]
     { "Abdomen", "Chest", "Arms", "Legs" };
     private readonly static string[] blockAreaNameEN = new string[]
@@ -199,6 +226,24 @@ public class LanguageManager : MonoBehaviour
         "남성";
     private readonly static string femaleKO =
         "여성";
+    private readonly static string[] statusBMIKO = new string[]
+    { "기대다", "정상", "초과 중량", "지방" };
+    private readonly static string yourDataKO =
+        "귀하의 데이터";
+    private readonly static string calculationKO =
+        "계산";
+    private readonly static string targetKO =
+        "목적";
+    private readonly static string bodyFatKO =
+        "체지방";
+    private readonly static string totalFatKO =
+        "지방";
+    private readonly static string goalKO =
+        "목표";
+    private readonly static string toLoseFatKO =
+        "지방을 잃으려면";
+    private readonly static string toBurnCalKO =
+        "칼로리를 태우려면";
     /* ======================================================================================================================================= */
     private readonly static string idKO =
         "아이디";
@@ -299,6 +344,24 @@ public class LanguageManager : MonoBehaviour
         "Masculino";
     private readonly static string femaleBR =
         "Feminino";
+    private readonly static string[] statusBMIBR = new string[]
+    { "Magro", "Normal", "Sobrepeso", "Gordo" };
+    private readonly static string yourDataBR =
+        "Seus Dados";
+    private readonly static string calculationBR =
+        "Cálculos";
+    private readonly static string targetBR =
+        "Meta";
+    private readonly static string bodyFatBR =
+        "Gordura Corporal";
+    private readonly static string totalFatBR =
+        "Gordura total";
+    private readonly static string goalBR =
+        "Objetivo";
+    private readonly static string toLoseFatBR =
+        "Gordura a Perder";
+    private readonly static string toBurnCalBR =
+        "Calorias a queimar";
     /* ======================================================================================================================================= */
     private readonly static string idBR =
         "Usuário";
@@ -364,7 +427,7 @@ public class LanguageManager : MonoBehaviour
     private readonly static string[] buttonGoalBR = new string[]
     { "Perder peso", "Ter músculos", "Manter a forma" };
     private readonly static string[] levelPhraseBR = new string[]
-    { "Estou sedentário", "Eu caminho", "Eu corro", "Sou atético", "Sou Body Builder" };
+    { "Sedentário", "Caminhante", "Corredor", "Atleta", "Musculoso" };
     private readonly static string[] buttonFocusBR = new string[]
     { "Abdomen", "Peito", "Braços", "Pernas" };
     private readonly static string[] blockAreaNameBR = new string[]
@@ -464,6 +527,15 @@ public class LanguageManager : MonoBehaviour
                 level = levelEN;
                 male = maleEN;
                 female = femaleEN;
+                statusBMI = statusBMIEN;
+                yourData = yourDataEN;
+                calculation = calculationEN;
+                target = targetEN;
+                bodyFat = bodyFatEN;
+                totalFat = totalFatEN;
+                goal = goalEN;
+                toLoseFat = toLoseFatEN;
+                toBurnCal = toBurnCalEN;
 
                 id = idEN;
                 password = passwordEN;
@@ -497,7 +569,7 @@ public class LanguageManager : MonoBehaviour
                 pageQuestion = pageQuestionEN;
                 nextButton = nextButtonEN;
                 page1PlaceHolder = page1PlaceHolderEN;
-                buttonGoal = buttonGoalEN;
+                goalPhrase = buttonGoalEN;
                 levelPhrase = levelPhraseEN;
                 buttonFocus = buttonFocusEN;
                 blockAreaName = blockAreaNameEN;
@@ -517,6 +589,15 @@ public class LanguageManager : MonoBehaviour
                 level = levelKO;
                 male = maleKO;
                 female = femaleKO;
+                statusBMI = statusBMIKO;
+                yourData = yourDataKO;
+                calculation = calculationKO;
+                target = targetKO;
+                bodyFat = bodyFatKO;
+                totalFat = totalFatKO;
+                goal = goalKO;
+                toLoseFat = toLoseFatKO;
+                toBurnCal = toBurnCalKO;
 
                 id = idKO;
                 password = passwordKO;
@@ -550,7 +631,7 @@ public class LanguageManager : MonoBehaviour
                 pageQuestion = pageQuestionKO;
                 nextButton = nextButtonKO;
                 page1PlaceHolder = page1PlaceHolderKO;
-                buttonGoal = buttonGoalKO;
+                goalPhrase = buttonGoalKO;
                 levelPhrase = levelPhraseKO;
                 buttonFocus = buttonFocusKO;
                 blockAreaName = blockAreaNameKO;
@@ -570,6 +651,15 @@ public class LanguageManager : MonoBehaviour
                 level = levelBR;
                 male = maleBR;
                 female = femaleBR;
+                statusBMI = statusBMIBR;
+                yourData = yourDataBR;
+                calculation = calculationBR;
+                target = targetBR;
+                bodyFat = bodyFatBR;
+                totalFat = totalFatBR;
+                goal = goalBR;
+                toLoseFat = toLoseFatBR;
+                toBurnCal = toBurnCalBR;
 
                 id = idBR;
                 password = passwordBR;
@@ -603,7 +693,7 @@ public class LanguageManager : MonoBehaviour
                 pageQuestion = pageQuestionBR;
                 nextButton = nextButtonBR;
                 page1PlaceHolder = page1PlaceHolderBR;
-                buttonGoal = buttonGoalBR;
+                goalPhrase = buttonGoalBR;
                 levelPhrase = levelPhraseBR;
                 buttonFocus = buttonFocusBR;
                 blockAreaName = blockAreaNameBR;

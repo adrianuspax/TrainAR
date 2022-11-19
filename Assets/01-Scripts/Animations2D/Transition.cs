@@ -15,11 +15,11 @@ public class Transition : MonoBehaviour
 
     private void Awake()
     {
+        LanguageManager.LoadLang(AccountData.Language);
         this.transform.GetChild(0).gameObject.SetActive(true);
         ScenesManagement.coroutineDelegate = DelegateDelayToCallScenes;
         transitionAnimation = this.transform.GetChild(0).GetComponent<Animator>();
         Debug.Log("Previous Scene = " + ScenesManagement.PreviousScene);
-        LanguageManager.LoadLang(AccountData.Language);
     }
 
     public void StartClip()

@@ -96,6 +96,7 @@ public class DropDownMenu : MonoBehaviour
             panelDropDownOpen = false;
             aniDropDownMenu.Play(dropDownCloseClip.name);
             Animations.FloatMenu.FloatsIsOpen = true;
+            Buttons.CanvasMain.PanelCoachInteraction = true;
 
             if (Animations.Coach.IsStarted)
             {

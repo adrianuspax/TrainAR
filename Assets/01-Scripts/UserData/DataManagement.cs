@@ -63,7 +63,7 @@ public class DataManagement : MonoBehaviour
         PagesAndFields.PagesQuestionString = LanguageManager.pageQuestion;
         Buttons.UserData.NextButtonString = LanguageManager.nextButton;
         PagesAndFields.Page1PlaceHolder = LanguageManager.page1PlaceHolder;
-        Buttons.UserData.GoalButtonsName = LanguageManager.buttonGoal;
+        Buttons.UserData.GoalButtonsName = LanguageManager.goalPhrase;
         Buttons.UserData.FocusButtonsName = LanguageManager.buttonFocus;
         PagesAndFields.BlockAreaName = LanguageManager.blockAreaName;
         PagesAndFields.MoreValuesStringEdit = LanguageManager.valueDefaultButtonsEdit;

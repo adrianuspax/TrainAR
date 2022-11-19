@@ -39,7 +39,7 @@ public class AugmentedReality : MonoBehaviour
         coach3D.SetActive(false);
         anchorIsHitting = false;
         trackableTypes = TrackableType.PlaneWithinPolygon;
-        Buttons.CanvasMain.ButtonDDMInteraction = false;
+        Buttons.CanvasMain.PanelCoachInteraction = false;
 
         Screen.sleepTimeout = SleepTimeout.NeverSleep;
         screenPoint = new Vector2(Screen.width * 0.5f, Screen.height * 0.5f);
@@ -112,13 +112,14 @@ public class AugmentedReality : MonoBehaviour
                 coach3D.SetActive(true);
                 stateButtonAR = StateButtonAR.Refresh;
                 Animations.Main.AnchorVisible(false);
+                Animations.FloatMenu.FloatsIsOpen = true;
             }
 
         vectorCorrection = new Vector3(0, coach3D.transform.rotation.eulerAngles.y, 0);
         rotationCorrection = Quaternion.Euler(vectorCorrection);
 
         coach3D.transform.rotation = rotationCorrection;
-        Buttons.CanvasMain.ButtonDDMInteraction = CoachIsActivated;
+        Buttons.CanvasMain.PanelCoachInteraction = CoachIsActivated;
     }
 
     public bool AnchorIsHitting => anchorIsHitting;

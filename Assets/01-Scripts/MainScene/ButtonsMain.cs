@@ -33,7 +33,7 @@ public class ButtonsMain : MonoBehaviour
         btnTopR.onClick.AddListener(ButtonsManager.CloseApplication);
         btnTopL.onClick.AddListener(() => ScenesManagement.LoadMenu());
         btnBarC.onClick.AddListener(() => AR.PlaceCoachAR());
-        btnBarR.onClick.AddListener(() => ButtonTalk(btnBarRIsPressed));
+        btnBarR.onClick.AddListener(() => ButtonPanelCoach(btnBarRIsPressed));
         btnBarR.onClick.AddListener(() => PanelCoach.PanelCoachBehaviour(btnBarRIsPressed));
         //btnBarL.onClick.AddListener(() => ScenesManagement.LoadMenu());
 
@@ -73,11 +73,12 @@ public class ButtonsMain : MonoBehaviour
         stateButtonAR = state;
     }
 
-    public void ButtonTalk(bool isPressed)
+    public void ButtonPanelCoach(bool isPressed)
     {
         isPressed = !isPressed;
 
-        btnBarR.image.sprite = isPressed ? Sprites.speekOff : Sprites.speekOn;
+        btnBarR.image.sprite = isPressed ? Sprites.closePanel : Sprites.openPanel;
+        Animations.FloatMenu.FloatsIsOpen = !isPressed;
 
         btnBarRIsPressed = isPressed;
     }
@@ -102,7 +103,7 @@ public class ButtonsMain : MonoBehaviour
         set => btnBarC.interactable = value;
     }
 
-    public bool ButtonDDMInteraction
+    public bool PanelCoachInteraction
     {
         get => btnBarR.IsInteractable();
         set => btnBarR.interactable = value;

@@ -87,6 +87,7 @@ SpriteAtlas:
   - {fileID: 21300000, guid: f51cfb78a834d1e448fdc4d5351c720b, type: 3}
   - {fileID: 21300000, guid: 0af6dbd890f6f9f41be7af9ef5b7c8cd, type: 3}
   - {fileID: 21300000, guid: 8999d8f841b3a724b8a064c1265c2511, type: 3}
+  - {fileID: 21300000, guid: b04f8309cc541fb44a45eaa592c65cac, type: 3}
   - {fileID: 21300000, guid: 3cc2e6a92bc26c24db7bc7757302ef04, type: 3}
   - {fileID: 21300000, guid: d6131f9a3cc15f74dace1433f8079181, type: 3}
   - {fileID: 21300000, guid: c737c5aacac9f0949bd8cb13d0c6de08, type: 3}
@@ -144,6 +145,7 @@ SpriteAtlas:
   - exit_to_app
   - closeButton
   - logout
+  - article_white
   - arrow_back
   - delete
   - SetCoachButton

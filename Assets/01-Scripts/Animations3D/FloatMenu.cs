@@ -132,6 +132,7 @@ public class FloatMenu : MonoBehaviour
     {
         FloatsIsOpen = false;
         Buttons.DropDownMenu.ButtonOpenDropDown();
+        Buttons.CanvasMain.PanelCoachInteraction = false;
 
         switch (bodyPart)
         {

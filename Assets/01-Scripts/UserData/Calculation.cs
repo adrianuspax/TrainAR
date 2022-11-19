@@ -3,75 +3,6 @@ using UnityEngine;
 
 public class Calculation : MonoBehaviour
 {
-    /*[Header("Input", order = 0)]
-    [SerializeField] private bool _isMale;
-    [SerializeField][Range(5, 90)] private int _age;
-    [SerializeField][Range(60, 300)] private float _height;
-    [SerializeField][Range(20, 300)] private float _currentWeight;
-    [SerializeField][Range(20, 300)] private float _targetWeight;
-    [SerializeField] private Goal _goal;
-    [SerializeField] private Level _level;
-    [SerializeField] private Focus _focus;
-
-    [Header("Output", order = 0)]
-    [Space(-10, order = 1)]
-    [Header("Current", order = 2)]
-    [SerializeField, ReadOnly] private float bmi;
-    [SerializeField, ReadOnly] private StatusBMI statusBMI;
-    [SerializeField, ReadOnly] private float bodyFat;
-    [SerializeField, ReadOnly] private float currentFat;
-    [Space(-10, order = 0)]
-    [Header("Target", order = 1)]
-    [SerializeField, ReadOnly] private Level targetLevel;
-    [SerializeField, ReadOnly] private float targetFat;
-    [SerializeField, ReadOnly] private float targetBodyFat;
-    [SerializeField, ReadOnly] private float toLoseFat;
-    [SerializeField, ReadOnly] private float toBurnCalories;
-
-    public static bool isMale;
-    public static int age;
-    public static float height;
-    public static float currentWeight;
-    public static float targetWeight;
-    public static Goal goal;
-    public static Level level;
-    public static Focus focus;
-
-    private void Awake()
-    {
-        _isMale = AccountData.IsMale;
-        _age = AccountData.Age;
-        _height = AccountData.Height;
-        _currentWeight = AccountData.CurrentWeight;
-        _targetWeight = AccountData.TargetWeight;
-        _goal = (Goal)Enum.Parse(typeof(Goal), AccountData.Goal);
-        _level = (Level)AccountData.Level;
-        _focus = (Focus)Enum.Parse(typeof(Focus), AccountData.Focus);
-    }
-
-    private void Update()
-    {
-        isMale = _isMale;
-        age = _age;
-        height = _height;
-        currentWeight = _currentWeight;
-        targetWeight = _targetWeight;
-        goal = _goal;
-        level = _level;
-        focus = _focus;
-
-        bmi = BMI;
-        statusBMI = StatusBMI;
-        bodyFat = BodyFat;
-        currentFat = CurrentFat;
-
-        targetFat = TargetFat;
-        targetBodyFat = TargetBodyFat;
-        toLoseFat = ToLoseFat;
-        toBurnCalories = ToBurnCalories;
-        targetLevel = TargetLevel;
-    }*/
-
     private static
         (
         bool isMale,
@@ -232,4 +163,8 @@ public class Calculation : MonoBehaviour
     public static float TargetFat => CalcFat(InputedData.targetWeight, TargetBodyFat);
     public static float ToLoseFat => CalcLoseFat(CurrentFat, TargetFat);
     public static float ToBurnCalories => ToLoseFat * 7000;
+
+    public static int IndexGoal => (int)InputedData.goal;
+    public static int IndexFocus => (int)InputedData.focus;
+    public static int IndexLevel => (int)InputedData.level;
 }
