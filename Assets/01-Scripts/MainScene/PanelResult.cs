@@ -4,15 +4,8 @@ using UnityEngine;
 
 public class PanelResult : MonoBehaviour
 {
-    
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    [Header("Animation", order = 0)]
+    [SerializeField] private Animator panelResultAnimator;
+    [SerializeField] private AnimationClip panelResultFadeInClip;
+    [SerializeField] private AnimationClip panelResultFadeOutClip;
 }
