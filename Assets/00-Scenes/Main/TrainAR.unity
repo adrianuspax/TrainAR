@@ -383,7 +383,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 987138397}
   m_HandleRect: {fileID: 987138396}
   m_Direction: 0
-  m_Value: -0.000000047535167
+  m_Value: 0
   m_Size: 0.2375297
   m_NumberOfSteps: 0
   m_OnValueChanged:
@@ -1050,7 +1050,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 232470409}
   m_HandleRect: {fileID: 232470408}
   m_Direction: 2
-  m_Value: 0
+  m_Value: 1
   m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:
@@ -5899,7 +5899,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 878147581}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 3312d7739989d2b4e91e6319e9a96d76, type: 3}
   m_Name: 
@@ -6559,7 +6559,7 @@ Transform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0.27790666, z: 5.0099344}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 1972629007}
   m_Father: {fileID: 1284178634}
@@ -9789,7 +9789,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0.000015258789, y: 0}
+  m_AnchoredPosition: {x: 0, y: -0.0000076293945}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &1677033649
@@ -12927,6 +12927,9 @@ MonoBehaviour:
   pivotPanelCoach: {fileID: 1049604615}
   objectReference: {fileID: 0}
   pivotCorrection: {fileID: 1972629007}
+  canvasTransform: {fileID: 0}
+  vectorCanvasPos: {x: 0, y: 0, z: 0}
+  distance: 0
   AR: {fileID: 0}
 --- !u!114 &2045423157
 MonoBehaviour:

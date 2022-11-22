@@ -1,5 +1,6 @@
 using UnityEngine;
 using TMPro;
+using Unity.VisualScripting;
 
 public class PanelCoach : MonoBehaviour
 {
@@ -63,6 +64,10 @@ public class PanelCoach : MonoBehaviour
     [SerializeField] private Transform pivotPanelCoach;
     [SerializeField, ReadOnly] private Transform objectReference;
     [SerializeField, ReadOnly] private Transform pivotCorrection;
+    [SerializeField, ReadOnly] private RectTransform canvasTransform;
+    [SerializeField, ReadOnly] private Vector3 vectorCanvasPos;
+    [SerializeField, ReadOnly] private float distance;
+
 
     [Header(" =========================== READY ONLY =========================== ", order = 0)]
     [Space(-10, order = 1)]
@@ -73,7 +78,8 @@ public class PanelCoach : MonoBehaviour
     {
         AR = this.GetComponent<AugmentedReality>();
         pivotCorrection = pivotPanelCoach.GetChild(0);
-        objectReference = GameObject.FindGameObjectWithTag(Tag.Coach).transform;
+        objectReference = GameObject.FindGameObjectWithTag(Tag.Coach).transform.GetChild(0);
+        canvasTransform = (RectTransform)pivotCorrection.GetChild(0);
     }
 
     private void Start()
@@ -143,8 +149,16 @@ public class PanelCoach : MonoBehaviour
     {
         if (AR.CoachIsActivated)
         {
+            float scale;
+                  scale = (0.0018f * distance + 0.001f);
+
+            distance = Vector3.Distance(Camera.main.transform.localPosition, pivotPanelCoach.localPosition);
+            vectorCanvasPos = (pivotPanelCoach.position + Camera.main.transform.position) * 0.5f;
+            canvasTransform.localScale = new Vector3(scale, scale, scale);
+
             pivotPanelCoach.transform.position = Vector3.Lerp(pivotPanelCoach.transform.position, objectReference.position, 5 * Time.deltaTime);
             pivotPanelCoach.LookAt(Camera.main.transform);
+            canvasTransform.position = new Vector3(vectorCanvasPos.x, 0, vectorCanvasPos.z);
         }
     }
 
