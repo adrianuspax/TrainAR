@@ -1,8 +1,8 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 
-[RequireComponent(typeof(ButtonsManager), typeof(AnimationsMain))]
-[RequireComponent(typeof(AugmentedReality), typeof(ImagesManager), typeof(PanelCoach))]
+[RequireComponent(typeof(ButtonsManager))]
+[RequireComponent(typeof(AugmentedReality), typeof(ImagesManager))]
 public class ButtonsMain : MonoBehaviour
 {
     [Header("BUTTONS", order = 0)]
@@ -20,29 +20,27 @@ public class ButtonsMain : MonoBehaviour
     [Header("Variables", order = 2)]
     [SerializeField, ReadOnly] private StateButtonAR stateButtonAR;
     [SerializeField, ReadOnly] private bool btnBarRIsPressed;
+
     [Space(-10, order = 1)]
     [Header("Scripts", order = 2)]
     [SerializeField, ReadOnly] private AugmentedReality AR;
     [SerializeField, ReadOnly] private ButtonsManager Buttons;
     [SerializeField, ReadOnly] private AnimationsManager Animations;
     [SerializeField, ReadOnly] private ImagesManager Sprites;
-    [SerializeField, ReadOnly] private PanelCoach PanelCoach;
 
     private void Awake()
     {
-        btnTopR.onClick.AddListener(ButtonsManager.CloseApplication);
-        btnTopL.onClick.AddListener(() => ScenesManagement.LoadMenu());
-        btnBarC.onClick.AddListener(() => AR.PlaceCoachAR());
-        btnBarR.onClick.AddListener(() => ButtonPanelCoach(btnBarRIsPressed));
-        btnBarR.onClick.AddListener(() => PanelCoach.PanelCoachBehaviour(btnBarRIsPressed));
-        //btnBarL.onClick.AddListener(() => ScenesManagement.LoadMenu());
-
-
         AR = this.GetComponent<AugmentedReality>();
         Animations = this.GetComponent<AnimationsManager>();
         Buttons = this.GetComponent<ButtonsManager>();
         Sprites = this.GetComponent<ImagesManager>();
-        PanelCoach = this.GetComponent<PanelCoach>();
+
+        btnTopR.onClick.AddListener(ButtonsManager.CloseApplication);
+        btnTopL.onClick.AddListener(() => ScenesManagement.LoadMenu());
+        btnBarC.onClick.AddListener(() => AR.PlaceCoachAR());
+        btnBarR.onClick.AddListener(() => ButtonPanelCoach(btnBarRIsPressed));
+        btnBarR.onClick.AddListener(() => Animations.PanelCoach.PanelCoachBehaviour(btnBarRIsPressed));
+        btnBarL.onClick.AddListener(() => Animations.PanelResult.PanelResultBehaviour());
     }
 
     public void ButtonARBehaviour(StateButtonAR state, bool isInteractable)

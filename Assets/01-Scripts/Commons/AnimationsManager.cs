@@ -10,6 +10,8 @@ public class AnimationsManager : MonoBehaviour
     [SerializeField, ReadOnly] private FloatMenu floatMenu;
     [SerializeField, ReadOnly] private CoachAnimations coach;
     [SerializeField, ReadOnly] private Transition transition;
+    [SerializeField, ReadOnly] private PanelCoach panelCoach;
+    [SerializeField, ReadOnly] private PanelResult panelResult;
 
 
     private void Awake()
@@ -18,6 +20,8 @@ public class AnimationsManager : MonoBehaviour
         if (this.GetComponent<AnimationsMain>() != null) { main = this.GetComponent<AnimationsMain>(); }
         if (this.GetComponent<FloatMenu>() != null) { floatMenu = this.GetComponent<FloatMenu>(); }
         if (this.GetComponent<CoachAnimations>() != null) { coach = this.GetComponent<CoachAnimations>(); }
+        if (this.GetComponent<PanelCoach>() != null) { panelCoach = this.GetComponent<PanelCoach>(); }
+        if (this.GetComponent<PanelResult>() != null) { panelResult = this.GetComponent<PanelResult>(); }
     }
 
     private void OnEnable()
@@ -30,4 +34,6 @@ public class AnimationsManager : MonoBehaviour
     public FloatMenu FloatMenu => floatMenu;
     public CoachAnimations Coach => coach;
     public Transition Transition => transition;
+    public PanelCoach PanelCoach => panelCoach;
+    public PanelResult PanelResult => panelResult;
 }

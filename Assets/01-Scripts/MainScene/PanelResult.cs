@@ -24,13 +24,16 @@ public class PanelResult : MonoBehaviour
     [SerializeField, ReadOnly, Range(0f, 1f)] private float bodyFat;
     [SerializeField, ReadOnly, Range(0f, 1f)] private float biotype;
     [SerializeField, ReadOnly, Range(0f, 1f)] private float burnedCal;
+    [Space(-10, order = 0)]
+    [Header("Variables", order = 1)]
+    [SerializeField, ReadOnly] private bool resultsIsOpen;
 
     private const int LEVEL = 0;
     private const int BMI = 1;
     private const int KCAL = 2;
     private const int BIO = 3;
     private const int BFAT = 4;
-
+        
     private void Start()
     {
         bmi = RangingBMI(Calculation.BMI);
@@ -46,6 +49,13 @@ public class PanelResult : MonoBehaviour
         RadarChart.Value[KCAL] = burnedCal;
 
         classTMP.text = CalcResultClass;
+    }
+
+    public void PanelResultBehaviour()
+    {
+        resultsIsOpen = !resultsIsOpen;
+
+        panelResultAnimator.Play(resultsIsOpen ? panelResultFadeInClip.name : panelResultFadeOutClip.name);
     }
 
     public string CalcResultClass
