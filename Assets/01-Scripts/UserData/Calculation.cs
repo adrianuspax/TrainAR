@@ -33,12 +33,12 @@ public class Calculation : MonoBehaviour
 
     private static float CalcBMI(float height, float weight)
     {
-        float imc, heightInMeters;
+        float bmi, heightInMeters;
 
-        heightInMeters = height / 100f;
-        imc = weight / Mathf.Pow(heightInMeters, 2);
+        heightInMeters = height * 0.01f;
+        bmi = weight / Mathf.Pow(heightInMeters, 2);
 
-        return imc;
+        return bmi;
     }
 
     private static StatusBMI SetStatusBMI(float bmi)
@@ -61,11 +61,11 @@ public class Calculation : MonoBehaviour
         }
     }
 
-    private static float CalcBodyFat(int age, bool isMale, Level level)
+    private static float CalcBodyFat(int age, bool isMale, Level currentLevel)
     {
         if(age <= 29) // 0 ~ 29
         {
-            return level switch
+            return currentLevel switch
             {
                 Level.I => isMale ? 0.23f : 0.31f,
                 Level.II => isMale ? 0.22f : 0.30f,
@@ -77,7 +77,7 @@ public class Calculation : MonoBehaviour
         }
         else if(age <= 39) // 30 ~ 39
         {
-            return level switch
+            return currentLevel switch
             {
                 Level.I => isMale ? 0.24f : 0.32f,
                 Level.II => isMale ? 0.23f : 0.31f,
@@ -89,7 +89,7 @@ public class Calculation : MonoBehaviour
         }
         else if(age <= 49) // 40 ~ 49
         {
-            return level switch
+            return currentLevel switch
             {
                 Level.I => isMale ? 0.26f : 0.33f,
                 Level.II => isMale ? 0.25f : 0.32f,
@@ -101,7 +101,7 @@ public class Calculation : MonoBehaviour
         }
         else // 50 ~ infinity
         {
-            return level switch
+            return currentLevel switch
             {
                 Level.I => isMale ? 0.27f : 0.34f,
                 Level.II => isMale ? 0.26f : 0.33f,
@@ -114,7 +114,7 @@ public class Calculation : MonoBehaviour
     }
 
     private static float CalcFat(float weight, float bodyFat) => weight * bodyFat;
-    private static float CalcLoseFat(float currentFat, float targetFat) => currentFat - targetFat;
+    private static float CalcLoseWeight(float currentWeight, float targetWeight) => currentWeight - targetWeight;
     public static float BMI => CalcBMI(InputedData.height, InputedData.currentWeight);
     public static float BodyFat => CalcBodyFat(InputedData.age, InputedData.isMale, InputedData.level);
     public static Level TargetLevel
@@ -161,10 +161,12 @@ public class Calculation : MonoBehaviour
     public static float TargetBodyFat => CalcBodyFat(InputedData.age, InputedData.isMale, TargetLevel);
     public static float CurrentFat => CalcFat(InputedData.currentWeight, BodyFat);
     public static float TargetFat => CalcFat(InputedData.targetWeight, TargetBodyFat);
-    public static float ToLoseFat => CalcLoseFat(CurrentFat, TargetFat);
-    public static float ToBurnCalories => ToLoseFat * 7000;
+    public static float ToLoseWeight => CalcLoseWeight(InputedData.currentWeight, InputedData.targetWeight);
+    public static float ToBurnCalories => ToLoseWeight * 7700f;
 
     public static int IndexGoal => (int)InputedData.goal;
     public static int IndexFocus => (int)InputedData.focus;
     public static int IndexLevel => (int)InputedData.level;
+
+    public static float IdealBodyFat => CalcBodyFat(InputedData.age, InputedData.isMale, Level.II);
 }

@@ -117,6 +117,26 @@ public class PanelCoach : MonoBehaviour
         targetBodyFatTMP.text = Target.BodyFat;
         toLoseFatTMP.text = Target.toLoseFat;
         toBurnCalTMP.text = Target.toBurnCal;
+
+        Debug.Log
+            ("Name: " + nameTMP.text + "\n" +
+            "Age: " + ageTMP.text + "\n" +
+            "Gender: " + genderTMP.text + "\n" +
+            "Weight: " + weightTMP.text + "\n" +
+            "Height: " + heightTMP.text + "\n" +
+            "Level: " + levelTMP.text + " || Index Level: " + Calculation.IndexLevel + "\n" +
+            "BMI: " + bmiTMP.text + "\n" +
+            "Status: " + statusTMP.text + "\n" +
+            "Body Fat: " + bodyFatTMP.text + "\n" +
+            "Total Fat: " + totalFatTMP.text + "\n" +
+            "Goal: " + goalTMP.text + " || Index Goal: " + Calculation.IndexGoal + "\n" +
+            "Target Level: " + targetLevelTMP.text + "\n" +
+            "Target Weight: " + targetWeightTMP.text + "\n" +
+            "Target Body Fat: " + targetBodyFatTMP.text + "\n" +
+            "To Lose Weight: " + toLoseFatTMP.text + "\n" +
+            "To Burn Cal: " + toBurnCalTMP.text + "\n");
+
+        Debug.Log ("Index Focus: " + Calculation.IndexFocus);
     }
 
     private void Update()
@@ -151,7 +171,7 @@ public class PanelCoach : MonoBehaviour
                 AccountData.Age.ToString() + " " + LanguageManager.valueUnits[0],
                 AccountData.IsMale ? LanguageManager.male : LanguageManager.female,
                 AccountData.CurrentWeight.ToString() + " kg",
-                (AccountData.Height * 0.01f).ToString() + " m",
+                (AccountData.Height).ToString() + " cm",
                 LanguageManager.levelPhrase[(int)Calculation.IndexLevel]
                 );
         }
@@ -195,7 +215,7 @@ public class PanelCoach : MonoBehaviour
                 LanguageManager.levelPhrase[((int)Calculation.TargetLevel - 1)],
                 AccountData.TargetWeight.ToString() + " kg",
                 (Calculation.TargetBodyFat * 100f).ToString("F2") + "%",
-                toLoseFatTMP.text = Calculation.ToLoseFat.ToString("F2") + " kg",
+                toLoseFatTMP.text = Calculation.ToLoseWeight.ToString("F2") + " kg",
                 toBurnCalTMP.text = (Calculation.ToBurnCalories * 0.0001f).ToString("F2") + " kcal"
                 );
         }

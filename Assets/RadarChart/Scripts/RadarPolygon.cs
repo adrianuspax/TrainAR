@@ -3,32 +3,21 @@
     [AddComponentMenu("UI/Extensions/Radar Chart")]
 	public class RadarPolygon : MaskableGraphic
     {
-        [SerializeField]
-        Texture tex;
-        public bool isFill = true;
-        [Range(0, 0.99f)]
-        public float fillPercent = 0.8f;
-        [Range(3, 360)]
-        public int segment = 3;
-        [Range(0, 1f)]
-        public float[] value = new float[3];
-        [Range(0, 1f)]
-        public float defaultValue = 1;
-        [Range(0f, 360f)]
-        public float angleOffset = 0;
-        public bool useStateLine = true;
-        public Color lineColor = Color.white;
-        public float lineWidth = 0.5f;
-        public bool useDefaultLength = true;
-        public float lineLength = 50;
+        [SerializeField] private Texture tex;
+        [SerializeField] private bool isFill;
+        [SerializeField][Range(0, 0.99f)] private float fillPercent;
+        [SerializeField][Range(3, 360)] private int segment;
+        [SerializeField][Range(0, 1f)] private float[] value;
+        [SerializeField][Range(0, 1f)] private float defaultValue;
+        [SerializeField][Range(0f, 360f)] private float angleOffset;
+        [SerializeField] private bool useStateLine;
+        [SerializeField] private Color lineColor;
+        [SerializeField] private float lineWidth;
+        [SerializeField] private bool useDefaultLength;
+        [SerializeField] private float lineLength;
 
-        public override Texture mainTexture
-        {
-            get
-            {
-                return tex == null ? s_WhiteTexture : tex;
-            }
-        }
+        public float[] Value => value;
+        public override Texture mainTexture => tex == null ? s_WhiteTexture : tex;
 
         protected UIVertex[] GetVert(Vector2[] vertices, Vector2[] uvs, bool customColor = false)
         {
