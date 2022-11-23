@@ -1,6 +1,5 @@
 using UnityEngine;
 using TMPro;
-using Unity.VisualScripting;
 
 public class PanelCoach : MonoBehaviour
 {
@@ -59,6 +58,9 @@ public class PanelCoach : MonoBehaviour
     [SerializeField] private TextMeshProUGUI targetTitleBodyFatTMP;
     [SerializeField] private TextMeshProUGUI toLoseTitleFatTMP;
     [SerializeField] private TextMeshProUGUI toBurnTitleCalTMP;
+    [Space(-10, order = 0)]
+    [Header("Recomendations", order = 1)]
+    [SerializeField] private Transform recomendationsHeader;
 
     [Header("Pivot Rotation Canvas Coach", order = 0)]
     [SerializeField] private Transform pivotPanelCoach;
@@ -71,7 +73,10 @@ public class PanelCoach : MonoBehaviour
 
     [Header(" =========================== READY ONLY =========================== ", order = 0)]
     [Space(-10, order = 1)]
-    [Header("Scripts", order = 2)]
+    [Header("Variables", order = 2)]
+    [SerializeField, ReadOnly, NonReorderable] private GameObject[] recomendation;
+
+    [Header("Scripts", order = 0)]
     [SerializeField, ReadOnly] private AugmentedReality AR;
 
     private void Awake()
@@ -80,6 +85,13 @@ public class PanelCoach : MonoBehaviour
         pivotCorrection = pivotPanelCoach.GetChild(0);
         objectReference = GameObject.FindGameObjectWithTag(Tag.Coach).transform.GetChild(0);
         canvasTransform = (RectTransform)pivotCorrection.GetChild(0);
+
+        recomendation = new GameObject[recomendationsHeader.childCount];
+
+        for (int i = 0; i < recomendation.Length; i++)
+        {
+            recomendation[i] = recomendationsHeader.GetChild(i).gameObject;
+        }
     }
 
     private void Start()
@@ -123,6 +135,8 @@ public class PanelCoach : MonoBehaviour
         targetBodyFatTMP.text = Target.BodyFat;
         toLoseFatTMP.text = Target.toLoseFat;
         toBurnCalTMP.text = Target.toBurnCal;
+
+        FloatMenu.ButtonsFloatBehaviour((BodyPart)Calculation.IndexFocus, recomendation);
 
         Debug.Log
             ("Name: " + nameTMP.text + "\n" +

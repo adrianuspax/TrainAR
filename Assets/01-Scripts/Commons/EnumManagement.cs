@@ -50,10 +50,10 @@ public enum Goal
 
 public enum Focus
 {
-    abdomen = 0,
-    chest = 1,
-    arms = 2,
-    legs = 3
+    chest = 0, //1
+    abdomen = 1, //0
+    legs = 2, //3
+    arms = 3 //2
 }
 
 public enum Level
