@@ -89,13 +89,13 @@ public class PanelCoach : MonoBehaviour
         recomendation = new GameObject[recomendationsHeader.childCount];
 
         for (int i = 0; i < recomendation.Length; i++)
-        {
-            recomendation[i] = recomendationsHeader.GetChild(i).gameObject;
-        }
+        { recomendation[i] = recomendationsHeader.GetChild(i).gameObject; }
     }
 
     private void Start()
     {
+        RecomendationsActivations((Focus)Calculation.IndexFocus, recomendation);
+
         pivotCorrection.transform.localRotation = Quaternion.Euler(new Vector3(0, -180, 0));
         pivotCorrection.transform.localPosition = Vector3.up;
 
@@ -135,8 +135,6 @@ public class PanelCoach : MonoBehaviour
         targetBodyFatTMP.text = Target.BodyFat;
         toLoseFatTMP.text = Target.toLoseFat;
         toBurnCalTMP.text = Target.toBurnCal;
-
-        FloatMenu.ButtonsFloatBehaviour((BodyPart)Calculation.IndexFocus, recomendation);
 
         Debug.Log
             ("Name: " + nameTMP.text + "\n" +
@@ -179,6 +177,28 @@ public class PanelCoach : MonoBehaviour
     public void PanelCoachBehaviour(bool isOpen)
     {
         panelCoachAniamtor.Play(isOpen ? panelCoachStartClip.name : panelCoachEndClip.name);
+    }
+
+    private void RecomendationsActivations(Focus focus, GameObject[] gameObjects)
+    {
+        for (int i = 0; i < gameObjects.Length; i++)
+        {
+            switch (focus)
+            {
+                case Focus.chest:
+                    gameObjects[i].SetActive((i == 0 || i == 5 || i == 6 || i == 7 || i == 11 || i == 12 || i == 14 || i == 15));
+                    break;
+                case Focus.abdomen:
+                    gameObjects[i].SetActive((i == 0 || i == 5 || i == 6 || i == 11 || i == 12 || i == 14 || i == 15));
+                    break;
+                case Focus.legs:
+                    gameObjects[i].SetActive((i == 0 || i == 1 || i == 2 || i == 4 || i == 5 || i == 6 || i == 8 || i == 9 || i == 10 || i == 12 || i == 15));
+                    break;
+                case Focus.arms:
+                    gameObjects[i].SetActive((i == 0 || i == 2 || i == 3 || i == 5 || i == 8 || i == 10 || i == 11 || i == 12 || i == 15));
+                    break;
+            }
+        }
     }
 
     private

@@ -129,7 +129,7 @@ public class FloatMenu : MonoBehaviour
         }
     }
 
-    public static void ButtonsFloatBehaviour(BodyPart bodyPart, GameObject[] gameObjects)
+    public void ButtonsFloatBehaviour(BodyPart bodyPart, GameObject[] gameObjects)
     {
         for (int i = 0; i < gameObjects.Length; i++)
         {
