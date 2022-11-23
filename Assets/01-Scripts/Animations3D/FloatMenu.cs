@@ -29,11 +29,10 @@ public class FloatMenu : MonoBehaviour
         buttonFloatCanvas = AssignCanvas(PivotFloat);
         buttonFloatButton = AssignButtons(CanvasFloat);
 
-        ButtonFloat[(int)BodyPart.Chest].onClick.AddListener(() => ButtonsFloatBehaviour(BodyPart.Chest, Buttons.DropDownMenu.ButtonGameObject));
-        ButtonFloat[(int)BodyPart.Abdomen].onClick.AddListener(() => ButtonsFloatBehaviour(BodyPart.Abdomen, Buttons.DropDownMenu.ButtonGameObject));
-        ButtonFloat[(int)BodyPart.Legs].onClick.AddListener(() => ButtonsFloatBehaviour(BodyPart.Legs, Buttons.DropDownMenu.ButtonGameObject));
-        ButtonFloat[(int)BodyPart.Arms].onClick.AddListener(() => ButtonsFloatBehaviour(BodyPart.Arms, Buttons.DropDownMenu.ButtonGameObject));
-        foreach (Button buttons in ButtonFloat) { buttons.onClick.AddListener(ButtonsFloatFunction); }
+        ButtonFloat[(int)BodyPart.Chest].onClick.AddListener(() => ButtonsFloatBehaviour(BodyPart.Chest));
+        ButtonFloat[(int)BodyPart.Abdomen].onClick.AddListener(() => ButtonsFloatBehaviour(BodyPart.Abdomen));
+        ButtonFloat[(int)BodyPart.Legs].onClick.AddListener(() => ButtonsFloatBehaviour(BodyPart.Legs));
+        ButtonFloat[(int)BodyPart.Arms].onClick.AddListener(() => ButtonsFloatBehaviour(BodyPart.Arms));
     }
 
     public int TotalFloats => FloatHeader.childCount;
@@ -129,29 +128,31 @@ public class FloatMenu : MonoBehaviour
         }
     }
 
-    public void ButtonsFloatBehaviour(BodyPart bodyPart, GameObject[] gameObjects)
+    public void ButtonsFloatBehaviour(BodyPart bodyPart)
     {
-        for (int i = 0; i < gameObjects.Length; i++)
+        ButtonsFloatFunction();
+
+        for (int i = 0; i < Buttons.DropDownMenu.ButtonGameObject.Length; i++)
         {
             switch (bodyPart)
             {
                 case BodyPart.Chest:
-                    gameObjects[i].SetActive((i == 4 || i == 5 || i == 6 || i == 10 || i == 11 || i == 13));
+                    Buttons.DropDownMenu.ButtonGameObject[i].SetActive((i == 4 || i == 5 || i == 6 || i == 10 || i == 11 || i == 13));
                     break;
                 case BodyPart.Abdomen:
-                    gameObjects[i].SetActive((i == 4 || i == 5 || i == 10 || i == 11 || i == 13));
+                    Buttons.DropDownMenu.ButtonGameObject[i].SetActive((i == 4 || i == 5 || i == 10 || i == 11 || i == 13));
                     break;
                 case BodyPart.Legs:
-                    gameObjects[i].SetActive((i == 0 || i == 1 || i == 3 || i == 4 || i == 5 || i == 7 || i == 8 || i == 9 || i == 11));
+                    Buttons.DropDownMenu.ButtonGameObject[i].SetActive((i == 0 || i == 1 || i == 3 || i == 4 || i == 5 || i == 7 || i == 8 || i == 9 || i == 11));
                     break;
                 case BodyPart.Arms:
-                    gameObjects[i].SetActive((i == 1 || i == 2 || i == 4 || i == 7 || i == 9 || i == 10 || i == 11));
+                    Buttons.DropDownMenu.ButtonGameObject[i].SetActive((i == 1 || i == 2 || i == 4 || i == 7 || i == 9 || i == 10 || i == 11));
                     break;
                 case BodyPart.All:
-                    gameObjects[i].SetActive(true);
+                    Buttons.DropDownMenu.ButtonGameObject[i].SetActive(true);
                     break;
                 default:
-                    gameObjects[i].SetActive(false);
+                    Buttons.DropDownMenu.ButtonGameObject[i].SetActive(false);
                     break;
             }
         }

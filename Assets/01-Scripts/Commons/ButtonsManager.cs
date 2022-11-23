@@ -42,7 +42,7 @@ public class ButtonsManager : MonoBehaviour
     public Menu Menu => MenuButtons;
     public PanelCoach PanelCoach => PanelCoachButtons;
 
-    public (Button[], bool[]) Assignment(Transform header, params BehaviourButtons[] behaviour)
+    public (Button[] buttons, bool[] booleans) Assignment(Transform header, params BehaviourButtons[] behaviour)
     {
         Button[] button;
         bool[] isPressed;

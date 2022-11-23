@@ -1,5 +1,6 @@
 using UnityEngine;
 using TMPro;
+using UnityEngine.UI;
 
 public class PanelCoach : MonoBehaviour
 {
@@ -7,6 +8,9 @@ public class PanelCoach : MonoBehaviour
     [SerializeField] private Animator panelCoachAniamtor;
     [SerializeField] private AnimationClip panelCoachStartClip;
     [SerializeField] private AnimationClip panelCoachEndClip;
+
+    [Header("ScrollView", order = 0)]
+    [SerializeField] private ScrollRect scrollView;
 
     [Header("Informations", order = 0)]
     [Space(-10, order = 1)]
@@ -31,6 +35,9 @@ public class PanelCoach : MonoBehaviour
     [SerializeField] private TextMeshProUGUI targetBodyFatTMP;
     [SerializeField] private TextMeshProUGUI toLoseFatTMP;
     [SerializeField] private TextMeshProUGUI toBurnCalTMP;
+    [Space(-10, order = 0)]
+    [Header("Recomendations", order = 1)]
+    [SerializeField] private Transform recomendationsHeader;
 
     [Header("To Translate", order = 0)]
     [Space(-10, order = 1)]
@@ -58,10 +65,7 @@ public class PanelCoach : MonoBehaviour
     [SerializeField] private TextMeshProUGUI targetTitleBodyFatTMP;
     [SerializeField] private TextMeshProUGUI toLoseTitleFatTMP;
     [SerializeField] private TextMeshProUGUI toBurnTitleCalTMP;
-    [Space(-10, order = 0)]
-    [Header("Recomendations", order = 1)]
-    [SerializeField] private Transform recomendationsHeader;
-
+    
     [Header("Pivot Rotation Canvas Coach", order = 0)]
     [SerializeField] private Transform pivotPanelCoach;
     [SerializeField, ReadOnly] private Transform objectReference;
@@ -75,13 +79,21 @@ public class PanelCoach : MonoBehaviour
     [Space(-10, order = 1)]
     [Header("Variables", order = 2)]
     [SerializeField, ReadOnly, NonReorderable] private GameObject[] recomendation;
+    [Space(-10, order = 0)]
+    [Header("Buttons Content", order = 1)]
+    [SerializeField, ReadOnly] private RectMask2D rectMask2D;
+    [SerializeField, ReadOnly] private Transform contentHeader;
+    [SerializeField, ReadOnly, NonReorderable] private Button[] contentButton;
 
     [Header("Scripts", order = 0)]
     [SerializeField, ReadOnly] private AugmentedReality AR;
+    [SerializeField, ReadOnly] private ButtonsManager Buttons;
 
     private void Awake()
     {
         AR = this.GetComponent<AugmentedReality>();
+        Buttons = this.GetComponent<ButtonsManager>();
+
         pivotCorrection = pivotPanelCoach.GetChild(0);
         objectReference = GameObject.FindGameObjectWithTag(Tag.Coach).transform.GetChild(0);
         canvasTransform = (RectTransform)pivotCorrection.GetChild(0);
@@ -90,11 +102,18 @@ public class PanelCoach : MonoBehaviour
 
         for (int i = 0; i < recomendation.Length; i++)
         { recomendation[i] = recomendationsHeader.GetChild(i).gameObject; }
+
+        contentHeader = scrollView.transform.GetChild(0).GetChild(0);
+        rectMask2D = scrollView.transform.GetChild(0).GetComponent<RectMask2D>();
+
+        contentButton = Buttons.Assignment(contentHeader, ButtonsPanelBehaviour).buttons;
     }
 
     private void Start()
     {
-        RecomendationsActivations((Focus)Calculation.IndexFocus, recomendation);
+        rectMask2D.enabled = true;
+
+        RecomendationsActivations((Focus)Calculation.IndexFocus);
 
         pivotCorrection.transform.localRotation = Quaternion.Euler(new Vector3(0, -180, 0));
         pivotCorrection.transform.localPosition = Vector3.up;
@@ -174,28 +193,46 @@ public class PanelCoach : MonoBehaviour
         }
     }
 
+    public void ButtonPlay()
+    {
+        Buttons.CanvasMain.ButtonPanelCoach(true); //incorrect logic
+        Buttons.FloatMenu.ButtonsFloatBehaviour((BodyPart)Calculation.IndexFocus);
+    }
+
     public void PanelCoachBehaviour(bool isOpen)
     {
         panelCoachAniamtor.Play(isOpen ? panelCoachStartClip.name : panelCoachEndClip.name);
     }
 
-    private void RecomendationsActivations(Focus focus, GameObject[] gameObjects)
+    public void ButtonsPanelBehaviour(int index)
     {
-        for (int i = 0; i < gameObjects.Length; i++)
+        if (index == 3)
+        {
+            ButtonPlay();
+        }
+        else
+        {
+            scrollView.horizontalNormalizedPosition = ((index + 1) / 3f);
+        }
+    }
+
+    private void RecomendationsActivations(Focus focus)
+    {
+        for (int i = 0; i < recomendation.Length; i++)
         {
             switch (focus)
             {
                 case Focus.chest:
-                    gameObjects[i].SetActive((i == 0 || i == 5 || i == 6 || i == 7 || i == 11 || i == 12 || i == 14 || i == 15));
+                    recomendation[i].SetActive((i == 0 || i == 5 || i == 6 || i == 7 || i == 11 || i == 12 || i == 14 || i == 15));
                     break;
                 case Focus.abdomen:
-                    gameObjects[i].SetActive((i == 0 || i == 5 || i == 6 || i == 11 || i == 12 || i == 14 || i == 15));
+                    recomendation[i].SetActive((i == 0 || i == 5 || i == 6 || i == 11 || i == 12 || i == 14 || i == 15));
                     break;
                 case Focus.legs:
-                    gameObjects[i].SetActive((i == 0 || i == 1 || i == 2 || i == 4 || i == 5 || i == 6 || i == 8 || i == 9 || i == 10 || i == 12 || i == 15));
+                    recomendation[i].SetActive((i == 0 || i == 1 || i == 2 || i == 4 || i == 5 || i == 6 || i == 8 || i == 9 || i == 10 || i == 12 || i == 15));
                     break;
                 case Focus.arms:
-                    gameObjects[i].SetActive((i == 0 || i == 2 || i == 3 || i == 5 || i == 8 || i == 10 || i == 11 || i == 12 || i == 15));
+                    recomendation[i].SetActive((i == 0 || i == 2 || i == 3 || i == 5 || i == 8 || i == 10 || i == 11 || i == 12 || i == 15));
                     break;
             }
         }

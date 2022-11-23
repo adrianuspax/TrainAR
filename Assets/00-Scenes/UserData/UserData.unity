@@ -2271,7 +2271,7 @@ MonoBehaviour:
   m_Material: {fileID: 0}
   m_Color: {r: 0.14117648, g: 0.6784314, b: 0.5882353, a: 1}
   m_RaycastTarget: 1
-  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_RaycastPadding: {x: -360, y: -28, z: -50, w: -28}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -8515,6 +8515,7 @@ MonoBehaviour:
   SignOnButtons: {fileID: 0}
   LanguageButtons: {fileID: 0}
   MenuButtons: {fileID: 0}
+  PanelCoachButtons: {fileID: 0}
 --- !u!114 &1127046628
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8548,6 +8549,7 @@ MonoBehaviour:
   levelIsPressed: 
   levelByIndex: []
   chosenLevel: 
+  levelValue: 0
   focusButton: []
   focusIsPressed: 
   focusByIndex: []
@@ -8625,6 +8627,8 @@ MonoBehaviour:
   floatMenu: {fileID: 0}
   coach: {fileID: 0}
   transition: {fileID: 0}
+  panelCoach: {fileID: 0}
+  panelResult: {fileID: 0}
 --- !u!114 &1127046632
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8638,7 +8642,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   userName: 
-  genre: 
+  gender: 
   goal: 
   level: 
   focus: 
@@ -8844,7 +8848,7 @@ MonoBehaviour:
   m_Material: {fileID: 0}
   m_Color: {r: 0.14117648, g: 0.6784314, b: 0.5882353, a: 1}
   m_RaycastTarget: 1
-  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_RaycastPadding: {x: -360, y: -28, z: -50, w: -28}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -11864,7 +11868,7 @@ MonoBehaviour:
   m_Material: {fileID: 0}
   m_Color: {r: 0.14117648, g: 0.6784314, b: 0.5882353, a: 1}
   m_RaycastTarget: 1
-  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_RaycastPadding: {x: -360, y: -28, z: -50, w: -28}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -11985,7 +11989,7 @@ MonoBehaviour:
   m_Material: {fileID: 0}
   m_Color: {r: 0.14117648, g: 0.6784314, b: 0.5882353, a: 1}
   m_RaycastTarget: 1
-  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_RaycastPadding: {x: -360, y: -28, z: -50, w: -28}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:

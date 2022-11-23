@@ -78,6 +78,7 @@ SpriteAtlas:
   - {fileID: 21300000, guid: eb0a1cc53dd8060409cb62d8aa019969, type: 3}
   - {fileID: 21300000, guid: 97a424d5dac5e334193befb79114fe3f, type: 3}
   - {fileID: 21300000, guid: 1ba8de16797e3824688aa5206a7815bd, type: 3}
+  - {fileID: 21300000, guid: e4c25f36e1d55d943942f2ec3932cf03, type: 3}
   - {fileID: 21300000, guid: 9460f846d5e681d4eb8d2f784afb6fd2, type: 3}
   - {fileID: 21300000, guid: 1ff357171d1453e40b14527e731ed192, type: 3}
   - {fileID: 21300000, guid: f2f01d27b6dd90c4c84de1eaf8b3a775, type: 3}
@@ -136,6 +137,7 @@ SpriteAtlas:
   - add_alt
   - smart_display
   - check_circle
+  - play_arrow_l
   - phone_android
   - report_problem
   - edit_square

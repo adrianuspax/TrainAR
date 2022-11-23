@@ -2,9 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using UnityEngine.UI;
 
 public class PanelResult : MonoBehaviour
 {
+    [Header("Button", order = 0)]
+    [SerializeField] private Button panelButton;
+
     [Header("Animation", order = 0)]
     [SerializeField] private Animator panelResultAnimator;
     [SerializeField] private AnimationClip panelResultFadeInClip;
@@ -33,7 +37,12 @@ public class PanelResult : MonoBehaviour
     private const int KCAL = 2;
     private const int BIO = 3;
     private const int BFAT = 4;
-        
+
+    private void Awake()
+    {
+        panelButton.onClick.AddListener(() => PanelResultBehaviour());
+    }
+
     private void Start()
     {
         bmi = RangingBMI(Calculation.BMI);

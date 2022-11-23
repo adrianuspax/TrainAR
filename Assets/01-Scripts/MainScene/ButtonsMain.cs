@@ -39,7 +39,6 @@ public class ButtonsMain : MonoBehaviour
         btnTopL.onClick.AddListener(() => ScenesManagement.LoadMenu());
         btnBarC.onClick.AddListener(() => AR.PlaceCoachAR());
         btnBarR.onClick.AddListener(() => ButtonPanelCoach(btnBarRIsPressed));
-        btnBarR.onClick.AddListener(() => Animations.PanelCoach.PanelCoachBehaviour(btnBarRIsPressed));
         btnBarL.onClick.AddListener(() => Animations.PanelResult.PanelResultBehaviour());
     }
 
@@ -77,6 +76,8 @@ public class ButtonsMain : MonoBehaviour
 
         btnBarR.image.sprite = isPressed ? Sprites.closePanel : Sprites.openPanel;
         Animations.FloatMenu.FloatsIsOpen = !isPressed;
+
+        Animations.PanelCoach.PanelCoachBehaviour(isPressed);
 
         btnBarRIsPressed = isPressed;
     }
