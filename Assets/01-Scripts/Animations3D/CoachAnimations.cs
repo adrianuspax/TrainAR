@@ -87,9 +87,14 @@ public class CoachAnimations : MonoBehaviour
     [Space(-10f, order = 0)]
     [Header("Booleans", order = 1)]
     [SerializeField, ReadOnly] private bool AnimationStarted;
+    [Space(-10f, order = 0)]
+    [Header("Scripts", order = 1)]
+    [SerializeField, ReadOnly] private Loading Load;
 
     private void Awake()
     {
+        Load = this.GetComponent<Loading>();
+
         clipByIndex = new AnimationClip[TotalCount];
         clipByIndex[(int)Trigger.Idle] = idleClip;
         clipByIndex[(int)Trigger.Bored] = boredClip;
@@ -120,7 +125,6 @@ public class CoachAnimations : MonoBehaviour
     {
         coachControl.SetTrigger(trigger.ToString());
         triggered = trigger;
-
         AnimationStarted = !(trigger == 0);
     }
 
@@ -128,11 +132,11 @@ public class CoachAnimations : MonoBehaviour
     {
         coachControl.SetTrigger(((Trigger)index).ToString());
         triggered = GetTrigger(index);
-
         AnimationStarted = !(index == 0);
     }
 
     public float GetClipTime(int index) => clipByIndex[index].length;
+    public float GetClipTime(Trigger trigger) => clipByIndex[(int)trigger].length;
     public bool GetClipLooping(int index) => clipByIndex[index].isLooping;
     public Trigger GetTrigger(int index) => (Trigger)index;
     public string GetName(int index) => GetTrigger(index).ToString();
