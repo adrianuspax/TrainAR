@@ -38,6 +38,8 @@ public class DropDownMenu : MonoBehaviour
     [SerializeField, ReadOnly] private ButtonsManager Buttons;
     [SerializeField, ReadOnly] private AnimationsManager Animations;
 
+    private bool singlePressed;
+
     public const int SQUAT = 0;
     public const int SQUATBENTARMS = 1;
     public const int BICEPCURL = 2;
@@ -149,6 +151,8 @@ public class DropDownMenu : MonoBehaviour
         {
             Animations.Coach.StartIdleAnimation();
         }
+
+        IsPressed = isPressDDM[index];
     }
 
     private void ButtonsDDMFunction(int index)
@@ -172,6 +176,12 @@ public class DropDownMenu : MonoBehaviour
             Buttons.Interaction(true, gridButtonDDM);
             isPressDDM[i] = false;
         }
+    }
+
+    public bool IsPressed
+    {
+        get => singlePressed;
+        private set => singlePressed = value;
     }
 
     public int TotalButtons => buttonsHeader.childCount;

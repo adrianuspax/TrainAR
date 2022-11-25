@@ -88,11 +88,13 @@ public class PanelCoach : MonoBehaviour
     [Header("Scripts", order = 0)]
     [SerializeField, ReadOnly] private AugmentedReality AR;
     [SerializeField, ReadOnly] private ButtonsManager Buttons;
+    [SerializeField, ReadOnly] private AnimationsManager Animations;
 
     private void Awake()
     {
         AR = this.GetComponent<AugmentedReality>();
         Buttons = this.GetComponent<ButtonsManager>();
+        Animations = this.GetComponent<AnimationsManager>();
 
         pivotCorrection = pivotPanelCoach.GetChild(0);
         objectReference = GameObject.FindGameObjectWithTag(Tag.Coach).transform.GetChild(0);
@@ -113,7 +115,8 @@ public class PanelCoach : MonoBehaviour
     {
         rectMask2D.enabled = true;
 
-        RecomendationsActivations((Focus)Calculation.IndexFocus);
+        ProvisionalRecomendationsActivations();
+        //RecomendationsActivations((Focus)Calculation.IndexFocus);
 
         pivotCorrection.transform.localRotation = Quaternion.Euler(new Vector3(0, -180, 0));
         pivotCorrection.transform.localPosition = Vector3.up;
@@ -196,7 +199,8 @@ public class PanelCoach : MonoBehaviour
     public void ButtonPlay()
     {
         Buttons.CanvasMain.ButtonPanelCoach(true); //incorrect logic
-        Buttons.FloatMenu.ButtonsFloatBehaviour((BodyPart)Calculation.IndexFocus);
+        //Buttons.FloatMenu.ButtonsFloatBehaviour((BodyPart)Calculation.IndexFocus);
+        Animations.Loading.LoadBehaviourPanelCoach();
     }
 
     public void PanelCoachBehaviour(bool isOpen)
@@ -235,6 +239,14 @@ public class PanelCoach : MonoBehaviour
                     recomendation[i].SetActive((i == 0 || i == 2 || i == 3 || i == 5 || i == 8 || i == 10 || i == 11 || i == 12 || i == 15));
                     break;
             }
+        }
+    }
+
+    private void ProvisionalRecomendationsActivations()
+    {
+        for (int i = 0; i < recomendation.Length; i++)
+        {
+            recomendation[i].SetActive((i == 0 || i == 1 || i == 5 || i == 9 || i == 15));
         }
     }
 

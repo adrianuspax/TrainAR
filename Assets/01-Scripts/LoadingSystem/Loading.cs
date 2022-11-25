@@ -1,7 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using TMPro;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -22,10 +21,12 @@ public class Loading : MonoBehaviour
 
     [Header("Scripts", order = 0)]
     [SerializeField, ReadOnly] private AnimationsManager Animations;
+    [SerializeField, ReadOnly] private ButtonsManager Buttons;
 
     private void Awake()
     {
         Animations = this.GetComponent<AnimationsManager>();
+        Buttons = this.GetComponent<ButtonsManager>();
     }
 
     private void Start()
@@ -35,7 +36,14 @@ public class Loading : MonoBehaviour
 
     private void Update()
     {
-        LoadBehaviour();
+        if (Buttons.DropDownMenu.IsPressed)
+        {
+            LoadBehaviourDDM();
+        }
+        else
+        {
+
+        }
     }
 
     public void StartAnimation()
@@ -63,7 +71,7 @@ public class Loading : MonoBehaviour
         loadingSysAnimator.enabled = false;
     }
 
-    public void LoadBehaviour()
+    public void LoadBehaviourDDM()
     {
         if (Animations.Coach.HasTriggered)
         {
@@ -87,7 +95,6 @@ public class Loading : MonoBehaviour
         }
         else
         {
-
             if (Animations.Coach.CurrentAnimation.isWorkout)
             {
                 countTMP.text = "대기";
@@ -100,18 +107,67 @@ public class Loading : MonoBehaviour
                     countTMP.text = "준비";
                     circleLoad.fillAmount = Animations.Coach.CurrentAnimation.normalizedTime;
                 }
-                else
+                else if (Animations.Coach.CurrentAnimation.isIdle && this.HasStarted)
                 {
-                    if (Animations.Coach.CurrentAnimation.isIdle)
-                    {
-                        if (this.HasStarted)
-                        {
-                            EndAnimation();
-                        }
-                    }
+                    EndAnimation();
                 }
             }
         }
+    }
+
+    public void LoadBehaviourPanelCoach()
+    {
+        StartCoroutine(Cor_LoadBehaviourPanelCoach());
+    }
+
+    private IEnumerator Cor_LoadBehaviourPanelCoach()
+    {
+        StartAnimation();
+        circleLoad.fillAmount = 1;
+        Animations.Coach.StartAnimation(Trigger.Pistol);
+        yield return new WaitWhile(() => !Animations.Coach.CurrentAnimation.isWorkout);
+
+        while (Animations.Coach.CurrentAnimation.loopCount < 3)
+        {
+            if (true)
+            {
+
+            }
+
+            countTMP.text = (3 - Animations.Coach.CurrentAnimation.loopCount) + "ₓ";
+            circleLoad.fillAmount = (3 - Animations.Coach.CurrentAnimation.normalizedTime) / 3;
+            yield return null;
+        }
+
+        Animations.Coach.StartIdleAnimation();
+        yield return new WaitWhile(() => !Animations.Coach.CurrentAnimation.isIdle);
+
+        Animations.Coach.StartAnimation(Trigger.Squat);
+        yield return new WaitWhile(() => !Animations.Coach.CurrentAnimation.isWorkout);
+
+        while (Animations.Coach.CurrentAnimation.loopCount < 5)
+        {
+            countTMP.text = (5 - Animations.Coach.CurrentAnimation.loopCount) + "ₓ";
+            circleLoad.fillAmount = (5 - Animations.Coach.CurrentAnimation.normalizedTime) / 5;
+            yield return null;
+        }
+
+        Animations.Coach.StartIdleAnimation();
+        yield return new WaitWhile(() => !Animations.Coach.CurrentAnimation.isIdle);
+
+        Animations.Coach.StartAnimation(Trigger.Burpee);
+        yield return new WaitWhile(() => !Animations.Coach.CurrentAnimation.isWorkout);
+
+        while (Animations.Coach.CurrentAnimation.loopCount < 2)
+        {
+            countTMP.text = (2 - Animations.Coach.CurrentAnimation.loopCount) + "ₓ";
+            circleLoad.fillAmount = (2 - Animations.Coach.CurrentAnimation.normalizedTime) / 2;
+            yield return null;
+        }
+
+        Animations.Coach.StartIdleAnimation();
+        yield return new WaitWhile(() => !Animations.Coach.CurrentAnimation.isIdle);
+        EndAnimation();
     }
 
     public bool HasStarted
