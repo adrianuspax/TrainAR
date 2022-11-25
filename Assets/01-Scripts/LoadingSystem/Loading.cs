@@ -1,6 +1,7 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -18,9 +19,6 @@ public class Loading : MonoBehaviour
     [Space(-10, order = 1)]
     [Header("Variables", order = 2)]
     [SerializeField, ReadOnly] private bool loadingIsStart;
-    [SerializeField, ReadOnly] private float animationTime;
-    [SerializeField, ReadOnly] private int totalAmount;
-    [SerializeField, ReadOnly] private float totalTime;
 
     [Header("Scripts", order = 0)]
     [SerializeField, ReadOnly] private AnimationsManager Animations;
@@ -35,80 +33,90 @@ public class Loading : MonoBehaviour
         loadingIsStart = false;
     }
 
-    public void StartLoadind(bool start)
+    private void Update()
     {
-        loadingSysAnimator.Play(start ? loadingSysStartClip.name : loadingSysEndClip.name);
-        loadingIsStart = start;
+        LoadBehaviour();
     }
 
-    public void LoadingCountdown(int amount, Trigger animation)
+    public void StartAnimation()
     {
-        totalAmount = amount;
-        animationTime = Animations.Coach.GetClipTime(animation);
-        totalTime = totalAmount * animationTime;
-            
-        StartLoadind(true);
-        StartCoroutine(Cor_Countdown(totalTime));
+        loadingSysAnimator.Play(loadingSysStartClip.name);
+        LoadingAnimationDisable();
+        HasStarted = true;
     }
 
-    public void LoadingCountup(Trigger animation)
+    public void EndAnimation()
     {
-        animationTime = Animations.Coach.GetClipTime(animation);
-        StartCoroutine(Cor_Countup());
-    }
-
-    private IEnumerator Cor_Countdown(float t)
-    {
-        yield return new WaitForSeconds(loadingSysStartClip.length + 0.1f);
-        loadingSysAnimator.enabled = false;
-        circleLoad.fillAmount = 1f;
-        countTMP.text = totalAmount.ToString();
-
-        while (t > 0f)
+        if (HasStarted)
         {
-            t -= Time.deltaTime;
-            circleLoad.fillAmount = t / totalTime;
-            countTMP.text = Mathf.RoundToInt((t / animationTime)).ToString() + "x";
-            yield return null;
+            LoadingAnimationEnable();
+            loadingSysAnimator.Play(loadingSysEndClip.name);
+            HasStarted = false;
         }
-
-        yield return new WaitForSeconds(0.75f);
-        loadingSysAnimator.enabled = true;
-        StartLoadind(false);
     }
 
-    private IEnumerator Cor_Countup()
+    private void LoadingAnimationDisable() => StartCoroutine(Cor_DelayDisableAnimation());
+    private void LoadingAnimationEnable() => loadingSysAnimator.enabled = true;
+    private IEnumerator Cor_DelayDisableAnimation()
     {
         yield return new WaitForSeconds(loadingSysStartClip.length + 0.1f);
         loadingSysAnimator.enabled = false;
-        circleLoad.fillAmount = 1f;
-        countTMP.text = "0x";
+    }
 
-        float time = 0.0001f;
-
-        while(time > 0)
+    public void LoadBehaviour()
+    {
+        if (Animations.Coach.HasTriggered)
         {
-            if (Animations.Coach.IsStarted)
+            if (this.HasStarted)
             {
-                time += Time.deltaTime;
-                countTMP.text = Mathf.RoundToInt((time / animationTime)).ToString() + "x";
+                if (Animations.Coach.CurrentAnimation.isEnter)
+                {
+                    countTMP.text = "준비";
+                    circleLoad.fillAmount = Animations.Coach.CurrentAnimation.normalizedTime;
+                }
+                else if (Animations.Coach.CurrentAnimation.isWorkout)
+                {
+                    countTMP.text = Animations.Coach.CurrentAnimation.loopCount + "ₓ";
+                    circleLoad.fillAmount = 1f;
+                }
             }
             else
             {
-                time = 0;
+                StartAnimation();
             }
-            
         }
+        else
+        {
 
-        yield return new WaitForSeconds(0.75f); //colocar o tempo de transi��o para idle
-        loadingSysAnimator.enabled = true;
-        StartLoadind(false);
+            if (Animations.Coach.CurrentAnimation.isWorkout)
+            {
+                countTMP.text = "대기";
+                circleLoad.fillAmount = Animations.Coach.CurrentAnimation.normalizedReverseTime;
+            }
+            else
+            {
+                if (Animations.Coach.CurrentAnimation.isOut)
+                {
+                    countTMP.text = "준비";
+                    circleLoad.fillAmount = Animations.Coach.CurrentAnimation.normalizedTime;
+                }
+                else
+                {
+                    if (Animations.Coach.CurrentAnimation.isIdle)
+                    {
+                        if (this.HasStarted)
+                        {
+                            EndAnimation();
+                        }
+                    }
+                }
+            }
+        }
     }
 
-
-
-    public void Test()
+    public bool HasStarted
     {
-        LoadingCountdown(5, Trigger.JumpingJacks);
+        get => loadingIsStart;
+        private set => loadingIsStart = value;
     }
 }

@@ -57,7 +57,7 @@ public class ButtonsMain : MonoBehaviour
         }
 
         condition = (CurrentStateButtonAR == StateButtonAR.Refresh) || isInteractable;
-        ButtonSetCoachInteraction = condition && !Animations.Main.coach.IsStarted;
+        ButtonSetCoachInteraction = condition && Animations.Coach.CurrentAnimation.isIdle;
 
         if (ButtonSetCoachInteraction)
         {

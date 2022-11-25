@@ -23,7 +23,7 @@ AnimatorState:
   m_TimeParameterActive: 0
   m_Motion: {fileID: -203655887218126122, guid: 4ca4ddf592e79984bbf0dc37995a97e3,
     type: 3}
-  m_Tag: 
+  m_Tag: outWorkout
   m_SpeedParameter: 
   m_MirrorParameter: 
   m_CycleOffsetParameter: 
@@ -171,7 +171,7 @@ AnimatorState:
   m_TimeParameterActive: 0
   m_Motion: {fileID: -203655887218126122, guid: 51f3af15503038c40be393cde96039b9,
     type: 3}
-  m_Tag: 
+  m_Tag: workout
   m_SpeedParameter: 
   m_MirrorParameter: 
   m_CycleOffsetParameter: 
@@ -182,7 +182,7 @@ AnimatorStateTransition:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: 
+  m_Name: ToIdle
   m_Conditions: []
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: 1124960806809886096}
@@ -301,7 +301,7 @@ AnimatorState:
   m_TimeParameterActive: 0
   m_Motion: {fileID: -203655887218126122, guid: 3091234133ad4ff4da1c3fe212e4e57f,
     type: 3}
-  m_Tag: 
+  m_Tag: enterWorkout
   m_SpeedParameter: 
   m_MirrorParameter: 
   m_CycleOffsetParameter: 
@@ -357,7 +357,7 @@ AnimatorState:
   m_TimeParameterActive: 0
   m_Motion: {fileID: -203655887218126122, guid: 8db78dde1582a1049bdeb67eb689553d,
     type: 3}
-  m_Tag: 
+  m_Tag: enterWorkout
   m_SpeedParameter: 
   m_MirrorParameter: 
   m_CycleOffsetParameter: 
@@ -393,7 +393,7 @@ AnimatorStateTransition:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: 
+  m_Name: ToIdle
   m_Conditions: []
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: 1124960806809886096}
@@ -415,7 +415,7 @@ AnimatorStateTransition:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: 
+  m_Name: ToIdle
   m_Conditions: []
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: 1124960806809886096}
@@ -540,7 +540,7 @@ AnimatorState:
   m_TimeParameterActive: 0
   m_Motion: {fileID: -203655887218126122, guid: 1e71bb3bb51a98849b3567220d1cb0b7,
     type: 3}
-  m_Tag: 
+  m_Tag: outWorkout
   m_SpeedParameter: 
   m_MirrorParameter: 
   m_CycleOffsetParameter: 
@@ -568,7 +568,7 @@ AnimatorState:
   m_TimeParameterActive: 0
   m_Motion: {fileID: -203655887218126122, guid: 1e71bb3bb51a98849b3567220d1cb0b7,
     type: 3}
-  m_Tag: 
+  m_Tag: outWorkout
   m_SpeedParameter: 
   m_MirrorParameter: 
   m_CycleOffsetParameter: 
@@ -693,7 +693,7 @@ AnimatorState:
   m_TimeParameterActive: 0
   m_Motion: {fileID: -203655887218126122, guid: 296d50d7b9396a543b9262580f9519a7,
     type: 3}
-  m_Tag: 
+  m_Tag: enterWorkout
   m_SpeedParameter: 
   m_MirrorParameter: 
   m_CycleOffsetParameter: 
@@ -774,7 +774,7 @@ AnimatorState:
   m_TimeParameterActive: 0
   m_Motion: {fileID: -203655887218126122, guid: 326b50ec2e0bbf643b74f9f06f52fa60,
     type: 3}
-  m_Tag: 
+  m_Tag: enterWorkout
   m_SpeedParameter: 
   m_MirrorParameter: 
   m_CycleOffsetParameter: 
@@ -785,7 +785,7 @@ AnimatorStateTransition:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: 
+  m_Name: ToIdle
   m_Conditions:
   - m_ConditionMode: 1
     m_ConditionEvent: Idle
@@ -838,7 +838,7 @@ AnimatorStateTransition:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: 
+  m_Name: ToIdle
   m_Conditions:
   - m_ConditionMode: 1
     m_ConditionEvent: Idle
@@ -880,7 +880,7 @@ AnimatorState:
   m_TimeParameterActive: 0
   m_Motion: {fileID: -203655887218126122, guid: 326b50ec2e0bbf643b74f9f06f52fa60,
     type: 3}
-  m_Tag: 
+  m_Tag: enterWorkout
   m_SpeedParameter: 
   m_MirrorParameter: 
   m_CycleOffsetParameter: 
@@ -908,7 +908,7 @@ AnimatorState:
   m_TimeParameterActive: 0
   m_Motion: {fileID: -203655887218126122, guid: 0b51950100557f64ba5d1292ec49c1db,
     type: 3}
-  m_Tag: 
+  m_Tag: enterWorkout
   m_SpeedParameter: 
   m_MirrorParameter: 
   m_CycleOffsetParameter: 
@@ -936,7 +936,7 @@ AnimatorState:
   m_TimeParameterActive: 0
   m_Motion: {fileID: -203655887218126122, guid: 94a881f97f15a1f4ba373912138d6b93,
     type: 3}
-  m_Tag: 
+  m_Tag: workout
   m_SpeedParameter: 
   m_MirrorParameter: 
   m_CycleOffsetParameter: 
@@ -964,7 +964,7 @@ AnimatorState:
   m_TimeParameterActive: 0
   m_Motion: {fileID: -203655887218126122, guid: 4db02382f7e1d23409f81d82d2aabe1b,
     type: 3}
-  m_Tag: 
+  m_Tag: enterWorkout
   m_SpeedParameter: 
   m_MirrorParameter: 
   m_CycleOffsetParameter: 
@@ -1073,7 +1073,7 @@ AnimatorState:
   m_TimeParameterActive: 0
   m_Motion: {fileID: -203655887218126122, guid: 645d6ce4218341e43963c57e354222d8,
     type: 3}
-  m_Tag: 
+  m_Tag: outWorkout
   m_SpeedParameter: 
   m_MirrorParameter: 
   m_CycleOffsetParameter: 
@@ -1084,7 +1084,7 @@ AnimatorStateTransition:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: 
+  m_Name: ToIdle
   m_Conditions: []
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: 1124960806809886096}
@@ -1151,7 +1151,7 @@ AnimatorState:
   m_TimeParameterActive: 0
   m_Motion: {fileID: -203655887218126122, guid: 0b51950100557f64ba5d1292ec49c1db,
     type: 3}
-  m_Tag: 
+  m_Tag: enterWorkout
   m_SpeedParameter: IdleBlend
   m_MirrorParameter: 
   m_CycleOffsetParameter: 
@@ -1244,7 +1244,7 @@ AnimatorState:
   m_TimeParameterActive: 0
   m_Motion: {fileID: -203655887218126122, guid: 23e54cf58cf91044f8d630e0c646132c,
     type: 3}
-  m_Tag: 
+  m_Tag: enterWorkout
   m_SpeedParameter: 
   m_MirrorParameter: 
   m_CycleOffsetParameter: 
@@ -1274,7 +1274,7 @@ AnimatorState:
   m_TimeParameterActive: 0
   m_Motion: {fileID: -203655887218126122, guid: 867b985fe67719e42a8ff1c2d995f6d8,
     type: 3}
-  m_Tag: 
+  m_Tag: workout
   m_SpeedParameter: 
   m_MirrorParameter: 
   m_CycleOffsetParameter: 
@@ -1285,7 +1285,7 @@ AnimatorStateTransition:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: 
+  m_Name: ToIdle
   m_Conditions:
   - m_ConditionMode: 1
     m_ConditionEvent: Idle
@@ -1327,7 +1327,7 @@ AnimatorState:
   m_TimeParameterActive: 0
   m_Motion: {fileID: -203655887218126122, guid: 7531f0b3c1523e043baf0e123dc9598a,
     type: 3}
-  m_Tag: 
+  m_Tag: outWorkout
   m_SpeedParameter: 
   m_MirrorParameter: 
   m_CycleOffsetParameter: 
@@ -1378,7 +1378,7 @@ AnimatorStateTransition:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: 
+  m_Name: ToIdle
   m_Conditions: []
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: 1124960806809886096}
@@ -1464,7 +1464,7 @@ AnimatorState:
   m_TimeParameterActive: 0
   m_Motion: {fileID: -203655887218126122, guid: 03f2010e18eaf4145b94be43de91602c,
     type: 3}
-  m_Tag: 
+  m_Tag: outWorkout
   m_SpeedParameter: 
   m_MirrorParameter: 
   m_CycleOffsetParameter: 
@@ -1492,7 +1492,7 @@ AnimatorState:
   m_TimeParameterActive: 0
   m_Motion: {fileID: -203655887218126122, guid: 9734fd5813b6cd44e8a8b9f370b413e0,
     type: 3}
-  m_Tag: 
+  m_Tag: workout
   m_SpeedParameter: 
   m_MirrorParameter: 
   m_CycleOffsetParameter: 
@@ -1702,7 +1702,7 @@ AnimatorStateTransition:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: 
+  m_Name: ToIdle
   m_Conditions: []
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: 1124960806809886096}
@@ -1741,7 +1741,7 @@ AnimatorState:
   m_TimeParameterActive: 0
   m_Motion: {fileID: -203655887218126122, guid: 0f7825939b9f5014da6edf0d513e2f10,
     type: 3}
-  m_Tag: 
+  m_Tag: workout
   m_SpeedParameter: 
   m_MirrorParameter: 
   m_CycleOffsetParameter: 
@@ -1811,7 +1811,7 @@ AnimatorState:
   m_TimeParameterActive: 0
   m_Motion: {fileID: -203655887218126122, guid: 645675340609c914e8cff2109e413390,
     type: 3}
-  m_Tag: 
+  m_Tag: workout
   m_SpeedParameter: 
   m_MirrorParameter: 
   m_CycleOffsetParameter: 
@@ -1865,7 +1865,7 @@ AnimatorState:
   m_TimeParameterActive: 0
   m_Motion: {fileID: -203655887218126122, guid: 6945d9f575cb97048a6f29160f1d3d46,
     type: 3}
-  m_Tag: 
+  m_Tag: workout
   m_SpeedParameter: 
   m_MirrorParameter: 
   m_CycleOffsetParameter: 
@@ -1918,7 +1918,7 @@ AnimatorState:
   m_TimeParameterActive: 0
   m_Motion: {fileID: -203655887218126122, guid: be6c88c527558154e81dd05750d8cdd6,
     type: 3}
-  m_Tag: 
+  m_Tag: outWorkout
   m_SpeedParameter: 
   m_MirrorParameter: 
   m_CycleOffsetParameter: 
@@ -1946,7 +1946,7 @@ AnimatorState:
   m_TimeParameterActive: 0
   m_Motion: {fileID: -203655887218126122, guid: 7239eb515348ccf46b1265a91afa8df5,
     type: 3}
-  m_Tag: 
+  m_Tag: outWorkout
   m_SpeedParameter: 
   m_MirrorParameter: 
   m_CycleOffsetParameter: 
@@ -2115,7 +2115,7 @@ AnimatorState:
   m_TimeParameterActive: 0
   m_Motion: {fileID: -203655887218126122, guid: 03f2010e18eaf4145b94be43de91602c,
     type: 3}
-  m_Tag: 
+  m_Tag: outWorkout
   m_SpeedParameter: 
   m_MirrorParameter: 
   m_CycleOffsetParameter: 
@@ -2169,7 +2169,7 @@ AnimatorState:
   m_TimeParameterActive: 0
   m_Motion: {fileID: -203655887218126122, guid: 5f321a24707a12d459486cd23cf2639a,
     type: 3}
-  m_Tag: 
+  m_Tag: workout
   m_SpeedParameter: 
   m_MirrorParameter: 
   m_CycleOffsetParameter: 
@@ -2227,7 +2227,7 @@ AnimatorStateTransition:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: 
+  m_Name: ToIdle
   m_Conditions: []
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: 1124960806809886096}
@@ -2249,7 +2249,7 @@ AnimatorStateTransition:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: 
+  m_Name: ToIdle
   m_Conditions: []
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: 1124960806809886096}
@@ -2324,7 +2324,7 @@ AnimatorStateTransition:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: 
+  m_Name: ToIdle
   m_Conditions:
   - m_ConditionMode: 1
     m_ConditionEvent: Idle
@@ -2366,7 +2366,7 @@ AnimatorState:
   m_TimeParameterActive: 0
   m_Motion: {fileID: -203655887218126122, guid: 209cf2b14e9561d45a91d933c0dab2e7,
     type: 3}
-  m_Tag: 
+  m_Tag: workout
   m_SpeedParameter: 
   m_MirrorParameter: 
   m_CycleOffsetParameter: 
@@ -2568,7 +2568,7 @@ AnimatorState:
   m_TimeParameterActive: 0
   m_Motion: {fileID: -203655887218126122, guid: 9d531b737d050b3439d1cac93200753c,
     type: 3}
-  m_Tag: 
+  m_Tag: workout
   m_SpeedParameter: 
   m_MirrorParameter: 
   m_CycleOffsetParameter: 
@@ -2624,7 +2624,7 @@ AnimatorState:
   m_TimeParameterActive: 0
   m_Motion: {fileID: -203655887218126122, guid: acc2a7d1df52a294ba20aa1c3f54cc59,
     type: 3}
-  m_Tag: 
+  m_Tag: workout
   m_SpeedParameter: 
   m_MirrorParameter: 
   m_CycleOffsetParameter: 
@@ -2730,7 +2730,7 @@ AnimatorState:
   m_TimeParameterActive: 0
   m_Motion: {fileID: 2184839216927646963, guid: dc9ca120ec7644444a4b9288a099bcf4,
     type: 3}
-  m_Tag: 
+  m_Tag: workout
   m_SpeedParameter: 
   m_MirrorParameter: 
   m_CycleOffsetParameter: 
@@ -2791,7 +2791,7 @@ AnimatorStateTransition:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: 
+  m_Name: ToIdle
   m_Conditions: []
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: 1124960806809886096}
@@ -2845,7 +2845,7 @@ AnimatorState:
   m_TimeParameterActive: 0
   m_Motion: {fileID: -203655887218126122, guid: 3275a195b8fa8c24ca6dbe9fa6467e50,
     type: 3}
-  m_Tag: 
+  m_Tag: workout
   m_SpeedParameter: 
   m_MirrorParameter: 
   m_CycleOffsetParameter: 
@@ -2856,7 +2856,7 @@ AnimatorStateTransition:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: 
+  m_Name: ToIdle
   m_Conditions:
   - m_ConditionMode: 1
     m_ConditionEvent: Idle
@@ -3064,7 +3064,7 @@ AnimatorState:
   m_TimeParameterActive: 0
   m_Motion: {fileID: -203655887218126122, guid: 602cb0321b7bcc24ab560811e26461c3,
     type: 3}
-  m_Tag: 
+  m_Tag: workout
   m_SpeedParameter: 
   m_MirrorParameter: 
   m_CycleOffsetParameter: 

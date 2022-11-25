@@ -14,13 +14,11 @@ public class AnimationsMain : MonoBehaviour
     [Header("READY ONLY", order = 0)]
     [Space(-10, order = 1)]
     [Header("Animators", order = 2)]
-    [ReadOnly] public CoachAnimations coach;
     [SerializeField, ReadOnly] private Animator anchorAnimator;
     [SerializeField, ReadOnly] private Animator movePhoneAnimator;
 
     private void Awake()
     {
-        coach = this.GetComponent<CoachAnimations>();
         if (IsOnTheScene(Tag.Anchor))
         { anchorAnimator = GetAnimator(Tag.Anchor); }
         if (IsOnTheScene(Tag.ButtonAR))

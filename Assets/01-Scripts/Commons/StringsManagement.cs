@@ -16,6 +16,13 @@ public static class Tag
     public const string Coach = "Coach";
 }
 
+public static class StateTag
+{
+    public const string Workout = "workout";
+    public const string EnterWorkout = "enterWorkout";
+    public const string OutWorkout = "outWorkout";
+}
+
 public static class Parameter
 {
     public const string AnchorHit = "isHit";
@@ -28,6 +35,7 @@ public static class State
 {
     public const string PanelStart = "panelQuestionStart";
     public const string PanelEnd = "panelQuestionEnd";
+    public const string IdleBlend = "IdleBlend";
 }
 
 public static class SceneName
@@ -39,4 +47,9 @@ public static class SceneName
     public const string UserData = "UserData";
     public const string TrainAR = "TrainAR";
     public const string Menu = "Menu";
+}
+
+public static class TransitionUserName
+{
+    public const string ToIdle = "ToIdle";
 }

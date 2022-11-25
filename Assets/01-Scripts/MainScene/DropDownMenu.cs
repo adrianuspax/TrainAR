@@ -98,9 +98,9 @@ public class DropDownMenu : MonoBehaviour
             Animations.FloatMenu.FloatsIsOpen = true;
             Buttons.CanvasMain.PanelCoachInteraction = true;
 
-            if (Animations.Coach.IsStarted)
+            if (!Animations.Coach.CurrentAnimation.isIdle)
             {
-                Animations.Coach.StartAnimation(Trigger.Idle);
+                Animations.Coach.StartIdleAnimation();
                 AllButtonsDefault();
             }
         }
@@ -130,7 +130,7 @@ public class DropDownMenu : MonoBehaviour
                 gridButtonDDM[index].image.color = pressedColor;
                 gridButtonDDM[index].transform.localPosition = deslocation;
 
-                Animations.Main.coach.StartAnimation(index + 3);
+                ButtonsDDMFunction(index);
             }
             else
             {
@@ -147,8 +147,13 @@ public class DropDownMenu : MonoBehaviour
 
         if (!isPressDDM[index])
         {
-            Animations.Main.coach.StartAnimation(Trigger.Idle);
+            Animations.Coach.StartIdleAnimation();
         }
+    }
+
+    private void ButtonsDDMFunction(int index)
+    {
+        Animations.Coach.StartAnimation(index + 3);
     }
 
     public void AllButtonsDefault()
