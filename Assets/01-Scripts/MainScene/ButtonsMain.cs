@@ -82,20 +82,6 @@ public class ButtonsMain : MonoBehaviour
         btnBarRIsPressed = isPressed;
     }
 
-    /*public void CallDropDownMenu(bool called)
-    {
-        called = !called;
-
-        if (called)
-        { Buttons.DropDownMenu.ButtonOpenDropDown(); }
-        if (!called)
-        { Buttons.DropDownMenu.ButtonCloseDropDown(); }
-
-        btnBarR.image.transform.localScale = new Vector2(called ? -1 : 1, 1);
-
-        dropDownIsOpen = called;
-    }*/
-
     public bool ButtonSetCoachInteraction
     {
         get => btnBarC.IsInteractable();

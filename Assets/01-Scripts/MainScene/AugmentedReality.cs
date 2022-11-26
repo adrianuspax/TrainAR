@@ -120,6 +120,7 @@ public class AugmentedReality : MonoBehaviour
 
         coach3D.transform.rotation = rotationCorrection;
         Buttons.CanvasMain.PanelCoachInteraction = CoachIsActivated;
+        Buttons.DropDownMenu.DDMInterecation = CoachIsActivated;
     }
 
     public bool AnchorIsHitting => anchorIsHitting;

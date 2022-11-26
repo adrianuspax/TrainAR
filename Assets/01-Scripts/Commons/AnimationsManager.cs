@@ -13,6 +13,7 @@ public class AnimationsManager : MonoBehaviour
     [SerializeField, ReadOnly] private PanelCoach panelCoach;
     [SerializeField, ReadOnly] private PanelResult panelResult;
     [SerializeField, ReadOnly] private Loading loading;
+    [SerializeField, ReadOnly] private TrainingSystem trainingSystem;
 
     private void Awake()
     {
@@ -23,6 +24,7 @@ public class AnimationsManager : MonoBehaviour
         if (this.GetComponent<PanelCoach>() != null) { panelCoach = this.GetComponent<PanelCoach>(); }
         if (this.GetComponent<PanelResult>() != null) { panelResult = this.GetComponent<PanelResult>(); }
         if (this.GetComponent<Loading>() != null) { loading = this.GetComponent<Loading>(); }
+        if (this.GetComponent<TrainingSystem>() != null) { trainingSystem = this.GetComponent<TrainingSystem>(); }
     }
 
     private void OnEnable()
@@ -38,4 +40,5 @@ public class AnimationsManager : MonoBehaviour
     public PanelCoach PanelCoach => panelCoach;
     public PanelResult PanelResult => panelResult;
     public Loading Loading => loading;
+    public TrainingSystem TrainingSystem => trainingSystem;
 }

@@ -13,37 +13,16 @@ public class Loading : MonoBehaviour
     [Header("UI", order = 0)]
     [SerializeField] private Image circleLoad;
     [SerializeField] private TextMeshProUGUI countTMP;
+    [SerializeField] private Button skipButton;
 
     [Header("Read Only", order = 0)]
     [Space(-10, order = 1)]
     [Header("Variables", order = 2)]
     [SerializeField, ReadOnly] private bool loadingIsStart;
 
-    [Header("Scripts", order = 0)]
-    [SerializeField, ReadOnly] private AnimationsManager Animations;
-    [SerializeField, ReadOnly] private ButtonsManager Buttons;
-
-    private void Awake()
-    {
-        Animations = this.GetComponent<AnimationsManager>();
-        Buttons = this.GetComponent<ButtonsManager>();
-    }
-
     private void Start()
     {
         loadingIsStart = false;
-    }
-
-    private void Update()
-    {
-        if (Buttons.DropDownMenu.IsPressed)
-        {
-            LoadBehaviourDDM();
-        }
-        else
-        {
-
-        }
     }
 
     public void StartAnimation()
@@ -71,103 +50,20 @@ public class Loading : MonoBehaviour
         loadingSysAnimator.enabled = false;
     }
 
-    public void LoadBehaviourDDM()
+    public void SetCount(int count)
     {
-        if (Animations.Coach.HasTriggered)
-        {
-            if (this.HasStarted)
-            {
-                if (Animations.Coach.CurrentAnimation.isEnter)
-                {
-                    countTMP.text = "준비";
-                    circleLoad.fillAmount = Animations.Coach.CurrentAnimation.normalizedTime;
-                }
-                else if (Animations.Coach.CurrentAnimation.isWorkout)
-                {
-                    countTMP.text = Animations.Coach.CurrentAnimation.loopCount + "ₓ";
-                    circleLoad.fillAmount = 1f;
-                }
-            }
-            else
-            {
-                StartAnimation();
-            }
-        }
-        else
-        {
-            if (Animations.Coach.CurrentAnimation.isWorkout)
-            {
-                countTMP.text = "대기";
-                circleLoad.fillAmount = Animations.Coach.CurrentAnimation.normalizedReverseTime;
-            }
-            else
-            {
-                if (Animations.Coach.CurrentAnimation.isOut)
-                {
-                    countTMP.text = "준비";
-                    circleLoad.fillAmount = Animations.Coach.CurrentAnimation.normalizedTime;
-                }
-                else if (Animations.Coach.CurrentAnimation.isIdle && this.HasStarted)
-                {
-                    EndAnimation();
-                }
-            }
-        }
+        countTMP.text = count + "ₓ";
     }
 
-    public void LoadBehaviourPanelCoach()
+    public void SetCount(string text)
     {
-        StartCoroutine(Cor_LoadBehaviourPanelCoach());
+        countTMP.text = text;
     }
 
-    private IEnumerator Cor_LoadBehaviourPanelCoach()
+    public float FillAmount
     {
-        StartAnimation();
-        circleLoad.fillAmount = 1;
-        Animations.Coach.StartAnimation(Trigger.Pistol);
-        yield return new WaitWhile(() => !Animations.Coach.CurrentAnimation.isWorkout);
-
-        while (Animations.Coach.CurrentAnimation.loopCount < 3)
-        {
-            if (true)
-            {
-
-            }
-
-            countTMP.text = (3 - Animations.Coach.CurrentAnimation.loopCount) + "ₓ";
-            circleLoad.fillAmount = (3 - Animations.Coach.CurrentAnimation.normalizedTime) / 3;
-            yield return null;
-        }
-
-        Animations.Coach.StartIdleAnimation();
-        yield return new WaitWhile(() => !Animations.Coach.CurrentAnimation.isIdle);
-
-        Animations.Coach.StartAnimation(Trigger.Squat);
-        yield return new WaitWhile(() => !Animations.Coach.CurrentAnimation.isWorkout);
-
-        while (Animations.Coach.CurrentAnimation.loopCount < 5)
-        {
-            countTMP.text = (5 - Animations.Coach.CurrentAnimation.loopCount) + "ₓ";
-            circleLoad.fillAmount = (5 - Animations.Coach.CurrentAnimation.normalizedTime) / 5;
-            yield return null;
-        }
-
-        Animations.Coach.StartIdleAnimation();
-        yield return new WaitWhile(() => !Animations.Coach.CurrentAnimation.isIdle);
-
-        Animations.Coach.StartAnimation(Trigger.Burpee);
-        yield return new WaitWhile(() => !Animations.Coach.CurrentAnimation.isWorkout);
-
-        while (Animations.Coach.CurrentAnimation.loopCount < 2)
-        {
-            countTMP.text = (2 - Animations.Coach.CurrentAnimation.loopCount) + "ₓ";
-            circleLoad.fillAmount = (2 - Animations.Coach.CurrentAnimation.normalizedTime) / 2;
-            yield return null;
-        }
-
-        Animations.Coach.StartIdleAnimation();
-        yield return new WaitWhile(() => !Animations.Coach.CurrentAnimation.isIdle);
-        EndAnimation();
+        get => circleLoad.fillAmount;
+        set => circleLoad.fillAmount = value;
     }
 
     public bool HasStarted
@@ -175,4 +71,6 @@ public class Loading : MonoBehaviour
         get => loadingIsStart;
         private set => loadingIsStart = value;
     }
+
+    public Button Skip => skipButton;
 }

@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using TMPro;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -84,23 +85,28 @@ public class DropDownMenu : MonoBehaviour
             panelDropDownOpen = true;
             aniDropDownMenu.Play(dropDownOpenClip.name);
             StartCoroutine(Cor_ScrowViewPos(dropDownOpenClip.length));
+            Buttons.FloatMenu.ButtonsFloatBehaviour(BodyPart.All);
+            Animations.FloatMenu.FloatsIsOpen = false;
         }
     }
 
     public void ButtonCloseDropDown()
     {
-        if (!panelDropDownOpen)
-        {
-            return;
-        }
-        else
+        bool conditional;
+             conditional =
+            Animations.Coach.CurrentAnimation.isWorkout ||
+            Animations.Coach.CurrentAnimation.isEnter ||
+            Animations.Coach.NextAnimation.willBeWorkout ||
+            Animations.Coach.NextAnimation.willBeEnter;
+
+        if (panelDropDownOpen)
         {
             panelDropDownOpen = false;
             aniDropDownMenu.Play(dropDownCloseClip.name);
             Animations.FloatMenu.FloatsIsOpen = true;
             Buttons.CanvasMain.PanelCoachInteraction = true;
 
-            if (!Animations.Coach.CurrentAnimation.isIdle)
+            if (conditional)
             {
                 Animations.Coach.StartIdleAnimation();
                 AllButtonsDefault();
@@ -176,6 +182,12 @@ public class DropDownMenu : MonoBehaviour
             Buttons.Interaction(true, gridButtonDDM);
             isPressDDM[i] = false;
         }
+    }
+
+    public bool DDMInterecation
+    {
+        get => btnOpenDropDown.interactable;
+        set => btnOpenDropDown.interactable = value;
     }
 
     public bool IsPressed
