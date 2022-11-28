@@ -97,6 +97,7 @@ SpriteAtlas:
   - {fileID: 21300000, guid: da4a142bc72e9e845894fcbb00f5a132, type: 3}
   - {fileID: 21300000, guid: 688af6cbff630544cb04752a7316d588, type: 3}
   - {fileID: 21300000, guid: 4f4a234c2bc2494428d36c455451fec5, type: 3}
+  - {fileID: 21300000, guid: 7be1ce8cc437c6748ba325834c4a0d9a, type: 3}
   - {fileID: 21300000, guid: 67cfef9cfb7a7c44a84088d7e0569d16, type: 3}
   - {fileID: 21300000, guid: 1e7c93ec0ab20084b8099a9bf6655b2d, type: 3}
   - {fileID: 21300000, guid: 63e08cadf6b7fa04599375dfaca20c23, type: 3}
@@ -156,6 +157,7 @@ SpriteAtlas:
   - ReplaceCoachButton
   - touch_app
   - man
+  - add_circle
   - do_not_disturb_on
   - play_circle_filled
   - CircleHandler

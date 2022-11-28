@@ -150,7 +150,7 @@ public class CoachAnimations : MonoBehaviour
         isWorkout = CurrentAnimation.isWorkout;
         outWorkout = CurrentAnimation.isOut;
 
-        coachControl.gameObject.SetActive(activate);
+        //coachControl.gameObject.SetActive(activate);
 
         //Debug.Log(NextAnimation.normalizedReverseTime);
     }
