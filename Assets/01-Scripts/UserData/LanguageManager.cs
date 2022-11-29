@@ -183,7 +183,7 @@ public class LanguageManager : MonoBehaviour
         "No";
     /* ======================================================================================================================================= */
     private readonly static string[] pageQuestionEN = new string[]
-    { "What is your name?", "What is your gender?", "What is your goal?", "What's your fitness level?", "What is your focus?", "More about you!" };
+    { "What is your name?", "What is your gender?", "What is your goal?", "What'sec your fitness level?", "What is your focus?", "More about you!" };
     private readonly static string nextButtonEN = 
         "Next";
     private readonly static string page1PlaceHolderEN = 

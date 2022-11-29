@@ -1,4 +1,5 @@
 using UnityEngine;
+
 public enum Format
 {
     D = 0,
@@ -7,86 +8,62 @@ public enum Format
 
 public enum Count
 {
-    Up = 0,
-    Down = 1
+    up = 1,
+    down = -1
 };
 
 public class Timer
 {
     private static float pure;
-    private static float mmss;
+    private static float mm, ss;
     private static float min;
-    private static float s;
-    private static float hundredths;
-    private static bool countRunning;
+    private static float sec;
+    private static float hun;
+    private static bool isRunning;
 
-    public static void StartCount(float initialCount)
+    public static void Start(float initialCount)
     {
         InitialCount = initialCount;
-        countRunning = true;
+        isRunning = true;
     }
 
-    public static void StopCount()
+    public static void Stop()
     {
-        countRunning = false;
+        isRunning = false;
         pure = 0f;
-        mmss = 0f;
-        min = 0f;
-        s = 0f;
-        hundredths = 0f;
     }
 
-    public static string CountMinutsAndSeconds(Count count)
+    public static string MMSS(Count count)
     {
-        switch (count)
+        if (isRunning)
         {
-            case Count.Up:
-                if (countRunning)
-                {
-                    mmss += Time.deltaTime;
-                    pure += Time.deltaTime;
-                }
-                break;
-            case Count.Down:
-                if (countRunning && mmss > 0.1f)
-                {
-                    mmss -= Time.deltaTime;
-                    pure -= Time.deltaTime;
-                }
-                else
-                {
-                    StopCount();
-                    mmss = 0f;
-                }
-                break;
+            pure += ((int)count) * Time.deltaTime;
+            mm = pure;
+            ss = pure;
+
+            isRunning = (count == Count.up) || (pure > 0f);
         }
-
-        return string.Format("{0:00}", mmss / 60f) + ":" + string.Format("{0:00}", mmss % 60f);
+        else if (count == Count.down)
+        {
+            mm = 0f;
+            ss = 0f;
+        }
+        
+        return string.Format("{0:00}", Mathf.FloorToInt(mm / 60f)) + ":" + string.Format("{0:00}", Mathf.FloorToInt(ss % 60f));
     }
 
-    public static string CountMinutes(Count count, Format format)
+    public static string Minutes(Count count, Format format)
     {
-        switch (count)
+        if (isRunning)
         {
-            case Count.Up:
-                if (countRunning)
-                {
-                    min += Time.deltaTime;
-                    pure += Time.deltaTime;
-                }
-                break;
-            case Count.Down:
-                if (countRunning && min > 0.1f)
-                {
-                    min -= Time.deltaTime;
-                    pure -= Time.deltaTime;
-                }
-                else
-                {
-                    StopCount();
-                    min = 0f;
-                }
-                break;
+            pure += ((int)count) * Time.deltaTime;
+            min = pure;
+
+            isRunning = (count == Count.up) || (pure > 0f);
+        }
+        else if (count == Count.down)
+        {
+            min = 0f;
         }
 
         return format switch
@@ -97,68 +74,46 @@ public class Timer
         };
     }
 
-    public static string CountSeconds(Count count, Format format)
+    public static string Seconds(Count count, Format format)
     {
-        switch (count)
+        if (isRunning)
         {
-            case Count.Up:
-                if (countRunning)
-                {
-                    s += Time.deltaTime;
-                    pure += Time.deltaTime;
-                }
-                break;
-            case Count.Down:
-                if (countRunning && s > 0.1f)
-                {
-                    s -= Time.deltaTime;
-                    pure -= Time.deltaTime;
-                }
-                else
-                {
-                    StopCount();
-                    s = 0f;
-                }
-                break;
+            pure += ((int)count) * Time.deltaTime;
+            sec = pure;
+
+            isRunning = (count == Count.up) || (pure > 0f);
+        }
+        else if (count == Count.down)
+        {
+            sec = 0f;
         }
 
         return format switch
         {
-            Format.D => Mathf.FloorToInt((s) % 60f).ToString(),
-            Format.DD => string.Format("{0:00}", Mathf.FloorToInt((s) % 60f)),
+            Format.D => Mathf.FloorToInt((sec) % 60f).ToString(),
+            Format.DD => string.Format("{0:00}", Mathf.FloorToInt((sec) % 60f)),
             _ => "ss"
         };
     }
 
-    public static string CountHundredths(Count count, Format format)
+    public static string Hundredths(Count count, Format format)
     {
-        switch (count)
+        if (isRunning)
         {
-            case Count.Up:
-                if (countRunning)
-                {
-                    hundredths += Time.deltaTime;
-                    pure += Time.deltaTime;
-                }
-                break;
-            case Count.Down:
-                if (countRunning && hundredths > 0.1f)
-                {
-                    hundredths -= Time.deltaTime;
-                    pure -= Time.deltaTime;
-                }
-                else
-                {
-                    StopCount();
-                    hundredths = 0f;
-                }
-                break;
+            pure += ((int)count) * Time.deltaTime;
+            hun = pure;
+
+            isRunning = (count == Count.up) || (pure > 0f);
+        }
+        else if (count == Count.down)
+        {
+            hun = 0f;
         }
 
         return format switch
         {
-            Format.D => Mathf.FloorToInt((hundredths) * 100f % 100f).ToString(),
-            Format.DD => string.Format("{0:00}", Mathf.FloorToInt((hundredths) * 100f % 100f)),
+            Format.D => Mathf.FloorToInt((hun) * 100f % 100f).ToString(),
+            Format.DD => string.Format("{0:00}", Mathf.FloorToInt((hun) * 100f % 100f)),
             _ => "hh"
         };
     }
@@ -167,21 +122,17 @@ public class Timer
     {
         set
         {
-            if (countRunning)
+            if (isRunning)
             {
                 return;
             }
             else
             {
                 pure = value;
-                mmss = value;
-                min = value;
-                s = value;
-                hundredths = value;
             }
         }
     }
 
-    public static bool CountIsRunning => countRunning;
+    public static bool IsRunning => isRunning;
     public static float TimePureCount => pure;
 }

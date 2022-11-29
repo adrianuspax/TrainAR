@@ -16624,6 +16624,7 @@ MonoBehaviour:
   Animations: {fileID: 0}
   Buttons: {fileID: 0}
   coroutineFinished: 0
+  teste: 
 --- !u!114 &2045423160
 MonoBehaviour:
   m_ObjectHideFlags: 0

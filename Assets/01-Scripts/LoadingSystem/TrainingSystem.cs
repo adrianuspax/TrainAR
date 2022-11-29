@@ -11,7 +11,7 @@ public class TrainingSystem : MonoBehaviour
     [SerializeField, ReadOnly] private AnimationsManager Animations;
     [SerializeField, ReadOnly] private ButtonsManager Buttons;
     [SerializeField, ReadOnly] private bool coroutineFinished;
-
+    [SerializeField, ReadOnly] private bool squenceStarted;
 
     private void Awake()
     {
@@ -25,13 +25,8 @@ public class TrainingSystem : MonoBehaviour
     private void Update()
     {
         LoadBehaviourDDM();
-
-        if (Animations.Coach.HasTriggered && Animations.Coach.CurrentAnimation.isWorkout)
-        {
-            //Loading.Timer = Timer.CountMinutsAndSeconds(Count.Up);
-        }
-
-        Loading.Timer = Timer.CountMinutsAndSeconds(Count.Down);
+        if (Animations.Coach.CurrentAnimation.isWorkout)
+        { Loading.Timer = Timer.MMSS(squenceStarted ? Count.down : Count.up); }
     }
 
     public void LoadBehaviourDDM()
@@ -49,13 +44,12 @@ public class TrainingSystem : MonoBehaviour
                 {
                     Loading.SetCount(Animations.Coach.CurrentAnimation.loopCount);
                     Loading.FillAmount = 1f;
-                    //Debug.Log
                 }
             }
             else
             {
                 Loading.StartAnimation();
-                Timer.StartCount(0);
+                Timer.Start(0);
             }
         }
         else
@@ -75,7 +69,8 @@ public class TrainingSystem : MonoBehaviour
                 else  if (Animations.Coach.CurrentAnimation.isIdle && Loading.HasStarted)
                 {
                     Loading.EndAnimation();
-                    Timer.StopCount();
+                    Timer.Stop();
+                    Loading.Timer = "00:00";
                 }
             }
         }
@@ -88,11 +83,13 @@ public class TrainingSystem : MonoBehaviour
         Buttons.CanvasMain.PanelCoachInteraction = true;
         Buttons.DropDownMenu.DDMInterecation = true;
         Buttons.CanvasMain.ButtonSetCoachInteraction = true;
-        Timer.StopCount();
+        squenceStarted = false;
+        Timer.Stop();
+        Loading.Timer = "00:00";
         Loading.EndAnimation();
     }
 
-    public void LoadBehaviourPanelCoach()
+    public void WorkoutSequence()
     {
         StartCoroutine(Cor_LoadBehaviourPanelCoach());
     }
@@ -106,7 +103,6 @@ public class TrainingSystem : MonoBehaviour
     private IEnumerator Cor_AnimationInLoop(Trigger animation, int amount)
     {
         Loading.SetCount("준비");
-
         yield return new WaitWhile(() => !Animations.Coach.CurrentAnimation.isIdle);
 
         Animations.Coach.StartAnimation(animation);
@@ -124,7 +120,7 @@ public class TrainingSystem : MonoBehaviour
         Loading.FillAmount = 1;
 
         yield return new WaitWhile(() => !Animations.Coach.CurrentAnimation.isWorkout);
-        Timer.StartCount(amount * Animations.Coach.CurrentAnimation.length);
+        Timer.Start(amount * Animations.Coach.CurrentAnimation.length);
 
         while (Animations.Coach.CurrentAnimation.normalizedTime < amount - 1)
         {
@@ -145,7 +141,7 @@ public class TrainingSystem : MonoBehaviour
 
         Loading.SetCount("준비");
         Loading.FillAmount = 0;
-        Timer.StopCount();
+        Timer.Stop();
         yield return new WaitWhile(() => !Animations.Coach.CurrentAnimation.isIdle);
         coroutineFinished = true;
     }
@@ -159,16 +155,18 @@ public class TrainingSystem : MonoBehaviour
         Buttons.CanvasMain.ButtonSetCoachInteraction = false;
 
         AnimationInLoop(Trigger.Pistol, 20); //20
+        squenceStarted = true;
         yield return new WaitWhile(() => !coroutineFinished);
         AnimationInLoop(Trigger.Squat, 15); //15
         yield return new WaitWhile(() => !coroutineFinished);
         AnimationInLoop(Trigger.Burpee, 30); //30
         yield return new WaitWhile(() => !coroutineFinished);
-
+        squenceStarted = false;
         Buttons.CanvasMain.PanelCoachInteraction = true;
         Buttons.DropDownMenu.DDMInterecation = true;
         Buttons.CanvasMain.ButtonSetCoachInteraction = true;
-
+        Loading.Timer = "00:00";
         Loading.EndAnimation();
+        
     }
 }
