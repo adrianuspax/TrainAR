@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 23739002540814370}
   m_Layer: 0
   m_Name: leg_muscles_15_1
-  m_TagString: Untagged
+  m_TagString: muscle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -96,7 +96,7 @@ GameObject:
   - component: {fileID: 23624134705556412}
   m_Layer: 0
   m_Name: leg_muscles_23
-  m_TagString: Untagged
+  m_TagString: muscle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -179,7 +179,7 @@ GameObject:
   - component: {fileID: 23023753250324028}
   m_Layer: 0
   m_Name: leg_muscles_5
-  m_TagString: Untagged
+  m_TagString: muscle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -262,7 +262,7 @@ GameObject:
   - component: {fileID: 23767359765831834}
   m_Layer: 0
   m_Name: leg_muscles_20
-  m_TagString: Untagged
+  m_TagString: muscle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -345,7 +345,7 @@ GameObject:
   - component: {fileID: 23045634643339312}
   m_Layer: 0
   m_Name: leg_muscles_9
-  m_TagString: Untagged
+  m_TagString: muscle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -428,7 +428,7 @@ GameObject:
   - component: {fileID: 23519993354352376}
   m_Layer: 0
   m_Name: leg_muscles_27
-  m_TagString: Untagged
+  m_TagString: muscle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -511,7 +511,7 @@ GameObject:
   - component: {fileID: 23898288375563486}
   m_Layer: 0
   m_Name: leg_muscles_10
-  m_TagString: Untagged
+  m_TagString: muscle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -594,7 +594,7 @@ GameObject:
   - component: {fileID: 23281498292299014}
   m_Layer: 0
   m_Name: leg_muscles_3
-  m_TagString: Untagged
+  m_TagString: muscle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -754,7 +754,7 @@ GameObject:
   - component: {fileID: 23499970681624466}
   m_Layer: 0
   m_Name: leg_muscles_2
-  m_TagString: Untagged
+  m_TagString: muscle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -837,7 +837,7 @@ GameObject:
   - component: {fileID: 23279285389285736}
   m_Layer: 0
   m_Name: leg_muscles_18_1
-  m_TagString: Untagged
+  m_TagString: muscle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -920,7 +920,7 @@ GameObject:
   - component: {fileID: 23485299413355112}
   m_Layer: 0
   m_Name: leg_muscles_8
-  m_TagString: Untagged
+  m_TagString: muscle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1003,7 +1003,7 @@ GameObject:
   - component: {fileID: 23219767756626622}
   m_Layer: 0
   m_Name: leg_muscles_22
-  m_TagString: Untagged
+  m_TagString: muscle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1086,7 +1086,7 @@ GameObject:
   - component: {fileID: 23422146906639814}
   m_Layer: 0
   m_Name: leg_muscles_12
-  m_TagString: Untagged
+  m_TagString: muscle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1169,7 +1169,7 @@ GameObject:
   - component: {fileID: 23852323704784614}
   m_Layer: 0
   m_Name: leg_muscles_13
-  m_TagString: Untagged
+  m_TagString: muscle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1252,7 +1252,7 @@ GameObject:
   - component: {fileID: 23433260713009816}
   m_Layer: 0
   m_Name: leg_muscles_1
-  m_TagString: Untagged
+  m_TagString: muscle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1335,7 +1335,7 @@ GameObject:
   - component: {fileID: 23367711341005524}
   m_Layer: 0
   m_Name: leg_muscles_24
-  m_TagString: Untagged
+  m_TagString: muscle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1418,7 +1418,7 @@ GameObject:
   - component: {fileID: 23263654147160904}
   m_Layer: 0
   m_Name: leg_muscles_4
-  m_TagString: Untagged
+  m_TagString: muscle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1501,7 +1501,7 @@ GameObject:
   - component: {fileID: 23353395480727994}
   m_Layer: 0
   m_Name: leg_muscles_17
-  m_TagString: Untagged
+  m_TagString: muscle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1584,7 +1584,7 @@ GameObject:
   - component: {fileID: 23976096878071774}
   m_Layer: 0
   m_Name: leg_muscles_28
-  m_TagString: Untagged
+  m_TagString: muscle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1667,7 +1667,7 @@ GameObject:
   - component: {fileID: 23058268501578988}
   m_Layer: 0
   m_Name: leg_muscles_29
-  m_TagString: Untagged
+  m_TagString: muscle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1750,7 +1750,7 @@ GameObject:
   - component: {fileID: 23862379678104098}
   m_Layer: 0
   m_Name: leg_muscles_1_2
-  m_TagString: Untagged
+  m_TagString: muscle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1833,7 +1833,7 @@ GameObject:
   - component: {fileID: 23557775069478176}
   m_Layer: 0
   m_Name: leg_muscles_11
-  m_TagString: Untagged
+  m_TagString: muscle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1916,7 +1916,7 @@ GameObject:
   - component: {fileID: 23198555065649460}
   m_Layer: 0
   m_Name: leg_muscles_26
-  m_TagString: Untagged
+  m_TagString: muscle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1999,7 +1999,7 @@ GameObject:
   - component: {fileID: 23243200629358180}
   m_Layer: 0
   m_Name: leg_muscles_7
-  m_TagString: Untagged
+  m_TagString: muscle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2082,7 +2082,7 @@ GameObject:
   - component: {fileID: 23247566399536300}
   m_Layer: 0
   m_Name: leg_muscles_6
-  m_TagString: Untagged
+  m_TagString: muscle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

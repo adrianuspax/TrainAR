@@ -10,6 +10,9 @@ TagManager:
   - CodeManager
   - PalleteColors
   - Transition
+  - aniPanelResult
+  - ResultPanel
+  - muscle
   layers:
   - Default
   - TransparentFX

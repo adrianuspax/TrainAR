@@ -14,6 +14,7 @@ public static class Tag
     public const string ButtonAR = "aniButtonAR";
     public const string Transition = "Transition";
     public const string Coach = "Coach";
+    public const string Muscle = "muscle";
 }
 
 public static class StateTag

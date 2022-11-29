@@ -70,6 +70,7 @@ SpriteAtlas:
   - {fileID: 21300000, guid: d6468c047d0231f4f927a57e70a2fd49, type: 3}
   - {fileID: 21300000, guid: 6c7de31488365cc49bb901947086f814, type: 3}
   - {fileID: 21300000, guid: 5d3e1e4417c6bc246974ee497d585dcb, type: 3}
+  - {fileID: 21300000, guid: b5a281a49664dad49ae00d1a1bf2fe25, type: 3}
   - {fileID: 21300000, guid: a861ffc4d37ce064986a23cd68fcae21, type: 3}
   - {fileID: 21300000, guid: d7d2aff4b9131244f9940c7855c464de, type: 3}
   - {fileID: 21300000, guid: b8027a156df40d64ea678d2f14145439, type: 3}
@@ -130,6 +131,7 @@ SpriteAtlas:
   - visibilityOn
   - fitness_center
   - settings
+  - skip
   - login
   - help_outline
   - visibilityOff
