@@ -223,21 +223,62 @@ public class PanelCoach : MonoBehaviour
 
     private void RecomendationsActivations(Focus focus)
     {
+        bool linesToActivate;
+
         for (int i = 0; i < recomendation.Length; i++)
         {
             switch (focus)
             {
                 case Focus.chest:
-                    recomendation[i].SetActive((i == 0 || i == 5 || i == 6 || i == 7 || i == 11 || i == 12 || i == 14 || i == 15));
+                    linesToActivate = 
+                        i == 0 ||
+                        i == ButtonDDM.BURPEE + 1 ||
+                        i == ButtonDDM.BICYCLECRUNCH + 1 ||
+                        i == ButtonDDM.CIRCLECRUNCH + 1 ||
+                        i == ButtonDDM.PIKEWALK + 1 ||
+                        i == ButtonDDM.PUSHUP + 1 ||
+                        i == ButtonDDM.SITUPS + 1 ||
+                        i == 15;
+                    recomendation[i].SetActive(linesToActivate);
                     break;
                 case Focus.abdomen:
-                    recomendation[i].SetActive((i == 0 || i == 5 || i == 6 || i == 11 || i == 12 || i == 14 || i == 15));
+                    linesToActivate =
+                        i == 0 ||
+                        i == ButtonDDM.BURPEE + 1 ||
+                        i == ButtonDDM.BICYCLECRUNCH + 1 ||
+                        i == ButtonDDM.PIKEWALK + 1 ||
+                        i == ButtonDDM.PUSHUP + 1 ||
+                        i == ButtonDDM.SITUPS + 1 ||
+                        i == 15;
+                    recomendation[i].SetActive(linesToActivate);
                     break;
                 case Focus.legs:
-                    recomendation[i].SetActive((i == 0 || i == 1 || i == 2 || i == 4 || i == 5 || i == 6 || i == 8 || i == 9 || i == 10 || i == 12 || i == 15));
+                    linesToActivate =
+                        i == 0 ||
+                        i == ButtonDDM.SQUAT + 1 ||
+                        i == ButtonDDM.SQUATBENTARMS + 1 ||
+                        i == ButtonDDM.BOXJUMP + 1 ||
+                        i == ButtonDDM.BURPEE + 1 ||
+                        i == ButtonDDM.BICYCLECRUNCH + 1 ||
+                        i == ButtonDDM.JUMPINGJACKS + 1 ||
+                        i == ButtonDDM.PISTOL + 1 ||
+                        i == ButtonDDM.PLANK + 1 ||
+                        i == ButtonDDM.PUSHUP + 1 ||
+                        i == 15;
+                    recomendation[i].SetActive(linesToActivate);
                     break;
                 case Focus.arms:
-                    recomendation[i].SetActive((i == 0 || i == 2 || i == 3 || i == 5 || i == 8 || i == 10 || i == 11 || i == 12 || i == 15));
+                    linesToActivate =
+                        i == 0 ||
+                        i == ButtonDDM.SQUATBENTARMS + 1 ||
+                        i == ButtonDDM.BICEPCURL + 1 ||
+                        i == ButtonDDM.BURPEE + 1 ||
+                        i == ButtonDDM.JUMPINGJACKS + 1 ||
+                        i == ButtonDDM.PLANK + 1 ||
+                        i == ButtonDDM.PIKEWALK + 1 ||
+                        i == ButtonDDM.PUSHUP + 1 ||
+                        i == 15;
+                    recomendation[i].SetActive(linesToActivate);
                     break;
             }
         }
@@ -245,9 +286,17 @@ public class PanelCoach : MonoBehaviour
 
     private void ProvisionalRecomendationsActivations()
     {
+        bool linesToActivate;
+
         for (int i = 0; i < recomendation.Length; i++)
         {
-            recomendation[i].SetActive((i == 0 || i == 1 || i == 5 || i == 9 || i == 15));
+            linesToActivate =
+                i == 0 ||
+                i == ButtonDDM.SQUAT + 1 ||
+                i == ButtonDDM.BURPEE + 1 ||
+                i == ButtonDDM.PISTOL + 1 ||
+                i == 15;
+            recomendation[i].SetActive(linesToActivate);
         }
     }
 

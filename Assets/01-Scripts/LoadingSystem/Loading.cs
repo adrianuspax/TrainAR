@@ -1,5 +1,4 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -13,6 +12,7 @@ public class Loading : MonoBehaviour
     [Header("UI", order = 0)]
     [SerializeField] private Image circleLoad;
     [SerializeField] private TextMeshProUGUI countTMP;
+    [SerializeField] private TextMeshProUGUI timerTMP;
     [SerializeField] private Button skipButton;
 
     [Header("Read Only", order = 0)]
@@ -73,4 +73,9 @@ public class Loading : MonoBehaviour
     }
 
     public Button Skip => skipButton;
+
+    public string Timer
+    {
+        set => timerTMP.text = value;
+    }
 }

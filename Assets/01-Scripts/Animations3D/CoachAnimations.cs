@@ -109,8 +109,6 @@ public class CoachAnimations : MonoBehaviour
     [SerializeField, ReadOnly] private bool isTransition;
     [SerializeField, ReadOnly] private bool toIdle;
 
-    public bool activate;
-
     private void Awake()
     {
         clipByIndex = new AnimationClip[TotalCount];
@@ -149,10 +147,6 @@ public class CoachAnimations : MonoBehaviour
         enterWorkout = CurrentAnimation.isEnter;
         isWorkout = CurrentAnimation.isWorkout;
         outWorkout = CurrentAnimation.isOut;
-
-        //coachControl.gameObject.SetActive(activate);
-
-        //Debug.Log(NextAnimation.normalizedReverseTime);
     }
 
     public void Breathing(float weight)

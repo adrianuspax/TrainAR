@@ -132,21 +132,54 @@ public class FloatMenu : MonoBehaviour
     {
         ButtonsFloatFunction();
 
+        bool buttonsToActivate;
+
         for (int i = 0; i < Buttons.DropDownMenu.ButtonGameObject.Length; i++)
         {
             switch (bodyPart)
             {
                 case BodyPart.Chest:
-                    Buttons.DropDownMenu.ButtonGameObject[i].SetActive((i == 4 || i == 5 || i == 6 || i == 10 || i == 11 || i == 13));
+                    buttonsToActivate =
+                        i == ButtonDDM.BURPEE ||
+                        i == ButtonDDM.BICYCLECRUNCH ||
+                        i == ButtonDDM.CIRCLECRUNCH ||
+                        i == ButtonDDM.PIKEWALK ||
+                        i == ButtonDDM.PUSHUP ||
+                        i == ButtonDDM.SITUPS;
+                    Buttons.DropDownMenu.ButtonGameObject[i].SetActive(buttonsToActivate);
                     break;
                 case BodyPart.Abdomen:
-                    Buttons.DropDownMenu.ButtonGameObject[i].SetActive((i == 4 || i == 5 || i == 10 || i == 11 || i == 13));
+                    buttonsToActivate =
+                        i == ButtonDDM.BURPEE ||
+                        i == ButtonDDM.BICYCLECRUNCH ||
+                        i == ButtonDDM.PIKEWALK ||
+                        i == ButtonDDM.PUSHUP ||
+                        i == ButtonDDM.SITUPS;
+                    Buttons.DropDownMenu.ButtonGameObject[i].SetActive(buttonsToActivate);
                     break;
                 case BodyPart.Legs:
-                    Buttons.DropDownMenu.ButtonGameObject[i].SetActive((i == 0 || i == 1 || i == 3 || i == 4 || i == 5 || i == 7 || i == 8 || i == 9 || i == 11));
+                    buttonsToActivate =
+                        i == ButtonDDM.SQUAT ||
+                        i == ButtonDDM.SQUATBENTARMS ||
+                        i == ButtonDDM.BOXJUMP ||
+                        i == ButtonDDM.BURPEE ||
+                        i == ButtonDDM.BICYCLECRUNCH ||
+                        i == ButtonDDM.JUMPINGJACKS ||
+                        i == ButtonDDM.PISTOL ||
+                        i == ButtonDDM.PLANK ||
+                        i == ButtonDDM.PUSHUP;
+                    Buttons.DropDownMenu.ButtonGameObject[i].SetActive(buttonsToActivate);
                     break;
                 case BodyPart.Arms:
-                    Buttons.DropDownMenu.ButtonGameObject[i].SetActive((i == 1 || i == 2 || i == 4 || i == 7 || i == 9 || i == 10 || i == 11));
+                    buttonsToActivate =
+                        i == ButtonDDM.SQUATBENTARMS ||
+                        i == ButtonDDM.BICEPCURL ||
+                        i == ButtonDDM.BURPEE ||
+                        i == ButtonDDM.JUMPINGJACKS ||
+                        i == ButtonDDM.PLANK ||
+                        i == ButtonDDM.PIKEWALK ||
+                        i == ButtonDDM.PUSHUP;
+                    Buttons.DropDownMenu.ButtonGameObject[i].SetActive(buttonsToActivate);
                     break;
                 case BodyPart.All:
                     Buttons.DropDownMenu.ButtonGameObject[i].SetActive(true);
