@@ -2,11 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.UI;
 
 public class MusclesSelectables : MonoBehaviour
 {
     [SerializeField, ReadOnly, NonReorderable] private Outline[] outlines;
     [SerializeField, ReadOnly, NonReorderable] private EventTrigger[] triggers;
+    [SerializeField] private GameObject content;
 
     private void Awake()
     {
@@ -24,6 +26,11 @@ public class MusclesSelectables : MonoBehaviour
         }
     }
 
+    private void Start()
+    {
+        content.SetActive(false);
+    }
+
     private void OnPointerClickDelegate(PointerEventData data)
     {
         GameObject gameObject;
@@ -32,6 +39,11 @@ public class MusclesSelectables : MonoBehaviour
         for (int i = 0; i < outlines.Length; i++)
         {
             outlines[i].enabled = !outlines[i].enabled && (outlines[i].gameObject == gameObject);
+
+            if (outlines[i].gameObject == gameObject)
+            {
+                content.SetActive(outlines[i].enabled);
+            }
         }
     }
 

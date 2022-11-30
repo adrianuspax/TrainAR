@@ -37,7 +37,7 @@ public class FadeCoach : MonoBehaviour
     {
         if (lupaIsPressed)
         {
-            plusButton.transform.LookAt(Camera.main.transform);
+            plusButton.transform.parent.LookAt(Camera.main.transform);
         }
     }
 
