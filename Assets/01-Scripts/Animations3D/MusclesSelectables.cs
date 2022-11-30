@@ -8,7 +8,6 @@ public class MusclesSelectables : MonoBehaviour
     [SerializeField, ReadOnly, NonReorderable] private Outline[] outlines;
     [SerializeField, ReadOnly, NonReorderable] private EventTrigger[] triggers;
 
-
     private void Awake()
     {
         (outlines, triggers) = Assign();
