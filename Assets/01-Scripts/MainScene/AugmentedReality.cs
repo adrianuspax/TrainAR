@@ -7,6 +7,7 @@ using UnityEngine.XR.ARSubsystems;
 public class AugmentedReality : MonoBehaviour
 {
     [Header("AR MANAGEMENT", order = 0)]
+    [SerializeField] private ARCameraManager cameraManager;
     [SerializeField] private ARRaycastManager arRaycastManager;
     [SerializeField] private Transform pvtAnchorAR;
     [SerializeField] private Transform pool3DPivot;
@@ -20,6 +21,7 @@ public class AugmentedReality : MonoBehaviour
     [SerializeField, ReadOnly] private Vector3 anchorPosSaver;
     [SerializeField, ReadOnly] private TrackableType trackableTypes;
     [SerializeField, ReadOnly] private StateButtonAR stateButtonAR;
+    [SerializeField, ReadOnly] private Camera currentCamera;
     [Space(-10, order = 0)]
     [Header("Scrips")]
     [SerializeField, ReadOnly] private AnimationsManager Animations;
@@ -121,6 +123,18 @@ public class AugmentedReality : MonoBehaviour
         coach3D.transform.rotation = rotationCorrection;
         Buttons.CanvasMain.PanelCoachInteraction = CoachIsActivated;
         Buttons.DropDownMenu.DDMInterecation = CoachIsActivated;
+    }
+
+    public void ChangeCamera()
+    {
+        cameraManager.requestedFacingDirection = cameraManager.currentFacingDirection switch
+        {
+            CameraFacingDirection.World => CameraFacingDirection.User,
+            CameraFacingDirection.User => CameraFacingDirection.World,
+            _ => CameraFacingDirection.World,
+        };
+
+        Debug.Log($"currentFacingDirection = {cameraManager.currentFacingDirection} // requestedFacingDirection {cameraManager.requestedFacingDirection}");
     }
 
     public bool AnchorIsHitting => anchorIsHitting;

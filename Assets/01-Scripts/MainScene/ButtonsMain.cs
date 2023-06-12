@@ -36,7 +36,7 @@ public class ButtonsMain : MonoBehaviour
         Sprites = this.GetComponent<ImagesManager>();
 
         btnTopR.onClick.AddListener(ButtonsManager.CloseApplication);
-        btnTopL.onClick.AddListener(() => ScenesManagement.LoadMenu());
+        btnTopL.onClick.AddListener(() => AR.ChangeCamera()); //ScenesManagement.LoadMenu());
         btnBarC.onClick.AddListener(() => AR.PlaceCoachAR());
         btnBarR.onClick.AddListener(() => ButtonPanelCoach(btnBarRIsPressed));
         btnBarL.onClick.AddListener(() => Animations.PanelResult.PanelResultBehaviour());
