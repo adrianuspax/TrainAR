@@ -16350,6 +16350,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cameraManager: {fileID: 1354141928}
   arRaycastManager: {fileID: 1659859601}
+  arSession: {fileID: 656880747}
   pvtAnchorAR: {fileID: 986298669}
   pool3DPivot: {fileID: 1284178634}
   coach3D: {fileID: 1576220127}

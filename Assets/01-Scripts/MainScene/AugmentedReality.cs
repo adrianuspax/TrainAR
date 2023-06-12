@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.XR.ARFoundation;
 using UnityEngine.XR.ARSubsystems;
@@ -9,6 +10,7 @@ public class AugmentedReality : MonoBehaviour
     [Header("AR MANAGEMENT", order = 0)]
     [SerializeField] private ARCameraManager cameraManager;
     [SerializeField] private ARRaycastManager arRaycastManager;
+    [SerializeField] private ARSession arSession;
     [SerializeField] private Transform pvtAnchorAR;
     [SerializeField] private Transform pool3DPivot;
     [SerializeField] private GameObject coach3D;
@@ -127,14 +129,28 @@ public class AugmentedReality : MonoBehaviour
 
     public void ChangeCamera()
     {
-        cameraManager.requestedFacingDirection = cameraManager.currentFacingDirection switch
-        {
-            CameraFacingDirection.World => CameraFacingDirection.User,
-            CameraFacingDirection.User => CameraFacingDirection.World,
-            _ => CameraFacingDirection.World,
-        };
+        StartCoroutine(changeCamera());
 
-        Debug.Log($"currentFacingDirection = {cameraManager.currentFacingDirection} // requestedFacingDirection {cameraManager.requestedFacingDirection}");
+        IEnumerator changeCamera()
+        {
+            arSession.enabled = false;
+
+            yield return new WaitForEndOfFrame();
+
+            cameraManager.requestedFacingDirection = cameraManager.currentFacingDirection switch
+            {
+                CameraFacingDirection.World => CameraFacingDirection.User,
+                CameraFacingDirection.User => CameraFacingDirection.World,
+                _ => CameraFacingDirection.World,
+            };
+
+            yield return new WaitForEndOfFrame();
+
+            arSession.enabled = true;
+
+            Debug.Log($"currentFacingDirection = {cameraManager.currentFacingDirection} " +
+            $"// requestedFacingDirection {cameraManager.requestedFacingDirection}");
+        }
     }
 
     public bool AnchorIsHitting => anchorIsHitting;
