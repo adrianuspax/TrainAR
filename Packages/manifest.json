@@ -1,5 +1,6 @@
 {
   "dependencies": {
+    "com.adrianuspax.usefulscripts": "https://github.com/adrianuspax/usefulscripts.git",
     "com.google.ar.core.arfoundation.extensions": "https://github.com/google-ar/arcore-unity-extensions.git",
     "com.unity.adaptiveperformance.samsung.android": "4.0.2",
     "com.unity.addressables": "1.21.21",

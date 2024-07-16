@@ -1,9 +1,10 @@
-﻿#region USED_NAMESPACES
-using System.Collections;
+﻿using System.Collections;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
-#endregion
+using ASP;
+using Debug = ASP.Debug;
+
 #region CLASS
 [RequireComponent(typeof(UserDataAnimations))]
 public class PagesAndFields : MonoBehaviour

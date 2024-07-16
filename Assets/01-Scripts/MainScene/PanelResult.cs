@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
+using ASP;
+using Debug = ASP.Debug;
 
 public class PanelResult : MonoBehaviour
 {

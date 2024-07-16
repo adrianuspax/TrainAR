@@ -2,6 +2,8 @@
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
+using ASP;
+using Debug = ASP.Debug;
 
 public class ButtonsManager : MonoBehaviour
 {

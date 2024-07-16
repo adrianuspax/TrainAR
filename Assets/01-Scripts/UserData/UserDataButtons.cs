@@ -1,9 +1,9 @@
-﻿#region USED_NAMESPACES
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
-#endregion
-#region CLASS
+using ASP;
+using Debug = ASP.Debug;
+
 [RequireComponent(typeof(ButtonsManager))]
 public class UserDataButtons : MonoBehaviour
 {
@@ -421,4 +421,3 @@ public class UserDataButtons : MonoBehaviour
     { set =>  nextButton.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = value; }
     #endregion
 }
-#endregion

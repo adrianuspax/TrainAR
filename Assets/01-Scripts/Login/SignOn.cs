@@ -1,6 +1,9 @@
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using ASP;
+using Debug = ASP.Debug;
+using PlayerPrefs = UnityEngine.PlayerPrefs;
 
 [RequireComponent(typeof(AnimationsManager), typeof(ButtonsManager))]
 public class SignOn : MonoBehaviour

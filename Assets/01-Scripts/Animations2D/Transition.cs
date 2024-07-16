@@ -1,6 +1,8 @@
 using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using ASP;
+using Debug = ASP.Debug;
 
 public class Transition : MonoBehaviour
 {

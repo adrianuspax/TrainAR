@@ -1,6 +1,8 @@
 using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
+using ASP;
+using Debug = ASP.Debug;
 
 public class PanelCoach : MonoBehaviour
 {
@@ -336,7 +338,7 @@ public class PanelCoach : MonoBehaviour
         {
             return
                 (
-                Calculation.BMI.ToString("F2") + " kg/m²",
+                Calculation.BMI.ToString("F2") + " kg/mï¿½",
                 LanguageManager.statusBMI[(int)Calculation.StatusBMI],
                (Calculation.BodyFat * 100f).ToString("F2") + "%",
                 Calculation.CurrentFat.ToString("F2") + " kg"

@@ -1,4 +1,6 @@
 ﻿using UnityEngine;
+using ASP;
+using Debug = ASP.Debug;
 
 public class AnimationsManager : MonoBehaviour
 {

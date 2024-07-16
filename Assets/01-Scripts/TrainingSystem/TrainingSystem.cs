@@ -1,6 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using ASP;
+using Debug = ASP.Debug;
 
 public class TrainingSystem : MonoBehaviour
 {

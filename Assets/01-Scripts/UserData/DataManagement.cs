@@ -1,7 +1,7 @@
-﻿#region USED_NAMESPACES
-using UnityEngine;
-#endregion
-#region CLASS
+﻿using UnityEngine;
+using ASP;
+using Debug = ASP.Debug;
+using PlayerPrefs = UnityEngine.PlayerPrefs;
 [RequireComponent(typeof(AnimationsManager),typeof(PagesAndFields), typeof(UserDataButtons))]
 public class DataManagement : MonoBehaviour
 {
@@ -231,4 +231,3 @@ public class DataManagement : MonoBehaviour
     };
     #endregion
 }
-#endregion

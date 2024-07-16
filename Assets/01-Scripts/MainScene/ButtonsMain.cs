@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
-
+using ASP;
+using Debug = ASP.Debug;
 [RequireComponent(typeof(ButtonsManager))]
 [RequireComponent(typeof(AugmentedReality), typeof(ImagesManager))]
 public class ButtonsMain : MonoBehaviour

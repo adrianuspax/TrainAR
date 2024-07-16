@@ -1,5 +1,7 @@
 using UnityEngine;
 using UnityEngine.EventSystems;
+using ASP;
+using Debug = ASP.Debug;
 
 public class MusclesSelectables : MonoBehaviour
 {

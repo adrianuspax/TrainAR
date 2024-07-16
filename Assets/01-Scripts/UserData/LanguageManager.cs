@@ -1,5 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
+using ASP;
+using Debug = ASP.Debug;
 
 [RequireComponent(typeof(AnimationsManager), typeof(ButtonsManager))]
 public class LanguageManager : MonoBehaviour

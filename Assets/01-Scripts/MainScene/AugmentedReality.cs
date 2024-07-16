@@ -2,6 +2,8 @@
 using UnityEngine;
 using UnityEngine.XR.ARFoundation;
 using UnityEngine.XR.ARSubsystems;
+using ASP;
+using Debug = ASP.Debug;
 [RequireComponent(typeof(ButtonsManager), typeof(AnimationsMain), typeof(AnimationsManager))]
 [RequireComponent(typeof(DropDownMenu), typeof(FloatMenu))]
 public class AugmentedReality : MonoBehaviour

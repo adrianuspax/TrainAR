@@ -2,6 +2,8 @@
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
+using ASP;
+using Debug = ASP.Debug;
 
 [RequireComponent(typeof(ButtonsManager), typeof(AnimationsMain))]
 public class DropDownMenu : MonoBehaviour
