@@ -1,17 +1,17 @@
+using ASP;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using ASP;
 using Debug = ASP.Debug;
 
 public class Transition : MonoBehaviour
 {
-    [Header(" =========================== READY ONLY =========================== ", order = 0)]
+    [Header(Header.READONLY, order = 0)]
     [Space(-10, order = 1)]
-    [Header("Animators", order = 2)]
+    [Header(Header.animators, order = 2)]
     [SerializeField, ReadOnly] private Animator transitionAnimation;
     [Space(-10, order = 0)]
-    [Header("Animations Clip", order = 1)]
+    [Header(Header.animationClips, order = 1)]
     [SerializeField] AnimationClip transitionStartClip;
     [SerializeField] AnimationClip transitionEndClip;
 
