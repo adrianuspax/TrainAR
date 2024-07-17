@@ -1,72 +1,100 @@
 using ASP;
+using ASP.Extensions;
+using System;
 using System.Collections;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.SceneManagement;
-using Debug = ASP.Debug;
 
 public class Transition : MonoBehaviour
 {
     [Header(Header.READONLY, order = 0)]
     [Space(-10, order = 1)]
     [Header(Header.animators, order = 2)]
-    [SerializeField, ReadOnly] private Animator transitionAnimation;
-    [Space(-10, order = 0)]
-    [Header(Header.animationClips, order = 1)]
-    [SerializeField] AnimationClip transitionStartClip;
-    [SerializeField] AnimationClip transitionEndClip;
+    [SerializeField, ReadOnly] private Animator animator;
+
+    [Serializable]
+    public struct AnimationControl
+    {
+        public string name;
+
+        public AnimationControl(string name)
+        {
+            this.name = name;
+        }
+
+        public static (AnimationControl start,
+                       AnimationControl idle,
+                       AnimationControl end,
+                       AnimationControl @null)
+        State => (new("TransitionStart"),
+                  new("TransitionIdle"),
+                  new("TransitionEnd"),
+                  new("TransitionNull"));
+
+        public static AnimationControl Parameter => new("isStarts");
+    }
 
     private void Awake()
     {
-        LanguageManager.LoadLang(AccountData.Language);
-        this.transform.GetChild(0).gameObject.SetActive(true);
+        ComponentsAssignment();
+    }
+    /// This function is called when the object becomes enabled and active.
+    private void OnEnable()
+    {
         ScenesManagement.coroutineDelegate = DelegateDelayToCallScenes;
-        transitionAnimation = this.transform.GetChild(0).GetComponent<Animator>();
-        Debug.Log("Previous Scene = " + ScenesManagement.PreviousScene);
+    }
+    /// Start is called on the frame when a script is enabled just before any of the Update methods are called the first time.
+    private void Start()
+    {
+        LanguageManager.LoadLang(AccountData.Language);
+    }
+    /// <summary>
+    /// Assignment of components and variables
+    /// </summary>
+    [ContextMenu("Components Assignment")]
+    private void ComponentsAssignment()
+    {
+        if (animator.IsNull())
+            this.GetComponentFrom(out animator, 0);
     }
 
     public void StartClip()
-    { transitionAnimation.Play(transitionStartClip.name); }
+    {
+        animator.SetBool(AnimationControl.Parameter.name, true);
+    }
 
     public void StartClip(float delay)
-    { StartCoroutine(Cor_DelayStartClip(delay)); }
-
-    private IEnumerator Cor_DelayStartClip(float time)
     {
-        yield return new WaitForSeconds(time);
-        StartClip();
+        StartCoroutine(DelayClip(delay, () => animator.SetBool(AnimationControl.Parameter.name, true)));
     }
 
     public void EndClip()
-    { transitionAnimation.Play(transitionEndClip.name); }
-
-    public void EndClip(float delay)
-    { StartCoroutine(Cor_DelayEndClip(delay)); }
-
-    public void CompleteClip()
     {
-        StartClip();
-        EndClip(StartClipTime);
+        animator.SetBool(AnimationControl.Parameter.name, false);
     }
 
-    private IEnumerator Cor_DelayEndClip(float time)
+    public void EndClip(float delay)
+    {
+        StartCoroutine(DelayClip(delay, () => animator.SetBool(AnimationControl.Parameter.name, false)));
+    }
+
+    private IEnumerator DelayClip(float time, UnityAction action)
     {
         yield return new WaitForSeconds(time);
-        EndClip();
+        action?.Invoke();
     }
 
     private void DelegateDelayToCallScenes(string scene)
     {
         ScenesManagement.PreviousScene = SceneManager.GetActiveScene().name;
-        StartCoroutine(Cor_Delay(scene));
-    }
+        StartCoroutine(_delay(scene));
 
-    private IEnumerator Cor_Delay(string scene)
-    {
-        StartClip();
-        yield return new WaitForSeconds(StartClipTime);
-        SceneManager.LoadScene(scene);
+        IEnumerator _delay(string scene)
+        {
+            StartClip();
+            yield return new WaitForSeconds(animator.GetAnimationClipLength(AnimationControl.State.start.name));
+            SceneManager.LoadScene(scene);
+        }
     }
-
-    public float StartClipTime => transitionStartClip.length;
-    public float EndCliptime => transitionEndClip.length;
 }
