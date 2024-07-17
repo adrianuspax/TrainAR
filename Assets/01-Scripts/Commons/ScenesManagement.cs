@@ -1,22 +1,65 @@
-﻿using UnityEngine;
-using UnityEngine.SceneManagement;
+﻿using ASP.SceneManagement;
+using UnityEngine;
+using UnityEngine.Events;
+using PlayerPrefs = ASP.PlayerPrefs;
+using Scene = ASP.SceneManagement.Scene;
 
 public class ScenesManagement : MonoBehaviour
 {
-    public delegate void CoroutineDelegate(string scene);
-    public static CoroutineDelegate coroutineDelegate;
+    public static readonly Scene redirection = new("Redirection");
+    public static readonly Scene language = new("Language");
+    public static readonly Scene signIn = new("SignIn");
+    public static readonly Scene signOn = new("SignOn");
+    public static readonly Scene userData = new("UserData");
+    public static readonly Scene trainAR = new("TrainAR");
+    public static readonly Scene menu = new("Menu");
 
-    public static void LoadRedirection() => SceneManager.LoadScene(SceneName.Redirection);
-    public static void LoadLanguage() => coroutineDelegate(SceneName.Language);
-    public static void LoadSignIn() => coroutineDelegate(SceneName.SignIn);
-    public static void LoadSignOn() => coroutineDelegate(SceneName.SignOn);
-    public static void LoadUserData() => coroutineDelegate(SceneName.UserData);
-    public static void LoadTrainAR() => coroutineDelegate(SceneName.TrainAR);
-    public static void LoadMenu() => coroutineDelegate(SceneName.Menu);
+    public static readonly PlayerPrefs.String currentScene = new ("currentScene");
+    public static event UnityAction<Scene> Load;
 
-    public static string PreviousScene
+    public static void LoadRedirection()
     {
-        get => PlayerPrefs.GetString(Key.CurrentScene);
-        set => PlayerPrefs.SetString(Key.CurrentScene, value);
+        SceneManager.Load(redirection);
+    }
+
+    public static void LoadLanguage()
+    {
+        PlayerPrefs.String.Set(currentScene, SceneManager.CurrentScene.name);
+        Load?.Invoke(language);
+    }
+
+    public static void LoadSignIn()
+    {
+        PlayerPrefs.String.Set(currentScene, SceneManager.CurrentScene.name);
+        Load?.Invoke(signIn);
+    }
+
+    public static void LoadSignOn()
+    {
+        PlayerPrefs.String.Set(currentScene, SceneManager.CurrentScene.name);
+        Load?.Invoke(signOn);
+    }
+
+    public static void LoadUserData()
+    {
+        PlayerPrefs.String.Set(currentScene, SceneManager.CurrentScene.name);
+        Load?.Invoke(userData);
+    }
+
+    public static void LoadTrainAR()
+    {
+        PlayerPrefs.String.Set(currentScene, SceneManager.CurrentScene.name);
+        Load?.Invoke(trainAR);
+    }
+
+    public static void LoadMenu()
+    {
+        PlayerPrefs.String.Set(currentScene, SceneManager.CurrentScene.name);
+        Load?.Invoke(menu);
+    }
+
+    public static Scene GetPreviousSceneSaved()
+    {
+        return new(PlayerPrefs.String.Get(currentScene));
     }
 }

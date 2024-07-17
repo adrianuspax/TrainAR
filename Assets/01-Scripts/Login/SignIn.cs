@@ -88,13 +88,10 @@ public class SignIn : MonoBehaviour
         {
             AccountData.Signed = true;
 
-            switch (ScenesManagement.PreviousScene)
-            {
-                case SceneName.SignOn: ScenesManagement.LoadUserData();
-                    break;
-                default: ScenesManagement.LoadTrainAR();
-                    break;
-            }
+            if (ScenesManagement.GetPreviousSceneSaved().Equals(ScenesManagement.signOn))
+                ScenesManagement.LoadUserData();
+            else
+                ScenesManagement.LoadTrainAR();
         }
         else
         {

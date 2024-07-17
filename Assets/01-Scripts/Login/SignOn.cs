@@ -3,7 +3,7 @@ using UnityEngine.UI;
 using TMPro;
 using ASP;
 using Debug = ASP.Debug;
-using PlayerPrefs = UnityEngine.PlayerPrefs;
+using PlayerPrefs = ASP.PlayerPrefs;
 
 [RequireComponent(typeof(AnimationsManager), typeof(ButtonsManager))]
 public class SignOn : MonoBehaviour
@@ -93,8 +93,8 @@ public class SignOn : MonoBehaviour
         warningTMP.text = string.Empty;
         Buttons.Interaction(false, okButton);
 
-        Debug.Log(PlayerPrefs.HasKey(Key.username) ? "username = " + PlayerPrefs.GetString(Key.username) : "username = EMPTY");
-        Debug.Log(PlayerPrefs.HasKey(Key.password) ? "password = " + PlayerPrefs.GetString(Key.password) : "password = EMPTY");
+        //Debug.Log(PlayerPrefs.HasKey(Key.username) ? "username = " + PlayerPrefs.GetString(Key.username) : "username = EMPTY");
+        //Debug.Log(PlayerPrefs.HasKey(Key.password) ? "password = " + PlayerPrefs.GetString(Key.password) : "password = EMPTY");
     }
     #region BUTTONS
     public void Ok()
@@ -104,26 +104,24 @@ public class SignOn : MonoBehaviour
             AccountData.Username = username;
             AccountData.Password = newPassword;
 
-            switch (ScenesManagement.PreviousScene)
-            {
-                case SceneName.Menu: ScenesManagement.LoadMenu();
-                    break;
-                default: ScenesManagement.LoadSignIn();
-                    break;
-            }
+            if (ScenesManagement.GetPreviousSceneSaved().Equals(ScenesManagement.menu))
+                ScenesManagement.LoadMenu();
+            else
+                ScenesManagement.LoadSignIn();
         }
     }
 
     public void Return()
     {
-        switch (ScenesManagement.PreviousScene)
+        if (buttonOkRealeased)
         {
-            case SceneName.Menu:
+            AccountData.Username = username;
+            AccountData.Password = newPassword;
+
+            if (ScenesManagement.GetPreviousSceneSaved().Equals(ScenesManagement.menu))
                 ScenesManagement.LoadMenu();
-                break;
-            default:
+            else
                 ScenesManagement.LoadSignIn();
-                break;
         }
     }
     #endregion

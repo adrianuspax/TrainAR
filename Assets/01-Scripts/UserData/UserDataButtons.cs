@@ -111,7 +111,7 @@ public class UserDataButtons : MonoBehaviour
 
     private void Start()
     {
-        returnButton.gameObject.SetActive(ScenesManagement.PreviousScene == SceneName.Menu);
+        returnButton.gameObject.SetActive(ScenesManagement.GetPreviousSceneSaved().Equals(ScenesManagement.menu));
         levelByIndex = Data.levelPhrase;
     }
 
@@ -396,17 +396,14 @@ public class UserDataButtons : MonoBehaviour
 
         if (PagesAndFields.CurrentPage >= PagesAndFields.TotalPages)
         {
-            switch (ScenesManagement.PreviousScene)
-            {
-                case SceneName.Menu: ScenesManagement.LoadMenu();
-                    break;
-                default: ScenesManagement.LoadTrainAR();
-                    break;
-            }
+            if (ScenesManagement.GetPreviousSceneSaved().Equals(ScenesManagement.menu))
+                ScenesManagement.LoadMenu();
+            else
+                ScenesManagement.LoadTrainAR();
         }
         else
         {
-            NextButtonInteraction = false;            
+            NextButtonInteraction = false;
             PagesAndFields.PageActivation(PagesAndFields.CurrentPage + 1);
         }
     }

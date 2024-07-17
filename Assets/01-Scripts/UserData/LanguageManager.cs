@@ -463,7 +463,7 @@ public class LanguageManager : MonoBehaviour
     {
         Animations.Transition.EndClip();
         LangButtonsBehaviour(AccountData.Language);
-        returnButton.gameObject.SetActive(ScenesManagement.PreviousScene == SceneName.Menu);
+        returnButton.gameObject.SetActive(ScenesManagement.GetPreviousSceneSaved().Equals(ScenesManagement.menu));
     }
 
     public void LangButtonsBehaviour(int index)
@@ -503,15 +503,10 @@ public class LanguageManager : MonoBehaviour
         AccountData.Language = (int)Language;
         LoadLang(AccountData.Language);
 
-        switch (ScenesManagement.PreviousScene)
-        {
-            case SceneName.Menu:
-                ScenesManagement.LoadMenu();
-                break;
-            default:
-                ScenesManagement.LoadSignIn();
-                break;
-        }
+        if (ScenesManagement.GetPreviousSceneSaved().Equals(ScenesManagement.menu))
+            ScenesManagement.LoadMenu();
+        else
+            ScenesManagement.LoadSignIn();
     }
 
     public static void LoadLang(int index)

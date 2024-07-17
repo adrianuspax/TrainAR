@@ -39,17 +39,6 @@ public static class State
     public const string IdleBlend = "IdleBlend";
 }
 
-public static class SceneName
-{
-    public const string Redirection = "Redirection";
-    public const string Language = "Language";
-    public const string SignIn = "SignIn";
-    public const string SignOn = "SignOn";
-    public const string UserData = "UserData";
-    public const string TrainAR = "TrainAR";
-    public const string Menu = "Menu";
-}
-
 public static class TransitionUserName
 {
     public const string ToIdle = "ToIdle";
