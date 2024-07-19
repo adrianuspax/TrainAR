@@ -11,27 +11,6 @@ public enum StateButtonAR
     Refresh = 1
 };
 
-public enum Trigger
-{
-    Idle = 0,
-    Bored = 1,
-    Offensive = 2,
-    Squat = 3,
-    SquatBentArms = 4,
-    BicepCurl = 5,
-    BoxJump = 6,
-    Burpee = 7,
-    BicycleCrunch = 8,
-    CircleCrunch = 9,
-    JumpingJacks = 10,
-    Pistol = 11,
-    Plank = 12,
-    PikeWalk = 13,
-    PushUp = 14,
-    QuickSteps = 15,
-    Situps = 16
-};
-
 public enum BodyPart
 {
     Chest = 0,

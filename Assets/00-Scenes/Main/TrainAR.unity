@@ -16212,7 +16212,24 @@ MonoBehaviour:
     type: 3}
   breathingFloat: 0
   triggered: 0
-  clipByIndex: []
+  clipByIndex:
+  - {fileID: -203655887218126122, guid: 2ad17ee5162de4c46821bf16e865516f, type: 3}
+  - {fileID: -203655887218126122, guid: e2d9f48a14090cf488c7f8c9ceee317f, type: 3}
+  - {fileID: -203655887218126122, guid: 1836183a532faa64dbc2b331abda4360, type: 3}
+  - {fileID: -203655887218126122, guid: 5f321a24707a12d459486cd23cf2639a, type: 3}
+  - {fileID: -203655887218126122, guid: 6945d9f575cb97048a6f29160f1d3d46, type: 3}
+  - {fileID: -203655887218126122, guid: 645675340609c914e8cff2109e413390, type: 3}
+  - {fileID: 2184839216927646963, guid: dc9ca120ec7644444a4b9288a099bcf4, type: 3}
+  - {fileID: -203655887218126122, guid: 94a881f97f15a1f4ba373912138d6b93, type: 3}
+  - {fileID: -203655887218126122, guid: 9d531b737d050b3439d1cac93200753c, type: 3}
+  - {fileID: -203655887218126122, guid: 867b985fe67719e42a8ff1c2d995f6d8, type: 3}
+  - {fileID: -203655887218126122, guid: 3275a195b8fa8c24ca6dbe9fa6467e50, type: 3}
+  - {fileID: -203655887218126122, guid: 51f3af15503038c40be393cde96039b9, type: 3}
+  - {fileID: -203655887218126122, guid: 0f7825939b9f5014da6edf0d513e2f10, type: 3}
+  - {fileID: -203655887218126122, guid: 9734fd5813b6cd44e8a8b9f370b413e0, type: 3}
+  - {fileID: -203655887218126122, guid: acc2a7d1df52a294ba20aa1c3f54cc59, type: 3}
+  - {fileID: -203655887218126122, guid: 209cf2b14e9561d45a91d933c0dab2e7, type: 3}
+  - {fileID: -203655887218126122, guid: 602cb0321b7bcc24ab560811e26461c3, type: 3}
   AnimationStarted: 0
   animationNormalizedTime: 
   animationLength: 

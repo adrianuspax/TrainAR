@@ -96,13 +96,13 @@ public class TrainingSystem : MonoBehaviour
         StartCoroutine(Cor_LoadBehaviourPanelCoach());
     }
 
-    private void AnimationInLoop(Trigger animation, int amount)
+    private void AnimationInLoop(CoachAnimations.Trigger animation, int amount)
     {
         coroutineFinished = false;
         StartCoroutine(Cor_AnimationInLoop(animation, amount));
     }
 
-    private IEnumerator Cor_AnimationInLoop(Trigger animation, int amount)
+    private IEnumerator Cor_AnimationInLoop(CoachAnimations.Trigger animation, int amount)
     {
         Loading.SetCount("준비");
         yield return new WaitWhile(() => !Animations.Coach.CurrentAnimation.isIdle);
@@ -156,12 +156,12 @@ public class TrainingSystem : MonoBehaviour
         Buttons.DropDownMenu.DDMInterecation = false;
         Buttons.CanvasMain.ButtonSetCoachInteraction = false;
 
-        AnimationInLoop(Trigger.Pistol, 20); //20
+        AnimationInLoop(CoachAnimations.Trigger.Pistol, 20); //20
         squenceStarted = true;
         yield return new WaitWhile(() => !coroutineFinished);
-        AnimationInLoop(Trigger.Squat, 15); //15
+        AnimationInLoop(CoachAnimations.Trigger.Squat, 15); //15
         yield return new WaitWhile(() => !coroutineFinished);
-        AnimationInLoop(Trigger.Burpee, 30); //30
+        AnimationInLoop(CoachAnimations.Trigger.Burpee, 30); //30
         yield return new WaitWhile(() => !coroutineFinished);
         squenceStarted = false;
         Buttons.CanvasMain.PanelCoachInteraction = true;

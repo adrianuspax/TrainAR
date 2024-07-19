@@ -4,7 +4,7 @@ using System;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.Events;
-using SceneManager = ASP.SceneManagement.SceneManager;
+using ASP.SceneManagement;
 
 public class Transition : MonoBehaviour
 {

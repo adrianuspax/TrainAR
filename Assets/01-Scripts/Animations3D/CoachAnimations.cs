@@ -1,15 +1,38 @@
-﻿using UnityEngine;
-using ASP;
-using Debug = ASP.Debug;
+﻿using ASP;
+using ASP.Extensions;
+using UnityEngine;
 
 public class CoachAnimations : MonoBehaviour
 {
-    [Header("ANIMATIONS", order = 0)]
-    [Space(-10f, order = 1)]
-    [Header("Animators", order = 2)]
-    public Animator coachControl;
+    public enum Trigger
+    {
+        Idle = 0,
+        Bored = 1,
+        Offensive = 2,
+        Squat = 3,
+        SquatBentArms = 4,
+        BicepCurl = 5,
+        BoxJump = 6,
+        Burpee = 7,
+        BicycleCrunch = 8,
+        CircleCrunch = 9,
+        JumpingJacks = 10,
+        Pistol = 11,
+        Plank = 12,
+        PikeWalk = 13,
+        PushUp = 14,
+        QuickSteps = 15,
+        Situps = 16
+    };
+
+    [Header(Header.MANAGEABLE, order = 0)]
+    [Space(-10, order = 1)]
+    [Header(Header.ANIMATIONS, order = 1)]
+    [Space(-10f, order = 2)]
+    [Header(Header.animators, order = 3)]
+    [SerializeField] private Animator coachControl;
     [Space(-10f, order = 0)]
-    [Header("CLIPS", order = 1)]
+    [Header(Header.animationClips, order = 1)]
     [Space(-10f, order = 2)]
     [Header("AirSquat", order = 3)]
     [SerializeField] private AnimationClip airSquatClip;
@@ -75,7 +98,7 @@ public class CoachAnimations : MonoBehaviour
     [SerializeField] private AnimationClip offensiveClip;
     [SerializeField] private AnimationClip boredClip;
 
-    [Header("READ ONLY", order = 0)]
+    [Header(Header.READONLY, order = 0)]
     [Space(-10f, order = 1)]
     [Header("Blends", order = 2)]
     [Range(-1f, 1f, order = 3)]
@@ -88,21 +111,22 @@ public class CoachAnimations : MonoBehaviour
     [SerializeField, ReadOnly] private AnimationClip[] clipByIndex;
     [Space(-10f, order = 0)]
     [Header("Booleans", order = 1)]
-    [SerializeField, ReadOnly] private bool AnimationStarted;
-
+    [SerializeField, ReadOnly] private bool isAnimationStarted;
+# if UNITY_EDITOR
     [Header("Animations Values", order = 0)]
+#pragma warning disable IDE0052
     [SerializeField, ReadOnly] private string animationNormalizedTime;
     [SerializeField, ReadOnly] private string animationLength;
     [SerializeField, ReadOnly] private string animationCountdown;
     [SerializeField, ReadOnly] private string animatonCountup;
     [SerializeField, ReadOnly] private string animationLoopCount;
-    
+
     [Space(-10f, order = 0)]
     [Header("Transitions Values", order = 1)]
     [SerializeField, ReadOnly] private string transitionNormalizedTime;
     [SerializeField, ReadOnly] private string transitionDuration;
     [SerializeField, ReadOnly] private string transitionCountdown;
-    
+
     [Header("States And Transitions", order = 0)]
     [SerializeField, ReadOnly] private bool isIdle;
     [SerializeField, ReadOnly] private bool enterWorkout;
@@ -110,30 +134,8 @@ public class CoachAnimations : MonoBehaviour
     [SerializeField, ReadOnly] private bool outWorkout;
     [SerializeField, ReadOnly] private bool isTransition;
     [SerializeField, ReadOnly] private bool toIdle;
-
-    private void Awake()
-    {
-        clipByIndex = new AnimationClip[TotalCount];
-        clipByIndex[(int)Trigger.Idle] = idleClip;
-        clipByIndex[(int)Trigger.Bored] = boredClip;
-        clipByIndex[(int)Trigger.Offensive] = offensiveClip;
-        clipByIndex[(int)Trigger.Squat] = airSquatClip;
-        clipByIndex[(int)Trigger.SquatBentArms] = airSquatBentArmsClip;
-        clipByIndex[(int)Trigger.BicepCurl] = bicepCurlClip;
-        clipByIndex[(int)Trigger.BoxJump] = boxJumpClip;
-        clipByIndex[(int)Trigger.Burpee] = burpeeClip;
-        clipByIndex[(int)Trigger.BicycleCrunch] = bicycleCrunchClip;
-        clipByIndex[(int)Trigger.CircleCrunch] = circleCrunchClip;
-        clipByIndex[(int)Trigger.JumpingJacks] = jumpingJacksClip;
-        clipByIndex[(int)Trigger.Pistol] = pistolClip;
-        clipByIndex[(int)Trigger.Plank] = plankClip;
-        clipByIndex[(int)Trigger.PikeWalk] = pikeWalkClip;
-        clipByIndex[(int)Trigger.PushUp] = pushUpClip;
-        clipByIndex[(int)Trigger.QuickSteps] = quickStepsClip;
-        clipByIndex[(int)Trigger.Situps] = situpClip;
-    }
-
-    private void Update()
+#pragma warning restore IDE0052
+    private void InformationsLog()
     {
         animationNormalizedTime = CurrentAnimation.normalizedTime.ToString();
         animationLength = CurrentAnimation.length.ToString();
@@ -149,26 +151,73 @@ public class CoachAnimations : MonoBehaviour
         enterWorkout = CurrentAnimation.isEnter;
         isWorkout = CurrentAnimation.isWorkout;
         outWorkout = CurrentAnimation.isOut;
+#else
+        return;
+#endif
+    }
+    /// Reset to default values.
+    private void Reset()
+    {
+        ComponentsAssignment();
+    }/// Awake is called when an enabled script instance is being loaded.
+    private void Awake()
+    {
+        ComponentsAssignment();
+    }
+
+    private void Update()
+    {
+        InformationsLog();
+    }
+    /// <summary>
+    /// Assignment of components and variables
+    /// </summary>
+    [ContextMenu("Components Assignment")]
+    private void ComponentsAssignment()
+    {
+        if (clipByIndex.IsNullOrEmpty())
+        {
+            clipByIndex = new AnimationClip[TotalCount];
+            clipByIndex[(int)Trigger.Idle] = idleClip;
+            clipByIndex[(int)Trigger.Bored] = boredClip;
+            clipByIndex[(int)Trigger.Offensive] = offensiveClip;
+            clipByIndex[(int)Trigger.Squat] = airSquatClip;
+            clipByIndex[(int)Trigger.SquatBentArms] = airSquatBentArmsClip;
+            clipByIndex[(int)Trigger.BicepCurl] = bicepCurlClip;
+            clipByIndex[(int)Trigger.BoxJump] = boxJumpClip;
+            clipByIndex[(int)Trigger.Burpee] = burpeeClip;
+            clipByIndex[(int)Trigger.BicycleCrunch] = bicycleCrunchClip;
+            clipByIndex[(int)Trigger.CircleCrunch] = circleCrunchClip;
+            clipByIndex[(int)Trigger.JumpingJacks] = jumpingJacksClip;
+            clipByIndex[(int)Trigger.Pistol] = pistolClip;
+            clipByIndex[(int)Trigger.Plank] = plankClip;
+            clipByIndex[(int)Trigger.PikeWalk] = pikeWalkClip;
+            clipByIndex[(int)Trigger.PushUp] = pushUpClip;
+            clipByIndex[(int)Trigger.QuickSteps] = quickStepsClip;
+            clipByIndex[(int)Trigger.Situps] = situpClip;
+        }
+
+        ASP.SceneManagement.SceneManager.SaveCurrentScene();
     }
 
     public void Breathing(float weight)
     {
         coachControl.SetFloat(Parameter.Breathing, weight);
-        breathingFloat = weight;
+        weight.ComparativeAssignment(ref breathingFloat);
     }
 
     public void StartAnimation(Trigger trigger)
     {
         coachControl.SetTrigger(trigger.ToString());
-        triggered = trigger;
-        HasTriggered = !(trigger == 0);
+        isAnimationStarted = !(trigger == 0);
+        trigger.ComparativeAssignment(ref triggered);
     }
 
     public void StartAnimation(int index)
     {
         coachControl.SetTrigger(((Trigger)index).ToString());
-        triggered = GetTrigger(index);
-        HasTriggered = !(index == 0);
+        isAnimationStarted = !(index == 0);
+        GetTrigger(index).ComparativeAssignment(ref triggered);
     }
 
     public void StartIdleAnimation()
@@ -182,43 +231,59 @@ public class CoachAnimations : MonoBehaviour
     public Trigger GetTrigger(int index) => (Trigger)index;
     public string GetName(int index) => GetTrigger(index).ToString();
     public int TotalCount => System.Enum.GetValues(typeof(Trigger)).Length;
-    public bool HasTriggered
+    public bool HasTriggered => isAnimationStarted;
+
+    public (float normalizedTime,
+            float normalizedReverseTime,
+            float length, float countdown,
+            float countup, int loopCount,
+            bool isWorkout,
+            bool isIdle,
+            bool isEnter,
+            bool isOut)
+    CurrentAnimation
     {
-        get => AnimationStarted;
-        private set => AnimationStarted = value;
+        get => (coachControl.GetCurrentAnimatorStateInfo(0).normalizedTime,
+           1 - (coachControl.GetCurrentAnimatorStateInfo(0).normalizedTime % 1),
+                coachControl.GetCurrentAnimatorStateInfo(0).length,
+                coachControl.GetCurrentAnimatorStateInfo(0).length - (coachControl.GetCurrentAnimatorStateInfo(0).normalizedTime % 1 * coachControl.GetCurrentAnimatorStateInfo(0).length),
+                coachControl.GetCurrentAnimatorStateInfo(0).length * coachControl.GetCurrentAnimatorStateInfo(0).normalizedTime,
+           (int)coachControl.GetCurrentAnimatorStateInfo(0).normalizedTime,
+                coachControl.GetCurrentAnimatorStateInfo(0).IsTag(StateTag.Workout),
+                coachControl.GetCurrentAnimatorStateInfo(0).IsName(State.IdleBlend),
+                coachControl.GetCurrentAnimatorStateInfo(0).IsTag(StateTag.EnterWorkout),
+                coachControl.GetCurrentAnimatorStateInfo(0).IsTag(StateTag.OutWorkout));
     }
 
-    public (float normalizedTime, float normalizedReverseTime, float length, float countdown, float countup, int loopCount, bool isWorkout, bool isIdle, bool isEnter, bool isOut) CurrentAnimation =>
-        (
-        coachControl.GetCurrentAnimatorStateInfo(0).normalizedTime,
-        (1 - (coachControl.GetCurrentAnimatorStateInfo(0).normalizedTime % 1)),
-        coachControl.GetCurrentAnimatorStateInfo(0).length,
-        coachControl.GetCurrentAnimatorStateInfo(0).length - (coachControl.GetCurrentAnimatorStateInfo(0).normalizedTime % 1 * coachControl.GetCurrentAnimatorStateInfo(0).length),
-        coachControl.GetCurrentAnimatorStateInfo(0).length * coachControl.GetCurrentAnimatorStateInfo(0).normalizedTime,
-        (int)coachControl.GetCurrentAnimatorStateInfo(0).normalizedTime,
-        coachControl.GetCurrentAnimatorStateInfo(0).IsTag(StateTag.Workout),
-        coachControl.GetCurrentAnimatorStateInfo(0).IsName(State.IdleBlend),
-        coachControl.GetCurrentAnimatorStateInfo(0).IsTag(StateTag.EnterWorkout),
-        coachControl.GetCurrentAnimatorStateInfo(0).IsTag(StateTag.OutWorkout)
-        );
+    public (float normalizedTime,
+            float normalizedReverseTime,
+            float length,
+            bool willBeWorkout,
+            bool willBeIdle,
+            bool willBeEnter,
+            bool willBeOut)
+    NextAnimation
+    {
+        get => (coachControl.GetNextAnimatorStateInfo(0).normalizedTime,
+           1 - (coachControl.GetNextAnimatorStateInfo(0).normalizedTime % 1),
+                coachControl.GetNextAnimatorStateInfo(0).length,
+                coachControl.GetNextAnimatorStateInfo(0).IsTag(StateTag.Workout),
+                coachControl.GetNextAnimatorStateInfo(0).IsName(State.IdleBlend),
+                coachControl.GetNextAnimatorStateInfo(0).IsTag(StateTag.EnterWorkout),
+                coachControl.GetNextAnimatorStateInfo(0).IsTag(StateTag.OutWorkout));
+    }
 
-    public (float normalizedTime, float normalizedReverseTime, float length, bool willBeWorkout, bool willBeIdle, bool willBeEnter, bool willBeOut) NextAnimation =>
-        (
-        coachControl.GetNextAnimatorStateInfo(0).normalizedTime,
-        (1 - (coachControl.GetNextAnimatorStateInfo(0).normalizedTime % 1)),
-        coachControl.GetNextAnimatorStateInfo(0).length,
-        coachControl.GetNextAnimatorStateInfo(0).IsTag(StateTag.Workout),
-        coachControl.GetNextAnimatorStateInfo(0).IsName(State.IdleBlend),
-        coachControl.GetNextAnimatorStateInfo(0).IsTag(StateTag.EnterWorkout),
-        coachControl.GetNextAnimatorStateInfo(0).IsTag(StateTag.OutWorkout)
-        );
-
-    public (float normalizedTime, float duration, float countdown, bool isTransition, bool toIdle) CurrentTransition =>
-        (
-        coachControl.GetAnimatorTransitionInfo(0).normalizedTime,
-        coachControl.GetAnimatorTransitionInfo(0).duration,
-        coachControl.GetAnimatorTransitionInfo(0).duration - (coachControl.GetAnimatorTransitionInfo(0).normalizedTime * coachControl.GetAnimatorTransitionInfo(0).duration),
-        coachControl.GetAnimatorTransitionInfo(0).duration != 0,
-        coachControl.GetAnimatorTransitionInfo(0).IsUserName(TransitionUserName.ToIdle)
-        );
+    public (float normalizedTime,
+            float duration,
+            float countdown,
+            bool isTransition,
+            bool toIdle)
+    CurrentTransition
+    {
+        get => (coachControl.GetAnimatorTransitionInfo(0).normalizedTime,
+                coachControl.GetAnimatorTransitionInfo(0).duration,
+                coachControl.GetAnimatorTransitionInfo(0).duration - (coachControl.GetAnimatorTransitionInfo(0).normalizedTime * coachControl.GetAnimatorTransitionInfo(0).duration),
+                coachControl.GetAnimatorTransitionInfo(0).duration != 0,
+                coachControl.GetAnimatorTransitionInfo(0).IsUserName(TransitionUserName.ToIdle));
+    }
 }
