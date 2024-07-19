@@ -66,13 +66,13 @@ public class Menu : MonoBehaviour
     }
 
     public void UpdateProfile()
-    { ScenesManagement.LoadUserData(); }
+    { TrainARSceneManager.LoadUserData(); }
 
     public void EditAccount()
-    { ScenesManagement.LoadSignOn(); }
+    { TrainARSceneManager.LoadSignOn(); }
 
     public void Language()
-    { ScenesManagement.LoadLanguage(); }
+    { TrainARSceneManager.LoadLanguage(); }
 
     public void DeleteAccount()
     { PanelQuestionAnimation(State.PanelStart); }
@@ -80,17 +80,17 @@ public class Menu : MonoBehaviour
     public void SignOut()
     {
         AccountData.Signed = false;
-        ScenesManagement.LoadSignIn();
+        TrainARSceneManager.LoadSignIn();
     }
 
     public void Back()
-    { ScenesManagement.LoadTrainAR(); }
+    { TrainARSceneManager.LoadTrainAR(); }
 
     public void Yes()
     {
         PanelQuestionAnimation(State.PanelEnd);
         PlayerPrefs.DeleteAll();
-        ScenesManagement.LoadRedirection();
+        TrainARSceneManager.LoadRedirection();
     }
 
     public void No()

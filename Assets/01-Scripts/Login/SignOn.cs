@@ -104,10 +104,10 @@ public class SignOn : MonoBehaviour
             AccountData.Username = username;
             AccountData.Password = newPassword;
 
-            if (ScenesManagement.GetPreviousSceneSaved().Equals(ScenesManagement.menu))
-                ScenesManagement.LoadMenu();
+            if (TrainARSceneManager.GetPreviousSceneSaved() == TrainARSceneManager.menu)
+                TrainARSceneManager.LoadMenu();
             else
-                ScenesManagement.LoadSignIn();
+                TrainARSceneManager.LoadSignIn();
         }
     }
 
@@ -118,10 +118,10 @@ public class SignOn : MonoBehaviour
             AccountData.Username = username;
             AccountData.Password = newPassword;
 
-            if (ScenesManagement.GetPreviousSceneSaved().Equals(ScenesManagement.menu))
-                ScenesManagement.LoadMenu();
+            if (TrainARSceneManager.GetPreviousSceneSaved() == TrainARSceneManager.menu)
+                TrainARSceneManager.LoadMenu();
             else
-                ScenesManagement.LoadSignIn();
+                TrainARSceneManager.LoadSignIn();
         }
     }
     #endregion

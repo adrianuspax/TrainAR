@@ -7,7 +7,7 @@
       "dependencies": {
         "com.unity.localization": "1.0.0"
       },
-      "hash": "62ce36d352fe8337b653dfaf4f646683eec174a2"
+      "hash": "0e9998b4eb652d053612ef709d7e45f0bdeffb1f"
     },
     "com.autodesk.fbx": {
       "version": "4.2.1",

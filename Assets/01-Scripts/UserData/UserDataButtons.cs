@@ -83,7 +83,7 @@ public class UserDataButtons : MonoBehaviour
         #region CANVAS_MAIN
         closeButton.onClick.AddListener(ButtonsManager.CloseApplication);
         nextButton.onClick.AddListener(() => NextButtonFunction());
-        returnButton.onClick.AddListener(() => ScenesManagement.LoadMenu());
+        returnButton.onClick.AddListener(() => TrainARSceneManager.LoadMenu());
         #endregion
         #region GENRE
         genreColorPressed = new Color[2] { PalleteColors.Triad(3), PalleteColors.Main };
@@ -111,7 +111,7 @@ public class UserDataButtons : MonoBehaviour
 
     private void Start()
     {
-        returnButton.gameObject.SetActive(ScenesManagement.GetPreviousSceneSaved().Equals(ScenesManagement.menu));
+        returnButton.gameObject.SetActive(TrainARSceneManager.GetPreviousSceneSaved() == TrainARSceneManager.menu);
         levelByIndex = Data.levelPhrase;
     }
 
@@ -396,10 +396,10 @@ public class UserDataButtons : MonoBehaviour
 
         if (PagesAndFields.CurrentPage >= PagesAndFields.TotalPages)
         {
-            if (ScenesManagement.GetPreviousSceneSaved().Equals(ScenesManagement.menu))
-                ScenesManagement.LoadMenu();
+            if (TrainARSceneManager.GetPreviousSceneSaved() == TrainARSceneManager.menu)
+                TrainARSceneManager.LoadMenu();
             else
-                ScenesManagement.LoadTrainAR();
+                TrainARSceneManager.LoadTrainAR();
         }
         else
         {

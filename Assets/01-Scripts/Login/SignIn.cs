@@ -88,10 +88,10 @@ public class SignIn : MonoBehaviour
         {
             AccountData.Signed = true;
 
-            if (ScenesManagement.GetPreviousSceneSaved().Equals(ScenesManagement.signOn))
-                ScenesManagement.LoadUserData();
+            if (TrainARSceneManager.GetPreviousSceneSaved() == TrainARSceneManager.signOn)
+                TrainARSceneManager.LoadUserData();
             else
-                ScenesManagement.LoadTrainAR();
+                TrainARSceneManager.LoadTrainAR();
         }
         else
         {
@@ -101,7 +101,7 @@ public class SignIn : MonoBehaviour
     }
 
     public void SignOnFunction()
-    { ScenesManagement.LoadSignOn(); }
+    { TrainARSceneManager.LoadSignOn(); }
     #region USERNAME
     public void OnSelectUsername(string username)
     {

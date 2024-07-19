@@ -5,7 +5,6 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.Events;
 using SceneManager = ASP.SceneManagement.SceneManager;
-using Scene = ASP.SceneManagement.Scene;
 
 public class Transition : MonoBehaviour
 {
@@ -43,7 +42,7 @@ public class Transition : MonoBehaviour
     /// This function is called when the object becomes enabled and active.
     private void OnEnable()
     {
-        ScenesManagement.Load += CallSceneWithClip;
+        TrainARSceneManager.Load += CallSceneWithClip;
     }
     /// Start is called on the frame when a script is enabled just before any of the Update methods are called the first time.
     private void Start()
@@ -53,7 +52,7 @@ public class Transition : MonoBehaviour
     /// This function is called when the behaviour becomes disabled.
     private void OnDisable()
     {
-        ScenesManagement.Load -= CallSceneWithClip;
+        TrainARSceneManager.Load -= CallSceneWithClip;
     }
     /// <summary>
     /// Assignment of components and variables
@@ -91,11 +90,11 @@ public class Transition : MonoBehaviour
         action?.Invoke();
     }
 
-    private void CallSceneWithClip(Scene scene)
+    private void CallSceneWithClip(SceneManager.Scene scene)
     {
         StartCoroutine(_delay(scene));
 
-        IEnumerator _delay(Scene scene)
+        IEnumerator _delay(SceneManager.Scene scene)
         {
             StartClip();
             yield return new WaitForSeconds(animator.GetAnimationClipLength(AnimationControl.State.start.name));

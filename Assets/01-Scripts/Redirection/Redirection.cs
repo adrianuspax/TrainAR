@@ -27,16 +27,16 @@ public class Redirection : MonoBehaviour
         if (AccountData.HasAccount)
         {
             if (AccountData.Signed)
-            { ScenesManagement.LoadTrainAR(); }
+            { TrainARSceneManager.LoadTrainAR(); }
             else
             {
                 if (AccountData.HasLanguage)
-                { ScenesManagement.LoadSignIn(); }
+                { TrainARSceneManager.LoadSignIn(); }
                 else
-                { ScenesManagement.LoadLanguage(); }
+                { TrainARSceneManager.LoadLanguage(); }
             }
         }
         else
-        { ScenesManagement.LoadLanguage(); }
+        { TrainARSceneManager.LoadLanguage(); }
     }
 }

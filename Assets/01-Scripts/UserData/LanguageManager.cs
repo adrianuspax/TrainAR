@@ -456,14 +456,14 @@ public class LanguageManager : MonoBehaviour
         (langButton, langPressed) = Buttons.Assignment(buttonsLangHeader, LangButtonsBehaviour);
         okButton.onClick.AddListener(OkFunction);
         closeButton.onClick.AddListener(ButtonsManager.CloseApplication);
-        returnButton.onClick.AddListener(() => ScenesManagement.LoadMenu());
+        returnButton.onClick.AddListener(() => TrainARSceneManager.LoadMenu());
     }
 
     private void Start()
     {
         Animations.Transition.EndClip();
         LangButtonsBehaviour(AccountData.Language);
-        returnButton.gameObject.SetActive(ScenesManagement.GetPreviousSceneSaved().Equals(ScenesManagement.menu));
+        returnButton.gameObject.SetActive(TrainARSceneManager.GetPreviousSceneSaved() == TrainARSceneManager.menu);
     }
 
     public void LangButtonsBehaviour(int index)
@@ -503,10 +503,10 @@ public class LanguageManager : MonoBehaviour
         AccountData.Language = (int)Language;
         LoadLang(AccountData.Language);
 
-        if (ScenesManagement.GetPreviousSceneSaved().Equals(ScenesManagement.menu))
-            ScenesManagement.LoadMenu();
+        if (TrainARSceneManager.GetPreviousSceneSaved() == TrainARSceneManager.menu)
+            TrainARSceneManager.LoadMenu();
         else
-            ScenesManagement.LoadSignIn();
+            TrainARSceneManager.LoadSignIn();
     }
 
     public static void LoadLang(int index)

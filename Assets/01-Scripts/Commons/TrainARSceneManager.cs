@@ -2,20 +2,19 @@
 using UnityEngine;
 using UnityEngine.Events;
 using PlayerPrefs = ASP.PlayerPrefs;
-using Scene = ASP.SceneManagement.Scene;
 
-public class ScenesManagement : MonoBehaviour
+public class TrainARSceneManager : MonoBehaviour
 {
-    public static readonly Scene redirection = new("Redirection");
-    public static readonly Scene language = new("Language");
-    public static readonly Scene signIn = new("SignIn");
-    public static readonly Scene signOn = new("SignOn");
-    public static readonly Scene userData = new("UserData");
-    public static readonly Scene trainAR = new("TrainAR");
-    public static readonly Scene menu = new("Menu");
+    public static readonly SceneManager.Scene redirection = new("Redirection");
+    public static readonly SceneManager.Scene language = new("Language");
+    public static readonly SceneManager.Scene signIn = new("SignIn");
+    public static readonly SceneManager.Scene signOn = new("SignOn");
+    public static readonly SceneManager.Scene userData = new("UserData");
+    public static readonly SceneManager.Scene trainAR = new("TrainAR");
+    public static readonly SceneManager.Scene menu = new("Menu");
 
     public static readonly PlayerPrefs.String currentScene = new ("currentScene");
-    public static event UnityAction<Scene> Load;
+    public static event UnityAction<SceneManager.Scene> Load;
 
     public static void LoadRedirection()
     {
@@ -58,7 +57,7 @@ public class ScenesManagement : MonoBehaviour
         Load?.Invoke(menu);
     }
 
-    public static Scene GetPreviousSceneSaved()
+    public static SceneManager.Scene GetPreviousSceneSaved()
     {
         return new(PlayerPrefs.String.Get(currentScene));
     }
