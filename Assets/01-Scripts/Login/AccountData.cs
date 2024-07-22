@@ -1,44 +1,62 @@
-using UnityEngine;
+using ASP;
 
 public static class AccountData
 {
+    public readonly static PlayerPrefs.String username = new("username");
+    public readonly static PlayerPrefs.String password = new("password");
+    public readonly static PlayerPrefs.Integer language = new("language");
+    public readonly static PlayerPrefs.Boolean signed = new("signed");
+    public readonly static PlayerPrefs.Integer levelValue = new("levelValue");
+
+    public readonly static PlayerPrefs.String name = new(DataManagement.pageKey[0]);
+    public readonly static PlayerPrefs.Boolean gender = new(DataManagement.pageKey[1]);
+    public readonly static PlayerPrefs.String goal = new(DataManagement.pageKey[2]);
+    public readonly static PlayerPrefs.String levelPhrase = new(DataManagement.pageKey[3]);
+    public readonly static PlayerPrefs.String focus = new(DataManagement.pageKey[4]);
+
+    public readonly static PlayerPrefs.String age = new(DataManagement.footerKey[0]);
+    public readonly static PlayerPrefs.String currentWeight = new(DataManagement.footerKey[1]);
+    public readonly static PlayerPrefs.String targetWeight = new(DataManagement.footerKey[2]);
+    public readonly static PlayerPrefs.String height = new(DataManagement.footerKey[3]);
+
     public static string Username
     {
-        get => PlayerPrefs.GetString(Key.username);
-        set => PlayerPrefs.SetString(Key.username, value);
+        get => PlayerPrefs.String.Get(username);
+        set => PlayerPrefs.String.Set(username, value);
     }
 
     public static string Password
     {
-        get => PlayerPrefs.GetString(Key.password);
-        set => PlayerPrefs.SetString(Key.password, value);
+        get => PlayerPrefs.String.Get(password);
+        set => PlayerPrefs.String.Set(password, value);
     }
-
-    public static bool HasUsername => PlayerPrefs.HasKey(Key.username);
-    public static bool HasPassword => PlayerPrefs.HasKey(Key.password);
-    public static bool HasAccount => HasUsername && HasPassword;
-    public static bool HasLanguage => PlayerPrefs.HasKey(Key.language);
 
     public static int Language
     {
-        get => PlayerPrefs.GetInt(Key.language);
-        set => PlayerPrefs.SetInt(Key.language, value);
+        get => PlayerPrefs.Integer.Get(language);
+        set => PlayerPrefs.Integer.Set(language, value);
     }
 
     public static bool Signed
     {
-        get => PlayerPrefs.HasKey(Key.signed) && PlayerPrefs.GetInt(Key.signed) == 1;
-        set => PlayerPrefs.SetInt(Key.signed, value ? 1 : 0);
+        get => PlayerPrefs.Boolean.HasSaved(signed) && PlayerPrefs.Boolean.Get(signed);
+        set => PlayerPrefs.Boolean.Set(signed, value);
     }
 
-    public static string CompleteName => PlayerPrefs.GetString(DataManagement.pageKey[0]);
-    public static bool IsMale => PlayerPrefs.GetInt(DataManagement.pageKey[1]) == 0;
-    public static string Goal => PlayerPrefs.GetString(DataManagement.pageKey[2]);
-    public static int Level => PlayerPrefs.GetInt(Key.levelValue);
-    public static string LevelPhrase => PlayerPrefs.GetString(DataManagement.pageKey[3]);
-    public static string Focus => PlayerPrefs.GetString(DataManagement.pageKey[4]);
-    public static int Age => int.Parse(PlayerPrefs.GetString(DataManagement.footerKey[0]));
-    public static float CurrentWeight => float.Parse(PlayerPrefs.GetString(DataManagement.footerKey[1]));
-    public static float TargetWeight => float.Parse(PlayerPrefs.GetString(DataManagement.footerKey[2]));
-    public static float Height => float.Parse(PlayerPrefs.GetString(DataManagement.footerKey[3]));
+    public static bool HasUsername => PlayerPrefs.String.HasSaved(username);
+    public static bool HasPassword => PlayerPrefs.String.HasSaved(password);
+    public static bool HasAccount => PlayerPrefs.String.HasSaved(username) && PlayerPrefs.String.HasSaved(password);
+    public static bool HasLanguage => PlayerPrefs.Integer.HasSaved(language);
+
+    public static string CompleteName => PlayerPrefs.String.Get(name);
+    public static bool IsMale => PlayerPrefs.Boolean.Get(gender);
+    public static string Goal => PlayerPrefs.String.Get(goal);
+    public static int Level => PlayerPrefs.Integer.Get(levelValue);
+    public static string LevelPhrase => PlayerPrefs.String.Get(levelPhrase);
+    public static string Focus => PlayerPrefs.String.Get(focus);
+
+    public static int Age => int.Parse(PlayerPrefs.String.Get(age));
+    public static float CurrentWeight => float.Parse(PlayerPrefs.String.Get(currentWeight));
+    public static float TargetWeight => float.Parse(PlayerPrefs.String.Get(targetWeight));
+    public static float Height => float.Parse(PlayerPrefs.String.Get(height));
 }

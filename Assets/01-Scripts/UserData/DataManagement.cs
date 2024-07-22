@@ -181,8 +181,8 @@ public class DataManagement : MonoBehaviour
 
     public int LevelValue
     {
-        get => PlayerPrefs.GetInt(Key.levelValue);
-        set => PlayerPrefs.SetInt(Key.levelValue, value);
+        get => ASP.PlayerPrefs.Integer.Get(AccountData.levelValue);
+        set => ASP.PlayerPrefs.Integer.Set(AccountData.levelValue, value);
     }
 
     public string Focus

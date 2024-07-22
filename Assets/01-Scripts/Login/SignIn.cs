@@ -74,9 +74,6 @@ public class SignIn : MonoBehaviour
         Animations.Transition.EndClip();
         warningTMP.text = string.Empty;
         signed = AccountData.Signed;
-
-        Debug.Log(PlayerPrefs.HasKey(Key.username) ? "username = " + PlayerPrefs.GetString(Key.username) : "username = EMPTY");
-        Debug.Log(PlayerPrefs.HasKey(Key.password) ? "password = " + PlayerPrefs.GetString(Key.password) : "password = EMPTY");
     }
 
     public void SignInFunction()

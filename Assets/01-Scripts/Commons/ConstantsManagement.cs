@@ -1,10 +1,6 @@
 public static class Key
 {
-    public const string username = "username";
-    public const string password = "password";
-    public const string language = "language";
     public const string signed = "signed";
-    public const string levelValue = "levelValue";
     public const string CurrentScene = "currentScene";
 }
 
