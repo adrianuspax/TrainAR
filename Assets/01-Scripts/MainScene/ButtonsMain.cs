@@ -1,30 +1,36 @@
-﻿using UnityEngine;
+﻿using ASP;
+using ASP.Extensions;
+using UnityEngine;
 using UnityEngine.UI;
-using ASP;
-using Debug = ASP.Debug;
-[RequireComponent(typeof(AugmentedReality), typeof(ImagesManager))]
+[RequireComponent(typeof(AugmentedReality))]
 public class ButtonsMain : MonoBehaviour
 {
-    [Header("BUTTONS", order = 0)]
+    [Header(Header.MANAGEABLE, order = 0)]
     [Space(-10, order = 1)]
-    [Header("Top Area", order = 2)]
-    [SerializeField] private Button btnTopL;
-    [SerializeField] private Button btnTopR;
-    [Space(-10, order = 0)]
-    [Header("Top Area", order = 1)]
-    [SerializeField] private Button btnBarL;
-    [SerializeField] private Button btnBarC;
-    [SerializeField] private Button btnBarR;
-    [Header("READY ONLY", order = 0)]
+    [Header(Header.variables, order = 2)]
+    [SerializeField] private Sprite setCoachAR;
+    [SerializeField] private Sprite replaceCoachAR;
+    [SerializeField] private Sprite openPanel;
+    [SerializeField] private Sprite closePanel;
+
+    [Header(Header.READONLY, order = 0)]
     [Space(-10, order = 1)]
-    [Header("Variables", order = 2)]
+    [Header(Header.variables, order = 2)]
     [SerializeField, ReadOnly] private StateButtonAR stateButtonAR;
     [SerializeField, ReadOnly] private bool btnBarRIsPressed;
-
+    [Header(Header.buttons, order = 0)]
     [Space(-10, order = 1)]
-    [Header("Scripts", order = 2)]
+    [Header("Top Area", order = 2)]
+    [SerializeField, ReadOnly] private Button btnTopL;
+    [SerializeField, ReadOnly] private Button btnTopR;
+    [Space(-10, order = 0)]
+    [Header("Top Area", order = 1)]
+    [SerializeField, ReadOnly] private Button btnBarL;
+    [SerializeField, ReadOnly] private Button btnBarC;
+    [SerializeField, ReadOnly] private Button btnBarR;
+
+    [Header(Header.scripts, order = 0)]
     [SerializeField, ReadOnly] private AugmentedReality AR;
-    [SerializeField, ReadOnly] private ImagesManager Sprites;
     [SerializeField, ReadOnly] private PanelResult panelResult;
     [SerializeField, ReadOnly] private PanelCoach panelCoach;
     [SerializeField, ReadOnly] private AnimationsMain animationsMain;
@@ -33,34 +39,61 @@ public class ButtonsMain : MonoBehaviour
 
     private void Awake()
     {
-        AR = GetComponent<AugmentedReality>();
-        Sprites = GetComponent<ImagesManager>();
-        panelResult = GetComponent<PanelResult>();
-        panelCoach = GetComponent<PanelCoach>();
-        animationsMain = GetComponent<AnimationsMain>();
-        floatMenu = GetComponent<FloatMenu>();
-        coachAnimations = GetComponent<CoachAnimations>();
-
+        ComponentsAssignment();
+    }
+    /// Start is called on the frame when a script is enabled just before any of the Update methods are called the first time.
+    private void Start()
+    {
         btnTopR.onClick.AddListener(ButtonsManager.CloseApplication);
         btnTopL.onClick.AddListener(() => TrainARSceneManager.LoadMenu());
         btnBarC.onClick.AddListener(() => AR.PlaceCoachAR());
-        btnBarR.onClick.AddListener(() => ButtonPanelCoach(btnBarRIsPressed));
+        btnBarR.onClick.AddListener(() => ButtonPanelCoach(btnBarRIsPressed = !btnBarRIsPressed));
         btnBarL.onClick.AddListener(() => panelResult.PanelResultBehaviour());
+    }
+    /// <summary>
+    /// Assignment of components and variables
+    /// </summary>
+    [ContextMenu("Components Assignment")]
+    private void ComponentsAssignment()
+    {
+        if (AR.IsNull())
+            AR = GetComponent<AugmentedReality>();
+        if (panelResult.IsNull())
+            panelResult = GetComponent<PanelResult>();
+        if (panelCoach.IsNull())
+            panelCoach = GetComponent<PanelCoach>();
+        if (animationsMain.IsNull())
+            animationsMain = GetComponent<AnimationsMain>();
+        if (floatMenu.IsNull())
+            floatMenu = GetComponent<FloatMenu>();
+        if (coachAnimations.IsNull())
+            coachAnimations = GetComponent<CoachAnimations>();
+        if (btnTopL.IsNull())
+            btnTopL = GameObject.Find("btnTopL").transform.GetComponent<Button>();
+        if (btnTopR.IsNull())
+            btnTopR = GameObject.Find("btnTopR").transform.GetComponent<Button>();
+        if (btnBarL.IsNull())
+            btnBarL = GameObject.Find("btnBarL").transform.GetComponent<Button>();
+        if (btnBarC.IsNull())
+            btnBarC = GameObject.Find("btnBarC").transform.GetComponent<Button>();
+        if (btnBarR.IsNull())
+            btnBarR = GameObject.Find("btnBarR").transform.GetComponent<Button>();
+
+        ASP.SceneManagement.SceneManager.SaveCurrentScene();
     }
 
     public void ButtonARBehaviour(StateButtonAR state, bool isInteractable)
     {
         bool condition;
 
-        switch (state)
+        Sprite sprite = state switch
         {
-            case StateButtonAR.ReadyToSet:
-                btnBarC.image.sprite = Sprites.setCoachAR;
-                break;
-            case StateButtonAR.Refresh:
-                btnBarC.image.sprite = Sprites.replaceCoachAR;
-                break;
-        }
+            StateButtonAR.ReadyToSet => setCoachAR,
+            StateButtonAR.Refresh => replaceCoachAR,
+            _ => default,
+        };
+
+        btnBarC.image.sprite = sprite;
 
         condition = (CurrentStateButtonAR == StateButtonAR.Refresh) || isInteractable;
         ButtonSetCoachInteraction = condition && !coachAnimations.HasTriggered;
@@ -78,14 +111,10 @@ public class ButtonsMain : MonoBehaviour
 
     public void ButtonPanelCoach(bool isPressed)
     {
-        isPressed = !isPressed;
-
-        btnBarR.image.sprite = isPressed ? Sprites.closePanel : Sprites.openPanel;
+        btnBarR.image.sprite = isPressed ? closePanel : openPanel;
         floatMenu.SetBoolFloatAnimators(!isPressed);
-
         panelCoach.PanelCoachBehaviour(isPressed);
-
-        btnBarRIsPressed = isPressed;
+        isPressed.ComparativeAssignment(ref btnBarRIsPressed);
     }
 
     public bool ButtonSetCoachInteraction

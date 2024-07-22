@@ -552,7 +552,7 @@ GameObject:
   - component: {fileID: 62667935}
   - component: {fileID: 62667934}
   m_Layer: 0
-  m_Name: btnLeft
+  m_Name: btnTopL
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1775,7 +1775,7 @@ GameObject:
   - component: {fileID: 244377307}
   - component: {fileID: 244377306}
   m_Layer: 0
-  m_Name: btnLeft
+  m_Name: btnBarL
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -7746,7 +7746,7 @@ GameObject:
   - component: {fileID: 804196750}
   - component: {fileID: 804196749}
   m_Layer: 0
-  m_Name: btnRight
+  m_Name: btnTopR
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -12812,7 +12812,7 @@ GameObject:
   - component: {fileID: 1679993067}
   - component: {fileID: 1679993066}
   m_Layer: 0
-  m_Name: btnRight
+  m_Name: btnBarR
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -16148,7 +16148,6 @@ GameObject:
   - component: {fileID: 2045423146}
   - component: {fileID: 2045423148}
   - component: {fileID: 2045423150}
-  - component: {fileID: 2045423151}
   - component: {fileID: 2045423154}
   - component: {fileID: 2045423156}
   - component: {fileID: 2045423157}
@@ -16221,20 +16220,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4d4d0b378b3bae3499f3a9b53cb09506, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  setCoachAR: {fileID: 21300000, guid: c737c5aacac9f0949bd8cb13d0c6de08, type: 3}
+  replaceCoachAR: {fileID: 21300000, guid: da4a142bc72e9e845894fcbb00f5a132, type: 3}
+  openPanel: {fileID: 21300000, guid: b04f8309cc541fb44a45eaa592c65cac, type: 3}
+  closePanel: {fileID: 21300000, guid: 25656fc2cb5e6ed4abe9175d143a5ee2, type: 3}
+  stateButtonAR: 0
+  btnBarRIsPressed: 0
   btnTopL: {fileID: 62667934}
   btnTopR: {fileID: 804196749}
   btnBarL: {fileID: 244377306}
   btnBarC: {fileID: 2130998330}
   btnBarR: {fileID: 1679993066}
-  stateButtonAR: 0
-  btnBarRIsPressed: 0
-  AR: {fileID: 0}
-  Sprites: {fileID: 0}
-  panelResult: {fileID: 0}
-  panelCoach: {fileID: 0}
-  animationsMain: {fileID: 0}
-  floatMenu: {fileID: 0}
-  coachAnimations: {fileID: 0}
+  AR: {fileID: 2045423149}
+  panelResult: {fileID: 2045423157}
+  panelCoach: {fileID: 2045423156}
+  animationsMain: {fileID: 2045423150}
+  floatMenu: {fileID: 2045423154}
+  coachAnimations: {fileID: 2045423148}
 --- !u!114 &2045423148
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -16396,22 +16398,6 @@ MonoBehaviour:
   movePhoneStart: {fileID: 7400000, guid: a1023927074766143a2239e0804fd70d, type: 2}
   anchorAnimator: {fileID: 909219427}
   movePhoneAnimator: {fileID: 933628378}
---- !u!114 &2045423151
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2045423144}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 806e262ad8609e147ad1c5d17c87e774, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  setCoachAR: {fileID: 21300000, guid: c737c5aacac9f0949bd8cb13d0c6de08, type: 3}
-  replaceCoachAR: {fileID: 21300000, guid: da4a142bc72e9e845894fcbb00f5a132, type: 3}
-  openPanel: {fileID: 21300000, guid: b04f8309cc541fb44a45eaa592c65cac, type: 3}
-  closePanel: {fileID: 21300000, guid: 25656fc2cb5e6ed4abe9175d143a5ee2, type: 3}
 --- !u!114 &2045423154
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -17708,7 +17694,7 @@ GameObject:
   - component: {fileID: 2130998331}
   - component: {fileID: 2130998330}
   m_Layer: 0
-  m_Name: btnAR
+  m_Name: btnBarC
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
