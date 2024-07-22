@@ -16388,13 +16388,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0495dac147f421f48aad98a9593c6ac2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  anchorARIdleStart: {fileID: 7400000, guid: b62367c3a3519044e8ca71d56a9d1c6a, type: 2}
-  anchorARNoHitStart: {fileID: 7400000, guid: 17dc264b862b08e4f9fe53260add502a, type: 2}
-  anchorDisable: {fileID: 7400000, guid: b9a63282ab35d5b46821050752c25360, type: 2}
   movePhoneStart: {fileID: 7400000, guid: a1023927074766143a2239e0804fd70d, type: 2}
-  movePhoneNull: {fileID: 7400000, guid: e814f24e3d2352f4ea440a4aa1fc63e6, type: 2}
-  anchorAnimator: {fileID: 0}
-  movePhoneAnimator: {fileID: 0}
+  anchorAnimator: {fileID: 909219427}
+  movePhoneAnimator: {fileID: 933628378}
 --- !u!114 &2045423151
 MonoBehaviour:
   m_ObjectHideFlags: 0
