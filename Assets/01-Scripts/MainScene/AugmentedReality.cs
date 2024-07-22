@@ -50,7 +50,14 @@ public class AugmentedReality : MonoBehaviour
     private void Update()
     {
         AnchorBehaviour();
-        Animations.FloatMenu.LookingAtCam(CoachIsActivated);
+
+        if (CoachIsActivated)
+        {
+            foreach (Transform pivots in Animations.FloatMenu.FloatTransforms)
+            {
+                pivots.LookAt(Camera.main.transform);
+            }
+        }
     }
 
     public void AnchorBehaviour()
@@ -114,7 +121,7 @@ public class AugmentedReality : MonoBehaviour
                 coach3D.SetActive(true);
                 stateButtonAR = StateButtonAR.Refresh;
                 Animations.Main.AnchorVisible(false);
-                Animations.FloatMenu.FloatsIsOpen = true;
+                Animations.FloatMenu.SetBoolFloatAnimators(true);
             }
 
         vectorCorrection = new Vector3(0, coach3D.transform.rotation.eulerAngles.y, 0);

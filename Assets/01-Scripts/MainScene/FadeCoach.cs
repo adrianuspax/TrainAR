@@ -69,7 +69,7 @@ public class FadeCoach : MonoBehaviour
         lupaIsPressed = !lupaIsPressed;
 
         Buttons.DropDownMenu.ButtonCloseDropDown();
-        Animations.FloatMenu.FloatsIsOpen = !lupaIsPressed;
+        Animations.FloatMenu.SetBoolFloatAnimators(!lupaIsPressed);
         Buttons.DropDownMenu.DDMInterecation = !lupaIsPressed;
         fadeAnimator.Play(lupaIsPressed ? coachToMuscles.name : musclesToCoach.name);
 

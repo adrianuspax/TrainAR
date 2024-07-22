@@ -76,7 +76,7 @@ public class ButtonsMain : MonoBehaviour
         isPressed = !isPressed;
 
         btnBarR.image.sprite = isPressed ? Sprites.closePanel : Sprites.openPanel;
-        Animations.FloatMenu.FloatsIsOpen = !isPressed;
+        Animations.FloatMenu.SetBoolFloatAnimators(!isPressed);
 
         Animations.PanelCoach.PanelCoachBehaviour(isPressed);
 

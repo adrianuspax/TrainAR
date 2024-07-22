@@ -1,7 +1,7 @@
+using ASP;
+using ASP.Extensions;
 using UnityEngine;
 using UnityEngine.UI;
-using ASP;
-using Debug = ASP.Debug;
 
 [RequireComponent(typeof(AnimationsManager))]
 public class FloatMenu : MonoBehaviour
@@ -15,202 +15,157 @@ public class FloatMenu : MonoBehaviour
         All = 4
     }
 
-    [Header(Header.MANAGEABLE, order = 0)]
-    [Space(-10, order = 1)]
-    [Header(Header.components, order = 2)]
-    [Space(-10, order = 3)]
-    [Header(Header.buttons, order = 4)]
-    [Space(-10, order = 5)]
-    [Header("Header", order = 6)]
-    [SerializeField] private Transform buttonsFloatHeader;
-
     [Header(Header.READONLY, order = 0)]
     [Space(-10, order = 1)]
     [Header(Header.components, order = 2)]
-    [SerializeField, NonReorderable, ReadOnly] private Button[] buttonFloatButton;
-    [SerializeField, NonReorderable, ReadOnly] private Transform[] buttonFloatPivot;
-    [SerializeField, NonReorderable, ReadOnly] private Canvas[] buttonFloatCanvas;
-    [SerializeField, NonReorderable, ReadOnly] private Animator[] buttonFloatAnimator;
-
+    [SerializeField, ReadOnly] private Transform buttonsFloatHeader;
+    [SerializeField, NonReorderable, ReadOnly] private Button[] floatButtons;
+    [SerializeField, NonReorderable, ReadOnly] private Transform[] floatTransforms;
+    [SerializeField, NonReorderable, ReadOnly] private Canvas[] floatCanvas;
+    [SerializeField, NonReorderable, ReadOnly] private Animator[] floatAnimators;
     [Header(Header.scripts, order = 0)]
     [SerializeField, ReadOnly] private ButtonsManager ButtonsManager;
 
     private void Awake()
     {
-        ButtonsManager = GetComponent<ButtonsManager>();
-
-        buttonFloatAnimator = AssignAnimators(FloatHeader);
-        buttonFloatPivot = AssignPivots(AnimatorFloat);
-        buttonFloatCanvas = AssignCanvas(PivotFloat);
-        buttonFloatButton = AssignButtons(CanvasFloat);
-
-        ButtonFloat[(int)BodyPart.Chest].onClick.AddListener(() => ButtonsFloatBehaviour(BodyPart.Chest));
-        ButtonFloat[(int)BodyPart.Abdomen].onClick.AddListener(() => ButtonsFloatBehaviour(BodyPart.Abdomen));
-        ButtonFloat[(int)BodyPart.Legs].onClick.AddListener(() => ButtonsFloatBehaviour(BodyPart.Legs));
-        ButtonFloat[(int)BodyPart.Arms].onClick.AddListener(() => ButtonsFloatBehaviour(BodyPart.Arms));
+        ComponentsAssignment();
     }
-
-    public int TotalFloats => FloatHeader.childCount;
-    public Transform FloatHeader => buttonsFloatHeader;
-
-    #region ANIMATORS
-    private Animator[] AssignAnimators(Transform header)
+    /// Start is called on the frame when a script is enabled just before any of the Update methods are called the first time.
+    private void Start()
     {
-        Animator[] animator;
-        animator = new Animator[TotalFloats];
-
-        for (int i = 0; i < TotalFloats; i++)
-        {
-            animator[i] = header.GetChild(i).GetChild(0).GetComponent<Animator>();
-        }
-
-        return animator;
+        floatButtons[(int)BodyPart.Chest].onClick.AddListener(() => ButtonsFloatBehaviour(BodyPart.Chest));
+        floatButtons[(int)BodyPart.Abdomen].onClick.AddListener(() => ButtonsFloatBehaviour(BodyPart.Abdomen));
+        floatButtons[(int)BodyPart.Legs].onClick.AddListener(() => ButtonsFloatBehaviour(BodyPart.Legs));
+        floatButtons[(int)BodyPart.Arms].onClick.AddListener(() => ButtonsFloatBehaviour(BodyPart.Arms));
     }
-    public Animator[] AnimatorFloat => buttonFloatAnimator;
-    #endregion
-    #region PIVOTS
-    private Transform[] AssignPivots(Animator[] animator)
+    /// <summary>
+    /// Assignment of components and variables
+    /// </summary>
+    [ContextMenu("Components Assignment")]
+    private void ComponentsAssignment()
     {
-        Transform[] pivot;
-        pivot = new Transform[TotalFloats];
+        if (buttonsFloatHeader.IsNull())
+            buttonsFloatHeader = GameObject.Find("ButtonsFloat").transform;
 
-        for (int i = 0; i < TotalFloats; i++)
+        int count = buttonsFloatHeader.childCount;
+
+        if (ButtonsManager.IsNull())
+            ButtonsManager = GetComponent<ButtonsManager>();
+        if (floatAnimators.IsNullOrEmpty())
+            floatAnimators = _assignAnimators(buttonsFloatHeader);
+        if (floatTransforms.IsNullOrEmpty())
+            floatTransforms = _assignComponents<Transform>(floatAnimators, 0);
+        if (floatCanvas.IsNullOrEmpty())
+            floatCanvas = _assignComponents<Canvas>(floatTransforms, 0, 1);
+        if (floatButtons.IsNullOrEmpty())
+            floatButtons = _assignComponents<Button>(floatCanvas, 0);
+
+        ASP.SceneManagement.SceneManager.SaveCurrentScene();
+
+        Animator[] _assignAnimators(Transform header)
         {
-            pivot[i] = animator[i].transform.GetChild(0).transform;
-        }
+            Animator[] components = new Animator[count];
 
-        return pivot;
-    }
-    public Transform[] PivotFloat => buttonFloatPivot;
-    #endregion
-    #region CANVAS
-    private Canvas[] AssignCanvas(Transform[] pivot)
-    {
-        Canvas[] canvas;
-        canvas = new Canvas[TotalFloats];
-
-        for (int i = 0; i < TotalFloats; i++)
-        {
-            canvas[i] = pivot[i].GetChild(0).GetChild(1).GetComponent<Canvas>();
-        }
-
-        return canvas;
-    }
-    public Canvas[] CanvasFloat => buttonFloatCanvas;
-    #endregion
-    #region BUTTONS
-    private Button[] AssignButtons(Canvas[] canvas)
-    {
-        Button[] buttons;
-        buttons = new Button[TotalFloats];
-
-        for (int i = 0; i < TotalFloats; i++)
-        {
-            buttons[i] = canvas[i].transform.GetChild(0).GetComponent<Button>();
-        }
-
-        return buttons;
-    }
-    public Button[] ButtonFloat => buttonFloatButton;
-    #endregion
-    #region MANAGEMENT
-    public void LookingAtCam(bool isLooking)
-    {
-        if (isLooking)
-        {
-            foreach (Transform pivots in PivotFloat)
+            for (int i = 0; i < count; i++)
             {
-                pivots.LookAt(Camera.main.transform);
+                header.GetComponentFrom(out components[i], i, 0);
             }
-        }
-    }
 
-    public bool FloatsIsOpen
-    {
-        get
-        {
-            int index;
-            index = Random.Range(0, TotalFloats);
-            return AnimatorFloat[index].GetBool(Parameter.floatIsOpen);
+            return components;
         }
 
-        set
+        T[] _assignComponents<T>(Component[] components, params int[] indexChild) where T : Component
         {
-            foreach (Animator animators in AnimatorFloat)
+            T[] returnedComponents = new T[count];
+
+            for (int i = 0; i < count; i++)
             {
-                animators.SetBool(Parameter.floatIsOpen, value);
+                components[i].GetComponentFrom(out returnedComponents[i], indexChild);
             }
+
+            return returnedComponents;
         }
     }
 
     public void ButtonsFloatBehaviour(BodyPart bodyPart)
     {
-        ButtonsFloatFunction();
-
         bool buttonsToActivate;
+
+        _buttonsFloatFunction();
 
         for (int i = 0; i < ButtonsManager.DropDownMenu.ButtonGameObject.Length; i++)
         {
-            switch (bodyPart)
+            buttonsToActivate = bodyPart switch
             {
-                case BodyPart.Chest:
-                    buttonsToActivate =
-                        i == ButtonDDM.BURPEE ||
-                        i == ButtonDDM.BICYCLECRUNCH ||
-                        i == ButtonDDM.CIRCLECRUNCH ||
-                        i == ButtonDDM.PIKEWALK ||
-                        i == ButtonDDM.PUSHUP ||
-                        i == ButtonDDM.SITUPS;
-                    ButtonsManager.DropDownMenu.ButtonGameObject[i].SetActive(buttonsToActivate);
-                    break;
-                case BodyPart.Abdomen:
-                    buttonsToActivate =
-                        i == ButtonDDM.BURPEE ||
-                        i == ButtonDDM.BICYCLECRUNCH ||
-                        i == ButtonDDM.PIKEWALK ||
-                        i == ButtonDDM.PUSHUP ||
-                        i == ButtonDDM.SITUPS;
-                    ButtonsManager.DropDownMenu.ButtonGameObject[i].SetActive(buttonsToActivate);
-                    break;
-                case BodyPart.Legs:
-                    buttonsToActivate =
-                        i == ButtonDDM.SQUAT ||
-                        i == ButtonDDM.SQUATBENTARMS ||
-                        i == ButtonDDM.BOXJUMP ||
-                        i == ButtonDDM.BURPEE ||
-                        i == ButtonDDM.BICYCLECRUNCH ||
-                        i == ButtonDDM.JUMPINGJACKS ||
-                        i == ButtonDDM.PISTOL ||
-                        i == ButtonDDM.PLANK ||
-                        i == ButtonDDM.PUSHUP;
-                    ButtonsManager.DropDownMenu.ButtonGameObject[i].SetActive(buttonsToActivate);
-                    break;
-                case BodyPart.Arms:
-                    buttonsToActivate =
-                        i == ButtonDDM.SQUATBENTARMS ||
-                        i == ButtonDDM.BICEPCURL ||
-                        i == ButtonDDM.BURPEE ||
-                        i == ButtonDDM.JUMPINGJACKS ||
-                        i == ButtonDDM.PLANK ||
-                        i == ButtonDDM.PIKEWALK ||
-                        i == ButtonDDM.PUSHUP;
-                    ButtonsManager.DropDownMenu.ButtonGameObject[i].SetActive(buttonsToActivate);
-                    break;
-                case BodyPart.All:
-                    ButtonsManager.DropDownMenu.ButtonGameObject[i].SetActive(true);
-                    break;
-                default:
-                    ButtonsManager.DropDownMenu.ButtonGameObject[i].SetActive(false);
-                    break;
-            }
+                BodyPart.Chest => _chest(i),
+                BodyPart.Abdomen => _abdomen(i),
+                BodyPart.Legs => _legs(i),
+                BodyPart.Arms => _arms(i),
+                BodyPart.All => true,
+                _ => false,
+            };
+
+            ButtonsManager.DropDownMenu.ButtonGameObject[i].SetActive(buttonsToActivate);
+        }
+
+        bool _chest(int i)
+        {
+            return i == ButtonDDM.BURPEE ||
+                   i == ButtonDDM.BICYCLECRUNCH ||
+                   i == ButtonDDM.CIRCLECRUNCH ||
+                   i == ButtonDDM.PIKEWALK ||
+                   i == ButtonDDM.PUSHUP ||
+                   i == ButtonDDM.SITUPS;
+        }
+
+        bool _abdomen(int i)
+        {
+            return i == ButtonDDM.BURPEE ||
+                   i == ButtonDDM.BICYCLECRUNCH ||
+                   i == ButtonDDM.PIKEWALK ||
+                   i == ButtonDDM.PUSHUP ||
+                   i == ButtonDDM.SITUPS;
+        }
+
+        bool _legs(int i)
+        {
+            return i == ButtonDDM.SQUAT ||
+                   i == ButtonDDM.SQUATBENTARMS ||
+                   i == ButtonDDM.BOXJUMP ||
+                   i == ButtonDDM.BURPEE ||
+                   i == ButtonDDM.BICYCLECRUNCH ||
+                   i == ButtonDDM.JUMPINGJACKS ||
+                   i == ButtonDDM.PISTOL ||
+                   i == ButtonDDM.PLANK ||
+                   i == ButtonDDM.PUSHUP;
+        }
+
+        bool _arms(int i)
+        {
+            return i == ButtonDDM.SQUATBENTARMS ||
+                   i == ButtonDDM.BICEPCURL ||
+                   i == ButtonDDM.BURPEE ||
+                   i == ButtonDDM.JUMPINGJACKS ||
+                   i == ButtonDDM.PLANK ||
+                   i == ButtonDDM.PIKEWALK ||
+                   i == ButtonDDM.PUSHUP;
+        }
+
+        void _buttonsFloatFunction()
+        {
+            SetBoolFloatAnimators(false);
+            ButtonsManager.DropDownMenu.ButtonOpenDropDown();
+            ButtonsManager.CanvasMain.PanelCoachInteraction = false;
         }
     }
 
-    public void ButtonsFloatFunction()
+    public void SetBoolFloatAnimators(bool value)
     {
-        FloatsIsOpen = false;
-        ButtonsManager.DropDownMenu.ButtonOpenDropDown();
-        ButtonsManager.CanvasMain.PanelCoachInteraction = false;
+        foreach (Animator floatAnimator in floatAnimators)
+        {
+            floatAnimator.SetBool(Parameter.floatIsOpen, value);
+        }
     }
-    #endregion
+
+    public Transform[] FloatTransforms => floatTransforms;
 }

@@ -203,7 +203,7 @@ public class PanelCoach : MonoBehaviour
         Buttons.CanvasMain.ButtonPanelCoach(true); //incorrect logic
         //Buttons.FloatMenu.ButtonsFloatBehaviour((BodyPart)Calculation.IndexFocus);
         Animations.TrainingSystem.WorkoutSequence();
-        Animations.FloatMenu.FloatsIsOpen = false;
+        Animations.FloatMenu.SetBoolFloatAnimators(false);
     }
 
     public void PanelCoachBehaviour(bool isOpen)

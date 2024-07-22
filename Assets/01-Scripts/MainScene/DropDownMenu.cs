@@ -71,7 +71,7 @@ public class DropDownMenu : MonoBehaviour
             aniDropDownMenu.Play(dropDownOpenClip.name);
             StartCoroutine(Cor_ScrowViewPos(dropDownOpenClip.length));
             Buttons.FloatMenu.ButtonsFloatBehaviour(FloatMenu.BodyPart.All);
-            Animations.FloatMenu.FloatsIsOpen = false;
+            Animations.FloatMenu.SetBoolFloatAnimators(false);
         }
     }
 
@@ -88,7 +88,7 @@ public class DropDownMenu : MonoBehaviour
         {
             panelDropDownOpen = false;
             aniDropDownMenu.Play(dropDownCloseClip.name);
-            Animations.FloatMenu.FloatsIsOpen = true;
+            Animations.FloatMenu.SetBoolFloatAnimators(true);
             Buttons.CanvasMain.PanelCoachInteraction = true;
 
             if (conditional)
