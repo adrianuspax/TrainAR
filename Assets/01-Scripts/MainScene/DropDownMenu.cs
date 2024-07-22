@@ -70,7 +70,7 @@ public class DropDownMenu : MonoBehaviour
             panelDropDownOpen = true;
             aniDropDownMenu.Play(dropDownOpenClip.name);
             StartCoroutine(Cor_ScrowViewPos(dropDownOpenClip.length));
-            Buttons.FloatMenu.ButtonsFloatBehaviour(BodyPart.All);
+            Buttons.FloatMenu.ButtonsFloatBehaviour(FloatMenu.BodyPart.All);
             Animations.FloatMenu.FloatsIsOpen = false;
         }
     }

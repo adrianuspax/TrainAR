@@ -27,12 +27,7 @@ public class CoachAnimations : MonoBehaviour
 
     [Header(Header.MANAGEABLE, order = 0)]
     [Space(-10, order = 1)]
-    [Header(Header.ANIMATIONS, order = 1)]
-    [Space(-10f, order = 2)]
-    [Header(Header.animators, order = 3)]
-    [SerializeField] private Animator coachControl;
-    [Space(-10f, order = 0)]
-    [Header(Header.animationClips, order = 1)]
+    [Header(Header.animationClips, order = 2)]
     [Space(-10f, order = 2)]
     [Header("AirSquat", order = 3)]
     [SerializeField] private AnimationClip airSquatClip;
@@ -100,9 +95,10 @@ public class CoachAnimations : MonoBehaviour
 
     [Header(Header.READONLY, order = 0)]
     [Space(-10f, order = 1)]
+    [Header(Header.components, order = 2)]
+    [SerializeField, ReadOnly] private Animator coachControl;
     [Header("Blends", order = 2)]
-    [Range(-1f, 1f, order = 3)]
-    [SerializeField, ReadOnly] private float breathingFloat;
+    [SerializeField, Range(-1f, 1f), ReadOnly] private float breathingFloat;
     [Space(-10f, order = 0)]
     [Header("Triggered", order = 1)]
     [SerializeField, ReadOnly] private Trigger triggered;
@@ -175,6 +171,9 @@ public class CoachAnimations : MonoBehaviour
     [ContextMenu("Components Assignment")]
     private void ComponentsAssignment()
     {
+        if (coachControl.IsNull())
+            coachControl = GameObject.FindGameObjectWithTag(Tag.Coach).GetComponent<Animator>();
+
         if (clipByIndex.IsNullOrEmpty())
         {
             clipByIndex = new AnimationClip[TotalCount];

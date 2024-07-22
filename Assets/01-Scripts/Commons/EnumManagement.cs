@@ -11,15 +11,6 @@ public enum StateButtonAR
     Refresh = 1
 };
 
-public enum BodyPart
-{
-    Chest = 0,
-    Abdomen = 1,
-    Legs = 2,
-    Arms = 3,
-    All = 4
-}
-
 public enum Goal
 {
     loseWeight = 0,

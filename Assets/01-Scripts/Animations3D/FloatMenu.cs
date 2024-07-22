@@ -6,25 +6,38 @@ using Debug = ASP.Debug;
 [RequireComponent(typeof(AnimationsManager))]
 public class FloatMenu : MonoBehaviour
 {
-    [Header("BUTTONS", order = 0)]
+    public enum BodyPart
+    {
+        Chest = 0,
+        Abdomen = 1,
+        Legs = 2,
+        Arms = 3,
+        All = 4
+    }
+
+    [Header(Header.MANAGEABLE, order = 0)]
     [Space(-10, order = 1)]
-    [Header("Header", order = 2)]
+    [Header(Header.components, order = 2)]
+    [Space(-10, order = 3)]
+    [Header(Header.buttons, order = 4)]
+    [Space(-10, order = 5)]
+    [Header("Header", order = 6)]
     [SerializeField] private Transform buttonsFloatHeader;
 
-    [Header("READY ONLY", order = 0)]
+    [Header(Header.READONLY, order = 0)]
     [Space(-10, order = 1)]
-    [Header("Variables", order = 2)]
-    [NonReorderable][SerializeField, ReadOnly] private Button[] buttonFloatButton;
-    [NonReorderable][SerializeField, ReadOnly] private Transform[] buttonFloatPivot;
-    [NonReorderable][SerializeField, ReadOnly] private Canvas[] buttonFloatCanvas;
-    [NonReorderable][SerializeField, ReadOnly] private Animator[] buttonFloatAnimator;
+    [Header(Header.components, order = 2)]
+    [SerializeField, NonReorderable, ReadOnly] private Button[] buttonFloatButton;
+    [SerializeField, NonReorderable, ReadOnly] private Transform[] buttonFloatPivot;
+    [SerializeField, NonReorderable, ReadOnly] private Canvas[] buttonFloatCanvas;
+    [SerializeField, NonReorderable, ReadOnly] private Animator[] buttonFloatAnimator;
 
-    [Header("Scripts", order = 0)]
-    [SerializeField, ReadOnly] private ButtonsManager Buttons;
+    [Header(Header.scripts, order = 0)]
+    [SerializeField, ReadOnly] private ButtonsManager ButtonsManager;
 
     private void Awake()
     {
-        Buttons = this.GetComponent<ButtonsManager>();
+        ButtonsManager = GetComponent<ButtonsManager>();
 
         buttonFloatAnimator = AssignAnimators(FloatHeader);
         buttonFloatPivot = AssignPivots(AnimatorFloat);
@@ -88,15 +101,15 @@ public class FloatMenu : MonoBehaviour
     #region BUTTONS
     private Button[] AssignButtons(Canvas[] canvas)
     {
-        Button[] button;
-        button = new Button[TotalFloats];
+        Button[] buttons;
+        buttons = new Button[TotalFloats];
 
         for (int i = 0; i < TotalFloats; i++)
         {
-            button[i] = canvas[i].transform.GetChild(0).GetComponent<Button>();
+            buttons[i] = canvas[i].transform.GetChild(0).GetComponent<Button>();
         }
 
-        return button;
+        return buttons;
     }
     public Button[] ButtonFloat => buttonFloatButton;
     #endregion
@@ -136,7 +149,7 @@ public class FloatMenu : MonoBehaviour
 
         bool buttonsToActivate;
 
-        for (int i = 0; i < Buttons.DropDownMenu.ButtonGameObject.Length; i++)
+        for (int i = 0; i < ButtonsManager.DropDownMenu.ButtonGameObject.Length; i++)
         {
             switch (bodyPart)
             {
@@ -148,7 +161,7 @@ public class FloatMenu : MonoBehaviour
                         i == ButtonDDM.PIKEWALK ||
                         i == ButtonDDM.PUSHUP ||
                         i == ButtonDDM.SITUPS;
-                    Buttons.DropDownMenu.ButtonGameObject[i].SetActive(buttonsToActivate);
+                    ButtonsManager.DropDownMenu.ButtonGameObject[i].SetActive(buttonsToActivate);
                     break;
                 case BodyPart.Abdomen:
                     buttonsToActivate =
@@ -157,7 +170,7 @@ public class FloatMenu : MonoBehaviour
                         i == ButtonDDM.PIKEWALK ||
                         i == ButtonDDM.PUSHUP ||
                         i == ButtonDDM.SITUPS;
-                    Buttons.DropDownMenu.ButtonGameObject[i].SetActive(buttonsToActivate);
+                    ButtonsManager.DropDownMenu.ButtonGameObject[i].SetActive(buttonsToActivate);
                     break;
                 case BodyPart.Legs:
                     buttonsToActivate =
@@ -170,7 +183,7 @@ public class FloatMenu : MonoBehaviour
                         i == ButtonDDM.PISTOL ||
                         i == ButtonDDM.PLANK ||
                         i == ButtonDDM.PUSHUP;
-                    Buttons.DropDownMenu.ButtonGameObject[i].SetActive(buttonsToActivate);
+                    ButtonsManager.DropDownMenu.ButtonGameObject[i].SetActive(buttonsToActivate);
                     break;
                 case BodyPart.Arms:
                     buttonsToActivate =
@@ -181,13 +194,13 @@ public class FloatMenu : MonoBehaviour
                         i == ButtonDDM.PLANK ||
                         i == ButtonDDM.PIKEWALK ||
                         i == ButtonDDM.PUSHUP;
-                    Buttons.DropDownMenu.ButtonGameObject[i].SetActive(buttonsToActivate);
+                    ButtonsManager.DropDownMenu.ButtonGameObject[i].SetActive(buttonsToActivate);
                     break;
                 case BodyPart.All:
-                    Buttons.DropDownMenu.ButtonGameObject[i].SetActive(true);
+                    ButtonsManager.DropDownMenu.ButtonGameObject[i].SetActive(true);
                     break;
                 default:
-                    Buttons.DropDownMenu.ButtonGameObject[i].SetActive(false);
+                    ButtonsManager.DropDownMenu.ButtonGameObject[i].SetActive(false);
                     break;
             }
         }
@@ -196,8 +209,8 @@ public class FloatMenu : MonoBehaviour
     public void ButtonsFloatFunction()
     {
         FloatsIsOpen = false;
-        Buttons.DropDownMenu.ButtonOpenDropDown();
-        Buttons.CanvasMain.PanelCoachInteraction = false;
+        ButtonsManager.DropDownMenu.ButtonOpenDropDown();
+        ButtonsManager.CanvasMain.PanelCoachInteraction = false;
     }
     #endregion
 }
