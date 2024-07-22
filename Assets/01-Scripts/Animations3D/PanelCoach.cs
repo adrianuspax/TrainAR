@@ -89,16 +89,16 @@ public class PanelCoach : MonoBehaviour
 
     [Header("Scripts", order = 0)]
     [SerializeField, ReadOnly] private AugmentedReality AR;
-    [SerializeField, ReadOnly] private ButtonsManager Buttons;
     [SerializeField, ReadOnly] private TrainingSystem trainingSystem;
     [SerializeField, ReadOnly] private FloatMenu floatMenu;
+    [SerializeField, ReadOnly] private ButtonsMain buttonsMain;
 
     private void Awake()
     {
         AR = this.GetComponent<AugmentedReality>();
-        Buttons = this.GetComponent<ButtonsManager>();
         trainingSystem = this.GetComponent<TrainingSystem>();
         floatMenu = this.GetComponent<FloatMenu>();
+        buttonsMain = this.GetComponent<ButtonsMain>();
 
         pivotCorrection = pivotPanelCoach.GetChild(0);
         objectReference = GameObject.FindGameObjectWithTag(Tag.Coach).transform.GetChild(0);
@@ -112,8 +112,7 @@ public class PanelCoach : MonoBehaviour
         contentHeader = scrollView.transform.GetChild(0).GetChild(0);
         rectMask2D = scrollView.transform.GetChild(0).GetComponent<RectMask2D>();
 
-        contentButton = Buttons.Assignment(contentHeader, ButtonsPanelBehaviour).buttons;
-
+        contentButton = ButtonsManager.Assignment(contentHeader, ButtonsPanelBehaviour).buttons;
     }
 
     private void Start()
@@ -203,7 +202,7 @@ public class PanelCoach : MonoBehaviour
 
     public void ButtonPlay()
     {
-        Buttons.CanvasMain.ButtonPanelCoach(true); //incorrect logic
+        buttonsMain.ButtonPanelCoach(true); //incorrect logic
         //Buttons.FloatMenu.ButtonsFloatBehaviour((BodyPart)Calculation.IndexFocus);
         trainingSystem.WorkoutSequence();
         floatMenu.SetBoolFloatAnimators(false);

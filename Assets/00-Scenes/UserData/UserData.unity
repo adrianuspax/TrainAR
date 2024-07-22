@@ -8413,7 +8413,6 @@ GameObject:
   - component: {fileID: 1127046629}
   - component: {fileID: 1127046628}
   - component: {fileID: 1127046630}
-  - component: {fileID: 1127046627}
   m_Layer: 0
   m_Name: CodeManager
   m_TagString: CodeManager
@@ -8436,27 +8435,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1868749673}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1127046627
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1127046625}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2180d209ed932454084d997072bf0417, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  CanvasButtons: {fileID: 0}
-  DDM: {fileID: 0}
-  UserDataButtons: {fileID: 0}
-  FloatMenuButtons: {fileID: 0}
-  SignInButtons: {fileID: 0}
-  SignOnButtons: {fileID: 0}
-  LanguageButtons: {fileID: 0}
-  MenuButtons: {fileID: 0}
-  PanelCoachButtons: {fileID: 0}
 --- !u!114 &1127046628
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8497,10 +8475,10 @@ MonoBehaviour:
   chosenFocus: 
   moreEditButton: []
   moreValueIsEdited: 
-  Buttons: {fileID: 0}
   PagesAndFields: {fileID: 0}
   Data: {fileID: 0}
   userDataAnimations: {fileID: 0}
+  userDataButtons: {fileID: 0}
 --- !u!114 &1127046629
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8529,8 +8507,8 @@ MonoBehaviour:
   keepOldTextUsername: 0
   oldEditTextUsername: 
   editTextUsername: 
-  Buttons: {fileID: 0}
   userDataAnimations: {fileID: 0}
+  userDataButtons: {fileID: 0}
 --- !u!114 &1127046630
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8575,9 +8553,9 @@ MonoBehaviour:
   language: 
   username: 
   password: 
-  Buttons: {fileID: 0}
   PagesAndFields: {fileID: 0}
   transition: {fileID: 0}
+  userDataButtons: {fileID: 0}
   levelPhrase: []
 --- !u!1 &1130995706
 GameObject:

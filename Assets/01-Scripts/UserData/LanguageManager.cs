@@ -3,7 +3,6 @@ using UnityEngine.UI;
 using ASP;
 using Debug = ASP.Debug;
 
-[RequireComponent( typeof(ButtonsManager))]
 public class LanguageManager : MonoBehaviour
 {
     #region UNITY_INSPECTOR
@@ -26,7 +25,6 @@ public class LanguageManager : MonoBehaviour
     [NonReorderable][ReadOnly, SerializeField] private bool[] langPressed;
 
     [Header("Scripts", order = 0)]
-    [ReadOnly, SerializeField] private ButtonsManager Buttons;
     [SerializeField, ReadOnly] private Transition transition;
     #endregion
     #region STATIC_STRINGS
@@ -450,10 +448,9 @@ public class LanguageManager : MonoBehaviour
 
     private void Awake()
     {
-        Buttons = this.GetComponent<ButtonsManager>();
         transition = GameObject.FindGameObjectWithTag(Tag.Transition).GetComponent<Transition>();
 
-        (langButton, langPressed) = Buttons.Assignment(buttonsLangHeader, LangButtonsBehaviour);
+        (langButton, langPressed) = ButtonsManager.Assignment(buttonsLangHeader, LangButtonsBehaviour);
         okButton.onClick.AddListener(OkFunction);
         closeButton.onClick.AddListener(ButtonsManager.CloseApplication);
         returnButton.onClick.AddListener(() => TrainARSceneManager.LoadMenu());

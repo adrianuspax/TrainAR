@@ -16149,7 +16149,6 @@ GameObject:
   - component: {fileID: 2045423148}
   - component: {fileID: 2045423150}
   - component: {fileID: 2045423151}
-  - component: {fileID: 2045423153}
   - component: {fileID: 2045423154}
   - component: {fileID: 2045423156}
   - component: {fileID: 2045423157}
@@ -16207,9 +16206,9 @@ MonoBehaviour:
   pressedTxtColor: {r: 0.98039216, g: 0.8509804, b: 0.4, a: 1}
   unpressedColor: {r: 0, g: 0, b: 0, a: 1}
   unpressedTxtColor: {r: 0, g: 0, b: 0, a: 0}
-  Buttons: {fileID: 0}
   floatMenu: {fileID: 0}
   coachAnimations: {fileID: 0}
+  buttonsMain: {fileID: 0}
 --- !u!114 &2045423147
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -16230,7 +16229,6 @@ MonoBehaviour:
   stateButtonAR: 0
   btnBarRIsPressed: 0
   AR: {fileID: 0}
-  Buttons: {fileID: 0}
   Sprites: {fileID: 0}
   panelResult: {fileID: 0}
   panelCoach: {fileID: 0}
@@ -16378,10 +16376,11 @@ MonoBehaviour:
   anchorPosSaver: {x: 0, y: 0, z: 0}
   trackableTypes: 0
   stateButtonAR: 0
-  Buttons: {fileID: 0}
   animationsMain: {fileID: 0}
   floatMenu: {fileID: 0}
   transition: {fileID: 0}
+  buttonsMain: {fileID: 0}
+  dropDownMenu: {fileID: 0}
 --- !u!114 &2045423150
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -16413,27 +16412,6 @@ MonoBehaviour:
   replaceCoachAR: {fileID: 21300000, guid: da4a142bc72e9e845894fcbb00f5a132, type: 3}
   openPanel: {fileID: 21300000, guid: b04f8309cc541fb44a45eaa592c65cac, type: 3}
   closePanel: {fileID: 21300000, guid: 25656fc2cb5e6ed4abe9175d143a5ee2, type: 3}
---- !u!114 &2045423153
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2045423144}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2180d209ed932454084d997072bf0417, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  CanvasButtons: {fileID: 0}
-  DDM: {fileID: 0}
-  UserDataButtons: {fileID: 0}
-  FloatMenuButtons: {fileID: 0}
-  SignInButtons: {fileID: 0}
-  SignOnButtons: {fileID: 0}
-  LanguageButtons: {fileID: 0}
-  MenuButtons: {fileID: 0}
-  PanelCoachButtons: {fileID: 0}
 --- !u!114 &2045423154
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -16467,7 +16445,8 @@ MonoBehaviour:
   - {fileID: 532455049}
   - {fileID: 532455045}
   - {fileID: 532455042}
-  ButtonsManager: {fileID: 2045423153}
+  buttonsMain: {fileID: 0}
+  dropDownMenu: {fileID: 0}
 --- !u!114 &2045423156
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -16531,9 +16510,9 @@ MonoBehaviour:
   contentHeader: {fileID: 1677033648}
   contentButton: []
   AR: {fileID: 0}
-  Buttons: {fileID: 0}
   trainingSystem: {fileID: 0}
   floatMenu: {fileID: 0}
+  buttonsMain: {fileID: 0}
 --- !u!114 &2045423157
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -16593,10 +16572,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Loading: {fileID: 0}
-  Buttons: {fileID: 0}
   coroutineFinished: 0
   squenceStarted: 0
   coachAnimations: {fileID: 0}
+  buttonsMain: {fileID: 0}
+  dropDownMenu: {fileID: 0}
 --- !u!114 &2045423160
 MonoBehaviour:
   m_ObjectHideFlags: 0

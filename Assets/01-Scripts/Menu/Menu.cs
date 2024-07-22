@@ -5,7 +5,6 @@ using ASP;
 using Debug = ASP.Debug;
 using PlayerPrefs = UnityEngine.PlayerPrefs;
 
-[RequireComponent( typeof(ButtonsManager))]
 public class Menu : MonoBehaviour
 {
     [Header("UI", order = 0)]

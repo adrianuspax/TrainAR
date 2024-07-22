@@ -23,7 +23,8 @@ public class FloatMenu : MonoBehaviour
     [SerializeField, NonReorderable, ReadOnly] private Canvas[] floatCanvas;
     [SerializeField, NonReorderable, ReadOnly] private Animator[] floatAnimators;
     [Header(Header.scripts, order = 0)]
-    [SerializeField, ReadOnly] private ButtonsManager ButtonsManager;
+    [SerializeField, ReadOnly] private ButtonsMain buttonsMain;
+    [SerializeField, ReadOnly] private DropDownMenu dropDownMenu;
 
     private void Awake()
     {
@@ -48,8 +49,10 @@ public class FloatMenu : MonoBehaviour
 
         int count = buttonsFloatHeader.childCount;
 
-        if (ButtonsManager.IsNull())
-            ButtonsManager = GetComponent<ButtonsManager>();
+        if (buttonsMain.IsNull())
+            buttonsMain = GetComponent<ButtonsMain>();
+        if (dropDownMenu.IsNull())
+            dropDownMenu = GetComponent<DropDownMenu>();
         if (floatAnimators.IsNullOrEmpty())
             floatAnimators = _assignAnimators(buttonsFloatHeader);
         if (floatTransforms.IsNullOrEmpty())
@@ -92,7 +95,7 @@ public class FloatMenu : MonoBehaviour
 
         _buttonsFloatFunction();
 
-        for (int i = 0; i < ButtonsManager.DropDownMenu.ButtonGameObject.Length; i++)
+        for (int i = 0; i < dropDownMenu.ButtonGameObjects.Length; i++)
         {
             buttonsToActivate = bodyPart switch
             {
@@ -104,7 +107,7 @@ public class FloatMenu : MonoBehaviour
                 _ => false,
             };
 
-            ButtonsManager.DropDownMenu.ButtonGameObject[i].SetActive(buttonsToActivate);
+            dropDownMenu.ButtonGameObjects[i].SetActive(buttonsToActivate);
         }
 
         bool _chest(int i)
@@ -153,8 +156,8 @@ public class FloatMenu : MonoBehaviour
         void _buttonsFloatFunction()
         {
             SetBoolFloatAnimators(false);
-            ButtonsManager.DropDownMenu.ButtonOpenDropDown();
-            ButtonsManager.CanvasMain.PanelCoachInteraction = false;
+            dropDownMenu.ButtonOpenDropDown();
+            buttonsMain.PanelCoachInteraction = false;
         }
     }
 

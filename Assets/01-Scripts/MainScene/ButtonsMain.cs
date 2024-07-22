@@ -2,7 +2,6 @@
 using UnityEngine.UI;
 using ASP;
 using Debug = ASP.Debug;
-[RequireComponent(typeof(ButtonsManager))]
 [RequireComponent(typeof(AugmentedReality), typeof(ImagesManager))]
 public class ButtonsMain : MonoBehaviour
 {
@@ -25,7 +24,6 @@ public class ButtonsMain : MonoBehaviour
     [Space(-10, order = 1)]
     [Header("Scripts", order = 2)]
     [SerializeField, ReadOnly] private AugmentedReality AR;
-    [SerializeField, ReadOnly] private ButtonsManager Buttons;
     [SerializeField, ReadOnly] private ImagesManager Sprites;
     [SerializeField, ReadOnly] private PanelResult panelResult;
     [SerializeField, ReadOnly] private PanelCoach panelCoach;
@@ -36,7 +34,6 @@ public class ButtonsMain : MonoBehaviour
     private void Awake()
     {
         AR = GetComponent<AugmentedReality>();
-        Buttons = GetComponent<ButtonsManager>();
         Sprites = GetComponent<ImagesManager>();
         panelResult = GetComponent<PanelResult>();
         panelCoach = GetComponent<PanelCoach>();

@@ -4,7 +4,7 @@ using UnityEngine.XR.ARFoundation;
 using UnityEngine.XR.ARSubsystems;
 using ASP;
 using Debug = ASP.Debug;
-[RequireComponent(typeof(ButtonsManager), typeof(AnimationsMain))]
+[RequireComponent(typeof(AnimationsMain))]
 [RequireComponent(typeof(DropDownMenu), typeof(FloatMenu))]
 public class AugmentedReality : MonoBehaviour
 {
@@ -24,17 +24,18 @@ public class AugmentedReality : MonoBehaviour
     [SerializeField, ReadOnly] private StateButtonAR stateButtonAR;
     [Space(-10, order = 0)]
     [Header("Scrips")]
-    [SerializeField, ReadOnly] private ButtonsManager Buttons;
     [SerializeField, ReadOnly] private AnimationsMain animationsMain;
     [SerializeField, ReadOnly] private FloatMenu floatMenu;
     [SerializeField, ReadOnly] private Transition transition;
+    [SerializeField, ReadOnly] private ButtonsMain buttonsMain;
+    [SerializeField, ReadOnly] private DropDownMenu dropDownMenu;
 
     private static readonly List<ARRaycastHit> hitResults = new();
 
     private void Awake()
     {
-        Buttons = this.GetComponent<ButtonsManager>();
         animationsMain = GetComponent<AnimationsMain>();
+        buttonsMain = GetComponent<ButtonsMain>();
         transition = GameObject.FindGameObjectWithTag(Tag.Transition).GetComponent<Transition>();
     }
 
@@ -44,7 +45,7 @@ public class AugmentedReality : MonoBehaviour
         coach3D.SetActive(false);
         anchorIsHitting = false;
         trackableTypes = TrackableType.PlaneWithinPolygon;
-        Buttons.CanvasMain.PanelCoachInteraction = false;
+        buttonsMain.PanelCoachInteraction = false;
 
         Screen.sleepTimeout = SleepTimeout.NeverSleep;
         screenPoint = new Vector2(Screen.width * 0.5f, Screen.height * 0.5f);
@@ -104,7 +105,7 @@ public class AugmentedReality : MonoBehaviour
 
         anchorIsHitting = isHit;
         animationsMain.AnchorIsHit(isHit);
-        Buttons.CanvasMain.ButtonARBehaviour(stateButtonAR, isHit);
+        buttonsMain.ButtonARBehaviour(stateButtonAR, isHit);
     }
 
     public void PlaceCoachAR()
@@ -131,8 +132,8 @@ public class AugmentedReality : MonoBehaviour
         rotationCorrection = Quaternion.Euler(vectorCorrection);
 
         coach3D.transform.rotation = rotationCorrection;
-        Buttons.CanvasMain.PanelCoachInteraction = CoachIsActivated;
-        Buttons.DropDownMenu.DDMInterecation = CoachIsActivated;
+        buttonsMain.PanelCoachInteraction = CoachIsActivated;
+        dropDownMenu.Interactable = CoachIsActivated;
     }
 
     public bool AnchorIsHitting => anchorIsHitting;

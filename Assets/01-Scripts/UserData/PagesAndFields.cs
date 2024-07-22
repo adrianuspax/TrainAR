@@ -49,8 +49,8 @@ public class PagesAndFields : MonoBehaviour
     [SerializeField, ReadOnly] private string editTextUsername;
 
     [Header("Scripts", order = 0)]
-    [ReadOnly, SerializeField] private ButtonsManager Buttons;
     [SerializeField, ReadOnly] private UserDataAnimations userDataAnimations;
+    [SerializeField, ReadOnly] private UserDataButtons userDataButtons;
 
     public delegate void BehaviourButtons(int index);
 
@@ -73,8 +73,8 @@ public class PagesAndFields : MonoBehaviour
         for (int i = 0; i < footerHeader.childCount; i++)
         { AssignFootersListeners(i); }
 
-        Buttons = this.GetComponent<ButtonsManager>();
         userDataAnimations = this.GetComponent<UserDataAnimations>();
+        userDataButtons = this.GetComponent<UserDataButtons>();
     }
 
     private void Start()
@@ -160,19 +160,19 @@ public class PagesAndFields : MonoBehaviour
     public void OnDeselectUserName(string name)
     {
         Page1PlaceHolder = LanguageManager.page1PlaceHolder;
-        Buttons.UserData.NextButtonInteraction = !string.IsNullOrEmpty(userNameInput.text);
+        userDataButtons.NextButtonInteraction = !string.IsNullOrEmpty(userNameInput.text);
     }
 
     public void OnValueChangedUserName(string name)
     {
-        Buttons.UserData.NextButtonInteraction = !string.IsNullOrEmpty(userNameInput.text);
+        userDataButtons.NextButtonInteraction = !string.IsNullOrEmpty(userNameInput.text);
         oldEditTextUsername = editTextUsername;
         editTextUsername = name;
     }
 
     public void OnEndEditUserName(string name)
     {
-        Buttons.UserData.NextButtonInteraction = !string.IsNullOrEmpty(userNameInput.text);
+        userDataButtons.NextButtonInteraction = !string.IsNullOrEmpty(userNameInput.text);
         UserName = name;
         if (keepOldTextUsername && !string.IsNullOrEmpty(oldEditTextUsername))
         {
@@ -317,17 +317,17 @@ public class PagesAndFields : MonoBehaviour
     public void OnDeselectFooter(string data)
     {
         footerInput[CurrentFooterIndex].placeholder.GetComponent<TextMeshProUGUI>().text = LanguageManager.footerPlaceholder;
-        Buttons.UserData.SaveButtonInteraction = !string.IsNullOrEmpty(footerInput[CurrentFooterIndex].text);
+        userDataButtons.SaveButtonInteraction = !string.IsNullOrEmpty(footerInput[CurrentFooterIndex].text);
     }
 
     public void OnValueChangedFooter(string data)
     {
-        Buttons.UserData.SaveButtonInteraction = !string.IsNullOrEmpty(footerInput[CurrentFooterIndex].text);
+        userDataButtons.SaveButtonInteraction = !string.IsNullOrEmpty(footerInput[CurrentFooterIndex].text);
     }
 
     public void OnEndEditFooter(string data)
     {
-        Buttons.UserData.SaveButtonInteraction = !string.IsNullOrEmpty(footerInput[CurrentFooterIndex].text);
+        userDataButtons.SaveButtonInteraction = !string.IsNullOrEmpty(footerInput[CurrentFooterIndex].text);
         DataFooter = data;
     }
 

@@ -24,9 +24,9 @@ public class DataManagement : MonoBehaviour
     [ReadOnly, SerializeField] private string password;
 
     [Header("Scripts", order = 0)]
-    [ReadOnly, SerializeField] private ButtonsManager Buttons;
     [ReadOnly, SerializeField] private PagesAndFields PagesAndFields;
     [SerializeField, ReadOnly] private Transition transition;
+    [SerializeField, ReadOnly] private UserDataButtons userDataButtons;
 
     #region DATA_MANAGEMENT
     public const string MALE = "Male";
@@ -55,28 +55,28 @@ public class DataManagement : MonoBehaviour
     #region UNITY_MONOBEHAVIOUR
     public void Awake()
     {
-        Buttons = this.GetComponent<ButtonsManager>();
         PagesAndFields = this.GetComponent<PagesAndFields>();
+        userDataButtons = this.GetComponent<UserDataButtons>();
         transition = GameObject.FindGameObjectWithTag(Tag.Transition).GetComponent<Transition>();
         PagesAndFields.PagesQuestionString = LanguageManager.pageQuestion;
-        Buttons.UserData.NextButtonString = LanguageManager.nextButton;
+        userDataButtons.NextButtonString = LanguageManager.nextButton;
         PagesAndFields.Page1PlaceHolder = LanguageManager.page1PlaceHolder;
-        Buttons.UserData.GoalButtonsName = LanguageManager.goalPhrase;
-        Buttons.UserData.FocusButtonsName = LanguageManager.buttonFocus;
+        userDataButtons.GoalButtonsName = LanguageManager.goalPhrase;
+        userDataButtons.FocusButtonsName = LanguageManager.buttonFocus;
         PagesAndFields.BlockAreaName = LanguageManager.blockAreaName;
         PagesAndFields.MoreValuesStringEdit = LanguageManager.valueDefaultButtonsEdit;
         PagesAndFields.FooterTitle = LanguageManager.footerTitle;
         PagesAndFields.FooterYerarsString = LanguageManager.valueUnits[0];
         PagesAndFields.FootersPlaceholer = LanguageManager.footerPlaceholder;
-        Buttons.UserData.SaveButtonString = LanguageManager.saveButton;
-        Buttons.UserData.CancelButtonString = LanguageManager.cancelButton;
+        userDataButtons.SaveButtonString = LanguageManager.saveButton;
+        userDataButtons.CancelButtonString = LanguageManager.cancelButton;
         levelPhrase = LanguageManager.levelPhrase;
     }
 
     public void Start()
     {
         transition.EndClip();
-        Buttons.UserData.NextButtonInteraction = false;
+        userDataButtons.NextButtonInteraction = false;
         userName = UserName;
         gender = (IsMale ? MALE : FEMALE);
         goal = Goal;
@@ -102,21 +102,21 @@ public class DataManagement : MonoBehaviour
                 Debug.Log("Page1: UserName = " + UserName);
                 break;
             case PAGE2:
-                IsMale = Buttons.UserData.Genre;
+                IsMale = userDataButtons.Genre;
                 Debug.Log("Page2: Genre = " + (IsMale ? MALE : FEMALE));
                 break;
             case PAGE3:
-                Goal = Buttons.UserData.Goal;
-                Buttons.UserData.LevelButtonsBehaviour(2);
+                Goal = userDataButtons.Goal;
+                userDataButtons.LevelButtonsBehaviour(2);
                 Debug.Log("Page3: Goal = " + Goal);
                 break;
             case PAGE4:
-                Level = Buttons.UserData.Level;
-                LevelValue = Buttons.UserData.LevelValue;
+                Level = userDataButtons.Level;
+                LevelValue = userDataButtons.LevelValue;
                 Debug.Log("Page4: Level = " + Level);
                 break;
             case PAGE5:
-                Focus = Buttons.UserData.Focus;
+                Focus = userDataButtons.Focus;
                 Debug.Log("Page5: Focus = " + Focus);
                 break;
             case PAGE6:

@@ -10,16 +10,18 @@ public class TrainingSystem : MonoBehaviour
     [Space(-10, order = 1)]
     [Header("Scripts", order = 2)]
     [SerializeField, ReadOnly] private Loading Loading;
-    [SerializeField, ReadOnly] private ButtonsManager Buttons;
     [SerializeField, ReadOnly] private bool coroutineFinished;
     [SerializeField, ReadOnly] private bool squenceStarted;
     [SerializeField, ReadOnly] private CoachAnimations coachAnimations;
+    [SerializeField, ReadOnly] private ButtonsMain buttonsMain;
+    [SerializeField, ReadOnly] private DropDownMenu dropDownMenu;
 
     private void Awake()
     {
         Loading = this.GetComponent<Loading>();
-        Buttons = this.GetComponent<ButtonsManager>();
         coachAnimations = this.GetComponent<CoachAnimations>();
+        buttonsMain = this.GetComponent<ButtonsMain>();
+        dropDownMenu = this.GetComponent<DropDownMenu>();
 
         Loading.Skip.onClick.AddListener(() => Skip());
     }
@@ -82,9 +84,9 @@ public class TrainingSystem : MonoBehaviour
     {
         StopAllCoroutines();
         coachAnimations.StartIdleAnimation();
-        Buttons.CanvasMain.PanelCoachInteraction = true;
-        Buttons.DropDownMenu.DDMInterecation = true;
-        Buttons.CanvasMain.ButtonSetCoachInteraction = true;
+        buttonsMain.PanelCoachInteraction = true;
+        dropDownMenu.Interactable = true;
+        buttonsMain.ButtonSetCoachInteraction = true;
         squenceStarted = false;
         Timer.Stop();
         Loading.Timer = "00:00";
@@ -152,9 +154,9 @@ public class TrainingSystem : MonoBehaviour
     {
         Loading.StartAnimation();
 
-        Buttons.CanvasMain.PanelCoachInteraction = false;
-        Buttons.DropDownMenu.DDMInterecation = false;
-        Buttons.CanvasMain.ButtonSetCoachInteraction = false;
+        buttonsMain.PanelCoachInteraction = false;
+        dropDownMenu.Interactable = false;
+        buttonsMain.ButtonSetCoachInteraction = false;
 
         AnimationInLoop(CoachAnimations.Trigger.Pistol, 20); //20
         squenceStarted = true;
@@ -164,9 +166,9 @@ public class TrainingSystem : MonoBehaviour
         AnimationInLoop(CoachAnimations.Trigger.Burpee, 30); //30
         yield return new WaitWhile(() => !coroutineFinished);
         squenceStarted = false;
-        Buttons.CanvasMain.PanelCoachInteraction = true;
-        Buttons.DropDownMenu.DDMInterecation = true;
-        Buttons.CanvasMain.ButtonSetCoachInteraction = true;
+        buttonsMain.PanelCoachInteraction = true;
+        dropDownMenu.Interactable = true;
+        buttonsMain.ButtonSetCoachInteraction = true;
         Loading.Timer = "00:00";
         Loading.EndAnimation();
         

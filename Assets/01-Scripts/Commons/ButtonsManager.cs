@@ -1,50 +1,12 @@
-﻿using System.Collections;
-using TMPro;
+﻿using TMPro;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.UI;
-using ASP;
 using Debug = ASP.Debug;
 
-public class ButtonsManager : MonoBehaviour
+public static class ButtonsManager
 {
-    [Header(" =========================== READY ONLY =========================== ", order = 0)]
-
-    [Header("Scripts", order = 0)]
-    [SerializeField, ReadOnly] private ButtonsMain CanvasButtons;
-    [SerializeField, ReadOnly] private DropDownMenu DDM;
-    [SerializeField, ReadOnly] private UserDataButtons UserDataButtons;
-    [SerializeField, ReadOnly] private FloatMenu FloatMenuButtons;
-    [SerializeField, ReadOnly] private SignIn SignInButtons;
-    [SerializeField, ReadOnly] private SignOn SignOnButtons;
-    [SerializeField, ReadOnly] private LanguageManager LanguageButtons;
-    [SerializeField, ReadOnly] private Menu MenuButtons;
-    [SerializeField, ReadOnly] private PanelCoach PanelCoachButtons;
-
-    public delegate void BehaviourButtons(int index);
-
-    private void Awake()
-    {
-        if (this.GetComponent<ButtonsMain>() != null) { CanvasButtons = this.GetComponent<ButtonsMain>(); }
-        if (this.GetComponent<DropDownMenu>() != null) { DDM = this.GetComponent<DropDownMenu>(); }
-        if (this.GetComponent<UserDataButtons>() != null) { UserDataButtons = this.GetComponent<UserDataButtons>(); }
-        if (this.GetComponent<FloatMenu>() != null) { FloatMenuButtons = this.GetComponent<FloatMenu>(); }
-        if (this.GetComponent<SignIn>() != null) { SignInButtons = this.GetComponent<SignIn>(); }
-        if (this.GetComponent<SignOn>() != null) { SignOnButtons = this.GetComponent<SignOn>(); }
-        if (this.GetComponent<LanguageManager>() != null) { LanguageButtons = this.GetComponent<LanguageManager>(); }
-        if (this.GetComponent<Menu>() != null) { MenuButtons = this.GetComponent<Menu>(); }
-        if (this.GetComponent<PanelCoach>() != null) { PanelCoachButtons = this.GetComponent<PanelCoach>(); }
-    }
-
-    public ButtonsMain CanvasMain => CanvasButtons;
-    public DropDownMenu DropDownMenu => DDM;
-    public UserDataButtons UserData => UserDataButtons;
-    public FloatMenu FloatMenu => FloatMenuButtons;
-    public SignIn SingIn => SignInButtons;
-    public LanguageManager Language => LanguageButtons;
-    public Menu Menu => MenuButtons;
-    public PanelCoach PanelCoach => PanelCoachButtons;
-
-    public (Button[] buttons, bool[] booleans) Assignment(Transform header, params BehaviourButtons[] behaviour)
+    public static (Button[] buttons, bool[] booleans) Assignment(Transform header, params UnityAction<int>[] behaviour)
     {
         Button[] button;
         bool[] isPressed;
@@ -54,72 +16,53 @@ public class ButtonsManager : MonoBehaviour
         for (int index = 0; index < button.Length; index++)
         {
             for (int i = 0; i < behaviour.Length; i++)
-            { StartCoroutine(Cor_AssignmentButtons(index, button, header, behaviour[i])); }
+            {
+                _assignmentButtons(index, button, header, behaviour[i]);
+            }
         }
 
         return (button, isPressed);
-    }
 
-    private IEnumerator Cor_AssignmentButtons(int index, Button[] button, Transform header, BehaviourButtons behaviour)
-    {
-        button[index] = header.GetChild(index).GetComponent<Button>();
-        button[index].onClick.AddListener(() => behaviour(index));
-        yield return null;
-    }
-
-
-    public void Interaction(bool interactable, params Button[][] array)
-    {
-        foreach (Button[] buttons in array)
-        { Interaction(interactable, buttons); }
-    }
-
-    public void Interaction(bool interactable, params Button[] button)
-    {
-        for (int i = 0; i < button.Length; i++)
+        void _assignmentButtons(int index, Button[] button, Transform header, UnityAction<int> behaviour)
         {
-            int childCount;
+            button[index] = header.GetChild(index).GetComponent<Button>();
+            button[index].onClick.AddListener(() => behaviour?.Invoke(index));
+        }
+    }
 
-            childCount = button[i].transform.childCount;
+    public static void SetInteraction(bool interactable, params Button[] buttons)
+    {
+        for (int i = 0; i < buttons.Length; i++)
+        {
+            int childCount = buttons[i].transform.childCount;
 
-            if (childCount != 0)
+            if (childCount == 0)
             {
-                for (int index = 0; index < childCount; index++)
+                buttons[i].interactable = interactable;
+            }
+            else
+            {
+                for (int j = 0; j < childCount; j++)
                 {
-                    if (button[i].transform.GetChild(index).GetComponent<TextMeshProUGUI>() != null)
+                    if (buttons[i].transform.GetChild(j).TryGetComponent(out TextMeshProUGUI tmp))
                     {
-                        StartCoroutine(Cor_Interactable(button[i], interactable, index));
+                        _interactable(buttons[i], tmp, interactable);
                         break;
                     }
                 }
             }
-            else
-            { button[i].interactable = interactable; }
+        }
+
+        static void _interactable(Button button, TextMeshProUGUI tmp, bool interactable)
+        {
+            Color color;
+            button.interactable = interactable;
+            color = tmp.color;
+            color.a = interactable ? 1f : 0.5f;
+            tmp.color = color;
         }
     }
 
-    private IEnumerator Cor_Interactable(Button button, bool interactable, int index)
-    {
-        Color color;
-
-        button.interactable = interactable;
-        color = button.transform.GetChild(index).GetComponent<TextMeshProUGUI>().color;
-
-        yield return null;
-
-        color.a = interactable ? 1f : 0.5f;
-
-        yield return null;
-
-        button.transform.GetChild(index).GetComponent<TextMeshProUGUI>().color = color;
-    }
-
-    public static string PlaceHolderBehaviour(string text, bool activation)
-    {
-        return activation ? text : string.Empty;
-    }
-
-    #region CLOSE_BUTTON
     public static void CloseApplication()
     {
 #if UNITY_EDITOR
@@ -129,5 +72,4 @@ public class ButtonsManager : MonoBehaviour
             Application.Quit();
 #endif
     }
-    #endregion
 }

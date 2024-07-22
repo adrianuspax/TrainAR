@@ -19,13 +19,13 @@ public class FadeCoach : MonoBehaviour
     private bool lupaIsPressed;
     private bool plusIsPressed;
 
-    private ButtonsManager Buttons;
     private FloatMenu floatMenu;
+    private DropDownMenu dropDownMenu;
 
     private void Awake()
     {
-        Buttons = this.GetComponent<ButtonsManager>();
         floatMenu = this.GetComponent<FloatMenu>();
+        dropDownMenu = this.GetComponent<DropDownMenu>();
 
         legButton.onClick.AddListener(() => ButtonLeg());
         closeButton.onClick.AddListener(() => ButtonClose());
@@ -68,9 +68,9 @@ public class FadeCoach : MonoBehaviour
     {
         lupaIsPressed = !lupaIsPressed;
 
-        Buttons.DropDownMenu.ButtonCloseDropDown();
+        dropDownMenu.ButtonCloseDropDown();
         floatMenu.SetBoolFloatAnimators(!lupaIsPressed);
-        Buttons.DropDownMenu.DDMInterecation = !lupaIsPressed;
+        dropDownMenu.Interactable = !lupaIsPressed;
         fadeAnimator.Play(lupaIsPressed ? coachToMuscles.name : musclesToCoach.name);
 
         lupaBotton.gameObject.SetActive(lupaIsPressed);

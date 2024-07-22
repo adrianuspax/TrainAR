@@ -1003,7 +1003,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1127046626}
   - component: {fileID: 1127046627}
-  - component: {fileID: 1127046628}
   m_Layer: 0
   m_Name: CodeManager
   m_TagString: CodeManager
@@ -1045,29 +1044,7 @@ MonoBehaviour:
   lang: 0
   langButton: []
   langPressed: 
-  Buttons: {fileID: 0}
   transition: {fileID: 0}
---- !u!114 &1127046628
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1127046625}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2180d209ed932454084d997072bf0417, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  CanvasButtons: {fileID: 0}
-  DDM: {fileID: 0}
-  UserDataButtons: {fileID: 0}
-  FloatMenuButtons: {fileID: 0}
-  SignInButtons: {fileID: 0}
-  SignOnButtons: {fileID: 0}
-  LanguageButtons: {fileID: 0}
-  MenuButtons: {fileID: 0}
-  PanelCoachButtons: {fileID: 0}
 --- !u!1 &1153654415
 GameObject:
   m_ObjectHideFlags: 0

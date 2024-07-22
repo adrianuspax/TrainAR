@@ -5,7 +5,6 @@ using ASP;
 using Debug = ASP.Debug;
 using PlayerPrefs = ASP.PlayerPrefs;
 
-[RequireComponent( typeof(ButtonsManager))]
 public class SignOn : MonoBehaviour
 {
     [Header("UI", order = 0)]
@@ -49,12 +48,10 @@ public class SignOn : MonoBehaviour
     [SerializeField, ReadOnly] private bool keepOldTextRepeatPassword;
 
     [Header("Scripts", order = 0)]
-    [SerializeField, ReadOnly] private ButtonsManager Buttons;
     [SerializeField, ReadOnly] private Transition transition;
 
     private void Awake()
     {
-        Buttons = this.GetComponent<ButtonsManager>();
         transition = GameObject.FindGameObjectWithTag(Tag.Transition).GetComponent<Transition>();
 
         newUsernameInput.onSelect.AddListener(OnSelectNewUsername);
@@ -91,10 +88,7 @@ public class SignOn : MonoBehaviour
     {
         transition.EndClip();
         warningTMP.text = string.Empty;
-        Buttons.Interaction(false, okButton);
-
-        //Debug.Log(PlayerPrefs.HasKey(Key.username) ? "username = " + PlayerPrefs.GetString(Key.username) : "username = EMPTY");
-        //Debug.Log(PlayerPrefs.HasKey(Key.password) ? "password = " + PlayerPrefs.GetString(Key.password) : "password = EMPTY");
+        ButtonsManager.SetInteraction(false, okButton);
     }
     #region BUTTONS
     public void Ok()
@@ -278,7 +272,7 @@ public class SignOn : MonoBehaviour
             (!string.IsNullOrEmpty(newPasswordInput.text) && !string.IsNullOrEmpty(repeatPasswordInput.text));
 
         buttonOkRealeased = usernameReleased && passwordReleased;
-        Buttons.Interaction(buttonOkRealeased, okButton);
+        ButtonsManager.SetInteraction(buttonOkRealeased, okButton);
     }
 
     public string PlaceHolderRepeatPassword

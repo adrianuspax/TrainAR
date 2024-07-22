@@ -4,7 +4,6 @@ using TMPro;
 using ASP;
 using Debug = ASP.Debug;
 
-[RequireComponent(typeof(ButtonsManager))]
 public class UserDataButtons : MonoBehaviour
 {
     [Header("BUTTONS", order = 0)]
@@ -63,15 +62,14 @@ public class UserDataButtons : MonoBehaviour
     [NonReorderable][SerializeField, ReadOnly] private bool[] moreValueIsEdited;
 
     [Header("Scripts", order = 0)]
-    [SerializeField, ReadOnly] private ButtonsManager Buttons;
     [SerializeField, ReadOnly] private PagesAndFields PagesAndFields;
     [SerializeField, ReadOnly] private DataManagement Data;
     [SerializeField, ReadOnly] private UserDataAnimations userDataAnimations;
+    [SerializeField, ReadOnly] private UserDataButtons userDataButtons;
 
     private void Awake()
     {
         #region SCRIPTS
-        Buttons = this.GetComponent<ButtonsManager>();
         PagesAndFields = this.GetComponent<PagesAndFields>();
         Data = this.GetComponent<DataManagement>();
         userDataAnimations = this.GetComponent<UserDataAnimations>();
@@ -83,15 +81,15 @@ public class UserDataButtons : MonoBehaviour
         #endregion
         #region GENRE
         genreColorPressed = new Color[2] { PalleteColors.Triad(3), PalleteColors.Main };
-        (genreButton, genreIsPressed) = Buttons.Assignment(genreButtonsHeader, GenreButtonBehaviour);
+        (genreButton, genreIsPressed) = ButtonsManager.Assignment(genreButtonsHeader, GenreButtonBehaviour);
         #endregion
         #region GOAL
         goalbyIndex = Data.goalName;
-        (goalButton, goalIsPressed) = Buttons.Assignment(goalButtonsHeader, GoalButtonsBehaviour);
+        (goalButton, goalIsPressed) = ButtonsManager.Assignment(goalButtonsHeader, GoalButtonsBehaviour);
         #endregion
         #region FOCUS
         focusByIndex = Data.focusName;
-        (focusButton, focusIsPressed) = Buttons.Assignment(focusButtonsHeader, FocusButtonsBehaviour);
+        (focusButton, focusIsPressed) = ButtonsManager.Assignment(focusButtonsHeader, FocusButtonsBehaviour);
         #endregion
         #region MORE
         (moreEditButton, moreValueIsEdited) = PagesAndFields.AssignmentEditMore(CallFooterField);
@@ -101,7 +99,7 @@ public class UserDataButtons : MonoBehaviour
         cancelButton.onClick.AddListener(() => CancelButtonFunction());
         #endregion
         #region LEVEL
-        (levelButton, levelIsPressed) = Buttons.Assignment(levelButtonsHeader, LevelButtonsBehaviour);
+        (levelButton, levelIsPressed) = ButtonsManager.Assignment(levelButtonsHeader, LevelButtonsBehaviour);
         #endregion
     }
 
@@ -343,7 +341,7 @@ public class UserDataButtons : MonoBehaviour
         PagesAndFields.SetMoreValueTMP(index, PagesAndFields.DataFooter);
         userDataAnimations.PlayFooterSaveClip();
         PagesAndFields.ClearAllInputFooter(userDataAnimations.EnterClipTime);
-        Buttons.UserData.NextButtonInteraction = AllFooterValuesItsEdited;
+        userDataButtons.NextButtonInteraction = AllFooterValuesItsEdited;
     }
 
     public bool AllFooterValuesItsEdited
@@ -374,7 +372,7 @@ public class UserDataButtons : MonoBehaviour
     public bool SaveButtonInteraction
     {
         get => saveButton.IsInteractable();
-        set => Buttons.Interaction(value, saveButton);
+        set => ButtonsManager.SetInteraction(value, saveButton);
     }
 
     public string SaveButtonString
@@ -406,7 +404,7 @@ public class UserDataButtons : MonoBehaviour
     public bool NextButtonInteraction
     {
         get => nextButton.IsInteractable();
-        set => Buttons.Interaction(value, nextButton);
+        set => ButtonsManager.SetInteraction(value, nextButton);
     }
 
     public string NextButtonString
