@@ -7,7 +7,6 @@ using Debug = ASP.Debug;
 [RequireComponent(typeof(ButtonsManager))]
 public class UserDataButtons : MonoBehaviour
 {
-    #region UNITY_INSPECTOR
     [Header("BUTTONS", order = 0)]
     [Space(-10, order = 1)]
     [Header("Canvas Buttons", order = 2)]
@@ -30,8 +29,6 @@ public class UserDataButtons : MonoBehaviour
     [Header("Footer Buttons", order = 1)]
     [SerializeField] private Button saveButton;
     [SerializeField] private Button cancelButton;
-    #endregion
-    #region READ_INSPECTOR
     [Header(" =========================== READY ONLY =========================== ", order = 0)]
     [Space(-10, order = 1)]
     [Header("Variables", order = 2)]
@@ -68,17 +65,16 @@ public class UserDataButtons : MonoBehaviour
     [Header("Scripts", order = 0)]
     [SerializeField, ReadOnly] private ButtonsManager Buttons;
     [SerializeField, ReadOnly] private PagesAndFields PagesAndFields;
-    [SerializeField, ReadOnly] private AnimationsManager Animations;
     [SerializeField, ReadOnly] private DataManagement Data;
-    #endregion
-    #region UNITY_MONOBEHAVIOUR
+    [SerializeField, ReadOnly] private UserDataAnimations userDataAnimations;
+
     private void Awake()
     {
         #region SCRIPTS
         Buttons = this.GetComponent<ButtonsManager>();
         PagesAndFields = this.GetComponent<PagesAndFields>();
-        Animations = this.GetComponent<AnimationsManager>();
         Data = this.GetComponent<DataManagement>();
+        userDataAnimations = this.GetComponent<UserDataAnimations>();
         #endregion
         #region CANVAS_MAIN
         closeButton.onClick.AddListener(ButtonsManager.CloseApplication);
@@ -115,7 +111,6 @@ public class UserDataButtons : MonoBehaviour
         levelByIndex = Data.levelPhrase;
     }
 
-    #endregion
     #region PAGE2_(GENRE)
     public void GenreButtonBehaviour(int index)
     {
@@ -346,8 +341,8 @@ public class UserDataButtons : MonoBehaviour
         index = PagesAndFields.CurrentFooter - 1;
         moreValueIsEdited[index] = true;
         PagesAndFields.SetMoreValueTMP(index, PagesAndFields.DataFooter);
-        Animations.UserData.PlayFooterSaveClip();
-        PagesAndFields.ClearAllInputFooter(Animations.UserData.EnterClipTime);
+        userDataAnimations.PlayFooterSaveClip();
+        PagesAndFields.ClearAllInputFooter(userDataAnimations.EnterClipTime);
         Buttons.UserData.NextButtonInteraction = AllFooterValuesItsEdited;
     }
 
@@ -366,7 +361,7 @@ public class UserDataButtons : MonoBehaviour
 
     public void CancelButtonFunction()
     {
-        Animations.UserData.PlayFooterCancelClip();
+        userDataAnimations.PlayFooterCancelClip();
         PagesAndFields.ClearAllInputFooter();
     }
 

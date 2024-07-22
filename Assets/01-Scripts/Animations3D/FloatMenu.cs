@@ -3,7 +3,6 @@ using ASP.Extensions;
 using UnityEngine;
 using UnityEngine.UI;
 
-[RequireComponent(typeof(AnimationsManager))]
 public class FloatMenu : MonoBehaviour
 {
     public enum BodyPart

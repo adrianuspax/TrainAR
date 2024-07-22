@@ -2,10 +2,9 @@
 using ASP;
 using Debug = ASP.Debug;
 using PlayerPrefs = UnityEngine.PlayerPrefs;
-[RequireComponent(typeof(AnimationsManager),typeof(PagesAndFields), typeof(UserDataButtons))]
+[RequireComponent(typeof(PagesAndFields), typeof(UserDataButtons))]
 public class DataManagement : MonoBehaviour
 {
-    #region READ_INSPECTOR
     [Header(" =========================== READY ONLY =========================== ", order = 0)]
     [Space(-10, order = 1)]
     [Header("SAVED DATA PROFILE", order = 2)]
@@ -27,9 +26,8 @@ public class DataManagement : MonoBehaviour
     [Header("Scripts", order = 0)]
     [ReadOnly, SerializeField] private ButtonsManager Buttons;
     [ReadOnly, SerializeField] private PagesAndFields PagesAndFields;
-    [ReadOnly, SerializeField] private AnimationsManager Animations;
+    [SerializeField, ReadOnly] private Transition transition;
 
-    #endregion
     #region DATA_MANAGEMENT
     public const string MALE = "Male";
     public const string FEMALE = "Female";
@@ -59,7 +57,7 @@ public class DataManagement : MonoBehaviour
     {
         Buttons = this.GetComponent<ButtonsManager>();
         PagesAndFields = this.GetComponent<PagesAndFields>();
-        Animations = this.GetComponent<AnimationsManager>();
+        transition = GameObject.FindGameObjectWithTag(Tag.Transition).GetComponent<Transition>();
         PagesAndFields.PagesQuestionString = LanguageManager.pageQuestion;
         Buttons.UserData.NextButtonString = LanguageManager.nextButton;
         PagesAndFields.Page1PlaceHolder = LanguageManager.page1PlaceHolder;
@@ -77,7 +75,7 @@ public class DataManagement : MonoBehaviour
 
     public void Start()
     {
-        Animations.Transition.EndClip();
+        transition.EndClip();
         Buttons.UserData.NextButtonInteraction = false;
         userName = UserName;
         gender = (IsMale ? MALE : FEMALE);

@@ -4,19 +4,8 @@ using UnityEngine;
 using ASP;
 using Debug = ASP.Debug;
 
-[RequireComponent(typeof(AnimationsManager))]
 public class Redirection : MonoBehaviour
 {
-    [Header(" =========================== READY ONLY =========================== ", order = 0)]
-    
-    [Header("Scripts", order = 1)]
-    [SerializeField, ReadOnly] private AnimationsManager Animations;
-
-    private void Awake()
-    {
-        Animations = this.GetComponent<AnimationsManager>();
-    }
-
     private void Start()
     {
         RedirectionScene();

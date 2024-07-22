@@ -5,7 +5,6 @@ using ASP;
 using Debug = ASP.Debug;
 using PlayerPrefs = UnityEngine.PlayerPrefs;
 
-[RequireComponent(typeof(AnimationsManager))]
 public class SignIn : MonoBehaviour
 {
     [Header("BUTTONS", order = 0)]
@@ -41,11 +40,12 @@ public class SignIn : MonoBehaviour
     [SerializeField, ReadOnly] private bool signed;
 
     [Header("Scripts", order = 0)]
-    [SerializeField, ReadOnly] private AnimationsManager Animations;
+    [SerializeField, ReadOnly] private Transition transition;
 
     private void Awake()
     {
-        Animations = this.GetComponent<AnimationsManager>();
+        transition = GameObject.FindGameObjectWithTag(Tag.Transition).GetComponent<Transition>();
+
         signInButton.onClick.AddListener(() => SignInFunction());
         signOnButton.onClick.AddListener(() => SignOnFunction());
         //username
@@ -71,7 +71,7 @@ public class SignIn : MonoBehaviour
 
     private void Start()
     {
-        Animations.Transition.EndClip();
+        transition.EndClip();
         warningTMP.text = string.Empty;
         signed = AccountData.Signed;
     }

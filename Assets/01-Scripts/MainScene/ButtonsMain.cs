@@ -26,21 +26,29 @@ public class ButtonsMain : MonoBehaviour
     [Header("Scripts", order = 2)]
     [SerializeField, ReadOnly] private AugmentedReality AR;
     [SerializeField, ReadOnly] private ButtonsManager Buttons;
-    [SerializeField, ReadOnly] private AnimationsManager Animations;
     [SerializeField, ReadOnly] private ImagesManager Sprites;
+    [SerializeField, ReadOnly] private PanelResult panelResult;
+    [SerializeField, ReadOnly] private PanelCoach panelCoach;
+    [SerializeField, ReadOnly] private AnimationsMain animationsMain;
+    [SerializeField, ReadOnly] private FloatMenu floatMenu;
+    [SerializeField, ReadOnly] private CoachAnimations coachAnimations;
 
     private void Awake()
     {
-        AR = this.GetComponent<AugmentedReality>();
-        Animations = this.GetComponent<AnimationsManager>();
-        Buttons = this.GetComponent<ButtonsManager>();
-        Sprites = this.GetComponent<ImagesManager>();
+        AR = GetComponent<AugmentedReality>();
+        Buttons = GetComponent<ButtonsManager>();
+        Sprites = GetComponent<ImagesManager>();
+        panelResult = GetComponent<PanelResult>();
+        panelCoach = GetComponent<PanelCoach>();
+        animationsMain = GetComponent<AnimationsMain>();
+        floatMenu = GetComponent<FloatMenu>();
+        coachAnimations = GetComponent<CoachAnimations>();
 
         btnTopR.onClick.AddListener(ButtonsManager.CloseApplication);
         btnTopL.onClick.AddListener(() => TrainARSceneManager.LoadMenu());
         btnBarC.onClick.AddListener(() => AR.PlaceCoachAR());
         btnBarR.onClick.AddListener(() => ButtonPanelCoach(btnBarRIsPressed));
-        btnBarL.onClick.AddListener(() => Animations.PanelResult.PanelResultBehaviour());
+        btnBarL.onClick.AddListener(() => panelResult.PanelResultBehaviour());
     }
 
     public void ButtonARBehaviour(StateButtonAR state, bool isInteractable)
@@ -58,7 +66,7 @@ public class ButtonsMain : MonoBehaviour
         }
 
         condition = (CurrentStateButtonAR == StateButtonAR.Refresh) || isInteractable;
-        ButtonSetCoachInteraction = condition && !Animations.Coach.HasTriggered;
+        ButtonSetCoachInteraction = condition && !coachAnimations.HasTriggered;
 
         if (ButtonSetCoachInteraction)
         {
@@ -67,7 +75,7 @@ public class ButtonsMain : MonoBehaviour
             btnBarC.image.rectTransform.anchoredPosition = Vector3.zero;
         }
 
-        Animations.Main.MovePhoneButton(!condition);
+        animationsMain.MovePhoneButton(!condition);
         stateButtonAR = state;
     }
 
@@ -76,9 +84,9 @@ public class ButtonsMain : MonoBehaviour
         isPressed = !isPressed;
 
         btnBarR.image.sprite = isPressed ? Sprites.closePanel : Sprites.openPanel;
-        Animations.FloatMenu.SetBoolFloatAnimators(!isPressed);
+        floatMenu.SetBoolFloatAnimators(!isPressed);
 
-        Animations.PanelCoach.PanelCoachBehaviour(isPressed);
+        panelCoach.PanelCoachBehaviour(isPressed);
 
         btnBarRIsPressed = isPressed;
     }

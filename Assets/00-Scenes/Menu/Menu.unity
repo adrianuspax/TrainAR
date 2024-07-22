@@ -2276,7 +2276,6 @@ GameObject:
   - component: {fileID: 1127046626}
   - component: {fileID: 1127046627}
   - component: {fileID: 1127046628}
-  - component: {fileID: 1127046629}
   m_Layer: 0
   m_Name: CodeManager
   m_TagString: CodeManager
@@ -2326,7 +2325,7 @@ MonoBehaviour:
   questionPanelAnimator: {fileID: 617065427}
   questionPanelEndClip: {fileID: 7400000, guid: 862b0b61495825746afcb82b5eb82249,
     type: 2}
-  Animations: {fileID: 0}
+  transition: {fileID: 0}
 --- !u!114 &1127046628
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2348,27 +2347,6 @@ MonoBehaviour:
   LanguageButtons: {fileID: 0}
   MenuButtons: {fileID: 0}
   PanelCoachButtons: {fileID: 0}
---- !u!114 &1127046629
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1127046625}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7543f7b593c23584abcb3057b1e5176c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  userData: {fileID: 0}
-  main: {fileID: 0}
-  floatMenu: {fileID: 0}
-  coach: {fileID: 0}
-  transition: {fileID: 0}
-  panelCoach: {fileID: 0}
-  panelResult: {fileID: 0}
-  loading: {fileID: 0}
-  trainingSystem: {fileID: 0}
 --- !u!1 &1142152164
 GameObject:
   m_ObjectHideFlags: 0

@@ -8414,7 +8414,6 @@ GameObject:
   - component: {fileID: 1127046628}
   - component: {fileID: 1127046630}
   - component: {fileID: 1127046627}
-  - component: {fileID: 1127046631}
   m_Layer: 0
   m_Name: CodeManager
   m_TagString: CodeManager
@@ -8500,8 +8499,8 @@ MonoBehaviour:
   moreValueIsEdited: 
   Buttons: {fileID: 0}
   PagesAndFields: {fileID: 0}
-  Animations: {fileID: 0}
   Data: {fileID: 0}
+  userDataAnimations: {fileID: 0}
 --- !u!114 &1127046629
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8530,8 +8529,8 @@ MonoBehaviour:
   keepOldTextUsername: 0
   oldEditTextUsername: 
   editTextUsername: 
-  Animations: {fileID: 0}
   Buttons: {fileID: 0}
+  userDataAnimations: {fileID: 0}
 --- !u!114 &1127046630
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8552,27 +8551,6 @@ MonoBehaviour:
   footerCancelClip: {fileID: 7400000, guid: b48359fcfc646ce48891695e97041304, type: 2}
   animatorsPages: []
   PagesAndFields: {fileID: 0}
---- !u!114 &1127046631
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1127046625}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7543f7b593c23584abcb3057b1e5176c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  userData: {fileID: 0}
-  main: {fileID: 0}
-  floatMenu: {fileID: 0}
-  coach: {fileID: 0}
-  transition: {fileID: 0}
-  panelCoach: {fileID: 0}
-  panelResult: {fileID: 0}
-  loading: {fileID: 0}
-  trainingSystem: {fileID: 0}
 --- !u!114 &1127046632
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8599,7 +8577,7 @@ MonoBehaviour:
   password: 
   Buttons: {fileID: 0}
   PagesAndFields: {fileID: 0}
-  Animations: {fileID: 0}
+  transition: {fileID: 0}
   levelPhrase: []
 --- !u!1 &1130995706
 GameObject:

@@ -5,7 +5,7 @@ using ASP;
 using Debug = ASP.Debug;
 using PlayerPrefs = ASP.PlayerPrefs;
 
-[RequireComponent(typeof(AnimationsManager), typeof(ButtonsManager))]
+[RequireComponent( typeof(ButtonsManager))]
 public class SignOn : MonoBehaviour
 {
     [Header("UI", order = 0)]
@@ -49,13 +49,13 @@ public class SignOn : MonoBehaviour
     [SerializeField, ReadOnly] private bool keepOldTextRepeatPassword;
 
     [Header("Scripts", order = 0)]
-    [SerializeField, ReadOnly] private AnimationsManager Animations;
     [SerializeField, ReadOnly] private ButtonsManager Buttons;
+    [SerializeField, ReadOnly] private Transition transition;
 
     private void Awake()
     {
-        Animations = this.GetComponent<AnimationsManager>();
         Buttons = this.GetComponent<ButtonsManager>();
+        transition = GameObject.FindGameObjectWithTag(Tag.Transition).GetComponent<Transition>();
 
         newUsernameInput.onSelect.AddListener(OnSelectNewUsername);
         newUsernameInput.onDeselect.AddListener(OnDeselectNewUsername);
@@ -89,7 +89,7 @@ public class SignOn : MonoBehaviour
 
     private void Start()
     {
-        Animations.Transition.EndClip();
+        transition.EndClip();
         warningTMP.text = string.Empty;
         Buttons.Interaction(false, okButton);
 

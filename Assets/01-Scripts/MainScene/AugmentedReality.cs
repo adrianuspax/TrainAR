@@ -4,7 +4,7 @@ using UnityEngine.XR.ARFoundation;
 using UnityEngine.XR.ARSubsystems;
 using ASP;
 using Debug = ASP.Debug;
-[RequireComponent(typeof(ButtonsManager), typeof(AnimationsMain), typeof(AnimationsManager))]
+[RequireComponent(typeof(ButtonsManager), typeof(AnimationsMain))]
 [RequireComponent(typeof(DropDownMenu), typeof(FloatMenu))]
 public class AugmentedReality : MonoBehaviour
 {
@@ -24,20 +24,23 @@ public class AugmentedReality : MonoBehaviour
     [SerializeField, ReadOnly] private StateButtonAR stateButtonAR;
     [Space(-10, order = 0)]
     [Header("Scrips")]
-    [SerializeField, ReadOnly] private AnimationsManager Animations;
     [SerializeField, ReadOnly] private ButtonsManager Buttons;
+    [SerializeField, ReadOnly] private AnimationsMain animationsMain;
+    [SerializeField, ReadOnly] private FloatMenu floatMenu;
+    [SerializeField, ReadOnly] private Transition transition;
 
     private static readonly List<ARRaycastHit> hitResults = new();
 
     private void Awake()
     {
-        Animations = this.GetComponent<AnimationsManager>();
         Buttons = this.GetComponent<ButtonsManager>();
+        animationsMain = GetComponent<AnimationsMain>();
+        transition = GameObject.FindGameObjectWithTag(Tag.Transition).GetComponent<Transition>();
     }
 
     private void Start()
     {
-        Animations.Transition.EndClip();
+        transition.EndClip();
         coach3D.SetActive(false);
         anchorIsHitting = false;
         trackableTypes = TrackableType.PlaneWithinPolygon;
@@ -53,7 +56,7 @@ public class AugmentedReality : MonoBehaviour
 
         if (CoachIsActivated)
         {
-            foreach (Transform pivots in Animations.FloatMenu.FloatTransforms)
+            foreach (Transform pivots in floatMenu.FloatTransforms)
             {
                 pivots.LookAt(Camera.main.transform);
             }
@@ -100,7 +103,7 @@ public class AugmentedReality : MonoBehaviour
         }
 
         anchorIsHitting = isHit;
-        Animations.Main.AnchorIsHit(isHit);
+        animationsMain.AnchorIsHit(isHit);
         Buttons.CanvasMain.ButtonARBehaviour(stateButtonAR, isHit);
     }
 
@@ -113,15 +116,15 @@ public class AugmentedReality : MonoBehaviour
             {
                 coach3D.SetActive(false);
                 stateButtonAR = StateButtonAR.ReadyToSet;
-                Animations.Main.AnchorVisible(true);
+                animationsMain.AnchorVisible(true);
             }
             else if (AnchorIsHitting)
             {
                 coach3D.transform.position = anchorPosSaver;
                 coach3D.SetActive(true);
                 stateButtonAR = StateButtonAR.Refresh;
-                Animations.Main.AnchorVisible(false);
-                Animations.FloatMenu.SetBoolFloatAnimators(true);
+                animationsMain.AnchorVisible(false);
+                floatMenu.SetBoolFloatAnimators(true);
             }
 
         vectorCorrection = new Vector3(0, coach3D.transform.rotation.eulerAngles.y, 0);

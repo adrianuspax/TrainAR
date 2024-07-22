@@ -1846,7 +1846,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1127046626}
   - component: {fileID: 1127046628}
-  - component: {fileID: 1127046627}
   m_Layer: 0
   m_Name: CodeManager
   m_TagString: CodeManager
@@ -1869,27 +1868,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1868749673}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1127046627
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1127046625}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7543f7b593c23584abcb3057b1e5176c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  userData: {fileID: 0}
-  main: {fileID: 0}
-  floatMenu: {fileID: 0}
-  coach: {fileID: 0}
-  transition: {fileID: 0}
-  panelCoach: {fileID: 0}
-  panelResult: {fileID: 0}
-  loading: {fileID: 0}
-  trainingSystem: {fileID: 0}
 --- !u!114 &1127046628
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1918,7 +1896,7 @@ MonoBehaviour:
   keepOldTextUsername: 0
   keepOldTextPassword: 0
   signed: 0
-  Animations: {fileID: 0}
+  transition: {fileID: 0}
 --- !u!1 &1293201597
 GameObject:
   m_ObjectHideFlags: 0

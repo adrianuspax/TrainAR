@@ -5,7 +5,7 @@ using ASP;
 using Debug = ASP.Debug;
 using PlayerPrefs = UnityEngine.PlayerPrefs;
 
-[RequireComponent(typeof(AnimationsManager), typeof(ButtonsManager))]
+[RequireComponent( typeof(ButtonsManager))]
 public class Menu : MonoBehaviour
 {
     [Header("UI", order = 0)]
@@ -33,11 +33,12 @@ public class Menu : MonoBehaviour
     [Header(" =========================== READY ONLY =========================== ", order = 0)]
 
     [Header("Scripts", order = 0)]
-    [SerializeField, ReadOnly] private AnimationsManager Animations;
+    [SerializeField, ReadOnly] private Transition transition;
 
     private void Awake()
     {
-        Animations = this.GetComponent<AnimationsManager>();
+        transition = GameObject.FindGameObjectWithTag(Tag.Transition).GetComponent<Transition>();
+
         closeButton.onClick.AddListener(() => ButtonsManager.CloseApplication());
         updateProfileButton.onClick.AddListener(() => UpdateProfile());
         editAccountButton.onClick.AddListener(() => EditAccount());
@@ -61,7 +62,7 @@ public class Menu : MonoBehaviour
 
     private void Start()
     {
-        Animations.Transition.EndClip();
+        transition.EndClip();
         usernameTMP.text = AccountData.Username;
     }
 

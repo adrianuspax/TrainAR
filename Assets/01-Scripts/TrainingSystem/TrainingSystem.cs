@@ -10,16 +10,16 @@ public class TrainingSystem : MonoBehaviour
     [Space(-10, order = 1)]
     [Header("Scripts", order = 2)]
     [SerializeField, ReadOnly] private Loading Loading;
-    [SerializeField, ReadOnly] private AnimationsManager Animations;
     [SerializeField, ReadOnly] private ButtonsManager Buttons;
     [SerializeField, ReadOnly] private bool coroutineFinished;
     [SerializeField, ReadOnly] private bool squenceStarted;
+    [SerializeField, ReadOnly] private CoachAnimations coachAnimations;
 
     private void Awake()
     {
         Loading = this.GetComponent<Loading>();
-        Animations = this.GetComponent<AnimationsManager>();
         Buttons = this.GetComponent<ButtonsManager>();
+        coachAnimations = this.GetComponent<CoachAnimations>();
 
         Loading.Skip.onClick.AddListener(() => Skip());
     }
@@ -27,24 +27,24 @@ public class TrainingSystem : MonoBehaviour
     private void Update()
     {
         LoadBehaviourDDM();
-        if (Animations.Coach.CurrentAnimation.isWorkout)
+        if (coachAnimations.CurrentAnimation.isWorkout)
         { Loading.Timer = Timer.MMSS(squenceStarted ? Count.down : Count.up); }
     }
 
     public void LoadBehaviourDDM()
     {
-        if (Animations.Coach.HasTriggered)
+        if (coachAnimations.HasTriggered)
         {
             if (Loading.HasStarted)
             {
-                if (Animations.Coach.CurrentAnimation.isEnter)
+                if (coachAnimations.CurrentAnimation.isEnter)
                 {
                     Loading.SetCount("준비");
-                    Loading.FillAmount = Animations.Coach.CurrentAnimation.normalizedTime;
+                    Loading.FillAmount = coachAnimations.CurrentAnimation.normalizedTime;
                 }
-                else if (Animations.Coach.CurrentAnimation.isWorkout)
+                else if (coachAnimations.CurrentAnimation.isWorkout)
                 {
-                    Loading.SetCount(Animations.Coach.CurrentAnimation.loopCount);
+                    Loading.SetCount(coachAnimations.CurrentAnimation.loopCount);
                     Loading.FillAmount = 1f;
                 }
             }
@@ -56,19 +56,19 @@ public class TrainingSystem : MonoBehaviour
         }
         else
         {
-            if (Animations.Coach.CurrentAnimation.isWorkout)
+            if (coachAnimations.CurrentAnimation.isWorkout)
             {
                 Loading.SetCount("대기");
-                Loading.FillAmount = Animations.Coach.CurrentAnimation.normalizedReverseTime;
+                Loading.FillAmount = coachAnimations.CurrentAnimation.normalizedReverseTime;
             }
             else
             {
-                if (Animations.Coach.CurrentAnimation.isOut)
+                if (coachAnimations.CurrentAnimation.isOut)
                 {
                     Loading.SetCount("준비");
-                    Loading.FillAmount = Animations.Coach.CurrentAnimation.normalizedTime;
+                    Loading.FillAmount = coachAnimations.CurrentAnimation.normalizedTime;
                 }
-                else  if (Animations.Coach.CurrentAnimation.isIdle && Loading.HasStarted)
+                else  if (coachAnimations.CurrentAnimation.isIdle && Loading.HasStarted)
                 {
                     Loading.EndAnimation();
                     Timer.Stop();
@@ -81,7 +81,7 @@ public class TrainingSystem : MonoBehaviour
     public void Skip()
     {
         StopAllCoroutines();
-        Animations.Coach.StartIdleAnimation();
+        coachAnimations.StartIdleAnimation();
         Buttons.CanvasMain.PanelCoachInteraction = true;
         Buttons.DropDownMenu.DDMInterecation = true;
         Buttons.CanvasMain.ButtonSetCoachInteraction = true;
@@ -105,15 +105,15 @@ public class TrainingSystem : MonoBehaviour
     private IEnumerator Cor_AnimationInLoop(CoachAnimations.Trigger animation, int amount)
     {
         Loading.SetCount("준비");
-        yield return new WaitWhile(() => !Animations.Coach.CurrentAnimation.isIdle);
+        yield return new WaitWhile(() => !coachAnimations.CurrentAnimation.isIdle);
 
-        Animations.Coach.StartAnimation(animation);
+        coachAnimations.StartAnimation(animation);
 
-        yield return new WaitWhile(() => Animations.Coach.NextAnimation.willBeEnter);
+        yield return new WaitWhile(() => coachAnimations.NextAnimation.willBeEnter);
 
-        while (Animations.Coach.CurrentAnimation.isEnter)
+        while (coachAnimations.CurrentAnimation.isEnter)
         {
-            Loading.FillAmount = Animations.Coach.CurrentAnimation.normalizedTime;
+            Loading.FillAmount = coachAnimations.CurrentAnimation.normalizedTime;
             Loading.SetCount(amount);
             yield return null;
         }
@@ -121,30 +121,30 @@ public class TrainingSystem : MonoBehaviour
         Loading.SetCount(amount);
         Loading.FillAmount = 1;
 
-        yield return new WaitWhile(() => !Animations.Coach.CurrentAnimation.isWorkout);
-        Timer.Start(amount * Animations.Coach.CurrentAnimation.length);
+        yield return new WaitWhile(() => !coachAnimations.CurrentAnimation.isWorkout);
+        Timer.Start(amount * coachAnimations.CurrentAnimation.length);
 
-        while (Animations.Coach.CurrentAnimation.normalizedTime < amount - 1)
+        while (coachAnimations.CurrentAnimation.normalizedTime < amount - 1)
         {
-            Loading.SetCount(amount - Animations.Coach.CurrentAnimation.loopCount);
-            Loading.FillAmount = (amount - Animations.Coach.CurrentAnimation.normalizedTime) / amount;
+            Loading.SetCount(amount - coachAnimations.CurrentAnimation.loopCount);
+            Loading.FillAmount = (amount - coachAnimations.CurrentAnimation.normalizedTime) / amount;
             yield return null;
         }
 
-        Animations.Coach.StartIdleAnimation();
+        coachAnimations.StartIdleAnimation();
         Loading.SetCount(1);
 
-        while (Animations.Coach.CurrentAnimation.isWorkout)
+        while (coachAnimations.CurrentAnimation.isWorkout)
         {
-            Loading.SetCount(amount - Animations.Coach.CurrentAnimation.loopCount);
-            Loading.FillAmount = (amount - Animations.Coach.CurrentAnimation.normalizedTime) / amount;
+            Loading.SetCount(amount - coachAnimations.CurrentAnimation.loopCount);
+            Loading.FillAmount = (amount - coachAnimations.CurrentAnimation.normalizedTime) / amount;
             yield return null;
         }
 
         Loading.SetCount("준비");
         Loading.FillAmount = 0;
         Timer.Stop();
-        yield return new WaitWhile(() => !Animations.Coach.CurrentAnimation.isIdle);
+        yield return new WaitWhile(() => !coachAnimations.CurrentAnimation.isIdle);
         coroutineFinished = true;
     }
 

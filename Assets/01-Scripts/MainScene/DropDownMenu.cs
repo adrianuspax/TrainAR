@@ -38,14 +38,16 @@ public class DropDownMenu : MonoBehaviour
     [Space(-10, order = 1)]
     [Header("Scripts", order = 2)]
     [SerializeField, ReadOnly] private ButtonsManager Buttons;
-    [SerializeField, ReadOnly] private AnimationsManager Animations;
+    [SerializeField, ReadOnly] private FloatMenu floatMenu;
+    [SerializeField, ReadOnly] private CoachAnimations coachAnimations;
 
     private bool singlePressed;
 
     private void Awake()
     {
         Buttons = this.GetComponent<ButtonsManager>();
-        Animations = this.GetComponent<AnimationsManager>();
+        floatMenu = this.GetComponent<FloatMenu>();
+        coachAnimations = this.GetComponent<CoachAnimations>();
 
         btnOpenDropDown.onClick.AddListener(() => ButtonOpenDropDown());
         btnCloseDropDown.onClick.AddListener(() => ButtonCloseDropDown());
@@ -71,7 +73,7 @@ public class DropDownMenu : MonoBehaviour
             aniDropDownMenu.Play(dropDownOpenClip.name);
             StartCoroutine(Cor_ScrowViewPos(dropDownOpenClip.length));
             Buttons.FloatMenu.ButtonsFloatBehaviour(FloatMenu.BodyPart.All);
-            Animations.FloatMenu.SetBoolFloatAnimators(false);
+            floatMenu.SetBoolFloatAnimators(false);
         }
     }
 
@@ -79,21 +81,21 @@ public class DropDownMenu : MonoBehaviour
     {
         bool conditional;
              conditional =
-            Animations.Coach.CurrentAnimation.isWorkout ||
-            Animations.Coach.CurrentAnimation.isEnter ||
-            Animations.Coach.NextAnimation.willBeWorkout ||
-            Animations.Coach.NextAnimation.willBeEnter;
+            coachAnimations.CurrentAnimation.isWorkout ||
+            coachAnimations.CurrentAnimation.isEnter ||
+            coachAnimations.NextAnimation.willBeWorkout ||
+            coachAnimations.NextAnimation.willBeEnter;
 
         if (panelDropDownOpen)
         {
             panelDropDownOpen = false;
             aniDropDownMenu.Play(dropDownCloseClip.name);
-            Animations.FloatMenu.SetBoolFloatAnimators(true);
+            floatMenu.SetBoolFloatAnimators(true);
             Buttons.CanvasMain.PanelCoachInteraction = true;
 
             if (conditional)
             {
-                Animations.Coach.StartIdleAnimation();
+                coachAnimations.StartIdleAnimation();
                 AllButtonsDefault();
             }
         }
@@ -140,7 +142,7 @@ public class DropDownMenu : MonoBehaviour
 
         if (!isPressDDM[index])
         {
-            Animations.Coach.StartIdleAnimation();
+            coachAnimations.StartIdleAnimation();
         }
 
         IsPressed = isPressDDM[index];
@@ -148,7 +150,7 @@ public class DropDownMenu : MonoBehaviour
 
     private void ButtonsDDMFunction(int index)
     {
-        Animations.Coach.StartAnimation(index + 3);
+        coachAnimations.StartAnimation(index + 3);
     }
 
     public void AllButtonsDefault()

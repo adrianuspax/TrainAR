@@ -5,11 +5,9 @@ using UnityEngine.UI;
 using ASP;
 using Debug = ASP.Debug;
 
-#region CLASS
 [RequireComponent(typeof(UserDataAnimations))]
 public class PagesAndFields : MonoBehaviour
 {
-    #region UNITY_INSPECTOR
     [Header("HEADERS", order = 0)]
     [Space(-10, order = 1)]
     [Header("Header Pages", order = 2)]
@@ -28,8 +26,7 @@ public class PagesAndFields : MonoBehaviour
     [Space(-10, order = 0)]
     [Header("Page 6", order = 1)]
     [SerializeField] private Transform blocksAreaHeader;
-    #endregion
-    #region READY_INSPECTOR
+
     [Header(" =========================== READY ONLY =========================== ", order = 0)]
     [Space(-10, order = 1)]
     [Header("Pages", order = 2)]
@@ -52,11 +49,11 @@ public class PagesAndFields : MonoBehaviour
     [SerializeField, ReadOnly] private string editTextUsername;
 
     [Header("Scripts", order = 0)]
-    [ReadOnly, SerializeField] private AnimationsManager Animations;
     [ReadOnly, SerializeField] private ButtonsManager Buttons;
-    #endregion
+    [SerializeField, ReadOnly] private UserDataAnimations userDataAnimations;
+
     public delegate void BehaviourButtons(int index);
-    #region UNITY_MONOBEHAVIOUR
+
     private void Awake()
     {
         page = AssignGameObjects(pagesHeader);
@@ -76,20 +73,20 @@ public class PagesAndFields : MonoBehaviour
         for (int i = 0; i < footerHeader.childCount; i++)
         { AssignFootersListeners(i); }
 
-        Animations = this.GetComponent<AnimationsManager>();
         Buttons = this.GetComponent<ButtonsManager>();
+        userDataAnimations = this.GetComponent<UserDataAnimations>();
     }
 
     private void Start()
     {
-        Animations.UserData.AnimatorsPage = Animations.UserData.AssignAnimatorsPages(page);
+        userDataAnimations.AnimatorsPage = userDataAnimations.AssignAnimatorsPages(page);
 
         foreach (GameObject pages in page) { pages.SetActive(false); }
         foreach (GameObject footers in footer) { footers.SetActive(false); }
 
         PageActivation(DataManagement.PAGE1);
     }
-    #endregion
+
     #region PAGES_BEHAVIOURS
     public void PageActivation(int pageNumberToActive)
     {
@@ -106,13 +103,13 @@ public class PagesAndFields : MonoBehaviour
         {
             if (pageNumber > 1)
             {
-                Animations.UserData.PlayPageOutAnimation(index);
-                yield return new WaitForSeconds(Animations.UserData.OutClipTime * 0.5f);
+                userDataAnimations.PlayPageOutAnimation(index);
+                yield return new WaitForSeconds(userDataAnimations.OutClipTime * 0.5f);
             }
 
             page[index].SetActive(true);
 
-            yield return new WaitForSeconds(Animations.UserData.EnterClipTime);
+            yield return new WaitForSeconds(userDataAnimations.EnterClipTime);
 
             for (int i = 0; i < index; i++)
             { page[i].SetActive(false); }
@@ -294,7 +291,7 @@ public class PagesAndFields : MonoBehaviour
             { footers.SetActive(false); }
 
             footer[footerIndexToActive].SetActive(true);
-            Animations.UserData.PlayFooterEnterClip();
+            userDataAnimations.PlayFooterEnterClip();
 
             CurrentFooter = footerIndexToActive + 1;
         }
@@ -426,4 +423,3 @@ public class PagesAndFields : MonoBehaviour
     }
     #endregion
 }
-#endregion

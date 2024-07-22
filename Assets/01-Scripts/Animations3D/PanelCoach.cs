@@ -90,13 +90,15 @@ public class PanelCoach : MonoBehaviour
     [Header("Scripts", order = 0)]
     [SerializeField, ReadOnly] private AugmentedReality AR;
     [SerializeField, ReadOnly] private ButtonsManager Buttons;
-    [SerializeField, ReadOnly] private AnimationsManager Animations;
+    [SerializeField, ReadOnly] private TrainingSystem trainingSystem;
+    [SerializeField, ReadOnly] private FloatMenu floatMenu;
 
     private void Awake()
     {
         AR = this.GetComponent<AugmentedReality>();
         Buttons = this.GetComponent<ButtonsManager>();
-        Animations = this.GetComponent<AnimationsManager>();
+        trainingSystem = this.GetComponent<TrainingSystem>();
+        floatMenu = this.GetComponent<FloatMenu>();
 
         pivotCorrection = pivotPanelCoach.GetChild(0);
         objectReference = GameObject.FindGameObjectWithTag(Tag.Coach).transform.GetChild(0);
@@ -111,6 +113,7 @@ public class PanelCoach : MonoBehaviour
         rectMask2D = scrollView.transform.GetChild(0).GetComponent<RectMask2D>();
 
         contentButton = Buttons.Assignment(contentHeader, ButtonsPanelBehaviour).buttons;
+
     }
 
     private void Start()
@@ -202,8 +205,8 @@ public class PanelCoach : MonoBehaviour
     {
         Buttons.CanvasMain.ButtonPanelCoach(true); //incorrect logic
         //Buttons.FloatMenu.ButtonsFloatBehaviour((BodyPart)Calculation.IndexFocus);
-        Animations.TrainingSystem.WorkoutSequence();
-        Animations.FloatMenu.SetBoolFloatAnimators(false);
+        trainingSystem.WorkoutSequence();
+        floatMenu.SetBoolFloatAnimators(false);
     }
 
     public void PanelCoachBehaviour(bool isOpen)

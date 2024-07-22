@@ -1,7 +1,7 @@
 ﻿using ASP;
 using ASP.Extensions;
 using UnityEngine;
-[RequireComponent(typeof(CoachAnimations), typeof(AnimationsManager))]
+[RequireComponent(typeof(CoachAnimations))]
 public class AnimationsMain : MonoBehaviour
 {
     [Header(Header.MANAGEABLE, order = 0)]
