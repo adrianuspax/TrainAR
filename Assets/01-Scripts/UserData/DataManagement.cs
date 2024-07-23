@@ -1,39 +1,55 @@
-﻿using UnityEngine;
-using ASP;
+﻿using ASP;
+using ASP.Extensions;
+using UnityEngine;
 using Debug = ASP.Debug;
-using PlayerPrefs = UnityEngine.PlayerPrefs;
+using PlayerPrefs = ASP.PlayerPrefs;
 [RequireComponent(typeof(PagesAndFields), typeof(UserDataButtons))]
 public class DataManagement : MonoBehaviour
 {
-    [Header(" =========================== READY ONLY =========================== ", order = 0)]
+    [Header(Header.READONLY, order = 0)]
     [Space(-10, order = 1)]
     [Header("SAVED DATA PROFILE", order = 2)]
-    [ReadOnly, SerializeField] private string userName;
-    [ReadOnly, SerializeField] private string gender;
-    [ReadOnly, SerializeField] private string goal;
-    [ReadOnly, SerializeField] private string level;
-    [ReadOnly, SerializeField] private string focus;
-    [ReadOnly, SerializeField] private string age;
-    [ReadOnly, SerializeField] private string currentWeight;
-    [ReadOnly, SerializeField] private string weightGoal;
-    [ReadOnly, SerializeField] private string height;
-    [ReadOnly, SerializeField] private string language;
+    [SerializeField, ReadOnly] private string userName;
+    [SerializeField, ReadOnly] private string gender;
+    [SerializeField, ReadOnly] private string goal;
+    [SerializeField, ReadOnly] private string level;
+    [SerializeField, ReadOnly] private string focus;
+    [SerializeField, ReadOnly] private string age;
+    [SerializeField, ReadOnly] private string currentWeight;
+    [SerializeField, ReadOnly] private string weightGoal;
+    [SerializeField, ReadOnly] private string height;
+    [SerializeField, ReadOnly] private string language;
     [Space(-10, order = 1)]
     [Header("SAVED DATA ACCOUNT", order = 2)]
-    [ReadOnly, SerializeField] private string username;
-    [ReadOnly, SerializeField] private string password;
+    [SerializeField, ReadOnly] private string username;
+    [SerializeField, ReadOnly] private string password;
 
-    [Header("Scripts", order = 0)]
-    [ReadOnly, SerializeField] private PagesAndFields PagesAndFields;
+    [Header(Header.scripts, order = 0)]
+    [SerializeField, ReadOnly] private PagesAndFields PagesAndFields;
     [SerializeField, ReadOnly] private Transition transition;
     [SerializeField, ReadOnly] private UserDataButtons userDataButtons;
+    [Space(20, order = 0)]
+    [NonReorderable, ReadOnly] public string[] levelPhrase;
 
-    #region DATA_MANAGEMENT
-    public const string MALE = "Male";
-    public const string FEMALE = "Female";
+    public readonly static PlayerPrefs.String[] pageKey = new PlayerPrefs.String[]
+    {
+        new("name"),
+        new("gender"),
+        new("goal"),
+        new("level"),
+        new("focus")
+    };
 
-    public readonly static string[] pageKey = new string[] { "name", "gender", "goal", "level", "focus"};
-    public readonly static string[] footerKey = new string[] { "age", "currentWeight", "weightGoal", "height" };
+    public readonly static PlayerPrefs.String[] footerKey = new PlayerPrefs.String[]
+    {
+        new("age"),
+        new("currentWeight"),
+        new("weightGoal"),
+        new("height")
+    };
+
+    public readonly string[] goalName = new string[] { "loseWeight", "moreMuscles", "keepShape" };
+    public readonly string[] focusName = new string[] { "abdomen", "chest", "arms", "legs" };
 
     public const int PAGE1 = 1;
     public const int PAGE2 = 2;
@@ -46,18 +62,14 @@ public class DataManagement : MonoBehaviour
     public const int FOOTER2 = 1;
     public const int FOOTER3 = 2;
     public const int FOOTER4 = 3;
-    #endregion
-    #region DATA_VALUES_MANAGEMENT
-    public readonly string[] goalName = new string[] { "loseWeight", "moreMuscles", "keepShape" };
-    public readonly string[] focusName = new string[] { "abdomen", "chest", "arms", "legs" };
-    [NonReorderable][ReadOnly] public string[] levelPhrase;
-    #endregion
-    #region UNITY_MONOBEHAVIOUR
+
+    public const string MALE = "Male";
+    public const string FEMALE = "Female";
+
     public void Awake()
     {
-        PagesAndFields = this.GetComponent<PagesAndFields>();
-        userDataButtons = this.GetComponent<UserDataButtons>();
-        transition = GameObject.FindGameObjectWithTag(Tag.Transition).GetComponent<Transition>();
+        ComponentsAssignment();
+
         PagesAndFields.PagesQuestionString = LanguageManager.pageQuestion;
         userDataButtons.NextButtonString = LanguageManager.nextButton;
         PagesAndFields.Page1PlaceHolder = LanguageManager.page1PlaceHolder;
@@ -75,24 +87,27 @@ public class DataManagement : MonoBehaviour
 
     public void Start()
     {
+        ValuesAssignment();
         transition.EndClip();
         userDataButtons.NextButtonInteraction = false;
-        userName = UserName;
-        gender = (IsMale ? MALE : FEMALE);
-        goal = Goal;
-        level = Level;
-        focus = Focus;
-        age = MoreEdit[0];
-        currentWeight = MoreEdit[1];
-        weightGoal = MoreEdit[2];
-        height = MoreEdit[3];
-        language = LanguageByindex;
 
-        username = AccountData.Username;
-        password = AccountData.Password;
     }
-    #endregion
-    #region SAVE_DATA
+    /// <summary>
+    /// Assignment of components and variables
+    /// </summary>
+    [ContextMenu("Components Assignment")]
+    private void ComponentsAssignment()
+    {
+        if (PagesAndFields.IsNull())
+            PagesAndFields = GetComponent<PagesAndFields>();
+        if(userDataButtons.IsNull())
+            userDataButtons = GetComponent<UserDataButtons>();
+        if (transition.IsNull())
+            transition = GameObject.FindGameObjectWithTag(Tag.Transition).GetComponent<Transition>();
+
+        ASP.SceneManagement.SceneManager.SaveCurrentScene();
+    }
+
     public void PagesSavePreferences(int page)
     {
         switch (page)
@@ -129,79 +144,90 @@ public class DataManagement : MonoBehaviour
         }
     }
 
-    #endregion
-    #region GET_SET_FUNCTIONS
+    [ContextMenu("Values Assignment")]
+    private void ValuesAssignment()
+    {
+        userName = UserName;
+        gender = (IsMale ? MALE : FEMALE);
+        goal = Goal;
+        level = Level;
+        focus = Focus;
+        age = MoreEdit[0];
+        currentWeight = MoreEdit[1];
+        weightGoal = MoreEdit[2];
+        height = MoreEdit[3];
+        language = LanguageByindex;
+
+        username = AccountData.Username;
+        password = AccountData.Password;
+
+        _ = userName;
+        _ = gender;
+        _ = goal;
+        _ = level;
+        _ = focus;
+        _ = age;
+        _ = currentWeight;
+        _ = weightGoal;
+        _ = height;
+        _ = language;
+        _ = username;
+        _ = password;
+    }
+
     public string UserName
     {
-        get  => PlayerPrefs.GetString(pageKey[0]);
+        get => PlayerPrefs.String.Get(pageKey[0]);
         private set
         {
-            PlayerPrefs.SetString(pageKey[0], value);
-            userName = PlayerPrefs.GetString(pageKey[0]);
+            PlayerPrefs.String.Set(pageKey[0], userName = value);
         }
     }
 
     public bool IsMale
     {
-        get => (GenreByIndex == 0);
+        get => PlayerPrefs.Boolean.Get(pageKey[1]);
         private set
         {
-            GenreByIndex = value ? 0 : 1;
-            gender = (GenreByIndex == 0) ? MALE : FEMALE;
+            PlayerPrefs.Boolean.Set(pageKey[1], value);
+            gender = value ? MALE : FEMALE;
         }
-    }
-
-    private int GenreByIndex
-    {
-        get => PlayerPrefs.GetInt(pageKey[1]);
-        set => PlayerPrefs.SetInt(pageKey[1], value);
     }
 
     public string Goal
     {
-        get => PlayerPrefs.GetString(pageKey[2]);
-        private set
-        {
-            PlayerPrefs.SetString(pageKey[2], value);
-            goal = PlayerPrefs.GetString(pageKey[2]);
-        }
+        get => PlayerPrefs.String.Get(pageKey[2]);
+        private set => PlayerPrefs.String.Set(pageKey[2], goal = value);
     }
 
     public string Level
     {
-        get => PlayerPrefs.GetString(pageKey[3]);
-        private set
-        {
-            PlayerPrefs.SetString(pageKey[3], value);
-            level = PlayerPrefs.GetString(pageKey[3]);
-        }
+        get => PlayerPrefs.String.Get(pageKey[3]);
+        private set => PlayerPrefs.String.Set(pageKey[3], level = value);
     }
 
     public int LevelValue
     {
-        get => ASP.PlayerPrefs.Integer.Get(AccountData.levelValue);
-        set => ASP.PlayerPrefs.Integer.Set(AccountData.levelValue, value);
+        get => PlayerPrefs.Integer.Get(AccountData.levelValue);
+        set => PlayerPrefs.Integer.Set(AccountData.levelValue, value);
     }
 
     public string Focus
     {
-        get => PlayerPrefs.GetString(pageKey[4]);
-        private set
-        {
-            PlayerPrefs.SetString(pageKey[4], value);
-            focus = PlayerPrefs.GetString(pageKey[4]);
-        }
+        get => PlayerPrefs.String.Get(pageKey[4]);
+        private set => PlayerPrefs.String.Set(pageKey[4], focus = value);
     }
 
     public string[] MoreEdit
     {
         get
         {
-            string[] data;
-            data = new string[footerKey.Length];
+            string[] data = new string[footerKey.Length];
 
             for (int i = 0; i < footerKey.Length; i++)
-            { data[i] = PlayerPrefs.GetString(footerKey[i]); }
+            {
+                data[i] = PlayerPrefs.String.Get(footerKey[i]);
+            }
 
             return data;
         }
@@ -210,13 +236,28 @@ public class DataManagement : MonoBehaviour
         {
             for (int i = 0; i < footerKey.Length; i++)
             {
-                PlayerPrefs.SetString(footerKey[i], value[i]);
+                PlayerPrefs.String.Set(footerKey[i], value[i]);
+                _set(i);
             }
 
-            age = MoreEdit[0];
-            currentWeight = MoreEdit[1];
-            weightGoal = MoreEdit[2];
-            height = MoreEdit[3];
+            void _set(int i)
+            {
+                switch (i)
+                {
+                    case 0:
+                        age = value[0];
+                        break;
+                    case 1:
+                        currentWeight = value[1];
+                        break;
+                    case 2:
+                        weightGoal = value[2];
+                        break;
+                    case 3:
+                        height = value[3];
+                        break;
+                }
+            }
         }
     }
 
@@ -227,5 +268,4 @@ public class DataManagement : MonoBehaviour
         2 => "Portuguese BR",
         _ => "English",
     };
-    #endregion
 }

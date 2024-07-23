@@ -1,7 +1,7 @@
 using System;
 using UnityEngine;
 
-public class Calculation : MonoBehaviour
+public static class Calculation
 {
     public enum BMI_Status
     {
