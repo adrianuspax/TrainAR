@@ -4,7 +4,6 @@ using UnityEngine.XR.ARFoundation;
 using UnityEngine.XR.ARSubsystems;
 using ASP;
 using Debug = ASP.Debug;
-[RequireComponent(typeof(AnimationsMain))]
 [RequireComponent(typeof(DropDownMenu), typeof(FloatMenu))]
 public class AugmentedReality : MonoBehaviour
 {
@@ -24,7 +23,7 @@ public class AugmentedReality : MonoBehaviour
     [SerializeField, ReadOnly] private ButtonsMain.StateButtonAR stateButtonAR;
     [Space(-10, order = 0)]
     [Header("Scrips")]
-    [SerializeField, ReadOnly] private AnimationsMain animationsMain;
+    [SerializeField, ReadOnly] private AnchorAnimation animationsMain;
     [SerializeField, ReadOnly] private FloatMenu floatMenu;
     [SerializeField, ReadOnly] private Transition transition;
     [SerializeField, ReadOnly] private ButtonsMain buttonsMain;
@@ -34,7 +33,7 @@ public class AugmentedReality : MonoBehaviour
 
     private void Awake()
     {
-        animationsMain = GetComponent<AnimationsMain>();
+        animationsMain = GetComponent<AnchorAnimation>();
         buttonsMain = GetComponent<ButtonsMain>();
         transition = GameObject.FindGameObjectWithTag(Tag.Transition).GetComponent<Transition>();
     }

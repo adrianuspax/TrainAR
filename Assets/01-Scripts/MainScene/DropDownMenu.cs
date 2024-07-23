@@ -4,7 +4,7 @@ using System.Collections;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
-[RequireComponent(typeof(AnimationsMain))]
+
 public class DropDownMenu : MonoBehaviour
 {
     [Header(Header.MANAGEABLE, order = 0)]

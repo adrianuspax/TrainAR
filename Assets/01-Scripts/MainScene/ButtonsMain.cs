@@ -39,7 +39,7 @@ public class ButtonsMain : MonoBehaviour
     [SerializeField, ReadOnly] private AugmentedReality AR;
     [SerializeField, ReadOnly] private PanelResult panelResult;
     [SerializeField, ReadOnly] private PanelCoach panelCoach;
-    [SerializeField, ReadOnly] private AnimationsMain animationsMain;
+    [SerializeField, ReadOnly] private AnchorAnimation animationsMain;
     [SerializeField, ReadOnly] private FloatMenu floatMenu;
     [SerializeField, ReadOnly] private CoachAnimations coachAnimations;
 
@@ -69,7 +69,7 @@ public class ButtonsMain : MonoBehaviour
         if (panelCoach.IsNull())
             panelCoach = GetComponent<PanelCoach>();
         if (animationsMain.IsNull())
-            animationsMain = GetComponent<AnimationsMain>();
+            animationsMain = GetComponent<AnchorAnimation>();
         if (floatMenu.IsNull())
             floatMenu = GetComponent<FloatMenu>();
         if (coachAnimations.IsNull())

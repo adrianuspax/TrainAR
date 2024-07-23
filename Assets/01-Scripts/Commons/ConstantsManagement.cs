@@ -22,8 +22,6 @@ public static class StateTag
 
 public static class Parameter
 {
-    public const string AnchorHit = "isHit";
-    public const string AnchorEnable = "anchorEnable";
     public const string Breathing = "BreathingBlend";
     public const string floatIsOpen = "floatIsOpen";
 }

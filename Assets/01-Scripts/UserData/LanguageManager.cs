@@ -12,15 +12,12 @@ public class LanguageManager : MonoBehaviour
         BR = 2
     };
 
-    #region UNITY_INSPECTOR
     [Header(" BUTTONS ", order = 0)]
     [SerializeField] private Transform buttonsLangHeader;
     [SerializeField] private Button okButton;
     [SerializeField] private Button closeButton;
     [SerializeField] private Button returnButton;
 
-    #endregion
-    #region READY_INSPECTOR
     [Header(" =========================== READY ONLY =========================== ", order = 0)]
     [Space(-10, order = 1)]
     [Header("LANGUAGE", order = 2)]
@@ -33,9 +30,8 @@ public class LanguageManager : MonoBehaviour
 
     [Header("Scripts", order = 0)]
     [SerializeField, ReadOnly] private Transition transition;
-    #endregion
-    #region STATIC_STRINGS
-    //pages and fields
+
+    ///pages and fields
     public static string[] pageQuestion;
     public static string nextButton;
     public static string page1PlaceHolder;
@@ -49,7 +45,7 @@ public class LanguageManager : MonoBehaviour
     public static string[] valueUnits;
     public static string saveButton;
     public static string cancelButton;
-    //Login
+    ///Login
     public static string id;
     public static string password;
     public static string placeHolderID;
@@ -58,7 +54,7 @@ public class LanguageManager : MonoBehaviour
     public static string signOn;
     public static string fieldEmptyWarning;
     public static string incorrectWarning;
-    //edit
+    ///edit
     public static string newID;
     public static string newPassword;
     public static string repeatPassword;
@@ -68,7 +64,7 @@ public class LanguageManager : MonoBehaviour
     public static string alreadyIDWarning;
     public static string passwordsDontMatch;
     public static string okButtonString;
-    //menu
+    ///menu
     public static string signedInAs;
     public static string updateProfile;
     public static string editAccount;
@@ -78,7 +74,7 @@ public class LanguageManager : MonoBehaviour
     public static string areYouSure;
     public static string yes;
     public static string nop;
-    //default
+    ///default
     public static string _name;
     public static string age;
     public static string weight;
@@ -97,7 +93,6 @@ public class LanguageManager : MonoBehaviour
     public static string toLoseFat;
     public static string toBurnCal;
 
-    #endregion
     #region ENGLISH
     private readonly static string nameEN = 
         "Name";
