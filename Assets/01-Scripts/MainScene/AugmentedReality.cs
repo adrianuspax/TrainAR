@@ -21,7 +21,7 @@ public class AugmentedReality : MonoBehaviour
     [SerializeField, ReadOnly] private Vector2 screenPoint;
     [SerializeField, ReadOnly] private Vector3 anchorPosSaver;
     [SerializeField, ReadOnly] private TrackableType trackableTypes;
-    [SerializeField, ReadOnly] private StateButtonAR stateButtonAR;
+    [SerializeField, ReadOnly] private ButtonsMain.StateButtonAR stateButtonAR;
     [Space(-10, order = 0)]
     [Header("Scrips")]
     [SerializeField, ReadOnly] private AnimationsMain animationsMain;
@@ -116,14 +116,14 @@ public class AugmentedReality : MonoBehaviour
             if (coach3D.activeInHierarchy)
             {
                 coach3D.SetActive(false);
-                stateButtonAR = StateButtonAR.ReadyToSet;
+                stateButtonAR = ButtonsMain.StateButtonAR.ReadyToSet;
                 animationsMain.AnchorVisible(true);
             }
             else if (AnchorIsHitting)
             {
                 coach3D.transform.position = anchorPosSaver;
                 coach3D.SetActive(true);
-                stateButtonAR = StateButtonAR.Refresh;
+                stateButtonAR = ButtonsMain.StateButtonAR.Refresh;
                 animationsMain.AnchorVisible(false);
                 floatMenu.SetBoolFloatAnimators(true);
             }

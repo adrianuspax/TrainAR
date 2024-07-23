@@ -5,6 +5,12 @@ using UnityEngine.UI;
 [RequireComponent(typeof(AugmentedReality))]
 public class ButtonsMain : MonoBehaviour
 {
+    public enum StateButtonAR
+    {
+        ReadyToSet = 0,
+        Refresh = 1
+    };
+
     [Header(Header.MANAGEABLE, order = 0)]
     [Space(-10, order = 1)]
     [Header(Header.variables, order = 2)]

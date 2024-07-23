@@ -6,6 +6,14 @@ using Debug = ASP.Debug;
 
 public class PanelCoach : MonoBehaviour
 {
+    public enum Focus
+    {
+        chest = 0, //1
+        abdomen = 1, //0
+        legs = 2, //3
+        arms = 3 //2
+    }
+
     [Header("Animation", order = 0)]
     [SerializeField] private Animator panelCoachAniamtor;
     [SerializeField] private AnimationClip panelCoachStartClip;

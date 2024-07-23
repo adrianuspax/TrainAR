@@ -154,7 +154,7 @@ public static class Calculation
                     float targetWeight,
                     Goal goal,
                     Level level,
-                    Focus focus)
+                    PanelCoach.Focus focus)
     InputedData
     {
         get => (AccountData.IsMale,
@@ -164,6 +164,6 @@ public static class Calculation
                 AccountData.TargetWeight,
                 (Goal)Enum.Parse(typeof(Goal), AccountData.Goal),
                 (Level)AccountData.Level,
-                (Focus)Enum.Parse(typeof(Focus), AccountData.Focus));
+                (PanelCoach.Focus)Enum.Parse(typeof(PanelCoach.Focus), AccountData.Focus));
     }
 }

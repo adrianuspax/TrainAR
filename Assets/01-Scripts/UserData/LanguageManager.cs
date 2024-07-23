@@ -5,6 +5,13 @@ using Debug = ASP.Debug;
 
 public class LanguageManager : MonoBehaviour
 {
+    public enum Lang
+    {
+        EN = 0,
+        KO = 1,
+        BR = 2
+    };
+
     #region UNITY_INSPECTOR
     [Header(" BUTTONS ", order = 0)]
     [SerializeField] private Transform buttonsLangHeader;
@@ -17,8 +24,8 @@ public class LanguageManager : MonoBehaviour
     [Header(" =========================== READY ONLY =========================== ", order = 0)]
     [Space(-10, order = 1)]
     [Header("LANGUAGE", order = 2)]
-    [ReadOnly, SerializeField] private Language lang;
-                               private static Language langStatic;
+    [ReadOnly, SerializeField] private Lang lang;
+                               private static Lang langStatic;
     [Space(-10, order = 0)]
     [Header("BUTTONS", order = 1)]
     [NonReorderable][ReadOnly, SerializeField] private Button[] langButton;
@@ -491,7 +498,7 @@ public class LanguageManager : MonoBehaviour
             }
         }
 
-        Language = (Language)index;
+        Language = (Lang)index;
         lang = langStatic;
     }
 
@@ -508,11 +515,11 @@ public class LanguageManager : MonoBehaviour
 
     public static void LoadLang(int index)
     {
-        Language = (Language)index;
+        Language = (Lang)index;
 
         switch (Language)
         {
-            case Language.EN:
+            case Lang.EN:
                _name = nameEN;
                 age = ageEN;
                 weight = weightEN;
@@ -574,7 +581,7 @@ public class LanguageManager : MonoBehaviour
                 saveButton = saveButtonEN;
                 cancelButton = cancelButtonEN;
                 break;
-            case Language.KO:
+            case Lang.KO:
                 _name = nameKO;
                 age = ageKO;
                 weight = weightKO;
@@ -636,7 +643,7 @@ public class LanguageManager : MonoBehaviour
                 saveButton = saveButtonKO;
                 cancelButton = cancelButtonKO;
                 break;
-            case Language.BR:
+            case Lang.BR:
                 _name = nameBR;
                 age = ageBR;
                 weight = weightBR;
@@ -701,7 +708,7 @@ public class LanguageManager : MonoBehaviour
         }
     }
 
-    public static Language Language
+    public static Lang Language
     {
         get => langStatic;
         private set => langStatic = value;
