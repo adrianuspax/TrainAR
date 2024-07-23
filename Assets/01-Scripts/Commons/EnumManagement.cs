@@ -11,13 +11,6 @@ public enum StateButtonAR
     Refresh = 1
 };
 
-public enum Goal
-{
-    loseWeight = 0,
-    moreMuscles = 1,
-    keepShape = 2
-};
-
 public enum Focus
 {
     chest = 0, //1
@@ -26,19 +19,3 @@ public enum Focus
     arms = 3 //2
 }
 
-public enum Level
-{
-    I = 1,
-    II = 2,
-    III = 3,
-    IV = 4,
-    V = 5
-};
-
-public enum StatusBMI
-{
-    lean = 0,
-    normal = 1,
-    overweight = 2,
-    obese = 3
-};

@@ -3,69 +3,54 @@ using UnityEngine;
 
 public class Calculation : MonoBehaviour
 {
-    private static
-        (
-        bool isMale,
-        int age,
-        float height,
-        float currentWeight,
-        float targetWeight,
-        Goal goal,
-        Level level,
-        Focus focus
-        ) InputedData
+    public enum BMI_Status
     {
-        get
-        {
-            return
-                (
-                AccountData.IsMale,
-                AccountData.Age,
-                AccountData.Height,
-                AccountData.CurrentWeight,
-                AccountData.TargetWeight,
-                (Goal)Enum.Parse(typeof(Goal), AccountData.Goal),
-                (Level)AccountData.Level,
-                (Focus)Enum.Parse(typeof(Focus), AccountData.Focus)
-                );
-        }
-    }
+        lean = 0,
+        normal = 1,
+        overweight = 2,
+        obese = 3
+    };
 
-    private static float CalcBMI(float height, float weight)
+    public enum Goal
+    {
+        loseWeight = 0,
+        moreMuscles = 1,
+        keepShape = 2
+    };
+
+    public enum Level
+    {
+        I = 1,
+        II = 2,
+        III = 3,
+        IV = 4,
+        V = 5
+    };
+
+    private static float GetBMI(float height, float weight)
     {
         float bmi, heightInMeters;
-
         heightInMeters = height * 0.01f;
         bmi = weight / Mathf.Pow(heightInMeters, 2);
-
         return bmi;
     }
 
-    private static StatusBMI SetStatusBMI(float bmi)
+    private static BMI_Status GetStatusBMI(float bmi)
     {
-        if (bmi < 18.5f)
+        return bmi switch
         {
-            return StatusBMI.lean;
-        }
-        else if (bmi < 25f)
-        {
-            return StatusBMI.normal;
-        }
-        else if (bmi < 30f)
-        {
-            return StatusBMI.overweight;
-        }
-        else
-        {
-            return StatusBMI.obese;
-        }
+            < 18.5f => BMI_Status.lean,
+            < 25f => BMI_Status.normal,
+            < 30f => BMI_Status.overweight,
+            _ => BMI_Status.obese,
+        };
     }
 
-    private static float CalcBodyFat(int age, bool isMale, Level currentLevel)
+    private static float GetBodyFat(int age, bool isMale, Level currentLevel)
     {
-        if(age <= 29) // 0 ~ 29
+        return age switch
         {
-            return currentLevel switch
+            <= 29 => currentLevel switch
             {
                 Level.I => isMale ? 0.23f : 0.31f,
                 Level.II => isMale ? 0.22f : 0.30f,
@@ -73,11 +58,8 @@ public class Calculation : MonoBehaviour
                 Level.IV => isMale ? 0.12f : 0.175f,
                 Level.V => isMale ? 0.11f : 0.16f,
                 _ => isMale ? 0.17f : 0.24f,
-            };
-        }
-        else if(age <= 39) // 30 ~ 39
-        {
-            return currentLevel switch
+            },
+            <= 39 => currentLevel switch
             {
                 Level.I => isMale ? 0.24f : 0.32f,
                 Level.II => isMale ? 0.23f : 0.31f,
@@ -85,11 +67,8 @@ public class Calculation : MonoBehaviour
                 Level.IV => isMale ? 0.13f : 0.185f,
                 Level.V => isMale ? 0.12f : 0.17f,
                 _ => isMale ? 0.18f : 0.25f,
-            };
-        }
-        else if(age <= 49) // 40 ~ 49
-        {
-            return currentLevel switch
+            },
+            <= 49 => currentLevel switch
             {
                 Level.I => isMale ? 0.26f : 0.33f,
                 Level.II => isMale ? 0.25f : 0.32f,
@@ -97,11 +76,8 @@ public class Calculation : MonoBehaviour
                 Level.IV => isMale ? 0.15f : 0.195f,
                 Level.V => isMale ? 0.14f : 0.18f,
                 _ => isMale ? 0.20f : 0.26f,
-            };
-        }
-        else // 50 ~ infinity
-        {
-            return currentLevel switch
+            },
+            _ => currentLevel switch
             {
                 Level.I => isMale ? 0.27f : 0.34f,
                 Level.II => isMale ? 0.26f : 0.33f,
@@ -109,42 +85,42 @@ public class Calculation : MonoBehaviour
                 Level.IV => isMale ? 0.16f : 0.205f,
                 Level.V => isMale ? 0.15f : 0.19f,
                 _ => isMale ? 0.21f : 0.27f,
-            };
-        }
+            }
+        };
     }
 
-    private static float CalcFat(float weight, float bodyFat) => weight * bodyFat;
-    private static float CalcLoseWeight(float currentWeight, float targetWeight) => currentWeight - targetWeight;
-    public static float BMI => CalcBMI(InputedData.height, InputedData.currentWeight);
-    public static float BodyFat => CalcBodyFat(InputedData.age, InputedData.isMale, InputedData.level);
+    private static float GetFat(float weight, float bodyFat) => weight * bodyFat;
+    private static float GetLoseWeight(float currentWeight, float targetWeight) => currentWeight - targetWeight;
+    public static float ValueBMI => GetBMI(InputedData.height, InputedData.currentWeight);
+    public static float BodyFat => GetBodyFat(InputedData.age, InputedData.isMale, InputedData.level);
     public static Level TargetLevel
     {
         get
         {
             Level targetLevel = StatusBMI switch
             {
-                StatusBMI.lean => InputedData.goal switch
+                BMI_Status.lean => InputedData.goal switch
                 {
                     Goal.loseWeight => (InputedData.level == Level.V) ? Level.V : (Level)((int)InputedData.level + 1),
                     Goal.moreMuscles => (InputedData.level == Level.V) ? Level.V : (Level)((int)InputedData.level + 1),
                     Goal.keepShape => ((int)InputedData.level > 3) ? InputedData.level : Level.III,
                     _ => Level.III,
                 },
-                StatusBMI.normal => InputedData.goal switch
+                BMI_Status.normal => InputedData.goal switch
                 {
                     Goal.loseWeight => (InputedData.level == Level.V) ? Level.V : (Level)((int)InputedData.level + 1),
                     Goal.moreMuscles => ((int)InputedData.level > 3) ? Level.V : (Level)((int)InputedData.level + 2),
                     Goal.keepShape => ((int)InputedData.level > 3) ? InputedData.level : Level.III,
                     _ => Level.III,
                 },
-                StatusBMI.overweight => InputedData.goal switch
+                BMI_Status.overweight => InputedData.goal switch
                 {
                     Goal.loseWeight => ((int)InputedData.level > 3) ? InputedData.level : Level.III,
                     Goal.moreMuscles => ((int)InputedData.level > 3) ? InputedData.level : Level.IV,
                     Goal.keepShape => ((int)InputedData.level > 3) ? InputedData.level : Level.III,
                     _ => Level.III,
                 },
-                StatusBMI.obese => InputedData.goal switch
+                BMI_Status.obese => InputedData.goal switch
                 {
                     Goal.loseWeight => ((int)InputedData.level > 3) ? InputedData.level : Level.III,
                     Goal.moreMuscles => ((int)InputedData.level > 3) ? InputedData.level : Level.III,
@@ -157,16 +133,37 @@ public class Calculation : MonoBehaviour
             return targetLevel;
         }
     }
-    public static StatusBMI StatusBMI => SetStatusBMI(BMI);
-    public static float TargetBodyFat => CalcBodyFat(InputedData.age, InputedData.isMale, TargetLevel);
-    public static float CurrentFat => CalcFat(InputedData.currentWeight, BodyFat);
-    public static float TargetFat => CalcFat(InputedData.targetWeight, TargetBodyFat);
-    public static float ToLoseWeight => CalcLoseWeight(InputedData.currentWeight, InputedData.targetWeight);
+
+    public static BMI_Status StatusBMI => GetStatusBMI(ValueBMI);
+    public static float TargetBodyFat => GetBodyFat(InputedData.age, InputedData.isMale, TargetLevel);
+    public static float CurrentFat => GetFat(InputedData.currentWeight, BodyFat);
+    public static float TargetFat => GetFat(InputedData.targetWeight, TargetBodyFat);
+    public static float ToLoseWeight => GetLoseWeight(InputedData.currentWeight, InputedData.targetWeight);
     public static float ToBurnCalories => ToLoseWeight * 7700f;
 
     public static int IndexGoal => (int)InputedData.goal;
     public static int IndexFocus => (int)InputedData.focus;
     public static int IndexLevel => (int)InputedData.level;
 
-    public static float IdealBodyFat => CalcBodyFat(InputedData.age, InputedData.isMale, Level.II);
+    public static float IdealBodyFat => GetBodyFat(InputedData.age, InputedData.isMale, Level.II);
+
+    private static (bool isMale,
+                    int age,
+                    float height,
+                    float currentWeight,
+                    float targetWeight,
+                    Goal goal,
+                    Level level,
+                    Focus focus)
+    InputedData
+    {
+        get => (AccountData.IsMale,
+                AccountData.Age,
+                AccountData.Height,
+                AccountData.CurrentWeight,
+                AccountData.TargetWeight,
+                (Goal)Enum.Parse(typeof(Goal), AccountData.Goal),
+                (Level)AccountData.Level,
+                (Focus)Enum.Parse(typeof(Focus), AccountData.Focus));
+    }
 }

@@ -340,7 +340,7 @@ public class PanelCoach : MonoBehaviour
         {
             return
                 (
-                Calculation.BMI.ToString("F2") + " kg/m�",
+                Calculation.ValueBMI.ToString("F2") + " kg/m�",
                 LanguageManager.statusBMI[(int)Calculation.StatusBMI],
                (Calculation.BodyFat * 100f).ToString("F2") + "%",
                 Calculation.CurrentFat.ToString("F2") + " kg"

@@ -47,7 +47,7 @@ public class PanelResult : MonoBehaviour
 
     private void Start()
     {
-        bmi = RangingBMI(Calculation.BMI);
+        bmi = RangingBMI(Calculation.ValueBMI);
         currentLevel = RagingLevel(Calculation.IndexLevel);
         bodyFat = RangingBodyFat(Calculation.BodyFat);
         biotype = RangingBiotype(Calculation.StatusBMI);
@@ -93,6 +93,6 @@ public class PanelResult : MonoBehaviour
     public float RangingBMI(float bmi) => (((-2f * bmi) + 60f) / 23f);
     public float RagingLevel(int level) => (level - 1f) * 0.25f;
     public float RangingBodyFat(float bodyFat) => (Mathf.Pow(bodyFat, 2) / (Mathf.Pow(Calculation.IdealBodyFat, 2) - Calculation.IdealBodyFat)) + ((2 * bodyFat) / (1 - Calculation.IdealBodyFat));
-    public float RangingBiotype(StatusBMI status) => (1 - ((int)status / 3f));
+    public float RangingBiotype(Calculation.BMI_Status status) => (1 - ((int)status / 3f));
     public float RagingBurnedCal(float burnedCal) => burnedCal / Calculation.ToBurnCalories;
 }
