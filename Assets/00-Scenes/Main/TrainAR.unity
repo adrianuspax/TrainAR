@@ -4685,6 +4685,11 @@ PrefabInstance:
       propertyPath: m_fontSize
       value: 5.3
       objectReference: {fileID: 0}
+    - target: {fileID: 1088263294088013633, guid: 9a5c1fc3537363f48a0d052de1354224,
+        type: 3}
+      propertyPath: m_Name
+      value: btnFloat1
+      objectReference: {fileID: 0}
     - target: {fileID: 1338804870140768455, guid: 9a5c1fc3537363f48a0d052de1354224,
         type: 3}
       propertyPath: m_Camera
@@ -4780,6 +4785,11 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: 1dd1ba42fa21e2746b7f55d182f11993, type: 2}
+    - target: {fileID: 3022061968505982831, guid: 9a5c1fc3537363f48a0d052de1354224,
+        type: 3}
+      propertyPath: m_Name
+      value: btnFloat2
+      objectReference: {fileID: 0}
     - target: {fileID: 3866611559309958600, guid: 9a5c1fc3537363f48a0d052de1354224,
         type: 3}
       propertyPath: m_IsActive
@@ -4814,6 +4824,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_IsActive
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5101270522855085939, guid: 9a5c1fc3537363f48a0d052de1354224,
+        type: 3}
+      propertyPath: m_Name
+      value: btnFloat4
       objectReference: {fileID: 0}
     - target: {fileID: 5140996330594624828, guid: 9a5c1fc3537363f48a0d052de1354224,
         type: 3}
@@ -6434,6 +6449,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_text
       value: 'Your data:'
+      objectReference: {fileID: 0}
+    - target: {fileID: 9099126495905821468, guid: 9a5c1fc3537363f48a0d052de1354224,
+        type: 3}
+      propertyPath: m_Name
+      value: btnFloat3
       objectReference: {fileID: 0}
     - target: {fileID: 9133801271382634336, guid: 9a5c1fc3537363f48a0d052de1354224,
         type: 3}
@@ -16699,8 +16719,8 @@ MonoBehaviour:
   - {fileID: 532455049}
   - {fileID: 532455045}
   - {fileID: 532455042}
-  buttonsMain: {fileID: 0}
-  dropDownMenu: {fileID: 0}
+  buttonsMain: {fileID: 2045423147}
+  dropDownMenu: {fileID: 2045423146}
 --- !u!114 &2045423156
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -16843,16 +16863,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2bad3730598ff1643a3a6dd5360e6965, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  coachToMuscles: {fileID: 7400000, guid: ceb5feebd1642db47b2a567e0dacad34, type: 2}
+  musclesToCoach: {fileID: 7400000, guid: 1c13410dd5edc8c40aa708179c7557c8, type: 2}
+  plus: {fileID: 21300000, guid: 7be1ce8cc437c6748ba325834c4a0d9a, type: 3}
+  minus: {fileID: 21300000, guid: 67cfef9cfb7a7c44a84088d7e0569d16, type: 3}
   lupaBotton: {fileID: 1612507521}
   legButton: {fileID: 1054462985}
   closeButton: {fileID: 1260345304}
   plusButton: {fileID: 2031072716}
   fadeAnimator: {fileID: 1884461489}
-  coachToMuscles: {fileID: 7400000, guid: ceb5feebd1642db47b2a567e0dacad34, type: 2}
-  musclesToCoach: {fileID: 7400000, guid: 1c13410dd5edc8c40aa708179c7557c8, type: 2}
-  plus: {fileID: 21300000, guid: 7be1ce8cc437c6748ba325834c4a0d9a, type: 3}
-  minus: {fileID: 21300000, guid: 67cfef9cfb7a7c44a84088d7e0569d16, type: 3}
   legAnimation: {fileID: 1554299024}
+  lupaIsPressed: 0
+  plusIsPressed: 0
+  floatMenu: {fileID: 2045423154}
+  dropDownMenu: {fileID: 2045423146}
 --- !u!114 &2045423161
 MonoBehaviour:
   m_ObjectHideFlags: 0
