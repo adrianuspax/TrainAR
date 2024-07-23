@@ -1,41 +1,41 @@
 ﻿using ASP;
+using ASP.Extensions;
 using System.Collections;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
-
 [RequireComponent(typeof(AnimationsMain))]
 public class DropDownMenu : MonoBehaviour
 {
-    [Header("DROP-DOWN MENU BEHAVIOUR", order = 0)]
+    [Header(Header.MANAGEABLE, order = 0)]
     [Space(-10, order = 1)]
-    [Header("Buttons", order = 2)]
-    [SerializeField] private Button btnOpenDropDown;
-    [SerializeField] private Button btnCloseDropDown;
-    [Space(-10, order = 0)]
-    [Header("Animations", order = 1)]
-    [SerializeField] private Animator aniDropDownMenu;
+    [Header(Header.animationClips, order = 2)]
     [SerializeField] private AnimationClip dropDownCloseClip;
     [SerializeField] private AnimationClip dropDownOpenClip;
     [SerializeField] private AnimationClip dropDownNullClip;
-    [Space(-10, order = 0)]
-    [Header("Scrow View", order = 1)]
-    [SerializeField] private ScrollRect dropDownScrollRect;
-    [SerializeField] private GameObject content;
 
-    [Header("READY ONLY", order = 0)]
+    [Header(Header.READONLY, order = 0)]
     [Space(-10, order = 1)]
-    [Header("Variables", order = 2)]
+    [Header(Header.components, order = 2)]
+    [SerializeField, ReadOnly] private Animator aniDropDownMenu;
+    [SerializeField, ReadOnly] private ScrollRect dropDownScrollRect;
+    [SerializeField, ReadOnly] private Button btnOpenDropDown;
+    [SerializeField, ReadOnly] private Button btnCloseDropDown;
+    [Space(-10, order = 0)]
+    [Header(Header.variables, order = 1)]
     [SerializeField, ReadOnly] private bool panelDropDownOpen;
     [SerializeField, ReadOnly] private Transform buttonsHeader;
-    [NonReorderable][SerializeField, ReadOnly] private Button[] gridButtonDDM;
-    [NonReorderable][SerializeField, ReadOnly] private bool[] isPressDDM;
+    [NonReorderable, SerializeField, ReadOnly] private Button[] gridButtonDDM;
+    [NonReorderable, SerializeField, ReadOnly] private bool[] isPressDDM;
+    [NonReorderable, SerializeField, ReadOnly] private TextMeshProUGUI[] tmps;
+    [Space(-10, order = 0)]
+    [Header(Header.colors, order = 1)]
     [SerializeField, ReadOnly] private Color pressedColor;
     [SerializeField, ReadOnly] private Color pressedTxtColor;
     [SerializeField, ReadOnly] private Color unpressedColor;
     [SerializeField, ReadOnly] private Color unpressedTxtColor;
-    [Space(-10, order = 1)]
-    [Header("Scripts", order = 2)]
+
+    [Header(Header.scripts, order = 0)]
     [SerializeField, ReadOnly] private FloatMenu floatMenu;
     [SerializeField, ReadOnly] private CoachAnimations coachAnimations;
     [SerializeField, ReadOnly] private ButtonsMain buttonsMain;
@@ -44,20 +44,55 @@ public class DropDownMenu : MonoBehaviour
 
     private void Awake()
     {
-        floatMenu = this.GetComponent<FloatMenu>();
-        coachAnimations = this.GetComponent<CoachAnimations>();
-        buttonsMain = this.GetComponent<ButtonsMain>();
-
+        ComponentsAssignment();
+    }
+    /// This function is called when the object becomes enabled and active.
+    private void OnEnable()
+    {
         btnOpenDropDown.onClick.AddListener(() => ButtonOpenDropDown());
         btnCloseDropDown.onClick.AddListener(() => ButtonCloseDropDown());
+    }
+    /// <summary>
+    /// Assignment of components and variables
+    /// </summary>
+    [ContextMenu("Components Assignment")]
+    private void ComponentsAssignment()
+    {
+        if (floatMenu.IsNull())
+            floatMenu = GetComponent<FloatMenu>();
+        if (coachAnimations.IsNull())
+            coachAnimations = GetComponent<CoachAnimations>();
+        if (buttonsMain.IsNull())
+            buttonsMain = GetComponent<ButtonsMain>();
+        if (buttonsHeader.IsNull())
+            buttonsHeader = GameObject.Find("Content1").transform;
+        if (gridButtonDDM.IsNullOrEmpty())
+            (gridButtonDDM, isPressDDM) = ButtonsManager.Assignment(buttonsHeader, ButtonsDDMBehaviour);
+        if (tmps.IsNullOrEmpty())
+        {
+            tmps = new TextMeshProUGUI[buttonsHeader.childCount];
 
-        buttonsHeader = content.transform;
+            for (int i = 0; i < tmps.Length; i++)
+            {
+                tmps[i] = buttonsHeader.GetChild(i).GetComponentInChildren<TextMeshProUGUI>();
+            }
+        }
+
+        if (btnOpenDropDown.IsNull())
+            btnOpenDropDown = GameObject.Find("btnOpenDropDown").GetComponent<Button>();
+        if (btnCloseDropDown.IsNull())
+            btnCloseDropDown = GameObject.Find("btnCloseDropDown").GetComponent<Button>();
+        if (aniDropDownMenu.IsNull())
+            aniDropDownMenu = GameObject.Find("aniDropDownMenu").GetComponent<Animator>();
+        if (dropDownScrollRect.IsNull())
+            dropDownScrollRect = GameObject.Find("ScrollView1").GetComponent<ScrollRect>();
 
         pressedColor = PalleteColors.DoubleSplitComplementary(2);
         pressedTxtColor = PalleteColors.Square(1);
-        (gridButtonDDM, isPressDDM) = ButtonsManager.Assignment(buttonsHeader, ButtonsDDMBehaviour);
         unpressedColor = gridButtonDDM[0].image.color;
         unpressedTxtColor = gridButtonDDM[0].transform.GetChild(0).GetComponent<TextMeshProUGUI>().color;
+
+        ASP.SceneManagement.SceneManager.SaveCurrentScene();
     }
 
     public void ButtonOpenDropDown()
@@ -70,20 +105,25 @@ public class DropDownMenu : MonoBehaviour
         {
             panelDropDownOpen = true;
             aniDropDownMenu.Play(dropDownOpenClip.name);
-            StartCoroutine(Cor_ScrowViewPos(dropDownOpenClip.length));
+            StartCoroutine(_scrowViewPos(dropDownOpenClip.length));
             floatMenu.ButtonsFloatBehaviour(FloatMenu.BodyPart.All);
             floatMenu.SetBoolFloatAnimators(false);
+        }
+
+        IEnumerator _scrowViewPos(float time)
+        {
+            yield return new WaitForSeconds(time);
+            dropDownScrollRect.verticalNormalizedPosition = 0.5f;
         }
     }
 
     public void ButtonCloseDropDown()
     {
-        bool conditional;
-        conditional =
-       coachAnimations.CurrentAnimation.isWorkout ||
-       coachAnimations.CurrentAnimation.isEnter ||
-       coachAnimations.NextAnimation.willBeWorkout ||
-       coachAnimations.NextAnimation.willBeEnter;
+        bool conditional =
+        coachAnimations.CurrentAnimation.isWorkout ||
+        coachAnimations.CurrentAnimation.isEnter ||
+        coachAnimations.NextAnimation.willBeWorkout ||
+        coachAnimations.NextAnimation.willBeEnter;
 
         if (panelDropDownOpen)
         {
@@ -95,43 +135,36 @@ public class DropDownMenu : MonoBehaviour
             if (conditional)
             {
                 coachAnimations.StartIdleAnimation();
-                AllButtonsDefault();
+                SetAllButtonsDefault();
             }
         }
     }
 
-    private IEnumerator Cor_ScrowViewPos(float time)
-    {
-        yield return new WaitForSeconds(time);
-        dropDownScrollRect.verticalNormalizedPosition = 0.5f;
-    }
-
     private void ButtonsDDMBehaviour(int index)
     {
-        isPressDDM[index] = !isPressDDM[index];
-
         Vector3 deslocation;
-        TextMeshProUGUI text;
+        isPressDDM[index] = !isPressDDM[index];
 
         for (int i = 0; i < gridButtonDDM.Length; i++)
         {
             if (i == index && isPressDDM[index])
             {
-                deslocation = new Vector3(gridButtonDDM[index].transform.localPosition.x, gridButtonDDM[index].transform.localPosition.y, -30);
-                text = gridButtonDDM[index].transform.GetChild(0).GetComponent<TextMeshProUGUI>();
+                deslocation.x = gridButtonDDM[index].transform.localPosition.x;
+                deslocation.y = gridButtonDDM[index].transform.localPosition.y;
+                deslocation.z = -30f;
 
-                text.color = pressedTxtColor;
+                tmps[index].color = pressedTxtColor;
                 gridButtonDDM[index].image.color = pressedColor;
                 gridButtonDDM[index].transform.localPosition = deslocation;
-
-                ButtonsDDMFunction(index);
+                coachAnimations.StartAnimation(index + 3);
             }
             else
             {
-                deslocation = new Vector3(gridButtonDDM[i].transform.localPosition.x, gridButtonDDM[i].transform.localPosition.y, 0);
-                text = gridButtonDDM[i].transform.GetChild(0).GetComponent<TextMeshProUGUI>();
+                deslocation.x = gridButtonDDM[i].transform.localPosition.x;
+                deslocation.y = gridButtonDDM[i].transform.localPosition.y;
+                deslocation.z = 0f;
 
-                text.color = unpressedTxtColor;
+                tmps[i].color = unpressedTxtColor;
                 gridButtonDDM[i].image.color = unpressedColor;
                 gridButtonDDM[i].transform.localPosition = deslocation;
                 ButtonsManager.SetInteraction(!isPressDDM[index], gridButtonDDM[i]);
@@ -140,29 +173,22 @@ public class DropDownMenu : MonoBehaviour
         }
 
         if (!isPressDDM[index])
-        {
             coachAnimations.StartIdleAnimation();
-        }
 
         IsPressed = isPressDDM[index];
     }
 
-    private void ButtonsDDMFunction(int index)
-    {
-        coachAnimations.StartAnimation(index + 3);
-    }
-
-    public void AllButtonsDefault()
+    public void SetAllButtonsDefault()
     {
         Vector3 deslocation;
-        TextMeshProUGUI text;
 
-        for (int i = 0; i < TotalButtons; i++)
+        for (int i = 0; i < buttonsHeader.childCount; i++)
         {
-            deslocation = new Vector3(gridButtonDDM[i].transform.localPosition.x, gridButtonDDM[i].transform.localPosition.y, 0);
-            text = gridButtonDDM[i].transform.GetChild(0).GetComponent<TextMeshProUGUI>();
+            deslocation.x = gridButtonDDM[i].transform.localPosition.x;
+            deslocation.y = gridButtonDDM[i].transform.localPosition.y;
+            deslocation.z = 0f;
 
-            text.color = unpressedTxtColor;
+            tmps[i].color = unpressedTxtColor;
             gridButtonDDM[i].image.color = unpressedColor;
             gridButtonDDM[i].transform.localPosition = deslocation;
             ButtonsManager.SetInteraction(true, gridButtonDDM);
@@ -182,14 +208,11 @@ public class DropDownMenu : MonoBehaviour
         private set => singlePressed = value;
     }
 
-    public int TotalButtons => buttonsHeader.childCount;
-
     public GameObject[] ButtonGameObjects
     {
         get
         {
-            GameObject[] gameObjects;
-            gameObjects = new GameObject[buttonsHeader.childCount];
+            GameObject[] gameObjects = new GameObject[buttonsHeader.childCount];
 
             for (int i = 0; i < buttonsHeader.childCount; i++)
             {

@@ -25,7 +25,7 @@ public class DataManagement : MonoBehaviour
     [SerializeField, ReadOnly] private string password;
 
     [Header(Header.scripts, order = 0)]
-    [SerializeField, ReadOnly] private PagesAndFields PagesAndFields;
+    [SerializeField, ReadOnly] private PagesAndFields pagesAndFields;
     [SerializeField, ReadOnly] private Transition transition;
     [SerializeField, ReadOnly] private UserDataButtons userDataButtons;
     [Space(20, order = 0)]
@@ -70,16 +70,16 @@ public class DataManagement : MonoBehaviour
     {
         ComponentsAssignment();
 
-        PagesAndFields.PagesQuestionString = LanguageManager.pageQuestion;
+        pagesAndFields.PagesQuestionString = LanguageManager.pageQuestion;
         userDataButtons.NextButtonString = LanguageManager.nextButton;
-        PagesAndFields.Page1PlaceHolder = LanguageManager.page1PlaceHolder;
+        pagesAndFields.Page1PlaceHolder = LanguageManager.page1PlaceHolder;
         userDataButtons.GoalButtonsName = LanguageManager.goalPhrase;
         userDataButtons.FocusButtonsName = LanguageManager.buttonFocus;
-        PagesAndFields.BlockAreaName = LanguageManager.blockAreaName;
-        PagesAndFields.MoreValuesStringEdit = LanguageManager.valueDefaultButtonsEdit;
-        PagesAndFields.FooterTitle = LanguageManager.footerTitle;
-        PagesAndFields.FooterYerarsString = LanguageManager.valueUnits[0];
-        PagesAndFields.FootersPlaceholer = LanguageManager.footerPlaceholder;
+        pagesAndFields.BlockAreaName = LanguageManager.blockAreaName;
+        pagesAndFields.MoreValuesStringEdit = LanguageManager.valueDefaultButtonsEdit;
+        pagesAndFields.FooterTitle = LanguageManager.footerTitle;
+        pagesAndFields.FooterYerarsString = LanguageManager.valueUnits[0];
+        pagesAndFields.FootersPlaceholer = LanguageManager.footerPlaceholder;
         userDataButtons.SaveButtonString = LanguageManager.saveButton;
         userDataButtons.CancelButtonString = LanguageManager.cancelButton;
         levelPhrase = LanguageManager.levelPhrase;
@@ -98,8 +98,8 @@ public class DataManagement : MonoBehaviour
     [ContextMenu("Components Assignment")]
     private void ComponentsAssignment()
     {
-        if (PagesAndFields.IsNull())
-            PagesAndFields = GetComponent<PagesAndFields>();
+        if (pagesAndFields.IsNull())
+            pagesAndFields = GetComponent<PagesAndFields>();
         if(userDataButtons.IsNull())
             userDataButtons = GetComponent<UserDataButtons>();
         if (transition.IsNull())
@@ -113,7 +113,7 @@ public class DataManagement : MonoBehaviour
         switch (page)
         {
             case PAGE1:
-                UserName = PagesAndFields.UserName;
+                UserName = pagesAndFields.UserName;
                 Debug.Log("Page1: UserName = " + UserName);
                 break;
             case PAGE2:
@@ -135,7 +135,7 @@ public class DataManagement : MonoBehaviour
                 Debug.Log("Page5: Focus = " + Focus);
                 break;
             case PAGE6:
-                MoreEdit = PagesAndFields.FooterArray;
+                MoreEdit = pagesAndFields.FooterArray;
                 Debug.Log("Page6: Age = " + MoreEdit[0]);
                 Debug.Log("Page6: Current Weight = " + MoreEdit[1]);
                 Debug.Log("Page6: Weight Goal = " + MoreEdit[2]);
