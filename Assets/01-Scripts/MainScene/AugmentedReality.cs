@@ -1,28 +1,29 @@
-﻿using System.Collections.Generic;
+﻿using ASP;
+using ASP.Extensions;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.XR.ARFoundation;
 using UnityEngine.XR.ARSubsystems;
-using ASP;
-using Debug = ASP.Debug;
-[RequireComponent(typeof(DropDownMenu), typeof(FloatMenu))]
+
 public class AugmentedReality : MonoBehaviour
 {
-    [Header("AR MANAGEMENT", order = 0)]
-    [SerializeField] private ARRaycastManager arRaycastManager;
-    [SerializeField] private Transform pvtAnchorAR;
-    [SerializeField] private Transform pool3DPivot;
-    [SerializeField] private GameObject coach3D;
-
-    [Header("READY ONLY", order = 0)]
+    [Header(Header.READONLY, order = 0)]
     [Space(-10, order = 1)]
-    [Header("Variables", order = 2)]
+    [Header(Header.components, order = 2)]
+    [SerializeField, ReadOnly] private ARRaycastManager aRRaycastManager;
+    [SerializeField, ReadOnly] private Transform anchorARPivot;
+    [SerializeField, ReadOnly] private Transform poolPivot;
+    [SerializeField, ReadOnly] private Coach coach;
+    [Space(-10, order = 0)]
+    [Header(Header.variables, order = 1)]
+    [SerializeField, ReadOnly] private int variable;
     [SerializeField, ReadOnly] private bool anchorIsHitting;
     [SerializeField, ReadOnly] private Vector2 screenPoint;
     [SerializeField, ReadOnly] private Vector3 anchorPosSaver;
     [SerializeField, ReadOnly] private TrackableType trackableTypes;
     [SerializeField, ReadOnly] private ButtonsMain.StateButtonAR stateButtonAR;
-    [Space(-10, order = 0)]
-    [Header("Scrips")]
+
+    [Header(Header.scripts)]
     [SerializeField, ReadOnly] private AnchorAnimation animationsMain;
     [SerializeField, ReadOnly] private FloatMenu floatMenu;
     [SerializeField, ReadOnly] private Transition transition;
@@ -33,15 +34,13 @@ public class AugmentedReality : MonoBehaviour
 
     private void Awake()
     {
-        animationsMain = GetComponent<AnchorAnimation>();
-        buttonsMain = GetComponent<ButtonsMain>();
-        transition = GameObject.FindGameObjectWithTag(Tag.Transition).GetComponent<Transition>();
+        ComponentsAssignment();
     }
 
     private void Start()
     {
         transition.EndClip();
-        coach3D.SetActive(false);
+        coach.gameObject.SetActive(false);
         anchorIsHitting = false;
         trackableTypes = TrackableType.PlaneWithinPolygon;
         buttonsMain.PanelCoachInteraction = false;
@@ -54,7 +53,7 @@ public class AugmentedReality : MonoBehaviour
     {
         AnchorBehaviour();
 
-        if (CoachIsActivated)
+        if (coach.gameObject.activeInHierarchy)
         {
             foreach (Transform pivots in floatMenu.FloatTransforms)
             {
@@ -62,44 +61,62 @@ public class AugmentedReality : MonoBehaviour
             }
         }
     }
+    /// <summary>
+    /// Assignment of components and variables
+    /// </summary>
+    [ContextMenu("Components Assignment")]
+    private void ComponentsAssignment()
+    {
+        if (aRRaycastManager.IsNull())
+            aRRaycastManager = GetComponentInChildren<ARRaycastManager>();
+        if (poolPivot.IsNull())
+            poolPivot = GameObject.Find("3D").transform;
+        if (coach.IsNull())
+            coach = FindAnyObjectByType<Coach>();
+        if (anchorARPivot.IsNull())
+            this.GetComponentFrom(out anchorARPivot, 0, 0, 0, 0, 0);
+        if (animationsMain.IsNull())
+            animationsMain = FindAnyObjectByType<AnchorAnimation>();
+        if (floatMenu.IsNull())
+            floatMenu = FindAnyObjectByType<FloatMenu>();
+        if (dropDownMenu.IsNull())
+            dropDownMenu = FindAnyObjectByType<DropDownMenu>();
+        if (buttonsMain.IsNull())
+            buttonsMain = FindAnyObjectByType<ButtonsMain>();
+        if (transition.IsNull())
+            transition = GameObject.FindGameObjectWithTag(Tag.Transition).GetComponent<Transition>();
+
+        ASP.SceneManagement.SceneManager.SaveCurrentScene();
+    }
 
     public void AnchorBehaviour()
     {
-        Pose hitPose;
-        Vector3 anchorPos;
-        Quaternion anchorRot;
-        float hitDistance;
-        bool isHit;
-
-        isHit = arRaycastManager.Raycast(screenPoint, hitResults, trackableTypes);
+        bool isHit = aRRaycastManager.Raycast(screenPoint, hitResults, trackableTypes);
 
         if (isHit)
         {
-            hitPose = hitResults[0].pose;
-            hitDistance = hitResults[0].distance;
+            Pose hitPose = hitResults[0].pose;
+            float hitDistance = hitResults[0].distance;
 
-            if (hitDistance < 0.1f) { hitDistance = 0.1f; }
-            if (hitDistance > 0.5f) { hitDistance = 0.5f; }
-
+            hitDistance = Mathf.Clamp(hitDistance, 0.1f, 0.5f);
             hitDistance = hitDistance * -0.25f + 1.45f;
 
             anchorPosSaver = hitPose.position;
-            anchorPos = Vector3.Lerp(pvtAnchorAR.position, hitPose.position, 0.2f);
-            anchorRot = Quaternion.Lerp(pvtAnchorAR.rotation, hitPose.rotation, 0.2f);
+            Vector3 anchorPos = Vector3.Lerp(anchorARPivot.position, hitPose.position, 0.2f);
+            Quaternion anchorRot = Quaternion.Lerp(anchorARPivot.rotation, hitPose.rotation, 0.2f);
 
-            pvtAnchorAR.localScale = new Vector3(hitDistance, hitDistance, hitDistance);
-            pvtAnchorAR.SetPositionAndRotation(anchorPos, anchorRot);
+            anchorARPivot.localScale = new Vector3(hitDistance, hitDistance, hitDistance);
+            anchorARPivot.SetPositionAndRotation(anchorPos, anchorRot);
 
-            if (!CoachIsActivated)
+            if (!coach.gameObject.activeInHierarchy)
             {
-                coach3D.transform.position = hitPose.position;
-                coach3D.transform.LookAt(Camera.main.transform);
+                coach.transform.position = hitPose.position;
+                coach.transform.LookAt(Camera.main.transform);
             }
         }
         else
         {
-            pvtAnchorAR.localPosition = Vector3.zero;
-            pvtAnchorAR.localRotation = Quaternion.Euler(Vector3.zero);
+            anchorARPivot.SetLocalPositionAndRotation(Vector3.zero, Quaternion.identity);
         }
 
         anchorIsHitting = isHit;
@@ -112,29 +129,28 @@ public class AugmentedReality : MonoBehaviour
         Vector3 vectorCorrection;
         Quaternion rotationCorrection;
 
-            if (coach3D.activeInHierarchy)
-            {
-                coach3D.SetActive(false);
-                stateButtonAR = ButtonsMain.StateButtonAR.ReadyToSet;
-                animationsMain.AnchorVisible(true);
-            }
-            else if (AnchorIsHitting)
-            {
-                coach3D.transform.position = anchorPosSaver;
-                coach3D.SetActive(true);
-                stateButtonAR = ButtonsMain.StateButtonAR.Refresh;
-                animationsMain.AnchorVisible(false);
-                floatMenu.SetBoolFloatAnimators(true);
-            }
+        if (coach.gameObject.activeInHierarchy)
+        {
+            coach.gameObject.SetActive(false);
+            stateButtonAR = ButtonsMain.StateButtonAR.ReadyToSet;
+            animationsMain.AnchorVisible(true);
+        }
+        else if (anchorIsHitting)
+        {
+            coach.gameObject.transform.position = anchorPosSaver;
+            coach.gameObject.SetActive(true);
+            stateButtonAR = ButtonsMain.StateButtonAR.Refresh;
+            animationsMain.AnchorVisible(false);
+            floatMenu.SetBoolFloatAnimators(true);
+        }
 
-        vectorCorrection = new Vector3(0, coach3D.transform.rotation.eulerAngles.y, 0);
+        vectorCorrection = new Vector3(0f, coach.gameObject.transform.rotation.eulerAngles.y, 0f);
         rotationCorrection = Quaternion.Euler(vectorCorrection);
 
-        coach3D.transform.rotation = rotationCorrection;
-        buttonsMain.PanelCoachInteraction = CoachIsActivated;
-        dropDownMenu.Interactable = CoachIsActivated;
+        coach.gameObject.transform.rotation = rotationCorrection;
+        buttonsMain.PanelCoachInteraction = coach.gameObject.activeInHierarchy;
+        dropDownMenu.Interactable = coach.gameObject.activeInHierarchy;
     }
 
-    public bool AnchorIsHitting => anchorIsHitting;
-    public bool CoachIsActivated => coach3D.activeInHierarchy;
+    public bool CoachIsActivated => coach.gameObject.activeInHierarchy;
 }

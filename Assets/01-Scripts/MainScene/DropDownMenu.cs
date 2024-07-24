@@ -7,13 +7,6 @@ using UnityEngine.UI;
 
 public class DropDownMenu : MonoBehaviour
 {
-    [Header(Header.MANAGEABLE, order = 0)]
-    [Space(-10, order = 1)]
-    [Header(Header.animationClips, order = 2)]
-    [SerializeField] private AnimationClip dropDownCloseClip;
-    [SerializeField] private AnimationClip dropDownOpenClip;
-    [SerializeField] private AnimationClip dropDownNullClip;
-
     [Header(Header.READONLY, order = 0)]
     [Space(-10, order = 1)]
     [Header(Header.components, order = 2)]
@@ -40,6 +33,7 @@ public class DropDownMenu : MonoBehaviour
     [SerializeField, ReadOnly] private Coach coachAnimations;
     [SerializeField, ReadOnly] private ButtonsMain buttonsMain;
 
+    public const string PARAMETER = "isOpen";
     private bool singlePressed;
 
     private void Awake()
@@ -58,14 +52,22 @@ public class DropDownMenu : MonoBehaviour
     [ContextMenu("Components Assignment")]
     private void ComponentsAssignment()
     {
+        if (aniDropDownMenu.IsNull())
+            aniDropDownMenu = GetComponent<Animator>();
+        if (dropDownScrollRect.IsNull())
+            this.GetComponentFrom(out dropDownScrollRect, 0, 0, 0);
+        if (btnOpenDropDown.IsNull())
+            this.GetComponentFrom(out btnOpenDropDown, 0, 0, 1);
+        if (btnCloseDropDown.IsNull())
+            dropDownScrollRect.GetComponentFrom(out btnCloseDropDown, 0);
+        if (buttonsHeader.IsNull())
+            dropDownScrollRect.GetComponentFrom(out buttonsHeader, 1, 0);
         if (floatMenu.IsNull())
-            floatMenu = GetComponent<FloatMenu>();
+            floatMenu = FindAnyObjectByType<FloatMenu>();
         if (coachAnimations.IsNull())
             coachAnimations = FindAnyObjectByType<Coach>();
         if (buttonsMain.IsNull())
-            buttonsMain = GetComponent<ButtonsMain>();
-        if (buttonsHeader.IsNull())
-            buttonsHeader = GameObject.Find("Content1").transform;
+            buttonsMain = FindAnyObjectByType<ButtonsMain>();        
         if (gridButtonDDM.IsNullOrEmpty())
             (gridButtonDDM, isPressDDM) = ButtonsManager.Assignment(buttonsHeader, ButtonsDDMBehaviour);
         if (tmps.IsNullOrEmpty())
@@ -77,15 +79,6 @@ public class DropDownMenu : MonoBehaviour
                 tmps[i] = buttonsHeader.GetChild(i).GetComponentInChildren<TextMeshProUGUI>();
             }
         }
-
-        if (btnOpenDropDown.IsNull())
-            btnOpenDropDown = GameObject.Find("btnOpenDropDown").GetComponent<Button>();
-        if (btnCloseDropDown.IsNull())
-            btnCloseDropDown = GameObject.Find("btnCloseDropDown").GetComponent<Button>();
-        if (aniDropDownMenu.IsNull())
-            aniDropDownMenu = GameObject.Find("aniDropDownMenu").GetComponent<Animator>();
-        if (dropDownScrollRect.IsNull())
-            dropDownScrollRect = GameObject.Find("ScrollView1").GetComponent<ScrollRect>();
 
         pressedColor = PalleteColors.DoubleSplitComplementary(2);
         pressedTxtColor = PalleteColors.Square(1);
@@ -104,8 +97,8 @@ public class DropDownMenu : MonoBehaviour
         else
         {
             panelDropDownOpen = true;
-            aniDropDownMenu.Play(dropDownOpenClip.name);
-            StartCoroutine(_scrowViewPos(dropDownOpenClip.length));
+            aniDropDownMenu.SetBool(PARAMETER, true);
+            StartCoroutine(_scrowViewPos(aniDropDownMenu.GetCurrentAnimatorStateInfo(0).length));
             floatMenu.ButtonsFloatBehaviour(FloatMenu.BodyPart.All);
             floatMenu.SetBoolFloatAnimators(false);
         }
@@ -128,7 +121,7 @@ public class DropDownMenu : MonoBehaviour
         if (panelDropDownOpen)
         {
             panelDropDownOpen = false;
-            aniDropDownMenu.Play(dropDownCloseClip.name);
+            aniDropDownMenu.SetBool(PARAMETER, false);
             floatMenu.SetBoolFloatAnimators(true);
             buttonsMain.PanelCoachInteraction = true;
 

@@ -20,8 +20,8 @@ public class TrainingSystem : MonoBehaviour
     {
         Loading = this.GetComponent<Loading>();
         coachAnimations = FindAnyObjectByType<Coach>();
-        buttonsMain = this.GetComponent<ButtonsMain>();
-        dropDownMenu = this.GetComponent<DropDownMenu>();
+        buttonsMain = FindAnyObjectByType<ButtonsMain>();
+        dropDownMenu = FindAnyObjectByType<DropDownMenu>();
 
         Loading.Skip.onClick.AddListener(() => Skip());
     }

@@ -2848,8 +2848,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 408213807}
+  - component: {fileID: 408213808}
   m_Layer: 0
-  m_Name: Buttons
+  m_Name: ButtonsMain
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2876,6 +2877,35 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &408213808
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 408213806}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4d4d0b378b3bae3499f3a9b53cb09506, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  setCoachAR: {fileID: 21300000, guid: c737c5aacac9f0949bd8cb13d0c6de08, type: 3}
+  replaceCoachAR: {fileID: 21300000, guid: da4a142bc72e9e845894fcbb00f5a132, type: 3}
+  openPanel: {fileID: 21300000, guid: b04f8309cc541fb44a45eaa592c65cac, type: 3}
+  closePanel: {fileID: 21300000, guid: 25656fc2cb5e6ed4abe9175d143a5ee2, type: 3}
+  stateButtonAR: 0
+  btnBarRIsPressed: 0
+  btnTopL: {fileID: 62667934}
+  btnTopR: {fileID: 804196749}
+  btnBarL: {fileID: 244377306}
+  btnBarC: {fileID: 2130998330}
+  btnBarR: {fileID: 1679993066}
+  AR: {fileID: 1768901397}
+  panelResult: {fileID: 2045423157}
+  panelCoach: {fileID: 2045423156}
+  animationsMain: {fileID: 76211142}
+  floatMenu: {fileID: 2045423154}
+  coachAnimations: {fileID: 1576220128}
 --- !u!1 &422218013
 GameObject:
   m_ObjectHideFlags: 0
@@ -7029,7 +7059,7 @@ GameObject:
   - component: {fileID: 1160994452}
   - component: {fileID: 1160994451}
   m_Layer: 0
-  m_Name: ScrollView1
+  m_Name: ScrollView
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -7402,6 +7432,18 @@ RectTransform:
     type: 3}
   m_PrefabInstance: {fileID: 730324533}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1204035450 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1692438299145555249, guid: 6b38141eae5db8a4ea4e0fbbfd091999,
+    type: 3}
+  m_PrefabInstance: {fileID: 451547913}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 88d05641c8c35c14eb52da277f946ad8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1207408903
 GameObject:
   m_ObjectHideFlags: 0
@@ -7905,7 +7947,7 @@ GameObject:
   - component: {fileID: 1256213179}
   - component: {fileID: 1256213180}
   m_Layer: 0
-  m_Name: Content1
+  m_Name: Content
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -10160,12 +10202,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1564537650}
   m_CullTransparentMesh: 1
---- !u!1 &1576220127 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 5140996330594624828, guid: 9a5c1fc3537363f48a0d052de1354224,
+--- !u!114 &1576220128 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6522555712390996883, guid: 9a5c1fc3537363f48a0d052de1354224,
     type: 3}
   m_PrefabInstance: {fileID: 532455038}
   m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a06234257010b6c4a8c983dc664d41b3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &1607736988 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 8110813796200871779, guid: 264ec83ebe00b6c49931458d829c5bd2,
@@ -10574,6 +10622,7 @@ GameObject:
   - component: {fileID: 1680650641}
   - component: {fileID: 1680650643}
   - component: {fileID: 1680650642}
+  - component: {fileID: 1680650644}
   m_Layer: 0
   m_Name: aniDropDownMenu
   m_TagString: Untagged
@@ -10634,6 +10683,62 @@ CanvasGroup:
   m_Interactable: 1
   m_BlocksRaycasts: 1
   m_IgnoreParentGroups: 0
+--- !u!114 &1680650644
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1680650640}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: be9fde172593fc948b6bf797efcf87b5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  aniDropDownMenu: {fileID: 1680650642}
+  dropDownScrollRect: {fileID: 1160994451}
+  btnOpenDropDown: {fileID: 1764558719}
+  btnCloseDropDown: {fileID: 1260345304}
+  panelDropDownOpen: 0
+  buttonsHeader: {fileID: 1256213177}
+  gridButtonDDM:
+  - {fileID: 3409934662540043709}
+  - {fileID: 447476731}
+  - {fileID: 1283317975}
+  - {fileID: 1212960853}
+  - {fileID: 693009365}
+  - {fileID: 1544639034}
+  - {fileID: 160539800}
+  - {fileID: 730324534}
+  - {fileID: 2094034478}
+  - {fileID: 2048479394}
+  - {fileID: 288131388}
+  - {fileID: 2078187003}
+  - {fileID: 1742691321}
+  - {fileID: 1970525628}
+  isPressDDM: 0000000000000000000000000000
+  tmps:
+  - {fileID: 3409934662540043710}
+  - {fileID: 447476732}
+  - {fileID: 1283317976}
+  - {fileID: 1212960854}
+  - {fileID: 693009366}
+  - {fileID: 1544639035}
+  - {fileID: 160539801}
+  - {fileID: 730324535}
+  - {fileID: 2094034479}
+  - {fileID: 2048479395}
+  - {fileID: 288131389}
+  - {fileID: 2078187004}
+  - {fileID: 1742691322}
+  - {fileID: 1970525629}
+  pressedColor: {r: 0.20392157, g: 0.98039216, b: 0.84705883, a: 1}
+  pressedTxtColor: {r: 0.98039216, g: 0.8509804, b: 0.4, a: 1}
+  unpressedColor: {r: 0.20392157, g: 0.69411767, b: 0.98039216, a: 1}
+  unpressedTxtColor: {r: 0.6156863, g: 0.98039216, b: 0.4, a: 1}
+  floatMenu: {fileID: 2045423154}
+  coachAnimations: {fileID: 1576220128}
+  buttonsMain: {fileID: 408213808}
 --- !u!224 &1723897438 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 8110813795890704353, guid: 264ec83ebe00b6c49931458d829c5bd2,
@@ -11040,6 +11145,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1768901396}
+  - component: {fileID: 1768901397}
   m_Layer: 0
   m_Name: AR
   m_TagString: Untagged
@@ -11065,6 +11171,33 @@ Transform:
   - {fileID: 724661408}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1768901397
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1768901395}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ab08587e5b0985c41b511083eedc4c0a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  aRRaycastManager: {fileID: 606459782}
+  anchorARPivot: {fileID: 986298669}
+  poolPivot: {fileID: 1284178634}
+  coach: {fileID: 1576220128}
+  variable: 0
+  anchorIsHitting: 0
+  screenPoint: {x: 0, y: 0}
+  anchorPosSaver: {x: 0, y: 0, z: 0}
+  trackableTypes: 0
+  stateButtonAR: 0
+  animationsMain: {fileID: 76211142}
+  floatMenu: {fileID: 2045423154}
+  transition: {fileID: 1204035450}
+  buttonsMain: {fileID: 0}
+  dropDownMenu: {fileID: 0}
 --- !u!114 &1779222315 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 8110813797080322950, guid: 264ec83ebe00b6c49931458d829c5bd2,
@@ -12907,6 +13040,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1884461488}
   - component: {fileID: 1884461489}
+  - component: {fileID: 1884461490}
   m_Layer: 0
   m_Name: aniFade
   m_TagString: Untagged
@@ -12951,6 +13085,30 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &1884461490
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1884461487}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2bad3730598ff1643a3a6dd5360e6965, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  plus: {fileID: 21300000, guid: 7be1ce8cc437c6748ba325834c4a0d9a, type: 3}
+  minus: {fileID: 21300000, guid: 67cfef9cfb7a7c44a84088d7e0569d16, type: 3}
+  lupaBotton: {fileID: 1612507521}
+  legButton: {fileID: 1054462985}
+  closeButton: {fileID: 1260345304}
+  plusButton: {fileID: 2031072716}
+  animator: {fileID: 1884461489}
+  legAnimation: {fileID: 1554299024}
+  lupaIsPressed: 0
+  plusIsPressed: 0
+  floatMenu: {fileID: 2045423154}
+  dropDownMenu: {fileID: 1680650644}
 --- !u!1 &1887194218
 GameObject:
   m_ObjectHideFlags: 0
@@ -13835,15 +13993,11 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2045423145}
-  - component: {fileID: 2045423149}
-  - component: {fileID: 2045423147}
-  - component: {fileID: 2045423146}
   - component: {fileID: 2045423154}
   - component: {fileID: 2045423156}
   - component: {fileID: 2045423157}
   - component: {fileID: 2045423158}
   - component: {fileID: 2045423159}
-  - component: {fileID: 2045423160}
   - component: {fileID: 2045423161}
   m_Layer: 0
   m_Name: CodeManager
@@ -13867,120 +14021,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1447032056}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &2045423146
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2045423144}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: be9fde172593fc948b6bf797efcf87b5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  dropDownCloseClip: {fileID: 7400000, guid: a0b71aa3e4aae2e419bf83ae79003bd5, type: 2}
-  dropDownOpenClip: {fileID: 7400000, guid: 89872bf865be59e49bdf94c5ce9ef3fd, type: 2}
-  dropDownNullClip: {fileID: 7400000, guid: 07eb43fb58bf9694b9298488a10d70f5, type: 2}
-  aniDropDownMenu: {fileID: 1680650642}
-  dropDownScrollRect: {fileID: 1160994451}
-  btnOpenDropDown: {fileID: 1764558719}
-  btnCloseDropDown: {fileID: 1260345304}
-  panelDropDownOpen: 0
-  buttonsHeader: {fileID: 1256213177}
-  gridButtonDDM:
-  - {fileID: 3409934662540043709}
-  - {fileID: 447476731}
-  - {fileID: 1283317975}
-  - {fileID: 1212960853}
-  - {fileID: 693009365}
-  - {fileID: 1544639034}
-  - {fileID: 160539800}
-  - {fileID: 730324534}
-  - {fileID: 2094034478}
-  - {fileID: 2048479394}
-  - {fileID: 288131388}
-  - {fileID: 2078187003}
-  - {fileID: 1742691321}
-  - {fileID: 1970525628}
-  isPressDDM: 0000000000000000000000000000
-  tmps:
-  - {fileID: 3409934662540043710}
-  - {fileID: 447476732}
-  - {fileID: 1283317976}
-  - {fileID: 1212960854}
-  - {fileID: 693009366}
-  - {fileID: 1544639035}
-  - {fileID: 160539801}
-  - {fileID: 730324535}
-  - {fileID: 2094034479}
-  - {fileID: 2048479395}
-  - {fileID: 288131389}
-  - {fileID: 2078187004}
-  - {fileID: 1742691322}
-  - {fileID: 1970525629}
-  pressedColor: {r: 0.20392157, g: 0.98039216, b: 0.84705883, a: 1}
-  pressedTxtColor: {r: 0.98039216, g: 0.8509804, b: 0.4, a: 1}
-  unpressedColor: {r: 0.20392157, g: 0.69411767, b: 0.98039216, a: 1}
-  unpressedTxtColor: {r: 0.6156863, g: 0.98039216, b: 0.4, a: 1}
-  floatMenu: {fileID: 2045423154}
-  coachAnimations: {fileID: 0}
-  buttonsMain: {fileID: 2045423147}
---- !u!114 &2045423147
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2045423144}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4d4d0b378b3bae3499f3a9b53cb09506, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  setCoachAR: {fileID: 21300000, guid: c737c5aacac9f0949bd8cb13d0c6de08, type: 3}
-  replaceCoachAR: {fileID: 21300000, guid: da4a142bc72e9e845894fcbb00f5a132, type: 3}
-  openPanel: {fileID: 21300000, guid: b04f8309cc541fb44a45eaa592c65cac, type: 3}
-  closePanel: {fileID: 21300000, guid: 25656fc2cb5e6ed4abe9175d143a5ee2, type: 3}
-  stateButtonAR: 0
-  btnBarRIsPressed: 0
-  btnTopL: {fileID: 62667934}
-  btnTopR: {fileID: 804196749}
-  btnBarL: {fileID: 244377306}
-  btnBarC: {fileID: 2130998330}
-  btnBarR: {fileID: 1679993066}
-  AR: {fileID: 2045423149}
-  panelResult: {fileID: 2045423157}
-  panelCoach: {fileID: 2045423156}
-  animationsMain: {fileID: 0}
-  floatMenu: {fileID: 2045423154}
-  coachAnimations: {fileID: 0}
---- !u!114 &2045423149
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2045423144}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ab08587e5b0985c41b511083eedc4c0a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  arRaycastManager: {fileID: 606459782}
-  pvtAnchorAR: {fileID: 986298669}
-  pool3DPivot: {fileID: 1284178634}
-  coach3D: {fileID: 1576220127}
-  anchorIsHitting: 0
-  screenPoint: {x: 0, y: 0}
-  anchorPosSaver: {x: 0, y: 0, z: 0}
-  trackableTypes: 0
-  stateButtonAR: 0
-  animationsMain: {fileID: 0}
-  floatMenu: {fileID: 0}
-  transition: {fileID: 0}
-  buttonsMain: {fileID: 0}
-  dropDownMenu: {fileID: 0}
 --- !u!114 &2045423154
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -14014,8 +14054,8 @@ MonoBehaviour:
   - {fileID: 532455049}
   - {fileID: 532455045}
   - {fileID: 532455042}
-  buttonsMain: {fileID: 2045423147}
-  dropDownMenu: {fileID: 2045423146}
+  buttonsMain: {fileID: 0}
+  dropDownMenu: {fileID: 0}
 --- !u!114 &2045423156
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -14146,32 +14186,6 @@ MonoBehaviour:
   coachAnimations: {fileID: 0}
   buttonsMain: {fileID: 0}
   dropDownMenu: {fileID: 0}
---- !u!114 &2045423160
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2045423144}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2bad3730598ff1643a3a6dd5360e6965, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  coachToMuscles: {fileID: 7400000, guid: ceb5feebd1642db47b2a567e0dacad34, type: 2}
-  musclesToCoach: {fileID: 7400000, guid: 1c13410dd5edc8c40aa708179c7557c8, type: 2}
-  plus: {fileID: 21300000, guid: 7be1ce8cc437c6748ba325834c4a0d9a, type: 3}
-  minus: {fileID: 21300000, guid: 67cfef9cfb7a7c44a84088d7e0569d16, type: 3}
-  lupaBotton: {fileID: 1612507521}
-  legButton: {fileID: 1054462985}
-  closeButton: {fileID: 1260345304}
-  plusButton: {fileID: 2031072716}
-  fadeAnimator: {fileID: 1884461489}
-  legAnimation: {fileID: 1554299024}
-  lupaIsPressed: 0
-  plusIsPressed: 0
-  floatMenu: {fileID: 2045423154}
-  dropDownMenu: {fileID: 2045423146}
 --- !u!114 &2045423161
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -103,10 +103,10 @@ public class PanelCoach : MonoBehaviour
 
     private void Awake()
     {
-        AR = this.GetComponent<AugmentedReality>();
+        AR = FindAnyObjectByType<AugmentedReality>();
         trainingSystem = this.GetComponent<TrainingSystem>();
         floatMenu = this.GetComponent<FloatMenu>();
-        buttonsMain = this.GetComponent<ButtonsMain>();
+        buttonsMain = FindAnyObjectByType<ButtonsMain>();
 
         pivotCorrection = pivotPanelCoach.GetChild(0);
         objectReference = GameObject.FindGameObjectWithTag(Tag.Coach).transform.GetChild(0);

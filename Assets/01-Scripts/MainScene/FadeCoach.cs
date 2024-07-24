@@ -6,14 +6,8 @@ using UnityEngine.UI;
 public class FadeCoach : MonoBehaviour
 {
     [Header(Header.MANAGEABLE, order = 0)]
-    [Space(-10, order = 1)]
-    [Header(Header.variables, order = 2)]
-    [Space(-10, order = 3)]
-    [Header(Header.animationClips, order = 4)]
-    [SerializeField] private AnimationClip coachToMuscles;
-    [SerializeField] private AnimationClip musclesToCoach;
-    [Space(-10, order = 0)]
-    [Header(Header.sprites, order = 1)]
+    [Space(-10, order = 2)]
+    [Header(Header.sprites, order = 3)]
     [SerializeField] private Sprite plus;
     [SerializeField] private Sprite minus;
 
@@ -28,7 +22,7 @@ public class FadeCoach : MonoBehaviour
     [SerializeField, ReadOnly] private Button plusButton;
     [Space(-10, order = 0)]
     [Header(Header.animators, order = 1)]
-    [SerializeField, ReadOnly] private Animator fadeAnimator;
+    [SerializeField, ReadOnly] private Animator animator;
     [SerializeField, ReadOnly] private Animation legAnimation;
     [Space(-10, order = 0)]
     [Header(Header.variables, order = 1)]
@@ -69,22 +63,22 @@ public class FadeCoach : MonoBehaviour
     [ContextMenu("Components Assignment")]
     private void ComponentsAssignment()
     {
+        if (animator.IsNull())
+            animator = GetComponent<Animator>();
+        if (legButton.IsNull())
+            this.GetComponentFrom(out legButton, 0, 0, 0, 2, 0, 0, 0, 1, 0);
+        if (legAnimation.IsNull())
+            legAnimation = GetComponentInChildren<Animation>();
+        if (plusButton.IsNull())
+            legAnimation.GetComponentFrom(out plusButton, 26, 0, 0);
         if (floatMenu.IsNull())
-            floatMenu = GetComponent<FloatMenu>();
+            floatMenu = FindAnyObjectByType<FloatMenu>();
         if (dropDownMenu.IsNull())
-            dropDownMenu = GetComponent<DropDownMenu>();
+            dropDownMenu = FindAnyObjectByType<DropDownMenu>();
         if (lupaBotton.IsNull())
             lupaBotton = GameObject.Find("btnLegLupa").GetComponent<Button>();
-        if (legButton.IsNull())
-            legButton = GameObject.Find("btnFloat3").GetComponent<Button>();
         if (closeButton.IsNull())
             closeButton = GameObject.Find("btnCloseDropDown").GetComponent<Button>();
-        if (plusButton.IsNull())
-            plusButton = GameObject.Find("btnPlus").GetComponent<Button>();
-        if (fadeAnimator.IsNull())
-            fadeAnimator = GameObject.Find("aniFade").GetComponent<Animator>();
-        if (legAnimation.IsNull())
-            legAnimation = GameObject.Find("leg").GetComponent<Animation>();
 
         ASP.SceneManagement.SceneManager.SaveCurrentScene();
     }
@@ -111,11 +105,13 @@ public class FadeCoach : MonoBehaviour
         dropDownMenu.ButtonCloseDropDown();
         floatMenu.SetBoolFloatAnimators(!isPressed);
         dropDownMenu.Interactable = !isPressed;
-        fadeAnimator.Play(isPressed ? coachToMuscles.name : musclesToCoach.name);
+        animator.SetTrigger(isPressed ? Parameter.fadeIn : Parameter.fadeOut);
 
         lupaBotton.gameObject.SetActive(isPressed);
         plusButton.gameObject.SetActive(isPressed);
 
         isPressed.ComparativeAssignment(ref lupaIsPressed);
     }
+
+    public (string fadeIn, string fadeOut) Parameter => ("fadeIn", "fadeOut");
 }

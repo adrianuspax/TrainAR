@@ -50,9 +50,9 @@ public class FloatMenu : MonoBehaviour
         int count = buttonsFloatHeader.childCount;
 
         if (buttonsMain.IsNull())
-            buttonsMain = GetComponent<ButtonsMain>();
+            buttonsMain = FindAnyObjectByType<ButtonsMain>();
         if (dropDownMenu.IsNull())
-            dropDownMenu = GetComponent<DropDownMenu>();
+            dropDownMenu = FindAnyObjectByType<DropDownMenu>();
         if (floatAnimators.IsNullOrEmpty())
             floatAnimators = _assignAnimators(buttonsFloatHeader);
         if (floatTransforms.IsNullOrEmpty())

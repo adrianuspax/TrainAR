@@ -2,7 +2,7 @@
 using ASP.Extensions;
 using UnityEngine;
 using UnityEngine.UI;
-[RequireComponent(typeof(AugmentedReality))]
+
 public class ButtonsMain : MonoBehaviour
 {
     public enum StateButtonAR
@@ -48,7 +48,7 @@ public class ButtonsMain : MonoBehaviour
         ComponentsAssignment();
     }
     /// Start is called on the frame when a script is enabled just before any of the Update methods are called the first time.
-    private void Start()
+    private void OnEnable()
     {
         btnTopR.onClick.AddListener(ButtonsManager.CloseApplication);
         btnTopL.onClick.AddListener(() => TrainARSceneManager.LoadMenu());
@@ -63,27 +63,27 @@ public class ButtonsMain : MonoBehaviour
     private void ComponentsAssignment()
     {
         if (AR.IsNull())
-            AR = GetComponent<AugmentedReality>();
+            AR = FindAnyObjectByType<AugmentedReality>();
         if (panelResult.IsNull())
-            panelResult = GetComponent<PanelResult>();
+            panelResult = FindAnyObjectByType<PanelResult>();
         if (panelCoach.IsNull())
-            panelCoach = GetComponent<PanelCoach>();
+            panelCoach = FindAnyObjectByType<PanelCoach>();
         if (animationsMain.IsNull())
-            animationsMain = GetComponent<AnchorAnimation>();
+            animationsMain = FindAnyObjectByType<AnchorAnimation>();
         if (floatMenu.IsNull())
-            floatMenu = GetComponent<FloatMenu>();
+            floatMenu = FindAnyObjectByType<FloatMenu>();
         if (coachAnimations.IsNull())
             coachAnimations = FindAnyObjectByType<Coach>();
         if (btnTopL.IsNull())
-            btnTopL = GameObject.Find("btnTopL").transform.GetComponent<Button>();
+            this.GetComponentFrom(out btnTopL, 0, 0);
         if (btnTopR.IsNull())
-            btnTopR = GameObject.Find("btnTopR").transform.GetComponent<Button>();
+            this.GetComponentFrom(out btnTopR, 0, 1);
         if (btnBarL.IsNull())
-            btnBarL = GameObject.Find("btnBarL").transform.GetComponent<Button>();
+            this.GetComponentFrom(out btnBarL, 1, 0);
         if (btnBarC.IsNull())
-            btnBarC = GameObject.Find("btnBarC").transform.GetComponent<Button>();
+            this.GetComponentFrom(out btnBarC, 1, 1);
         if (btnBarR.IsNull())
-            btnBarR = GameObject.Find("btnBarR").transform.GetComponent<Button>();
+            this.GetComponentFrom(out btnBarR, 1, 2);
 
         ASP.SceneManagement.SceneManager.SaveCurrentScene();
     }
