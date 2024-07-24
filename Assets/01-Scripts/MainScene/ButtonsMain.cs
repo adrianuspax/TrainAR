@@ -41,7 +41,7 @@ public class ButtonsMain : MonoBehaviour
     [SerializeField, ReadOnly] private PanelCoach panelCoach;
     [SerializeField, ReadOnly] private AnchorAnimation animationsMain;
     [SerializeField, ReadOnly] private FloatMenu floatMenu;
-    [SerializeField, ReadOnly] private CoachAnimations coachAnimations;
+    [SerializeField, ReadOnly] private Coach coachAnimations;
 
     private void Awake()
     {
@@ -73,7 +73,7 @@ public class ButtonsMain : MonoBehaviour
         if (floatMenu.IsNull())
             floatMenu = GetComponent<FloatMenu>();
         if (coachAnimations.IsNull())
-            coachAnimations = GetComponent<CoachAnimations>();
+            coachAnimations = FindAnyObjectByType<Coach>();
         if (btnTopL.IsNull())
             btnTopL = GameObject.Find("btnTopL").transform.GetComponent<Button>();
         if (btnTopR.IsNull())

@@ -2,7 +2,7 @@
 using ASP.Extensions;
 using UnityEngine;
 
-public class CoachAnimations : MonoBehaviour
+public class Coach : MonoBehaviour
 {
     public enum Trigger
     {
@@ -96,7 +96,7 @@ public class CoachAnimations : MonoBehaviour
     [Header(Header.READONLY, order = 0)]
     [Space(-10f, order = 1)]
     [Header(Header.components, order = 2)]
-    [SerializeField, ReadOnly] private Animator coachControl;
+    [SerializeField, ReadOnly] private Animator animator;
     [Header("Blends", order = 2)]
     [SerializeField, Range(-1f, 1f), ReadOnly] private float breathingFloat;
     [Space(-10f, order = 0)]
@@ -151,11 +151,7 @@ public class CoachAnimations : MonoBehaviour
         return;
 #endif
     }
-    /// Reset to default values.
-    private void Reset()
-    {
-        ComponentsAssignment();
-    }/// Awake is called when an enabled script instance is being loaded.
+    /// Awake is called when an enabled script instance is being loaded.
     private void Awake()
     {
         ComponentsAssignment();
@@ -171,8 +167,8 @@ public class CoachAnimations : MonoBehaviour
     [ContextMenu("Components Assignment")]
     private void ComponentsAssignment()
     {
-        if (coachControl.IsNull())
-            coachControl = GameObject.FindGameObjectWithTag(Tag.Coach).GetComponent<Animator>();
+        if (animator.IsNull())
+            animator = GetComponent<Animator>();
 
         if (clipByIndex.IsNullOrEmpty())
         {
@@ -201,20 +197,20 @@ public class CoachAnimations : MonoBehaviour
 
     public void Breathing(float weight)
     {
-        coachControl.SetFloat(Parameter.Breathing, weight);
+        animator.SetFloat(Parameter.Breathing, weight);
         weight.ComparativeAssignment(ref breathingFloat);
     }
 
     public void StartAnimation(Trigger trigger)
     {
-        coachControl.SetTrigger(trigger.ToString());
+        animator.SetTrigger(trigger.ToString());
         isAnimationStarted = !(trigger == 0);
         trigger.ComparativeAssignment(ref triggered);
     }
 
     public void StartAnimation(int index)
     {
-        coachControl.SetTrigger(((Trigger)index).ToString());
+        animator.SetTrigger(((Trigger)index).ToString());
         isAnimationStarted = !(index == 0);
         GetTrigger(index).ComparativeAssignment(ref triggered);
     }
@@ -231,45 +227,73 @@ public class CoachAnimations : MonoBehaviour
     public string GetName(int index) => GetTrigger(index).ToString();
     public int TotalCount => System.Enum.GetValues(typeof(Trigger)).Length;
     public bool HasTriggered => isAnimationStarted;
+    public Animator Animator => animator;
+
+    public const string TransitionUserName = "ToIdle";
+    public const string StateIdleBlend = "IdleBlend";
+
+    public (string startWorkout,
+            string inWorkout,
+            string finishWorkout)
+    StateTag
+    {
+        get => ("enterWorkout",
+                "workout",
+                "outWorkout");
+    }
 
     public (float normalizedTime,
             float normalizedReverseTime,
             float length, float countdown,
             float countup, int loopCount,
-            bool isWorkout,
-            bool isIdle,
-            bool isEnter,
-            bool isOut)
+             bool isWorkout,
+             bool isIdle,
+             bool isEnter,
+             bool isOut)
     CurrentAnimation
     {
-        get => (coachControl.GetCurrentAnimatorStateInfo(0).normalizedTime,
-           1 - (coachControl.GetCurrentAnimatorStateInfo(0).normalizedTime % 1),
-                coachControl.GetCurrentAnimatorStateInfo(0).length,
-                coachControl.GetCurrentAnimatorStateInfo(0).length - (coachControl.GetCurrentAnimatorStateInfo(0).normalizedTime % 1 * coachControl.GetCurrentAnimatorStateInfo(0).length),
-                coachControl.GetCurrentAnimatorStateInfo(0).length * coachControl.GetCurrentAnimatorStateInfo(0).normalizedTime,
-           (int)coachControl.GetCurrentAnimatorStateInfo(0).normalizedTime,
-                coachControl.GetCurrentAnimatorStateInfo(0).IsTag(StateTag.Workout),
-                coachControl.GetCurrentAnimatorStateInfo(0).IsName(State.IdleBlend),
-                coachControl.GetCurrentAnimatorStateInfo(0).IsTag(StateTag.EnterWorkout),
-                coachControl.GetCurrentAnimatorStateInfo(0).IsTag(StateTag.OutWorkout));
+        get
+        {
+            AnimatorStateInfo animatorStateInfo = animator.GetCurrentAnimatorStateInfo(0);
+            float normalizedTime = animatorStateInfo.normalizedTime;
+            float length = animatorStateInfo.length;
+
+            return (normalizedTime,
+               1 - (normalizedTime % 1),
+                    length,
+                    length - (normalizedTime % 1 * length),
+                    length * normalizedTime,
+               (int)normalizedTime,
+                    animatorStateInfo.IsTag(StateTag.inWorkout),
+                    animatorStateInfo.IsName(StateIdleBlend),
+                    animatorStateInfo.IsTag(StateTag.startWorkout),
+                    animatorStateInfo.IsTag(StateTag.finishWorkout));
+        }
     }
 
     public (float normalizedTime,
             float normalizedReverseTime,
             float length,
-            bool willBeWorkout,
-            bool willBeIdle,
-            bool willBeEnter,
-            bool willBeOut)
+             bool willBeWorkout,
+             bool willBeIdle,
+             bool willBeEnter,
+             bool willBeOut)
     NextAnimation
     {
-        get => (coachControl.GetNextAnimatorStateInfo(0).normalizedTime,
-           1 - (coachControl.GetNextAnimatorStateInfo(0).normalizedTime % 1),
-                coachControl.GetNextAnimatorStateInfo(0).length,
-                coachControl.GetNextAnimatorStateInfo(0).IsTag(StateTag.Workout),
-                coachControl.GetNextAnimatorStateInfo(0).IsName(State.IdleBlend),
-                coachControl.GetNextAnimatorStateInfo(0).IsTag(StateTag.EnterWorkout),
-                coachControl.GetNextAnimatorStateInfo(0).IsTag(StateTag.OutWorkout));
+        get
+        {
+            AnimatorStateInfo animatorStateInfo = animator.GetNextAnimatorStateInfo(0);
+            float normalizedTime = animatorStateInfo.normalizedTime;
+            float length = animatorStateInfo.length;
+
+            return (normalizedTime,
+               1 - (normalizedTime % 1),
+                    length,
+                    animatorStateInfo.IsTag(StateTag.inWorkout),
+                    animatorStateInfo.IsName(StateIdleBlend),
+                    animatorStateInfo.IsTag(StateTag.startWorkout),
+                    animatorStateInfo.IsTag(StateTag.finishWorkout));
+        }
     }
 
     public (float normalizedTime,
@@ -279,10 +303,17 @@ public class CoachAnimations : MonoBehaviour
             bool toIdle)
     CurrentTransition
     {
-        get => (coachControl.GetAnimatorTransitionInfo(0).normalizedTime,
-                coachControl.GetAnimatorTransitionInfo(0).duration,
-                coachControl.GetAnimatorTransitionInfo(0).duration - (coachControl.GetAnimatorTransitionInfo(0).normalizedTime * coachControl.GetAnimatorTransitionInfo(0).duration),
-                coachControl.GetAnimatorTransitionInfo(0).duration != 0,
-                coachControl.GetAnimatorTransitionInfo(0).IsUserName(TransitionUserName.ToIdle));
+        get
+        {
+            AnimatorTransitionInfo animatorTransitionInfo = animator.GetAnimatorTransitionInfo(0);
+            float normalizedTime = animatorTransitionInfo.normalizedTime;
+            float duration = animatorTransitionInfo.duration;
+
+            return (normalizedTime,
+                    duration,
+                    duration - (normalizedTime * duration),
+                    duration != 0,
+                    animatorTransitionInfo.IsUserName(TransitionUserName));
+        }
     }
 }

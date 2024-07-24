@@ -6,7 +6,7 @@ using TMPro;
 
 public class TestAnimations : MonoBehaviour
 {
-    private CoachAnimations animations;
+    private Coach animations;
     [SerializeField]
     private Transform gridHeader;
     private Button[] gridButton;
@@ -23,7 +23,7 @@ public class TestAnimations : MonoBehaviour
 
     private void Awake()
     {
-        animations = this.GetComponent<CoachAnimations>();
+        animations = FindAnyObjectByType<Coach>();
 
         InstantiateButtons(animations.TotalCount);
 
@@ -68,7 +68,7 @@ public class TestAnimations : MonoBehaviour
         if (!gridPressed[index])
         {
             StartCoroutine(Cor_ButtonsWaiting(index));
-            animations.StartAnimation(CoachAnimations.Trigger.Idle);
+            animations.StartAnimation(Coach.Trigger.Idle);
         }
 
         ExceptionsBehaviour();

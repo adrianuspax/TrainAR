@@ -13,13 +13,6 @@ public static class Tag
     public const string Muscle = "muscle";
 }
 
-public static class StateTag
-{
-    public const string Workout = "workout";
-    public const string EnterWorkout = "enterWorkout";
-    public const string OutWorkout = "outWorkout";
-}
-
 public static class Parameter
 {
     public const string Breathing = "BreathingBlend";
@@ -30,12 +23,6 @@ public static class State
 {
     public const string PanelStart = "panelQuestionStart";
     public const string PanelEnd = "panelQuestionEnd";
-    public const string IdleBlend = "IdleBlend";
-}
-
-public static class TransitionUserName
-{
-    public const string ToIdle = "ToIdle";
 }
 
 public static class ButtonDDM

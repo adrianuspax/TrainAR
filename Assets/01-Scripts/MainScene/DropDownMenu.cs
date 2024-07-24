@@ -37,7 +37,7 @@ public class DropDownMenu : MonoBehaviour
 
     [Header(Header.scripts, order = 0)]
     [SerializeField, ReadOnly] private FloatMenu floatMenu;
-    [SerializeField, ReadOnly] private CoachAnimations coachAnimations;
+    [SerializeField, ReadOnly] private Coach coachAnimations;
     [SerializeField, ReadOnly] private ButtonsMain buttonsMain;
 
     private bool singlePressed;
@@ -61,7 +61,7 @@ public class DropDownMenu : MonoBehaviour
         if (floatMenu.IsNull())
             floatMenu = GetComponent<FloatMenu>();
         if (coachAnimations.IsNull())
-            coachAnimations = GetComponent<CoachAnimations>();
+            coachAnimations = FindAnyObjectByType<Coach>();
         if (buttonsMain.IsNull())
             buttonsMain = GetComponent<ButtonsMain>();
         if (buttonsHeader.IsNull())

@@ -12,14 +12,14 @@ public class TrainingSystem : MonoBehaviour
     [SerializeField, ReadOnly] private Loading Loading;
     [SerializeField, ReadOnly] private bool coroutineFinished;
     [SerializeField, ReadOnly] private bool squenceStarted;
-    [SerializeField, ReadOnly] private CoachAnimations coachAnimations;
+    [SerializeField, ReadOnly] private Coach coachAnimations;
     [SerializeField, ReadOnly] private ButtonsMain buttonsMain;
     [SerializeField, ReadOnly] private DropDownMenu dropDownMenu;
 
     private void Awake()
     {
         Loading = this.GetComponent<Loading>();
-        coachAnimations = this.GetComponent<CoachAnimations>();
+        coachAnimations = FindAnyObjectByType<Coach>();
         buttonsMain = this.GetComponent<ButtonsMain>();
         dropDownMenu = this.GetComponent<DropDownMenu>();
 
@@ -98,13 +98,13 @@ public class TrainingSystem : MonoBehaviour
         StartCoroutine(Cor_LoadBehaviourPanelCoach());
     }
 
-    private void AnimationInLoop(CoachAnimations.Trigger animation, int amount)
+    private void AnimationInLoop(Coach.Trigger animation, int amount)
     {
         coroutineFinished = false;
         StartCoroutine(Cor_AnimationInLoop(animation, amount));
     }
 
-    private IEnumerator Cor_AnimationInLoop(CoachAnimations.Trigger animation, int amount)
+    private IEnumerator Cor_AnimationInLoop(Coach.Trigger animation, int amount)
     {
         Loading.SetCount("준비");
         yield return new WaitWhile(() => !coachAnimations.CurrentAnimation.isIdle);
@@ -158,12 +158,12 @@ public class TrainingSystem : MonoBehaviour
         dropDownMenu.Interactable = false;
         buttonsMain.ButtonSetCoachInteraction = false;
 
-        AnimationInLoop(CoachAnimations.Trigger.Pistol, 20); //20
+        AnimationInLoop(Coach.Trigger.Pistol, 20); //20
         squenceStarted = true;
         yield return new WaitWhile(() => !coroutineFinished);
-        AnimationInLoop(CoachAnimations.Trigger.Squat, 15); //15
+        AnimationInLoop(Coach.Trigger.Squat, 15); //15
         yield return new WaitWhile(() => !coroutineFinished);
-        AnimationInLoop(CoachAnimations.Trigger.Burpee, 30); //30
+        AnimationInLoop(Coach.Trigger.Burpee, 30); //30
         yield return new WaitWhile(() => !coroutineFinished);
         squenceStarted = false;
         buttonsMain.PanelCoachInteraction = true;
