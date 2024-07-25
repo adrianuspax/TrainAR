@@ -1,7 +1,8 @@
-using UnityEngine;
-using TMPro;
-using UnityEngine.UI;
 using ASP;
+using ASP.Extensions;
+using TMPro;
+using UnityEngine;
+using UnityEngine.UI;
 using Debug = ASP.Debug;
 
 public class PanelCoach : MonoBehaviour
@@ -13,41 +14,6 @@ public class PanelCoach : MonoBehaviour
         legs = 2, //3
         arms = 3 //2
     }
-
-    [Header("Animation", order = 0)]
-    [SerializeField] private Animator panelCoachAniamtor;
-    [SerializeField] private AnimationClip panelCoachStartClip;
-    [SerializeField] private AnimationClip panelCoachEndClip;
-
-    [Header("ScrollView", order = 0)]
-    [SerializeField] private ScrollRect scrollView;
-
-    [Header("Informations", order = 0)]
-    [Space(-10, order = 1)]
-    [Header("Your Data", order = 2)]
-    [SerializeField] private TextMeshProUGUI nameTMP;
-    [SerializeField] private TextMeshProUGUI ageTMP;
-    [SerializeField] private TextMeshProUGUI genderTMP;
-    [SerializeField] private TextMeshProUGUI weightTMP;
-    [SerializeField] private TextMeshProUGUI heightTMP;
-    [SerializeField] private TextMeshProUGUI levelTMP;
-    [Space(-10, order = 0)]
-    [Header("Calculation", order = 1)]
-    [SerializeField] private TextMeshProUGUI bmiTMP;
-    [SerializeField] private TextMeshProUGUI statusTMP;
-    [SerializeField] private TextMeshProUGUI bodyFatTMP;
-    [SerializeField] private TextMeshProUGUI totalFatTMP;
-    [Space(-10, order = 0)]
-    [Header("Target", order = 1)]
-    [SerializeField] private TextMeshProUGUI goalTMP;
-    [SerializeField] private TextMeshProUGUI targetLevelTMP;
-    [SerializeField] private TextMeshProUGUI targetWeightTMP;
-    [SerializeField] private TextMeshProUGUI targetBodyFatTMP;
-    [SerializeField] private TextMeshProUGUI toLoseFatTMP;
-    [SerializeField] private TextMeshProUGUI toBurnCalTMP;
-    [Space(-10, order = 0)]
-    [Header("Recomendations", order = 1)]
-    [SerializeField] private Transform recomendationsHeader;
 
     [Header("To Translate", order = 0)]
     [Space(-10, order = 1)]
@@ -75,52 +41,60 @@ public class PanelCoach : MonoBehaviour
     [SerializeField] private TextMeshProUGUI targetTitleBodyFatTMP;
     [SerializeField] private TextMeshProUGUI toLoseTitleFatTMP;
     [SerializeField] private TextMeshProUGUI toBurnTitleCalTMP;
-    
-    [Header("Pivot Rotation Canvas Coach", order = 0)]
-    [SerializeField] private Transform pivotPanelCoach;
-    [SerializeField, ReadOnly] private Transform objectReference;
+
+    [Header(Header.READONLY, order = 0)]
+    [Space(-10, order = 1)]
+    [Header(Header.components, order = 2)]
+    [SerializeField, ReadOnly] private Animator animator;
+    [SerializeField, ReadOnly] private ScrollRect scrollView;
+    [SerializeField, ReadOnly] private RectTransform canvasRectTransform;
     [SerializeField, ReadOnly] private Transform pivotCorrection;
-    [SerializeField, ReadOnly] private RectTransform canvasTransform;
+    [SerializeField, ReadOnly] private Transform pivotPanelCoach;
+    [SerializeField, ReadOnly] private Transform objectReference;
+    [SerializeField, ReadOnly] private RectMask2D rectMask2D;
+    [SerializeField, ReadOnly, NonReorderable] private GameObject[] recomendation;
+    [SerializeField, ReadOnly, NonReorderable] private Button[] contentButtons;
+    [Space(-10, order = 0)]
+    [Header(Header.TMPro, order = 1)]
+    [Space(-10, order = 2)]
+    [Header("User Data", order = 3)]
+    [SerializeField, ReadOnly] private TextMeshProUGUI nameTMP;
+    [SerializeField, ReadOnly] private TextMeshProUGUI ageTMP;
+    [SerializeField, ReadOnly] private TextMeshProUGUI genderTMP;
+    [SerializeField, ReadOnly] private TextMeshProUGUI weightTMP;
+    [SerializeField, ReadOnly] private TextMeshProUGUI heightTMP;
+    [SerializeField, ReadOnly] private TextMeshProUGUI levelTMP;
+    [Space(-10, order = 0)]
+    [Header("Calculation", order = 1)]
+    [SerializeField, ReadOnly] private TextMeshProUGUI bmiTMP;
+    [SerializeField, ReadOnly] private TextMeshProUGUI statusTMP;
+    [SerializeField, ReadOnly] private TextMeshProUGUI bodyFatTMP;
+    [SerializeField, ReadOnly] private TextMeshProUGUI totalFatTMP;
+    [Space(-10, order = 0)]
+    [Header("Target", order = 1)]
+    [SerializeField, ReadOnly] private TextMeshProUGUI goalTMP;
+    [SerializeField, ReadOnly] private TextMeshProUGUI targetLevelTMP;
+    [SerializeField, ReadOnly] private TextMeshProUGUI targetWeightTMP;
+    [SerializeField, ReadOnly] private TextMeshProUGUI targetBodyFatTMP;
+    [SerializeField, ReadOnly] private TextMeshProUGUI toLoseFatTMP;
+    [SerializeField, ReadOnly] private TextMeshProUGUI toBurnCalTMP;
+    [Space(-10, order = 0)]
+    [Header(Header.variables, order = 1)]
     [SerializeField, ReadOnly] private Vector3 vectorCanvasPos;
     [SerializeField, ReadOnly] private float distance;
 
-
-    [Header(" =========================== READY ONLY =========================== ", order = 0)]
-    [Space(-10, order = 1)]
-    [Header("Variables", order = 2)]
-    [SerializeField, ReadOnly, NonReorderable] private GameObject[] recomendation;
-    [Space(-10, order = 0)]
-    [Header("Buttons Content", order = 1)]
-    [SerializeField, ReadOnly] private RectMask2D rectMask2D;
-    [SerializeField, ReadOnly] private Transform contentHeader;
-    [SerializeField, ReadOnly, NonReorderable] private Button[] contentButton;
-
-    [Header("Scripts", order = 0)]
+    [Header(Header.scripts, order = 0)]
     [SerializeField, ReadOnly] private AugmentedReality AR;
     [SerializeField, ReadOnly] private TrainingSystem trainingSystem;
     [SerializeField, ReadOnly] private ButtonsFloat floatMenu;
     [SerializeField, ReadOnly] private ButtonsMain buttonsMain;
+    [SerializeField, NonReorderable, ReadOnly] private InfoData[] infoDatas;
+
+    public const string PARAMETER = "isOpen";
 
     private void Awake()
     {
-        AR = FindAnyObjectByType<AugmentedReality>();
-        trainingSystem = this.GetComponent<TrainingSystem>();
-        floatMenu = FindAnyObjectByType<ButtonsFloat>();
-        buttonsMain = FindAnyObjectByType<ButtonsMain>();
-
-        pivotCorrection = pivotPanelCoach.GetChild(0);
-        objectReference = GameObject.FindGameObjectWithTag(Tag.Coach).transform.GetChild(0);
-        canvasTransform = (RectTransform)pivotCorrection.GetChild(0);
-
-        recomendation = new GameObject[recomendationsHeader.childCount];
-
-        for (int i = 0; i < recomendation.Length; i++)
-        { recomendation[i] = recomendationsHeader.GetChild(i).gameObject; }
-
-        contentHeader = scrollView.transform.GetChild(0).GetChild(0);
-        rectMask2D = scrollView.transform.GetChild(0).GetComponent<RectMask2D>();
-
-        contentButton = ButtonsManager.Assignment(contentHeader, ButtonsPanelBehaviour).buttons;
+        ComponentsAssignment();
     }
 
     private void Start()
@@ -128,10 +102,9 @@ public class PanelCoach : MonoBehaviour
         rectMask2D.enabled = true;
 
         ProvisionalRecomendationsActivations();
-        //RecomendationsActivations((Focus)Calculation.IndexFocus);
 
-        pivotCorrection.transform.localRotation = Quaternion.Euler(new Vector3(0, -180, 0));
-        pivotCorrection.transform.localPosition = Vector3.up;
+        Quaternion localRotation = Quaternion.Euler(new Vector3(0f, -180f, 0f));
+        pivotCorrection.SetLocalPositionAndRotation(Vector3.up, localRotation);
 
         yourDataTMP.text = LanguageManager.yourData;
         nameTitleTMP.text = LanguageManager._name;
@@ -188,48 +161,128 @@ public class PanelCoach : MonoBehaviour
             "To Lose Weight: " + toLoseFatTMP.text + "\n" +
             "To Burn Cal: " + toBurnCalTMP.text + "\n");
 
-        Debug.Log ("Index Focus: " + Calculation.IndexFocus);
+        Debug.Log("Index Focus: " + Calculation.IndexFocus);
     }
 
     private void Update()
     {
         if (AR.CoachIsActivated)
         {
-            float scale;
-                  scale = (0.0018f * distance + 0.001f);
-
             distance = Vector3.Distance(Camera.main.transform.localPosition, pivotPanelCoach.localPosition);
-            vectorCanvasPos = (pivotPanelCoach.position + Camera.main.transform.position) * 0.5f;
-            canvasTransform.localScale = new Vector3(scale, scale, scale);
 
-            pivotPanelCoach.transform.position = Vector3.Lerp(pivotPanelCoach.transform.position, objectReference.position, 5 * Time.deltaTime);
+            float scale = (0.0018f * distance + 0.001f);
+
+            vectorCanvasPos = (pivotPanelCoach.position + Camera.main.transform.position) * 0.5f;
+            canvasRectTransform.localScale = new Vector3(scale, scale, scale);
+
+            pivotPanelCoach.position = Vector3.Lerp(pivotPanelCoach.position, objectReference.position, 5f * Time.deltaTime);
             pivotPanelCoach.LookAt(Camera.main.transform);
-            canvasTransform.position = new Vector3(vectorCanvasPos.x, 0, vectorCanvasPos.z);
+            canvasRectTransform.position = new Vector3(vectorCanvasPos.x, 0f, vectorCanvasPos.z);
         }
     }
-
-    public void ButtonPlay()
+    /// <summary>
+    /// Assignment of components and variables
+    /// </summary>
+    [ContextMenu("Components Assignment")]
+    private void ComponentsAssignment()
     {
-        buttonsMain.ButtonPanelCoach(true); //incorrect logic
-        //Buttons.FloatMenu.ButtonsFloatBehaviour((BodyPart)Calculation.IndexFocus);
-        trainingSystem.WorkoutSequence();
-        floatMenu.SetBoolFloatAnimators(false);
+        if (animator.IsNull())
+            animator = transform.GetChild(0).GetComponent<Animator>();
+        if (scrollView.IsNull())
+            animator.GetComponentFrom(out scrollView, 0);
+        if (canvasRectTransform.IsNull())
+            canvasRectTransform = transform.parent.GetComponent<RectTransform>();
+        if (pivotCorrection.IsNull())
+            pivotCorrection = canvasRectTransform.parent.transform;
+        if (pivotPanelCoach.IsNull())
+            pivotPanelCoach = pivotCorrection.parent.transform;
+        if (objectReference.IsNull())
+            objectReference = GameObject.FindGameObjectWithTag(Tag.Coach).transform.GetChild(0);
+        if (rectMask2D.IsNull())
+            scrollView.GetComponentFrom(out rectMask2D, 0);
+        if (AR.IsNull())
+            AR = FindAnyObjectByType<AugmentedReality>();
+        if (trainingSystem.IsNull())
+            trainingSystem = FindAnyObjectByType<TrainingSystem>();
+        if (floatMenu.IsNull())
+            floatMenu = FindAnyObjectByType<ButtonsFloat>();
+        if (buttonsMain.IsNull())
+            buttonsMain = FindAnyObjectByType<ButtonsMain>();
+        if (infoDatas.IsNullOrEmpty())
+        {
+            infoDatas = GetComponentsInChildren<InfoData>();
+        }
+        if (recomendation.IsNullOrEmpty())
+        {
+            recomendation = new GameObject[infoDatas[3].Cells.Length];
+
+            for (int i = 0; i < recomendation.Length; i++)
+            {
+                recomendation[i] = infoDatas[3].Cells[i].gameObject;
+            }
+        }
+        if (contentButtons.IsNullOrEmpty())
+        {
+            contentButtons = new Button[infoDatas.Length];
+
+            for (int i = 0; i < contentButtons.Length; i++)
+            {
+                contentButtons[i] = infoDatas[i].Button;
+            }
+        }
+        if (nameTMP.IsNull())
+            nameTMP = infoDatas[0].InfoTMPs[0];
+        if (ageTMP.IsNull())
+            ageTMP = infoDatas[0].InfoTMPs[1];
+        if (genderTMP.IsNull())
+            genderTMP = infoDatas[0].InfoTMPs[2];
+        if (weightTMP.IsNull())
+            weightTMP = infoDatas[0].InfoTMPs[3];
+        if (heightTMP.IsNull())
+            heightTMP = infoDatas[0].InfoTMPs[4];
+        if (levelTMP.IsNull())
+            levelTMP = infoDatas[0].InfoTMPs[5];
+        if (bmiTMP.IsNull())
+            bmiTMP = infoDatas[1].InfoTMPs[0];
+        if (statusTMP.IsNull())
+            statusTMP = infoDatas[1].InfoTMPs[1];
+        if (bodyFatTMP.IsNull())
+            bodyFatTMP = infoDatas[1].InfoTMPs[2];
+        if (totalFatTMP.IsNull())
+            totalFatTMP = infoDatas[1].InfoTMPs[3];
+        if (goalTMP.IsNull())
+            goalTMP = infoDatas[2].InfoTMPs[0];
+        if (targetLevelTMP.IsNull())
+            targetLevelTMP = infoDatas[2].InfoTMPs[1];
+        if (targetWeightTMP.IsNull())
+            targetWeightTMP = infoDatas[2].InfoTMPs[2];
+        if (targetBodyFatTMP.IsNull())
+            targetBodyFatTMP = infoDatas[2].InfoTMPs[3];
+        if (toLoseFatTMP.IsNull())
+            toLoseFatTMP = infoDatas[2].InfoTMPs[4];
+        if (toBurnCalTMP.IsNull())
+            toBurnCalTMP = infoDatas[2].InfoTMPs[5];
+
+        ASP.SceneManagement.SceneManager.SaveCurrentScene();
     }
 
     public void PanelCoachBehaviour(bool isOpen)
     {
-        panelCoachAniamtor.Play(isOpen ? panelCoachStartClip.name : panelCoachEndClip.name);
+        animator.SetBool(PARAMETER, isOpen);
     }
 
     public void ButtonsPanelBehaviour(int index)
     {
         if (index == 3)
-        {
-            ButtonPlay();
-        }
+            _buttonPlay();
         else
+            scrollView.horizontalNormalizedPosition = (index + 1f) / 3f;
+
+        void _buttonPlay()
         {
-            scrollView.horizontalNormalizedPosition = ((index + 1) / 3f);
+            buttonsMain.ButtonPanelCoach(true);
+            trainingSystem.WorkoutSequence();
+            floatMenu.SetBoolFloatAnimators(false);
         }
     }
 
@@ -242,7 +295,7 @@ public class PanelCoach : MonoBehaviour
             switch (focus)
             {
                 case Focus.chest:
-                    linesToActivate = 
+                    linesToActivate =
                         i == 0 ||
                         i == ButtonDDM.BURPEE + 1 ||
                         i == ButtonDDM.BICYCLECRUNCH + 1 ||
@@ -312,71 +365,56 @@ public class PanelCoach : MonoBehaviour
         }
     }
 
-    private
-        (
-        string completeName,
-        string age,
-        string gender,
-        string weight,
-        string height,
-        string level
-        ) DataInputed
+    private (string completeName,
+             string age,
+             string gender,
+             string weight,
+             string height,
+             string level)
+    DataInputed
     {
         get
         {
-            return
-                (
-                AccountData.CompleteName,
-                AccountData.Age.ToString() + " " + LanguageManager.valueUnits[0],
-                AccountData.IsMale ? LanguageManager.male : LanguageManager.female,
-                AccountData.CurrentWeight.ToString() + " kg",
-                (AccountData.Height).ToString() + " cm",
-                LanguageManager.levelPhrase[(int)Calculation.IndexLevel]
-                );
+            return (AccountData.CompleteName,
+                    AccountData.Age.ToString() + " " + LanguageManager.valueUnits[0],
+                    AccountData.IsMale ? LanguageManager.male : LanguageManager.female,
+                    AccountData.CurrentWeight.ToString() + " kg",
+                   (AccountData.Height).ToString() + " cm",
+                    LanguageManager.levelPhrase[Calculation.IndexLevel]);
         }
     }
 
-    private 
-        (
-        string bmi,
-        string statusBMI,
-        string bodyFat,
-        string totalFat
-        ) Calc
+    private (string bmi,
+             string statusBMI,
+             string bodyFat,
+             string totalFat)
+    Calc
     {
         get
         {
-            return
-                (
-                Calculation.ValueBMI.ToString("F2") + " kg/m�",
-                LanguageManager.statusBMI[(int)Calculation.StatusBMI],
-               (Calculation.BodyFat * 100f).ToString("F2") + "%",
-                Calculation.CurrentFat.ToString("F2") + " kg"
-                );
+            return (Calculation.ValueBMI.ToString("F2") + " kg/m�",
+                    LanguageManager.statusBMI[(int)Calculation.StatusBMI],
+                   (Calculation.BodyFat * 100f).ToString("F2") + "%",
+                    Calculation.CurrentFat.ToString("F2") + " kg");
         }
     }
 
-    private
-        (
-        string goal,
-        string level,
-        string weight,
-        string BodyFat,
-        string toLoseFat,
-        string toBurnCal
-        ) Target
+    private (string goal,
+             string level,
+             string weight,
+             string BodyFat,
+             string toLoseFat,
+             string toBurnCal)
+    Target
     {
         get
         {
-            return
-                (
-                LanguageManager.goalPhrase[Calculation.IndexGoal],
-                LanguageManager.levelPhrase[((int)Calculation.TargetLevel - 1)],
-                AccountData.TargetWeight.ToString() + " kg",
-                (Calculation.TargetBodyFat * 100f).ToString("F2") + "%",
-                toLoseFatTMP.text = Calculation.ToLoseWeight.ToString("F2") + " kg",
-                toBurnCalTMP.text = (Calculation.ToBurnCalories * 0.0001f).ToString("F2") + " kcal"
-                );
+            return (LanguageManager.goalPhrase[Calculation.IndexGoal],
+                    LanguageManager.levelPhrase[((int)Calculation.TargetLevel - 1)],
+                    AccountData.TargetWeight.ToString() + " kg",
+                   (Calculation.TargetBodyFat * 100f).ToString("F2") + "%",
+                    toLoseFatTMP.text = Calculation.ToLoseWeight.ToString("F2") + " kg",
+                    toBurnCalTMP.text = (Calculation.ToBurnCalories * 0.0001f).ToString("F2") + " kcal");
         }
     }
 }
