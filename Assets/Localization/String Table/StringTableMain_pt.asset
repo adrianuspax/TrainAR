@@ -334,6 +334,62 @@ MonoBehaviour:
     m_Localized: Cancelar
     m_Metadata:
       m_Items: []
+  - m_Id: 42179840294912
+    m_Localized: Agachamento
+    m_Metadata:
+      m_Items: []
+  - m_Id: 42237394534400
+    m_Localized: "Agachamento <size:50%>Bra\xE7os Flexionados</size>\r"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 42253483884544
+    m_Localized: "B\xEDceps Ondular"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 42276892295168
+    m_Localized: Salto em Caixa
+    m_Metadata:
+      m_Items: []
+  - m_Id: 42283133419520
+    m_Localized: "Agachamento <size:50%>Com Flex\xE3o</size>"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 42295636639744
+    m_Localized: Abdominal Bicicleta
+    m_Metadata:
+      m_Items: []
+  - m_Id: 42308408295424
+    m_Localized: Abdominal Circular
+    m_Metadata:
+      m_Items: []
+  - m_Id: 42320429170688
+    m_Localized: Polichinelo
+    m_Metadata:
+      m_Items: []
+  - m_Id: 42332324216832
+    m_Localized: Agachamento Unilateral
+    m_Metadata:
+      m_Items: []
+  - m_Id: 42488490737664
+    m_Localized: Prancha
+    m_Metadata:
+      m_Items: []
+  - m_Id: 42500629053440
+    m_Localized: Caminhada Pike
+    m_Metadata:
+      m_Items: []
+  - m_Id: 42514554142720
+    m_Localized: "Flex\xE3o de Bra\xE7o"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 42527728451584
+    m_Localized: "Passos R\xE1pidos"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 42540764348416
+    m_Localized: Abdominais
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []

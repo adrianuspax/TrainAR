@@ -331,6 +331,62 @@ MonoBehaviour:
     m_Key: Cancel
     m_Metadata:
       m_Items: []
+  - m_Id: 42179840294912
+    m_Key: Squat
+    m_Metadata:
+      m_Items: []
+  - m_Id: 42237394534400
+    m_Key: SquatBentArms
+    m_Metadata:
+      m_Items: []
+  - m_Id: 42253483884544
+    m_Key: BicepCurl
+    m_Metadata:
+      m_Items: []
+  - m_Id: 42276892295168
+    m_Key: BoxJump
+    m_Metadata:
+      m_Items: []
+  - m_Id: 42283133419520
+    m_Key: Burpee
+    m_Metadata:
+      m_Items: []
+  - m_Id: 42295636639744
+    m_Key: BicycleCrunch
+    m_Metadata:
+      m_Items: []
+  - m_Id: 42308408295424
+    m_Key: CircleCrunch
+    m_Metadata:
+      m_Items: []
+  - m_Id: 42320429170688
+    m_Key: JumpingJacks
+    m_Metadata:
+      m_Items: []
+  - m_Id: 42332324216832
+    m_Key: Pistol
+    m_Metadata:
+      m_Items: []
+  - m_Id: 42488490737664
+    m_Key: Plank
+    m_Metadata:
+      m_Items: []
+  - m_Id: 42500629053440
+    m_Key: PikeWalk
+    m_Metadata:
+      m_Items: []
+  - m_Id: 42514554142720
+    m_Key: PushUp
+    m_Metadata:
+      m_Items: []
+  - m_Id: 42527728451584
+    m_Key: QuickSteps
+    m_Metadata:
+      m_Items: []
+  - m_Id: 42540764348416
+    m_Key: Situps
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:

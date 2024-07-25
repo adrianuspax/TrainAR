@@ -334,6 +334,62 @@ MonoBehaviour:
     m_Localized: Cancel
     m_Metadata:
       m_Items: []
+  - m_Id: 42179840294912
+    m_Localized: Squat
+    m_Metadata:
+      m_Items: []
+  - m_Id: 42237394534400
+    m_Localized: Squat Bent Arms
+    m_Metadata:
+      m_Items: []
+  - m_Id: 42253483884544
+    m_Localized: Bicep Curl
+    m_Metadata:
+      m_Items: []
+  - m_Id: 42276892295168
+    m_Localized: Box Jump
+    m_Metadata:
+      m_Items: []
+  - m_Id: 42283133419520
+    m_Localized: Burpee
+    m_Metadata:
+      m_Items: []
+  - m_Id: 42295636639744
+    m_Localized: Bicycle Crunch
+    m_Metadata:
+      m_Items: []
+  - m_Id: 42308408295424
+    m_Localized: Circle Crunch
+    m_Metadata:
+      m_Items: []
+  - m_Id: 42320429170688
+    m_Localized: Jumping Jacks
+    m_Metadata:
+      m_Items: []
+  - m_Id: 42332324216832
+    m_Localized: Pistol
+    m_Metadata:
+      m_Items: []
+  - m_Id: 42488490737664
+    m_Localized: Plank
+    m_Metadata:
+      m_Items: []
+  - m_Id: 42500629053440
+    m_Localized: Pike Walk
+    m_Metadata:
+      m_Items: []
+  - m_Id: 42514554142720
+    m_Localized: Push Up
+    m_Metadata:
+      m_Items: []
+  - m_Id: 42527728451584
+    m_Localized: Quick Steps
+    m_Metadata:
+      m_Items: []
+  - m_Id: 42540764348416
+    m_Localized: Situps
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []

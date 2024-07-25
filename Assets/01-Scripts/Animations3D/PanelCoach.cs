@@ -15,33 +15,6 @@ public class PanelCoach : MonoBehaviour
         arms = 3 //2
     }
 
-    [Header("To Translate", order = 0)]
-    [Space(-10, order = 1)]
-    [Header("Your Data", order = 2)]
-    [SerializeField] private TextMeshProUGUI yourDataTMP;
-    [SerializeField] private TextMeshProUGUI nameTitleTMP;
-    [SerializeField] private TextMeshProUGUI ageTitleTMP;
-    [SerializeField] private TextMeshProUGUI genderTitleTMP;
-    [SerializeField] private TextMeshProUGUI weightTitleTMP;
-    [SerializeField] private TextMeshProUGUI heightTitleTMP;
-    [SerializeField] private TextMeshProUGUI levelTitleTMP;
-    [Space(-10, order = 0)]
-    [Header("Calculation", order = 1)]
-    [SerializeField] private TextMeshProUGUI calculationTMP;
-    [SerializeField] private TextMeshProUGUI bmiTitleTMP;
-    [SerializeField] private TextMeshProUGUI statusTitleTMP;
-    [SerializeField] private TextMeshProUGUI bodyTitleFatTMP;
-    [SerializeField] private TextMeshProUGUI totalTitleFatTMP;
-    [Space(-10, order = 0)]
-    [Header("Target", order = 1)]
-    [SerializeField] private TextMeshProUGUI targetTMP;
-    [SerializeField] private TextMeshProUGUI goalTitleTMP;
-    [SerializeField] private TextMeshProUGUI targetTitleLevelTMP;
-    [SerializeField] private TextMeshProUGUI targetTitleWeightTMP;
-    [SerializeField] private TextMeshProUGUI targetTitleBodyFatTMP;
-    [SerializeField] private TextMeshProUGUI toLoseTitleFatTMP;
-    [SerializeField] private TextMeshProUGUI toBurnTitleCalTMP;
-
     [Header(Header.READONLY, order = 0)]
     [Space(-10, order = 1)]
     [Header(Header.components, order = 2)]
@@ -105,26 +78,6 @@ public class PanelCoach : MonoBehaviour
 
         Quaternion localRotation = Quaternion.Euler(new Vector3(0f, -180f, 0f));
         pivotCorrection.SetLocalPositionAndRotation(Vector3.up, localRotation);
-
-        yourDataTMP.text = LanguageManager.yourData;
-        nameTitleTMP.text = LanguageManager._name;
-        ageTitleTMP.text = LanguageManager.age;
-        genderTitleTMP.text = LanguageManager.gender;
-        weightTitleTMP.text = LanguageManager.weight;
-        heightTitleTMP.text = LanguageManager.height;
-        levelTitleTMP.text = LanguageManager.level;
-
-        calculationTMP.text = LanguageManager.calculation;
-        bodyTitleFatTMP.text = LanguageManager.bodyFat;
-        totalTitleFatTMP.text = LanguageManager.totalFat;
-
-        targetTMP.text = LanguageManager.target;
-        goalTitleTMP.text = LanguageManager.goal;
-        targetTitleLevelTMP.text = LanguageManager.level;
-        targetTitleWeightTMP.text = LanguageManager.weight;
-        targetTitleBodyFatTMP.text = LanguageManager.bodyFat;
-        toLoseTitleFatTMP.text = LanguageManager.toLoseFat;
-        toBurnTitleCalTMP.text = LanguageManager.toBurnCal;
 
         nameTMP.text = DataInputed.completeName;
         ageTMP.text = DataInputed.age;
