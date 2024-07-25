@@ -98,14 +98,14 @@ public class PanelCoach : MonoBehaviour
     [Header("Scripts", order = 0)]
     [SerializeField, ReadOnly] private AugmentedReality AR;
     [SerializeField, ReadOnly] private TrainingSystem trainingSystem;
-    [SerializeField, ReadOnly] private FloatMenu floatMenu;
+    [SerializeField, ReadOnly] private ButtonsFloat floatMenu;
     [SerializeField, ReadOnly] private ButtonsMain buttonsMain;
 
     private void Awake()
     {
         AR = FindAnyObjectByType<AugmentedReality>();
         trainingSystem = this.GetComponent<TrainingSystem>();
-        floatMenu = this.GetComponent<FloatMenu>();
+        floatMenu = this.GetComponent<ButtonsFloat>();
         buttonsMain = FindAnyObjectByType<ButtonsMain>();
 
         pivotCorrection = pivotPanelCoach.GetChild(0);

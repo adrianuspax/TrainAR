@@ -30,7 +30,7 @@ public class FadeCoach : MonoBehaviour
     [SerializeField, ReadOnly] private bool plusIsPressed;
 
     [Header(Header.scripts, order = 0)]
-    [SerializeField, ReadOnly] private FloatMenu floatMenu;
+    [SerializeField, ReadOnly] private ButtonsFloat floatMenu;
     [SerializeField, ReadOnly] private DropDownMenu dropDownMenu;
 
     private void Awake()
@@ -72,7 +72,7 @@ public class FadeCoach : MonoBehaviour
         if (plusButton.IsNull())
             legAnimation.GetComponentFrom(out plusButton, 26, 0, 0);
         if (floatMenu.IsNull())
-            floatMenu = FindAnyObjectByType<FloatMenu>();
+            floatMenu = FindAnyObjectByType<ButtonsFloat>();
         if (dropDownMenu.IsNull())
             dropDownMenu = FindAnyObjectByType<DropDownMenu>();
         if (lupaBotton.IsNull())

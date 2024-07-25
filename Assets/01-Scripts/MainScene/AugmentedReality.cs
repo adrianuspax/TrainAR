@@ -25,7 +25,7 @@ public class AugmentedReality : MonoBehaviour
 
     [Header(Header.scripts)]
     [SerializeField, ReadOnly] private AnchorAnimation animationsMain;
-    [SerializeField, ReadOnly] private FloatMenu floatMenu;
+    [SerializeField, ReadOnly] private ButtonsFloat floatMenu;
     [SerializeField, ReadOnly] private Transition transition;
     [SerializeField, ReadOnly] private ButtonsMain buttonsMain;
     [SerializeField, ReadOnly] private DropDownMenu dropDownMenu;
@@ -78,7 +78,7 @@ public class AugmentedReality : MonoBehaviour
         if (animationsMain.IsNull())
             animationsMain = FindAnyObjectByType<AnchorAnimation>();
         if (floatMenu.IsNull())
-            floatMenu = FindAnyObjectByType<FloatMenu>();
+            floatMenu = FindAnyObjectByType<ButtonsFloat>();
         if (dropDownMenu.IsNull())
             dropDownMenu = FindAnyObjectByType<DropDownMenu>();
         if (buttonsMain.IsNull())

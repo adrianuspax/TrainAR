@@ -29,7 +29,7 @@ public class DropDownMenu : MonoBehaviour
     [SerializeField, ReadOnly] private Color unpressedTxtColor;
 
     [Header(Header.scripts, order = 0)]
-    [SerializeField, ReadOnly] private FloatMenu floatMenu;
+    [SerializeField, ReadOnly] private ButtonsFloat floatMenu;
     [SerializeField, ReadOnly] private Coach coachAnimations;
     [SerializeField, ReadOnly] private ButtonsMain buttonsMain;
 
@@ -63,7 +63,7 @@ public class DropDownMenu : MonoBehaviour
         if (buttonsHeader.IsNull())
             dropDownScrollRect.GetComponentFrom(out buttonsHeader, 1, 0);
         if (floatMenu.IsNull())
-            floatMenu = FindAnyObjectByType<FloatMenu>();
+            floatMenu = FindAnyObjectByType<ButtonsFloat>();
         if (coachAnimations.IsNull())
             coachAnimations = FindAnyObjectByType<Coach>();
         if (buttonsMain.IsNull())
@@ -99,7 +99,7 @@ public class DropDownMenu : MonoBehaviour
             panelDropDownOpen = true;
             aniDropDownMenu.SetBool(PARAMETER, true);
             StartCoroutine(_scrowViewPos(aniDropDownMenu.GetCurrentAnimatorStateInfo(0).length));
-            floatMenu.ButtonsFloatBehaviour(FloatMenu.BodyPart.All);
+            floatMenu.ButtonsFloatBehaviour(ButtonsFloat.BodyPart.All);
             floatMenu.SetBoolFloatAnimators(false);
         }
 

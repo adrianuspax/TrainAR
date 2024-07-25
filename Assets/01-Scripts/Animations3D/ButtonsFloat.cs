@@ -3,7 +3,7 @@ using ASP.Extensions;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class FloatMenu : MonoBehaviour
+public class ButtonsFloat : MonoBehaviour
 {
     public enum BodyPart
     {
@@ -17,7 +17,6 @@ public class FloatMenu : MonoBehaviour
     [Header(Header.READONLY, order = 0)]
     [Space(-10, order = 1)]
     [Header(Header.components, order = 2)]
-    [SerializeField, ReadOnly] private Transform buttonsFloatHeader;
     [SerializeField, NonReorderable, ReadOnly] private Button[] floatButtons;
     [SerializeField, NonReorderable, ReadOnly] private Transform[] floatTransforms;
     [SerializeField, NonReorderable, ReadOnly] private Canvas[] floatCanvas;
@@ -31,7 +30,7 @@ public class FloatMenu : MonoBehaviour
         ComponentsAssignment();
     }
     /// Start is called on the frame when a script is enabled just before any of the Update methods are called the first time.
-    private void Start()
+    private void OnEnable()
     {
         floatButtons[(int)BodyPart.Chest].onClick.AddListener(() => ButtonsFloatBehaviour(BodyPart.Chest));
         floatButtons[(int)BodyPart.Abdomen].onClick.AddListener(() => ButtonsFloatBehaviour(BodyPart.Abdomen));
@@ -44,17 +43,14 @@ public class FloatMenu : MonoBehaviour
     [ContextMenu("Components Assignment")]
     private void ComponentsAssignment()
     {
-        if (buttonsFloatHeader.IsNull())
-            buttonsFloatHeader = GameObject.Find("ButtonsFloat").transform;
-
-        int count = buttonsFloatHeader.childCount;
+        int count = transform.childCount;
 
         if (buttonsMain.IsNull())
             buttonsMain = FindAnyObjectByType<ButtonsMain>();
         if (dropDownMenu.IsNull())
             dropDownMenu = FindAnyObjectByType<DropDownMenu>();
         if (floatAnimators.IsNullOrEmpty())
-            floatAnimators = _assignAnimators(buttonsFloatHeader);
+            floatAnimators = _assignAnimators(transform);
         if (floatTransforms.IsNullOrEmpty())
             floatTransforms = _assignComponents<Transform>(floatAnimators, 0);
         if (floatCanvas.IsNullOrEmpty())
