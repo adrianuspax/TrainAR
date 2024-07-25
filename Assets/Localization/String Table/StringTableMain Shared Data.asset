@@ -14,7 +14,323 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_TableCollectionName: StringTableMain
   m_TableCollectionNameGuidString: 41ce18917a87c984b810f28c58b78c3e
-  m_Entries: []
+  m_Entries:
+  - m_Id: 17096295956480
+    m_Key: Name
+    m_Metadata:
+      m_Items: []
+  - m_Id: 17522374328320
+    m_Key: Age
+    m_Metadata:
+      m_Items: []
+  - m_Id: 17587872579584
+    m_Key: Weight
+    m_Metadata:
+      m_Items: []
+  - m_Id: 17659532263424
+    m_Key: Height
+    m_Metadata:
+      m_Items: []
+  - m_Id: 17723478622208
+    m_Key: Gender
+    m_Metadata:
+      m_Items: []
+  - m_Id: 17778231066624
+    m_Key: Level
+    m_Metadata:
+      m_Items: []
+  - m_Id: 17810636259328
+    m_Key: Male
+    m_Metadata:
+      m_Items: []
+  - m_Id: 17933206405120
+    m_Key: Female
+    m_Metadata:
+      m_Items: []
+  - m_Id: 18051963928576
+    m_Key: Lean
+    m_Metadata:
+      m_Items: []
+  - m_Id: 18571776606208
+    m_Key: Normal
+    m_Metadata:
+      m_Items: []
+  - m_Id: 18605389758464
+    m_Key: Overweight
+    m_Metadata:
+      m_Items: []
+  - m_Id: 18626956869632
+    m_Key: Fat
+    m_Metadata:
+      m_Items: []
+  - m_Id: 18691033251840
+    m_Key: Your Data
+    m_Metadata:
+      m_Items: []
+  - m_Id: 18731390844928
+    m_Key: Calculation
+    m_Metadata:
+      m_Items: []
+  - m_Id: 18748386164736
+    m_Key: Target
+    m_Metadata:
+      m_Items: []
+  - m_Id: 18791923040256
+    m_Key: BodyFat
+    m_Metadata:
+      m_Items: []
+  - m_Id: 18825234202624
+    m_Key: TotalFat
+    m_Metadata:
+      m_Items: []
+  - m_Id: 18867311460352
+    m_Key: Goal
+    m_Metadata:
+      m_Items: []
+  - m_Id: 18891613257728
+    m_Key: ToLoseFat
+    m_Metadata:
+      m_Items: []
+  - m_Id: 18915181051904
+    m_Key: ToBurnCalories
+    m_Metadata:
+      m_Items: []
+  - m_Id: 18942603411456
+    m_Key: ID
+    m_Metadata:
+      m_Items: []
+  - m_Id: 18962278891520
+    m_Key: Password
+    m_Metadata:
+      m_Items: []
+  - m_Id: 18986391945216
+    m_Key: EnterUsername
+    m_Metadata:
+      m_Items: []
+  - m_Id: 19010827960320
+    m_Key: EnterPassword
+    m_Metadata:
+      m_Items: []
+  - m_Id: 19036866199552
+    m_Key: SignIn
+    m_Metadata:
+      m_Items: []
+  - m_Id: 19059834208256
+    m_Key: SignUp
+    m_Metadata:
+      m_Items: []
+  - m_Id: 19081199992832
+    m_Key: ThereAreEmptyFields
+    m_Metadata:
+      m_Items: []
+  - m_Id: 19104209944576
+    m_Key: WrongUsernameOrPassword
+    m_Metadata:
+      m_Items: []
+  - m_Id: 19469521240064
+    m_Key: EnterNewUsername
+    m_Metadata:
+      m_Items: []
+  - m_Id: 19590879232000
+    m_Key: EnterNewPassword
+    m_Metadata:
+      m_Items: []
+  - m_Id: 19659384799232
+    m_Key: RepeatNewPassword
+    m_Metadata:
+      m_Items: []
+  - m_Id: 19748408901632
+    m_Key: NewUsername
+    m_Metadata:
+      m_Items: []
+  - m_Id: 19841967046656
+    m_Key: NewPassword
+    m_Metadata:
+      m_Items: []
+  - m_Id: 19871432032256
+    m_Key: RepeatPassword
+    m_Metadata:
+      m_Items: []
+  - m_Id: 19946447159296
+    m_Key: ThisUsernameIsAlreadyUsed
+    m_Metadata:
+      m_Items: []
+  - m_Id: 20025316851712
+    m_Key: PasswordsDontMatch
+    m_Metadata:
+      m_Items: []
+  - m_Id: 20098826223616
+    m_Key: Ok
+    m_Metadata:
+      m_Items: []
+  - m_Id: 20165838618624
+    m_Key: SignedInAs
+    m_Metadata:
+      m_Items: []
+  - m_Id: 20204795314176
+    m_Key: UpdateProfile
+    m_Metadata:
+      m_Items: []
+  - m_Id: 20245362622464
+    m_Key: EditAccount
+    m_Metadata:
+      m_Items: []
+  - m_Id: 20287481823232
+    m_Key: Language
+    m_Metadata:
+      m_Items: []
+  - m_Id: 20326455296000
+    m_Key: DeleteAccount
+    m_Metadata:
+      m_Items: []
+  - m_Id: 20364745097216
+    m_Key: SignOut
+    m_Metadata:
+      m_Items: []
+  - m_Id: 20392528166912
+    m_Key: AreYouSureCancelAccount
+    m_Metadata:
+      m_Items: []
+  - m_Id: 21189487869952
+    m_Key: Yes
+    m_Metadata:
+      m_Items: []
+  - m_Id: 21207271718912
+    m_Key: No
+    m_Metadata:
+      m_Items: []
+  - m_Id: 21285340299264
+    m_Key: WhatIsYourName
+    m_Metadata:
+      m_Items: []
+  - m_Id: 21371856207872
+    m_Key: WhatIsYourGender
+    m_Metadata:
+      m_Items: []
+  - m_Id: 21531776630784
+    m_Key: WhatIsYourGoal
+    m_Metadata:
+      m_Items: []
+  - m_Id: 21794285535232
+    m_Key: WhatYourFitnessLevel
+    m_Metadata:
+      m_Items: []
+  - m_Id: 22057574580224
+    m_Key: WhatIsYourFocus
+    m_Metadata:
+      m_Items: []
+  - m_Id: 22142559567872
+    m_Key: MoreAboutYou
+    m_Metadata:
+      m_Items: []
+  - m_Id: 22244443406336
+    m_Key: Next
+    m_Metadata:
+      m_Items: []
+  - m_Id: 22264777392128
+    m_Key: EnterYourNameHere
+    m_Metadata:
+      m_Items: []
+  - m_Id: 22406691667968
+    m_Key: LoseWeight
+    m_Metadata:
+      m_Items: []
+  - m_Id: 22465311260672
+    m_Key: MoreMuscle
+    m_Metadata:
+      m_Items: []
+  - m_Id: 22520319557632
+    m_Key: KeepShape
+    m_Metadata:
+      m_Items: []
+  - m_Id: 22569954951168
+    m_Key: Sedentary
+    m_Metadata:
+      m_Items: []
+  - m_Id: 22605107412992
+    m_Key: Walker
+    m_Metadata:
+      m_Items: []
+  - m_Id: 22637382582272
+    m_Key: Rrunner
+    m_Metadata:
+      m_Items: []
+  - m_Id: 22665148874752
+    m_Key: Athletic
+    m_Metadata:
+      m_Items: []
+  - m_Id: 22696706818048
+    m_Key: BodyBuilder
+    m_Metadata:
+      m_Items: []
+  - m_Id: 22746015055872
+    m_Key: Abdomen
+    m_Metadata:
+      m_Items: []
+  - m_Id: 22768395862016
+    m_Key: Chest
+    m_Metadata:
+      m_Items: []
+  - m_Id: 22787517693952
+    m_Key: Arms
+    m_Metadata:
+      m_Items: []
+  - m_Id: 22804458487808
+    m_Key: Legs
+    m_Metadata:
+      m_Items: []
+  - m_Id: 22855306035200
+    m_Key: CurrentWeight
+    m_Metadata:
+      m_Items: []
+  - m_Id: 22940949528576
+    m_Key: WeightGoal
+    m_Metadata:
+      m_Items: []
+  - m_Id: 23005424369664
+    m_Key: edit
+    m_Metadata:
+      m_Items: []
+  - m_Id: 23093957738496
+    m_Key: EnterYourAge
+    m_Metadata:
+      m_Items: []
+  - m_Id: 23131685502976
+    m_Key: EnterYourCurrentWeight
+    m_Metadata:
+      m_Items: []
+  - m_Id: 23198655954944
+    m_Key: EnterYourDesiredWeight
+    m_Metadata:
+      m_Items: []
+  - m_Id: 23270634405888
+    m_Key: EnterYourHeight
+    m_Metadata:
+      m_Items: []
+  - m_Id: 23322329202688
+    m_Key: value
+    m_Metadata:
+      m_Items: []
+  - m_Id: 23396803264512
+    m_Key: Years
+    m_Metadata:
+      m_Items: []
+  - m_Id: 23443527811072
+    m_Key: kg
+    m_Metadata:
+      m_Items: []
+  - m_Id: 23480035033088
+    m_Key: cm
+    m_Metadata:
+      m_Items: []
+  - m_Id: 23526818299904
+    m_Key: Save
+    m_Metadata:
+      m_Items: []
+  - m_Id: 23547911454720
+    m_Key: Cancel
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:
