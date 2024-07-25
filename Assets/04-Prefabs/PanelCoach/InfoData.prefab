@@ -443,6 +443,11 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2136649427, guid: c35ed9055b0d1cf47a03e111a6f382ef, type: 3}
+      propertyPath: m_fontAsset
+      value: 
+      objectReference: {fileID: 11400000, guid: 44c7d1225ea6de34885a66570dd77599,
+        type: 2}
     - target: {fileID: 4983110489764927789, guid: c35ed9055b0d1cf47a03e111a6f382ef,
         type: 3}
       propertyPath: m_Name
@@ -801,6 +806,11 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2136649427, guid: c35ed9055b0d1cf47a03e111a6f382ef, type: 3}
+      propertyPath: m_fontAsset
+      value: 
+      objectReference: {fileID: 11400000, guid: 44c7d1225ea6de34885a66570dd77599,
+        type: 2}
     - target: {fileID: 4983110489764927789, guid: c35ed9055b0d1cf47a03e111a6f382ef,
         type: 3}
       propertyPath: m_Name
