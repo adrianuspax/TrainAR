@@ -105,7 +105,7 @@ public class PanelCoach : MonoBehaviour
     {
         AR = FindAnyObjectByType<AugmentedReality>();
         trainingSystem = this.GetComponent<TrainingSystem>();
-        floatMenu = this.GetComponent<ButtonsFloat>();
+        floatMenu = FindAnyObjectByType<ButtonsFloat>();
         buttonsMain = FindAnyObjectByType<ButtonsMain>();
 
         pivotCorrection = pivotPanelCoach.GetChild(0);
