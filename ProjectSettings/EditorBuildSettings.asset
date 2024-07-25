@@ -41,6 +41,8 @@ EditorBuildSettings:
       guid: 5600bd58140cfcc4aa06ba9de559e3a1, type: 2}
     com.unity.addressableassets: {fileID: 11400000, guid: 465ddc55c6f05404e861535e12cd7ed4,
       type: 2}
+    com.unity.localization.settings: {fileID: 11400000, guid: b475e77f3c654554da8d6adfc3bc4739,
+      type: 2}
     com.unity.xr.arcore.PlayerSettings: {fileID: 11400000, guid: c2f7b8d7c0bff4d10874cbcf3f24af78,
       type: 2}
     com.unity.xr.arfoundation.simulation_settings: {fileID: 11400000, guid: f0dbd8c206d69cd47b58aacc478d648f,
