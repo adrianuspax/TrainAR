@@ -66,7 +66,7 @@ public class ButtonsFloat : MonoBehaviour
 
             for (int i = 0; i < count; i++)
             {
-                header.GetComponentFrom(out components[i], i, 0);
+                header.GetComponentIfNull(ref components[i], i, 0);
             }
 
             return components;
@@ -78,7 +78,7 @@ public class ButtonsFloat : MonoBehaviour
 
             for (int i = 0; i < count; i++)
             {
-                components[i].GetComponentFrom(out returnedComponents[i], indexChild);
+                components[i].GetComponentIfNull(ref returnedComponents[i], indexChild);
             }
 
             return returnedComponents;

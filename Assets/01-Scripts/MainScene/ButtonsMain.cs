@@ -74,16 +74,11 @@ public class ButtonsMain : MonoBehaviour
             floatMenu = FindAnyObjectByType<ButtonsFloat>();
         if (coachAnimations.IsNull())
             coachAnimations = FindAnyObjectByType<Coach>();
-        if (btnTopL.IsNull())
-            this.GetComponentFrom(out btnTopL, 0, 0);
-        if (btnTopR.IsNull())
-            this.GetComponentFrom(out btnTopR, 0, 1);
-        if (btnBarL.IsNull())
-            this.GetComponentFrom(out btnBarL, 1, 0);
-        if (btnBarC.IsNull())
-            this.GetComponentFrom(out btnBarC, 1, 1);
-        if (btnBarR.IsNull())
-            this.GetComponentFrom(out btnBarR, 1, 2);
+            this.GetComponentIfNull(ref btnTopL, 0, 0);
+            this.GetComponentIfNull(ref btnTopR, 0, 1);
+            this.GetComponentIfNull(ref btnBarL, 1, 0);
+            this.GetComponentIfNull(ref btnBarC, 1, 1);
+            this.GetComponentIfNull(ref btnBarR, 1, 2);
 
         ASP.SceneManagement.SceneManager.SaveCurrentScene();
     }

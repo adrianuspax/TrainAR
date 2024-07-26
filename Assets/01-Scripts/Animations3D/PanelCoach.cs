@@ -141,8 +141,7 @@ public class PanelCoach : MonoBehaviour
     {
         if (animator.IsNull())
             animator = transform.GetChild(0).GetComponent<Animator>();
-        if (scrollView.IsNull())
-            animator.GetComponentFrom(out scrollView, 0);
+        animator.GetComponentIfNull(ref scrollView, 0);
         if (canvasRectTransform.IsNull())
             canvasRectTransform = transform.parent.GetComponent<RectTransform>();
         if (pivotCorrection.IsNull())
@@ -151,8 +150,7 @@ public class PanelCoach : MonoBehaviour
             pivotPanelCoach = pivotCorrection.parent.transform;
         if (objectReference.IsNull())
             objectReference = GameObject.FindGameObjectWithTag(Tag.Coach).transform.GetChild(0);
-        if (rectMask2D.IsNull())
-            scrollView.GetComponentFrom(out rectMask2D, 0);
+        scrollView.GetComponentIfNull(ref rectMask2D, 0);
         if (AR.IsNull())
             AR = FindAnyObjectByType<AugmentedReality>();
         if (trainingSystem.IsNull())

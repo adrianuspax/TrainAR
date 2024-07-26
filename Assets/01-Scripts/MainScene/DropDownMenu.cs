@@ -54,20 +54,16 @@ public class DropDownMenu : MonoBehaviour
     {
         if (aniDropDownMenu.IsNull())
             aniDropDownMenu = GetComponent<Animator>();
-        if (dropDownScrollRect.IsNull())
-            this.GetComponentFrom(out dropDownScrollRect, 0, 0, 0);
-        if (btnOpenDropDown.IsNull())
-            this.GetComponentFrom(out btnOpenDropDown, 0, 0, 1);
-        if (btnCloseDropDown.IsNull())
-            dropDownScrollRect.GetComponentFrom(out btnCloseDropDown, 0);
-        if (buttonsHeader.IsNull())
-            dropDownScrollRect.GetComponentFrom(out buttonsHeader, 1, 0);
+        this.GetComponentIfNull(ref dropDownScrollRect, 0, 0, 0);
+        this.GetComponentIfNull(ref btnOpenDropDown, 0, 0, 1);
+        dropDownScrollRect.GetComponentIfNull(ref btnCloseDropDown, 0);
+        dropDownScrollRect.GetComponentIfNull(ref buttonsHeader, 1, 0);
         if (floatMenu.IsNull())
             floatMenu = FindAnyObjectByType<ButtonsFloat>();
         if (coachAnimations.IsNull())
             coachAnimations = FindAnyObjectByType<Coach>();
         if (buttonsMain.IsNull())
-            buttonsMain = FindAnyObjectByType<ButtonsMain>();        
+            buttonsMain = FindAnyObjectByType<ButtonsMain>();
         if (gridButtonDDM.IsNullOrEmpty())
             (gridButtonDDM, isPressDDM) = ButtonsManager.Assignment(buttonsHeader, ButtonsDDMBehaviour);
         if (tmps.IsNullOrEmpty())

@@ -73,8 +73,7 @@ public class AugmentedReality : MonoBehaviour
             poolPivot = GameObject.Find("3D").transform;
         if (coach.IsNull())
             coach = FindAnyObjectByType<Coach>();
-        if (anchorARPivot.IsNull())
-            this.GetComponentFrom(out anchorARPivot, 0, 0, 0, 0, 0);
+        this.GetComponentIfNull(ref anchorARPivot, 0, 0, 0, 0, 0);
         if (animationsMain.IsNull())
             animationsMain = FindAnyObjectByType<AnchorAnimation>();
         if (floatMenu.IsNull())

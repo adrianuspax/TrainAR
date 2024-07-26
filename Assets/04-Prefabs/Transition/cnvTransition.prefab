@@ -49,9 +49,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 88d05641c8c35c14eb52da277f946ad8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  animator: {fileID: 0}
-  transitionStartClip: {fileID: 7400000, guid: c31a1aafde83ba5469c026aaa8f56174, type: 2}
-  transitionEndClip: {fileID: 7400000, guid: 9b32f877ef166e742b11c13c287ca7a8, type: 2}
+  animator: {fileID: 3712884857349008464}
 --- !u!1 &3712884857102227207
 GameObject:
   m_ObjectHideFlags: 0

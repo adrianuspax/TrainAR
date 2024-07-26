@@ -60,8 +60,8 @@ public class Transition : MonoBehaviour
     [ContextMenu("Components Assignment")]
     private void ComponentsAssignment()
     {
-        if (animator.IsNull())
-            this.GetComponentFrom(out animator, 0);
+        this.GetComponentIfNull(ref animator, 0);
+        ASP.SceneManagement.SceneManager.SaveCurrentScene();
     }
 
     public void StartClip()
