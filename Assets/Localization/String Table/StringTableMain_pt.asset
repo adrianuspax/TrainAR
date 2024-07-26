@@ -390,6 +390,10 @@ MonoBehaviour:
     m_Localized: Abdominais
     m_Metadata:
       m_Items: []
+  - m_Id: 385302818832384
+    m_Localized: "Exerc\xEDcios Recomendados"
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []
