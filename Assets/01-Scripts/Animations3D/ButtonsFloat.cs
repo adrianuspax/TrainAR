@@ -21,6 +21,7 @@ public class ButtonsFloat : MonoBehaviour
     [SerializeField, NonReorderable, ReadOnly] private Transform[] floatTransforms;
     [SerializeField, NonReorderable, ReadOnly] private Canvas[] floatCanvas;
     [SerializeField, NonReorderable, ReadOnly] private Animator[] floatAnimators;
+
     [Header(Header.scripts, order = 0)]
     [SerializeField, ReadOnly] private ButtonsMain buttonsMain;
     [SerializeField, ReadOnly] private DropDownMenu dropDownMenu;

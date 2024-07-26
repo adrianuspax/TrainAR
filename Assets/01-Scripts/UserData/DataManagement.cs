@@ -3,12 +3,13 @@ using ASP.Extensions;
 using UnityEngine;
 using Debug = ASP.Debug;
 using PlayerPrefs = ASP.PlayerPrefs;
-[RequireComponent(typeof(PagesAndFields), typeof(UserDataButtons))]
+
 public class DataManagement : MonoBehaviour
 {
     [Header(Header.READONLY, order = 0)]
     [Space(-10, order = 1)]
     [Header("SAVED DATA PROFILE", order = 2)]
+#pragma warning disable IDE0052
     [SerializeField, ReadOnly] private string userName;
     [SerializeField, ReadOnly] private string gender;
     [SerializeField, ReadOnly] private string goal;
@@ -23,7 +24,7 @@ public class DataManagement : MonoBehaviour
     [Header("SAVED DATA ACCOUNT", order = 2)]
     [SerializeField, ReadOnly] private string username;
     [SerializeField, ReadOnly] private string password;
-
+#pragma warning restore IDE0052
     [Header(Header.scripts, order = 0)]
     [SerializeField, ReadOnly] private PagesAndFields pagesAndFields;
     [SerializeField, ReadOnly] private Transition transition;
@@ -99,9 +100,9 @@ public class DataManagement : MonoBehaviour
     private void ComponentsAssignment()
     {
         if (pagesAndFields.IsNull())
-            pagesAndFields = GetComponent<PagesAndFields>();
-        if(userDataButtons.IsNull())
-            userDataButtons = GetComponent<UserDataButtons>();
+            pagesAndFields = FindAnyObjectByType<PagesAndFields>();
+        if (userDataButtons.IsNull())
+            userDataButtons = FindAnyObjectByType<UserDataButtons>();
         if (transition.IsNull())
             transition = GameObject.FindGameObjectWithTag(Tag.Transition).GetComponent<Transition>();
 
@@ -160,19 +161,6 @@ public class DataManagement : MonoBehaviour
 
         username = AccountData.Username;
         password = AccountData.Password;
-
-        _ = userName;
-        _ = gender;
-        _ = goal;
-        _ = level;
-        _ = focus;
-        _ = age;
-        _ = currentWeight;
-        _ = weightGoal;
-        _ = height;
-        _ = language;
-        _ = username;
-        _ = password;
     }
 
     public string UserName

@@ -1,9 +1,8 @@
 ﻿using ASP.SceneManagement;
-using UnityEngine;
 using UnityEngine.Events;
 using PlayerPrefs = ASP.PlayerPrefs;
 
-public class TrainARSceneManager : MonoBehaviour
+public static class TrainARSceneManager
 {
     public static readonly SceneManager.Scene redirection = new("Redirection");
     public static readonly SceneManager.Scene language = new("Language");

@@ -65,12 +65,10 @@ public class FadeCoach : MonoBehaviour
     {
         if (animator.IsNull())
             animator = GetComponent<Animator>();
-        if (legButton.IsNull())
-            this.GetComponentIfNull(ref legButton, 0, 0, 0, 2, 0, 0, 0, 1, 0);
+        this.GetComponentIfNull(ref legButton, 0, 0, 0, 2, 0, 0, 0, 1, 0);
         if (legAnimation.IsNull())
             legAnimation = GetComponentInChildren<Animation>();
-        if (plusButton.IsNull())
-            legAnimation.GetComponentIfNull(ref plusButton, 26, 0, 0);
+        legAnimation.GetComponentIfNull(ref plusButton, 26, 0, 0);
         if (floatMenu.IsNull())
             floatMenu = FindAnyObjectByType<ButtonsFloat>();
         if (dropDownMenu.IsNull())

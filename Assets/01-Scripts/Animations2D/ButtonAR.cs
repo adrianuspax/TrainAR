@@ -21,8 +21,8 @@ public class ButtonAR : MonoBehaviour
     [ContextMenu("Components Assignment")]
     private void ComponentsAssignment()
     {
-        if (animator.IsNull())
-            animator = GetComponentInChildren<Animator>();
+        this.GetComponentInChildrenIfNull(ref animator);
+        ASP.SceneManagement.SceneManager.SaveCurrentScene();
     }
 
     public Animator Animator => animator;
