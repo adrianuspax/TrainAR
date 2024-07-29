@@ -1,8 +1,7 @@
+using ASP;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
-using TMPro;
-using ASP;
-using Debug = ASP.Debug;
 using PlayerPrefs = UnityEngine.PlayerPrefs;
 
 public class Menu : MonoBehaviour

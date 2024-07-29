@@ -23,7 +23,7 @@ public class ButtonsMain : MonoBehaviour
     [Space(-10, order = 1)]
     [Header(Header.variables, order = 2)]
     [SerializeField, ReadOnly] private StateButtonAR stateButtonAR;
-    [SerializeField, ReadOnly] private bool btnBarRIsPressed;
+    [SerializeField, ReadOnly] private bool isPressedButtonBar;
     [Header(Header.buttons, order = 0)]
     [Space(-10, order = 1)]
     [Header("Top Area", order = 2)]
@@ -51,10 +51,10 @@ public class ButtonsMain : MonoBehaviour
     private void OnEnable()
     {
         btnTopR.onClick.AddListener(ButtonsManager.CloseApplication);
-        btnTopL.onClick.AddListener(() => TrainARSceneManager.LoadMenu());
-        btnBarC.onClick.AddListener(() => AR.PlaceCoachAR());
-        btnBarR.onClick.AddListener(() => ButtonPanelCoach(btnBarRIsPressed = !btnBarRIsPressed));
-        btnBarL.onClick.AddListener(() => panelResult.PanelResultBehaviour());
+        btnTopL.onClick.AddListener(TrainARSceneManager.LoadMenu);
+        btnBarC.onClick.AddListener(AR.PlaceCoachAR);
+        btnBarL.onClick.AddListener(panelResult.PanelResultBehaviour);
+        btnBarR.onClick.AddListener(() => ButtonPanelCoach(isPressedButtonBar = !isPressedButtonBar));
     }
     /// <summary>
     /// Assignment of components and variables
@@ -115,7 +115,7 @@ public class ButtonsMain : MonoBehaviour
         btnBarR.image.sprite = isPressed ? closePanel : openPanel;
         floatMenu.SetBoolFloatAnimators(!isPressed);
         panelCoach.PanelCoachBehaviour(isPressed);
-        isPressed.ComparativeAssignment(ref btnBarRIsPressed);
+        isPressed.ComparativeAssignment(ref isPressedButtonBar);
     }
 
     public bool ButtonSetCoachInteraction
