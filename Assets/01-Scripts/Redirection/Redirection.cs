@@ -1,8 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using ASP;
-using Debug = ASP.Debug;
 
 public class Redirection : MonoBehaviour
 {
@@ -16,16 +12,20 @@ public class Redirection : MonoBehaviour
         if (AccountData.HasAccount)
         {
             if (AccountData.Signed)
-            { TrainARSceneManager.LoadTrainAR(); }
+            {
+                TrainARSceneManager.LoadTrainAR(); 
+            }
             else
             {
                 if (AccountData.HasLanguage)
-                { TrainARSceneManager.LoadSignIn(); }
+                    TrainARSceneManager.LoadSignIn();
                 else
-                { TrainARSceneManager.LoadLanguage(); }
+                    TrainARSceneManager.LoadLanguage();
             }
         }
         else
-        { TrainARSceneManager.LoadLanguage(); }
+        { 
+            TrainARSceneManager.LoadLanguage(); 
+        }
     }
 }

@@ -1,36 +1,58 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using ASP;
+using ASP.Extensions;
+using System.Collections;
 using UnityEngine;
-using ASP;
-using Debug = ASP.Debug;
 
 public class TrainingSystem : MonoBehaviour
 {
-    [Header(" =========================== READY ONLY =========================== ", order = 0)]
+    [Header(Header.READONLY, order = 0)]
     [Space(-10, order = 1)]
-    [Header("Scripts", order = 2)]
+    [Header(Header.variables, order = 2)]
+    [SerializeField, ReadOnly] private bool isFinishedCoroutine;
+    [SerializeField, ReadOnly] private bool isStartedSeqiance;
+
+    [Header(Header.scripts, order = 1)]
     [SerializeField, ReadOnly] private CounterAndTimerUI counterAndTimer;
-    [SerializeField, ReadOnly] private bool coroutineFinished;
-    [SerializeField, ReadOnly] private bool squenceStarted;
     [SerializeField, ReadOnly] private Coach coachAnimations;
     [SerializeField, ReadOnly] private ButtonsMain buttonsMain;
     [SerializeField, ReadOnly] private DropDownMenu dropDownMenu;
 
     private void Awake()
     {
-        counterAndTimer = FindAnyObjectByType<CounterAndTimerUI>();
-        coachAnimations = FindAnyObjectByType<Coach>();
-        buttonsMain = FindAnyObjectByType<ButtonsMain>();
-        dropDownMenu = FindAnyObjectByType<DropDownMenu>();
-
+        ComponentsAssignment();
+    }
+    /// This function is called when the object becomes enabled and active.
+    private void OnEnable()
+    {
         counterAndTimer.AddListnerInButton(Skip);
     }
 
     private void Update()
     {
         LoadBehaviourDDM();
+
         if (coachAnimations.CurrentAnimation.isWorkout)
-        { counterAndTimer.Timer = Timer.MMSS(squenceStarted ? Count.down : Count.up); }
+        {
+            string textTimer = Timer.MMSS(isStartedSeqiance ? Count.down : Count.up);
+            counterAndTimer.SetTextTimer(textTimer);
+        }
+    }
+    /// <summary>
+    /// Assignment of components and variables
+    /// </summary>
+    [ContextMenu("Components Assignment")]
+    private void ComponentsAssignment()
+    {
+        if (counterAndTimer.IsNull())
+            counterAndTimer = FindAnyObjectByType<CounterAndTimerUI>();
+        if (coachAnimations.IsNull())
+            coachAnimations = FindAnyObjectByType<Coach>();
+        if (buttonsMain.IsNull())
+            buttonsMain = FindAnyObjectByType<ButtonsMain>();
+        if (dropDownMenu.IsNull())
+            dropDownMenu = FindAnyObjectByType<DropDownMenu>();
+
+        ASP.SceneManagement.SceneManager.SaveCurrentScene();
     }
 
     public void LoadBehaviourDDM()
@@ -41,12 +63,12 @@ public class TrainingSystem : MonoBehaviour
             {
                 if (coachAnimations.CurrentAnimation.isEnter)
                 {
-                    counterAndTimer.SetCount("준비");
+                    counterAndTimer.CountTMP.SetLocalizationString("Ready", "StringTableMain");
                     counterAndTimer.RingLoad.fillAmount = coachAnimations.CurrentAnimation.normalizedTime;
                 }
                 else if (coachAnimations.CurrentAnimation.isWorkout)
                 {
-                    counterAndTimer.SetCount(coachAnimations.CurrentAnimation.loopCount);
+                    counterAndTimer.SetValueCount(coachAnimations.CurrentAnimation.loopCount);
                     counterAndTimer.RingLoad.fillAmount = 1f;
                 }
             }
@@ -60,21 +82,21 @@ public class TrainingSystem : MonoBehaviour
         {
             if (coachAnimations.CurrentAnimation.isWorkout)
             {
-                counterAndTimer.SetCount("대기");
+                counterAndTimer.CountTMP.SetLocalizationString("Wait", "StringTableMain");
                 counterAndTimer.RingLoad.fillAmount = coachAnimations.CurrentAnimation.normalizedReverseTime;
             }
             else
             {
                 if (coachAnimations.CurrentAnimation.isOut)
                 {
-                    counterAndTimer.SetCount("준비");
+                    counterAndTimer.CountTMP.SetLocalizationString("Ready", "StringTableMain");
                     counterAndTimer.RingLoad.fillAmount = coachAnimations.CurrentAnimation.normalizedTime;
                 }
-                else  if (coachAnimations.CurrentAnimation.isIdle && counterAndTimer.HasStarted)
+                else if (coachAnimations.CurrentAnimation.isIdle && counterAndTimer.HasStarted)
                 {
                     counterAndTimer.EndAnimation();
                     Timer.Stop();
-                    counterAndTimer.Timer = "00:00";
+                    counterAndTimer.SetTextTimer("00:00");
                 }
             }
         }
@@ -87,26 +109,49 @@ public class TrainingSystem : MonoBehaviour
         buttonsMain.PanelCoachInteraction = true;
         dropDownMenu.Interactable = true;
         buttonsMain.ButtonSetCoachInteraction = true;
-        squenceStarted = false;
+        isStartedSeqiance = false;
         Timer.Stop();
-        counterAndTimer.Timer = "00:00";
+        counterAndTimer.SetTextTimer("00:00");
         counterAndTimer.EndAnimation();
     }
 
     public void WorkoutSequence()
     {
-        StartCoroutine(Cor_LoadBehaviourPanelCoach());
+        StartCoroutine(_loadBehaviourPanelCoach());
+
+        IEnumerator _loadBehaviourPanelCoach()
+        {
+            counterAndTimer.StartAnimation();
+
+            buttonsMain.PanelCoachInteraction = false;
+            dropDownMenu.Interactable = false;
+            buttonsMain.ButtonSetCoachInteraction = false;
+
+            AnimationInLoop(Coach.Trigger.Pistol, 20); //20
+            isStartedSeqiance = true;
+            yield return new WaitWhile(() => !isFinishedCoroutine);
+            AnimationInLoop(Coach.Trigger.Squat, 15); //15
+            yield return new WaitWhile(() => !isFinishedCoroutine);
+            AnimationInLoop(Coach.Trigger.Burpee, 30); //30
+            yield return new WaitWhile(() => !isFinishedCoroutine);
+            isStartedSeqiance = false;
+            buttonsMain.PanelCoachInteraction = true;
+            dropDownMenu.Interactable = true;
+            buttonsMain.ButtonSetCoachInteraction = true;
+            counterAndTimer.SetTextTimer("00:00");
+            counterAndTimer.EndAnimation();
+        }
     }
 
     private void AnimationInLoop(Coach.Trigger animation, int amount)
     {
-        coroutineFinished = false;
+        isFinishedCoroutine = false;
         StartCoroutine(Cor_AnimationInLoop(animation, amount));
     }
 
     private IEnumerator Cor_AnimationInLoop(Coach.Trigger animation, int amount)
     {
-        counterAndTimer.SetCount("준비");
+        counterAndTimer.CountTMP.SetLocalizationString("Ready", "StringTableMain");
         yield return new WaitWhile(() => !coachAnimations.CurrentAnimation.isIdle);
 
         coachAnimations.StartAnimation(animation);
@@ -116,11 +161,11 @@ public class TrainingSystem : MonoBehaviour
         while (coachAnimations.CurrentAnimation.isEnter)
         {
             counterAndTimer.RingLoad.fillAmount = coachAnimations.CurrentAnimation.normalizedTime;
-            counterAndTimer.SetCount(amount);
+            counterAndTimer.SetValueCount(amount);
             yield return null;
         }
 
-        counterAndTimer.SetCount(amount);
+        counterAndTimer.SetValueCount(amount);
         counterAndTimer.RingLoad.fillAmount = 1;
 
         yield return new WaitWhile(() => !coachAnimations.CurrentAnimation.isWorkout);
@@ -128,49 +173,25 @@ public class TrainingSystem : MonoBehaviour
 
         while (coachAnimations.CurrentAnimation.normalizedTime < amount - 1)
         {
-            counterAndTimer.SetCount(amount - coachAnimations.CurrentAnimation.loopCount);
+            counterAndTimer.SetValueCount(amount - coachAnimations.CurrentAnimation.loopCount);
             counterAndTimer.RingLoad.fillAmount = (amount - coachAnimations.CurrentAnimation.normalizedTime) / amount;
             yield return null;
         }
 
         coachAnimations.StartIdleAnimation();
-        counterAndTimer.SetCount(1);
+        counterAndTimer.SetValueCount(1);
 
         while (coachAnimations.CurrentAnimation.isWorkout)
         {
-            counterAndTimer.SetCount(amount - coachAnimations.CurrentAnimation.loopCount);
+            counterAndTimer.SetValueCount(amount - coachAnimations.CurrentAnimation.loopCount);
             counterAndTimer.RingLoad.fillAmount = (amount - coachAnimations.CurrentAnimation.normalizedTime) / amount;
             yield return null;
         }
 
-        counterAndTimer.SetCount("준비");
+        counterAndTimer.CountTMP.SetLocalizationString("Ready", "StringTableMain");
         counterAndTimer.RingLoad.fillAmount = 0;
         Timer.Stop();
         yield return new WaitWhile(() => !coachAnimations.CurrentAnimation.isIdle);
-        coroutineFinished = true;
-    }
-
-    private IEnumerator Cor_LoadBehaviourPanelCoach()
-    {
-        counterAndTimer.StartAnimation();
-
-        buttonsMain.PanelCoachInteraction = false;
-        dropDownMenu.Interactable = false;
-        buttonsMain.ButtonSetCoachInteraction = false;
-
-        AnimationInLoop(Coach.Trigger.Pistol, 20); //20
-        squenceStarted = true;
-        yield return new WaitWhile(() => !coroutineFinished);
-        AnimationInLoop(Coach.Trigger.Squat, 15); //15
-        yield return new WaitWhile(() => !coroutineFinished);
-        AnimationInLoop(Coach.Trigger.Burpee, 30); //30
-        yield return new WaitWhile(() => !coroutineFinished);
-        squenceStarted = false;
-        buttonsMain.PanelCoachInteraction = true;
-        dropDownMenu.Interactable = true;
-        buttonsMain.ButtonSetCoachInteraction = true;
-        counterAndTimer.Timer = "00:00";
-        counterAndTimer.EndAnimation();
-        
+        isFinishedCoroutine = true;
     }
 }

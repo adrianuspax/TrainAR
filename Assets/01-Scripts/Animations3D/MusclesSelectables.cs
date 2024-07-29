@@ -1,18 +1,25 @@
+using ASP;
+using ASP.Extensions;
 using UnityEngine;
 using UnityEngine.EventSystems;
-using ASP;
-using Debug = ASP.Debug;
+
 
 public class MusclesSelectables : MonoBehaviour
 {
+    [Header(Header.READONLY, order = 0)]
+    [Space(-10, order = 1)]
+    [Header(Header.variables, order = 2)]
+    [SerializeField, ReadOnly]                 private Animator animator;
     [SerializeField, ReadOnly, NonReorderable] private Outline[] outlines;
     [SerializeField, ReadOnly, NonReorderable] private EventTrigger[] triggers;
-    [SerializeField] private GameObject content;
 
     private void Awake()
     {
-        (outlines, triggers) = Assign();
-
+        ComponentsAssignment();
+    }
+    /// This function is called when the object becomes enabled and active.
+    private void OnEnable()
+    {
         foreach (EventTrigger trigger in triggers)
         {
             EventTrigger.Entry entry = new()
@@ -27,7 +34,43 @@ public class MusclesSelectables : MonoBehaviour
 
     private void Start()
     {
-        content.SetActive(false);
+        animator.gameObject.SetActive(false);
+    }
+    /// <summary>
+    /// Assignment of components and variables
+    /// </summary>
+    [ContextMenu("Components Assignment")]
+    private void ComponentsAssignment()
+    {
+        if (animator.IsNull())
+            animator = GetComponentInChildren<Animator>();
+
+        if (outlines.IsNullOrEmpty() || triggers.IsNullOrEmpty())
+        {
+            (outlines, triggers) = _assign();
+        }
+
+        static (Outline[] outlines, EventTrigger[] triggers) _assign()
+        {
+            GameObject[] gameObjcts;
+            Outline[] outlines;
+            EventTrigger[] triggers;
+
+            gameObjcts = GameObject.FindGameObjectsWithTag(Tag.Muscle);
+
+            outlines = new Outline[gameObjcts.Length];
+            triggers = new EventTrigger[gameObjcts.Length];
+
+            for (int i = 0; i < gameObjcts.Length; i++)
+            {
+                outlines[i] = gameObjcts[i].transform.GetComponent<Outline>();
+                triggers[i] = gameObjcts[i].transform.GetComponent<EventTrigger>();
+            }
+
+            return (outlines, triggers);
+        }
+
+        ASP.SceneManagement.SceneManager.SaveCurrentScene();
     }
 
     private void OnPointerClickDelegate(PointerEventData data)
@@ -41,28 +84,8 @@ public class MusclesSelectables : MonoBehaviour
 
             if (outlines[i].gameObject == gameObject)
             {
-                content.SetActive(outlines[i].enabled);
+                animator.gameObject.SetActive(outlines[i].enabled);
             }
         }
-    }
-
-    private (Outline[] outlines, EventTrigger[] triggers) Assign()
-    {
-        GameObject[] gameObjcts;
-        Outline[] outlines;
-        EventTrigger[] triggers;
-
-        gameObjcts = GameObject.FindGameObjectsWithTag(Tag.Muscle);
-
-        outlines = new Outline[gameObjcts.Length];
-        triggers = new EventTrigger[gameObjcts.Length];
-
-        for (int i = 0; i < gameObjcts.Length; i++)
-        {
-            outlines[i] = gameObjcts[i].transform.GetComponent<Outline>();
-            triggers[i] = gameObjcts[i].transform.GetComponent<EventTrigger>();
-        }
-
-        return (outlines, triggers);
     }
 }

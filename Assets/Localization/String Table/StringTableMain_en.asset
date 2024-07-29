@@ -394,6 +394,14 @@ MonoBehaviour:
     m_Localized: Recommended Exercise
     m_Metadata:
       m_Items: []
+  - m_Id: 1484632195710976
+    m_Localized: Ready
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1484832024936448
+    m_Localized: Wait
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []

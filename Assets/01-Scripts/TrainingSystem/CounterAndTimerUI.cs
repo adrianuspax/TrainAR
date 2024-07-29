@@ -66,14 +66,14 @@ public class CounterAndTimerUI : MonoBehaviour
         }
     }
 
-    public void SetCount(int count)
+    public void SetValueCount(int count)
     {
         countTMP.text = count + "ₓ";
     }
 
-    public void SetCount(string text)
+    public void SetTextTimer(string text)
     {
-        countTMP.text = text;
+        timerTMP.text = text;
     }
 
     public void AddListnerInButton(UnityAction call)
@@ -85,8 +85,7 @@ public class CounterAndTimerUI : MonoBehaviour
 
     public bool HasStarted => isStarted;
 
-    public string Timer
-    {
-        set => timerTMP.text = value;
-    }
+    public TextMeshProUGUI CountTMP => countTMP;
+
+    public TextMeshProUGUI TimerTMP => timerTMP;
 }
