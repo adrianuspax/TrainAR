@@ -1,7 +1,6 @@
-﻿using UnityEngine;
+﻿using ASP;
+using UnityEngine;
 using UnityEngine.UI;
-using ASP;
-using Debug = ASP.Debug;
 
 public class LanguageManager : MonoBehaviour
 {
@@ -22,7 +21,7 @@ public class LanguageManager : MonoBehaviour
     [Space(-10, order = 1)]
     [Header("LANGUAGE", order = 2)]
     [ReadOnly, SerializeField] private Lang lang;
-                               private static Lang langStatic;
+    private static Lang langStatic;
     [Space(-10, order = 0)]
     [Header("BUTTONS", order = 1)]
     [NonReorderable][ReadOnly, SerializeField] private Button[] langButton;
@@ -94,7 +93,7 @@ public class LanguageManager : MonoBehaviour
     public static string toBurnCal;
 
     #region ENGLISH
-    private readonly static string nameEN = 
+    private readonly static string nameEN =
         "Name";
     private readonly static string ageEN =
         "Age";
@@ -165,30 +164,30 @@ public class LanguageManager : MonoBehaviour
     private readonly static string okButtonEN =
         "OK";
     /* ======================================================================================================================================= */
-    private readonly static string signedInAsEN = 
+    private readonly static string signedInAsEN =
         "Signed in as";
-    private readonly static string updateProfileEN = 
+    private readonly static string updateProfileEN =
         "Update Profile";
-    private readonly static string editAccountEN = 
+    private readonly static string editAccountEN =
         "Edit Account";
-    private readonly static string languageEN = 
+    private readonly static string languageEN =
         "Language";
-    private readonly static string deleteAccountEN = 
+    private readonly static string deleteAccountEN =
         "Delete Account";
-    private readonly static string signOutEN = 
+    private readonly static string signOutEN =
         "Sign out";
     private readonly static string areYouSureEN =
         "Are you sure you want to cancel the account?";
-    private readonly static string yesEN = 
+    private readonly static string yesEN =
         "Yes";
-    private readonly static string nopEN = 
+    private readonly static string nopEN =
         "No";
     /* ======================================================================================================================================= */
     private readonly static string[] pageQuestionEN = new string[]
     { "What is your name?", "What is your gender?", "What is your goal?", "What'sec your fitness level?", "What is your focus?", "More about you!" };
-    private readonly static string nextButtonEN = 
+    private readonly static string nextButtonEN =
         "Next";
-    private readonly static string page1PlaceHolderEN = 
+    private readonly static string page1PlaceHolderEN =
         "Enter your name here...";
     private readonly static string[] buttonGoalEN = new string[]
     { "Lose weight", "More muscle", "Keep shape" };
@@ -198,17 +197,17 @@ public class LanguageManager : MonoBehaviour
     { "Abdomen", "Chest", "Arms", "Legs" };
     private readonly static string[] blockAreaNameEN = new string[]
     { "Age", "Current weight", "Weight goal", "Height" };
-    private readonly static string valueDfaultButtonsEditEN = 
+    private readonly static string valueDfaultButtonsEditEN =
         "edit";
     private readonly static string[] footerTitleEN = new string[]
     { "Enter your age", "Enter your current weight", "Enter your desired weight", "Enter your height" };
-    private readonly static string footerPlaceholderEN = 
+    private readonly static string footerPlaceholderEN =
         "value";
     private readonly static string[] footerUnitEN = new string[]
     { " Years", " kg", " kg", " cm" };
-    private readonly static string saveButtonEN = 
+    private readonly static string saveButtonEN =
         "Save";
-    private readonly static string cancelButtonEN = 
+    private readonly static string cancelButtonEN =
         "Cancel";
     #endregion
     #region KOREAN
@@ -434,17 +433,17 @@ public class LanguageManager : MonoBehaviour
     { "Abdomen", "Peito", "Braços", "Pernas" };
     private readonly static string[] blockAreaNameBR = new string[]
     { "Idade", "Peso atual", "Peso desejado", "Altura" };
-    private readonly static string valueDfaultButtonsEditBR = 
+    private readonly static string valueDfaultButtonsEditBR =
         "edit";
     private readonly static string[] footerTitleBR = new string[]
     { "Insira a sua idade", "Insira o seu peso atual", "Insira o peso desejado", "Insira a sua altura" };
-    private readonly static string footerPlaceholderBR = 
+    private readonly static string footerPlaceholderBR =
         "valor";
     private readonly static string[] footerUnitBR = new string[]
     { " anos", " kg", " kg", " cm" };
-    private readonly static string saveButtonBR = 
+    private readonly static string saveButtonBR =
         "Salvar";
-    private readonly static string cancelButtonBR = 
+    private readonly static string cancelButtonBR =
         "Cancelar";
     #endregion
 
@@ -515,7 +514,7 @@ public class LanguageManager : MonoBehaviour
         switch (Language)
         {
             case Lang.EN:
-               _name = nameEN;
+                _name = nameEN;
                 age = ageEN;
                 weight = weightEN;
                 height = heightEN;

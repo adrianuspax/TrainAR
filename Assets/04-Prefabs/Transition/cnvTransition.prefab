@@ -50,6 +50,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   animator: {fileID: 3712884857349008464}
+  canvasGroup: {fileID: 3712884857349008495}
 --- !u!1 &3712884857102227207
 GameObject:
   m_ObjectHideFlags: 0
@@ -173,7 +174,7 @@ CanvasGroup:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3712884857349008493}
   m_Enabled: 1
-  m_Alpha: 1
+  m_Alpha: 0
   m_Interactable: 1
   m_BlocksRaycasts: 1
   m_IgnoreParentGroups: 0

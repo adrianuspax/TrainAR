@@ -10,8 +10,9 @@ public class Transition : MonoBehaviour
 {
     [Header(Header.READONLY, order = 0)]
     [Space(-10, order = 1)]
-    [Header(Header.animators, order = 2)]
+    [Header(Header.components, order = 2)]
     [SerializeField, ReadOnly] private Animator animator;
+    [SerializeField, ReadOnly] private CanvasGroup canvasGroup;
 
     [Serializable]
     public struct AnimationControl
@@ -47,6 +48,7 @@ public class Transition : MonoBehaviour
     /// Start is called on the frame when a script is enabled just before any of the Update methods are called the first time.
     private void Start()
     {
+        canvasGroup.alpha = 1.0f;
         LanguageManager.LoadLang(AccountData.Language);
     }
     /// This function is called when the behaviour becomes disabled.
@@ -61,6 +63,7 @@ public class Transition : MonoBehaviour
     private void ComponentsAssignment()
     {
         this.GetComponentIfNull(ref animator, 0);
+        animator.GetComponentIfNull(ref canvasGroup);
         ASP.SceneManagement.SceneManager.SaveCurrentScene();
     }
 

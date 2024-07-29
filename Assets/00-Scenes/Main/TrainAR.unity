@@ -1245,7 +1245,7 @@ GameObject:
   - component: {fileID: 146635071}
   - component: {fileID: 146635072}
   m_Layer: 0
-  m_Name: aniLoadSystem
+  m_Name: aniCounterAndTimer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3682,7 +3682,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 88.15
+  m_fontSize: 88.3
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -10858,8 +10858,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1624809273}
+  - component: {fileID: 1624809274}
   m_Layer: 0
-  m_Name: pvtLoadSystem
+  m_Name: pvtCounterAndTimer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -10882,11 +10883,25 @@ RectTransform:
   - {fileID: 1857445718}
   m_Father: {fileID: 146635071}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.381, y: 0.7831365}
-  m_AnchorMax: {x: 0.61948127, y: 0.8942954}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: 0, y: -373.5}
+  m_SizeDelta: {x: -822, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1624809274
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1624809272}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 86710e43de46f6f4bac7c8e50813a599, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_AspectMode: 1
+  m_AspectRatio: 1.003891
 --- !u!1 &1677033647
 GameObject:
   m_ObjectHideFlags: 0
@@ -11499,8 +11514,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1762498546}
+  - component: {fileID: 1762498547}
   m_Layer: 0
-  m_Name: LoadindSystem
+  m_Name: CounterAndTimer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -11526,6 +11542,24 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1762498547
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1762498545}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cd76c55c4f4331f4390fe51890498443, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  animator: {fileID: 146635072}
+  button: {fileID: 1041335837}
+  ringLoad: {fileID: 1225876700}
+  countTMP: {fileID: 1388450067}
+  timerTMP: {fileID: 470231448}
+  isStarted: 0
 --- !u!1 &1764558717
 GameObject:
   m_ObjectHideFlags: 0
@@ -15042,7 +15076,6 @@ GameObject:
   m_Component:
   - component: {fileID: 2045423145}
   - component: {fileID: 2045423157}
-  - component: {fileID: 2045423158}
   - component: {fileID: 2045423159}
   - component: {fileID: 2045423161}
   m_Layer: 0
@@ -15093,26 +15126,6 @@ MonoBehaviour:
   biotype: 0
   burnedCal: 0
   resultsIsOpen: 0
---- !u!114 &2045423158
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2045423144}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cd76c55c4f4331f4390fe51890498443, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  loadingSysAnimator: {fileID: 146635072}
-  loadingSysStartClip: {fileID: 7400000, guid: b47fbbd7976a86e43b8f3bc40d96e839, type: 2}
-  loadingSysEndClip: {fileID: 7400000, guid: a7887c2b1979e5a4ca7dd0ac57139946, type: 2}
-  circleLoad: {fileID: 1225876700}
-  countTMP: {fileID: 1388450067}
-  timerTMP: {fileID: 470231448}
-  skipButton: {fileID: 1041335837}
-  loadingIsStart: 0
 --- !u!114 &2045423159
 MonoBehaviour:
   m_ObjectHideFlags: 0

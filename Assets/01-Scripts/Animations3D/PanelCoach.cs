@@ -159,10 +159,7 @@ public class PanelCoach : MonoBehaviour
             floatMenu = FindAnyObjectByType<ButtonsFloat>();
         if (buttonsMain.IsNull())
             buttonsMain = FindAnyObjectByType<ButtonsMain>();
-        if (infoDatas.IsNullOrEmpty())
-        {
-            infoDatas = GetComponentsInChildren<InfoData>();
-        }
+        scrollView.GetComponentsInAllChildrenIfNull(ref infoDatas, 0, 0);
         if (recomendation.IsNullOrEmpty())
         {
             recomendation = new GameObject[infoDatas[3].Cells.Length];
