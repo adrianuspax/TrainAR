@@ -13,7 +13,6 @@ public class AugmentedReality : MonoBehaviour
     [SerializeField, ReadOnly] private ARRaycastManager aRRaycastManager;
     [SerializeField, ReadOnly] private Transform anchorARPivot;
     [SerializeField, ReadOnly] private Transform poolPivot;
-    [SerializeField, ReadOnly] private Coach coach;
     [Space(-10, order = 0)]
     [Header(Header.variables, order = 1)]
     [SerializeField, ReadOnly] private int variable;
@@ -29,6 +28,7 @@ public class AugmentedReality : MonoBehaviour
     [SerializeField, ReadOnly] private Transition transition;
     [SerializeField, ReadOnly] private ButtonsMain buttonsMain;
     [SerializeField, ReadOnly] private DropDownMenu dropDownMenu;
+    [SerializeField, ReadOnly] private Coach coach;
 
     private static readonly List<ARRaycastHit> hitResults = new();
 
@@ -67,8 +67,7 @@ public class AugmentedReality : MonoBehaviour
     [ContextMenu("Components Assignment")]
     private void ComponentsAssignment()
     {
-        if (aRRaycastManager.IsNull())
-            aRRaycastManager = GetComponentInChildren<ARRaycastManager>();
+        this.GetComponentInChildrenIfNull(ref aRRaycastManager);
         if (poolPivot.IsNull())
             poolPivot = GameObject.Find("3D").transform;
         if (coach.IsNull())

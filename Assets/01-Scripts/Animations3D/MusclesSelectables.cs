@@ -42,13 +42,10 @@ public class MusclesSelectables : MonoBehaviour
     [ContextMenu("Components Assignment")]
     private void ComponentsAssignment()
     {
-        if (animator.IsNull())
-            animator = GetComponentInChildren<Animator>();
+        this.GetComponentInChildrenIfNull(ref animator);
 
         if (outlines.IsNullOrEmpty() || triggers.IsNullOrEmpty())
-        {
             (outlines, triggers) = _assign();
-        }
 
         static (Outline[] outlines, EventTrigger[] triggers) _assign()
         {

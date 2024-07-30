@@ -167,8 +167,7 @@ public class Coach : MonoBehaviour
     [ContextMenu("Components Assignment")]
     private void ComponentsAssignment()
     {
-        if (animator.IsNull())
-            animator = GetComponent<Animator>();
+         this.GetComponentIfNull(ref animator);
 
         if (clipByIndex.IsNullOrEmpty())
         {

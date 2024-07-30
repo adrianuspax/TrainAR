@@ -52,8 +52,7 @@ public class DropDownMenu : MonoBehaviour
     [ContextMenu("Components Assignment")]
     private void ComponentsAssignment()
     {
-        if (aniDropDownMenu.IsNull())
-            aniDropDownMenu = GetComponent<Animator>();
+        this.GetComponentIfNull(ref aniDropDownMenu);
         this.GetComponentIfNull(ref dropDownScrollRect, 0, 0, 0);
         this.GetComponentIfNull(ref btnOpenDropDown, 0, 0, 1);
         dropDownScrollRect.GetComponentIfNull(ref btnCloseDropDown, 0);

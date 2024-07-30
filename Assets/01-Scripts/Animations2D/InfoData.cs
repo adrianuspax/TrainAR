@@ -26,14 +26,11 @@ public class InfoData : MonoBehaviour
     [ContextMenu("Components Assignment")]
     private void ComponentsAssignment()
     {
-        if (button.IsNull())
-            button = GetComponent<Button>();
-        if (canvasGroup.IsNull())
-            canvasGroup = GetComponent<CanvasGroup>();
-        if (background.IsNull())
-            background = GetComponentInChildren<Image>();
-        if (titleHeaderTMP.IsNull())
-            titleHeaderTMP = background.transform.GetChild(0).GetComponentInChildren<TextMeshProUGUI>();
+        this.GetComponentIfNull(ref button);
+        this.GetComponentIfNull(ref canvasGroup);
+        this.GetComponentInChildrenIfNull(ref background);
+        background.GetComponentInChildrenIfNull(ref titleHeaderTMP, 0);
+
         if (cells.IsNullOrEmpty())
         {
             int count = background.transform.childCount;
@@ -44,6 +41,7 @@ public class InfoData : MonoBehaviour
                 cells[i] = background.transform.GetChild(i);
             }
         }
+
         if (infoTMPs.IsNullOrEmpty())
         {
             infoTMPs = new TextMeshProUGUI[cells.Length - 1];

@@ -22,8 +22,7 @@ public class AnchorAnimation : MonoBehaviour
     [ContextMenu("Components Assignment")]
     private void ComponentsAssignment()
     {
-        if (animator.IsNull())
-            animator = GetComponentInChildren<Animator>();
+        this.GetComponentInChildrenIfNull(ref animator);
         if (buttonAR.IsNull())
             buttonAR = FindAnyObjectByType<ButtonAR>();
 
@@ -32,7 +31,7 @@ public class AnchorAnimation : MonoBehaviour
 
     public void AnchorIsHit(bool isHit) => animator.SetBool(Parameter.AnchorHit, isHit);
     public void AnchorVisible(bool isVisible) => animator.SetBool(Parameter.AnchorEnable, isVisible);
-    public void MovePhoneButton(bool isPlaying) =>  buttonAR.Animator.SetBool(ButtonAR.PARAMETER, isPlaying);
+    public void MovePhoneButton(bool isPlaying) => buttonAR.Animator.SetBool(ButtonAR.PARAMETER, isPlaying);
 
     public (string AnchorHit, string AnchorEnable) Parameter
     {

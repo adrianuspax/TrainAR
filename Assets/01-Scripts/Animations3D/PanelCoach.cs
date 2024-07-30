@@ -139,8 +139,7 @@ public class PanelCoach : MonoBehaviour
     [ContextMenu("Components Assignment")]
     private void ComponentsAssignment()
     {
-        if (animator.IsNull())
-            animator = transform.GetChild(0).GetComponent<Animator>();
+        this.GetComponentIfNull(ref animator, 0);
         animator.GetComponentIfNull(ref scrollView, 0);
         if (canvasRectTransform.IsNull())
             canvasRectTransform = transform.parent.GetComponent<RectTransform>();
@@ -160,6 +159,7 @@ public class PanelCoach : MonoBehaviour
         if (buttonsMain.IsNull())
             buttonsMain = FindAnyObjectByType<ButtonsMain>();
         scrollView.GetComponentsInAllChildrenIfNull(ref infoDatas, 0, 0);
+
         if (recomendation.IsNullOrEmpty())
         {
             recomendation = new GameObject[infoDatas[3].Cells.Length];
@@ -169,6 +169,7 @@ public class PanelCoach : MonoBehaviour
                 recomendation[i] = infoDatas[3].Cells[i].gameObject;
             }
         }
+
         if (contentButtons.IsNullOrEmpty())
         {
             contentButtons = new Button[infoDatas.Length];
@@ -178,6 +179,7 @@ public class PanelCoach : MonoBehaviour
                 contentButtons[i] = infoDatas[i].Button;
             }
         }
+
         if (nameTMP.IsNull())
             nameTMP = infoDatas[0].InfoTMPs[0];
         if (ageTMP.IsNull())
