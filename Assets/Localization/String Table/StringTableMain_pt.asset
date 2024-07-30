@@ -107,11 +107,11 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 18986391945216
-    m_Localized: "Nome de usu\xE1rio"
+    m_Localized: "Nome de usu\xE1rio..."
     m_Metadata:
       m_Items: []
   - m_Id: 19010827960320
-    m_Localized: Sua senha
+    m_Localized: Insira senha...
     m_Metadata:
       m_Items: []
   - m_Id: 19036866199552
@@ -143,15 +143,15 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 19748408901632
-    m_Localized: "Novo usu\xE1rio"
+    m_Localized: Novo username...
     m_Metadata:
       m_Items: []
   - m_Id: 19841967046656
-    m_Localized: Nova senha
+    m_Localized: Nova senha...
     m_Metadata:
       m_Items: []
   - m_Id: 19871432032256
-    m_Localized: Repita a senha
+    m_Localized: Repita a senha...
     m_Metadata:
       m_Items: []
   - m_Id: 19946447159296

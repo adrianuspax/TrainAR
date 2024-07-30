@@ -107,11 +107,11 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 18986391945216
-    m_Localized: Enter username
+    m_Localized: Enter username...
     m_Metadata:
       m_Items: []
   - m_Id: 19010827960320
-    m_Localized: Enter password
+    m_Localized: Enter password...
     m_Metadata:
       m_Items: []
   - m_Id: 19036866199552
@@ -143,15 +143,15 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 19748408901632
-    m_Localized: New username
+    m_Localized: New username...
     m_Metadata:
       m_Items: []
   - m_Id: 19841967046656
-    m_Localized: New password
+    m_Localized: New password...
     m_Metadata:
       m_Items: []
   - m_Id: 19871432032256
-    m_Localized: Repeat password
+    m_Localized: Repeat password...
     m_Metadata:
       m_Items: []
   - m_Id: 19946447159296
