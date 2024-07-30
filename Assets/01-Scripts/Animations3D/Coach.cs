@@ -196,7 +196,7 @@ public class Coach : MonoBehaviour
 
     public void Breathing(float weight)
     {
-        animator.SetFloat(Parameter.Breathing, weight);
+        animator.SetFloat(breathing, weight);
         weight.ComparativeAssignment(ref breathingFloat);
     }
 
@@ -230,6 +230,7 @@ public class Coach : MonoBehaviour
 
     public const string TransitionUserName = "ToIdle";
     public const string StateIdleBlend = "IdleBlend";
+    public const string breathing = "BreathingBlend";
 
     public (string startWorkout,
             string inWorkout,

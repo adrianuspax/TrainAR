@@ -26,6 +26,8 @@ public class ButtonsFloat : MonoBehaviour
     [SerializeField, ReadOnly] private ButtonsMain buttonsMain;
     [SerializeField, ReadOnly] private DropDownMenu dropDownMenu;
 
+    public const string PARAMETER = "floatIsOpen";
+
     private void Awake()
     {
         ComponentsAssignment();
@@ -162,7 +164,7 @@ public class ButtonsFloat : MonoBehaviour
     {
         foreach (Animator floatAnimator in floatAnimators)
         {
-            floatAnimator.SetBool(Parameter.floatIsOpen, value);
+            floatAnimator.SetBool(PARAMETER, value);
         }
     }
 

@@ -1,80 +1,72 @@
 using ASP;
+using ASP.Extensions;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
-using PlayerPrefs = UnityEngine.PlayerPrefs;
 
 public class Menu : MonoBehaviour
 {
-    [Header("UI", order = 0)]
+    [Header(Header.READONLY, order = 0)]
     [Space(-10, order = 1)]
-    [Header("Canvas Buttons", order = 2)]
-    [SerializeField] private Button closeButton;
-    [SerializeField] private Button updateProfileButton;
-    [SerializeField] private Button editAccountButton;
-    [SerializeField] private Button languageButton;
-    [SerializeField] private Button deleteAccountButton;
-    [SerializeField] private Button signOutButton;
-    [SerializeField] private Button backButton;
-    [SerializeField] private Button yesButton;
-    [SerializeField] private Button noButton;
-    [Space(-10, order = 0)]
-    [Header("Text Mesh Pro", order = 1)]
-    [SerializeField] private TextMeshProUGUI usernameTMP;
-    [SerializeField] private TextMeshProUGUI signedInAsTMP;
-    [SerializeField] private TextMeshProUGUI areYouSureTMP;
-    [Space(-10, order = 0)]
-    [Header("Animation Panel", order = 1)]
-    [SerializeField] private Animator questionPanelAnimator;
-    [SerializeField] private AnimationClip questionPanelEndClip;
+    [Header(Header.components, order = 2)]
+    [SerializeField, ReadOnly] private TextMeshProUGUI usernameTMP;
+    [Space(-10, order = 3)]
+    [Header(Header.buttons, order = 4)]
+    [SerializeField, NonReorderable, ReadOnly] private Button[] buttons;
 
-    [Header(" =========================== READY ONLY =========================== ", order = 0)]
-
-    [Header("Scripts", order = 0)]
+    [Header(Header.scripts, order = 0)]
+    [SerializeField, ReadOnly] private QuestionPanel questionPanel;
     [SerializeField, ReadOnly] private Transition transition;
+
+    public const int CLOSE = 0;
+    public const int UPDATEPROFILE = 1;
+    public const int EDITACCOUNT = 2;
+    public const int CHANGELANGUAGE = 3;
+    public const int DELETEACCOUNT = 4;
+    public const int SIGNOUT = 5;
+    public const int LEFT = 6;
 
     private void Awake()
     {
-        transition = GameObject.FindGameObjectWithTag(Tag.Transition).GetComponent<Transition>();
-
-        closeButton.onClick.AddListener(() => ButtonsManager.CloseApplication());
-        updateProfileButton.onClick.AddListener(() => UpdateProfile());
-        editAccountButton.onClick.AddListener(() => EditAccount());
-        languageButton.onClick.AddListener(() => Language());
-        deleteAccountButton.onClick.AddListener(() => DeleteAccount());
-        signOutButton.onClick.AddListener(() => SignOut());
-        backButton.onClick.AddListener(() => Back());
-        yesButton.onClick.AddListener(() => Yes());
-        noButton.onClick.AddListener(() => No());
-
-        signedInAsTMP.text = LanguageManager.signedInAs;
-        areYouSureTMP.text = LanguageManager.areYouSure;
-        UpdateProfileButtonName = LanguageManager.updateProfile;
-        EditAccountButtonName = LanguageManager.editAccount;
-        LanguageButtonName = LanguageManager.language;
-        DeleteAccountButtonName = LanguageManager.deleteAccount;
-        SignOutButtonName = LanguageManager.signOut;
-        YesButtonName = LanguageManager.yes;
-        NoButtonName = LanguageManager.nop;
+        ComponentsAssignment();
+    }
+    /// This function is called when the object becomes enabled and active.
+    private void OnEnable()
+    {
+        buttons[CLOSE].onClick.AddListener(ButtonsManager.CloseApplication);
+        buttons[UPDATEPROFILE].onClick.AddListener(UpdateProfile);
+        buttons[EDITACCOUNT].onClick.AddListener(EditAccount);
+        buttons[CHANGELANGUAGE].onClick.AddListener(Language);
+        buttons[DELETEACCOUNT].onClick.AddListener(questionPanel.OpenPanel);
+        buttons[SIGNOUT].onClick.AddListener(SignOut);
+        buttons[LEFT].onClick.AddListener(Back);
     }
 
     private void Start()
     {
-        transition.EndClip();
         usernameTMP.text = AccountData.Username;
+        transition.EndClip();
+    }
+    /// <summary>
+    /// Assignment of components and variables
+    /// </summary>
+    [ContextMenu("Components Assignment")]
+    private void ComponentsAssignment()
+    {
+        if (transition.IsNull())
+            transition = GameObject.FindGameObjectWithTag(Tag.Transition).GetComponent<Transition>();
+        if (questionPanel.IsNull())
+            questionPanel = FindAnyObjectByType<QuestionPanel>();
+        this.GetComponentIfNull(ref usernameTMP, 1, 0, 1);
+        this.GetComponentsInAllChildrenIfNull(ref buttons);
+        ASP.SceneManagement.SceneManager.SaveCurrentScene();
     }
 
-    public void UpdateProfile()
-    { TrainARSceneManager.LoadUserData(); }
+    public void UpdateProfile() => TrainARSceneManager.LoadUserData();
 
-    public void EditAccount()
-    { TrainARSceneManager.LoadSignOn(); }
+    public void EditAccount() => TrainARSceneManager.LoadSignOn();
 
-    public void Language()
-    { TrainARSceneManager.LoadLanguage(); }
-
-    public void DeleteAccount()
-    { PanelQuestionAnimation(State.PanelStart); }
+    public void Language() => TrainARSceneManager.LoadLanguage();
 
     public void SignOut()
     {
@@ -82,32 +74,5 @@ public class Menu : MonoBehaviour
         TrainARSceneManager.LoadSignIn();
     }
 
-    public void Back()
-    { TrainARSceneManager.LoadTrainAR(); }
-
-    public void Yes()
-    {
-        PanelQuestionAnimation(State.PanelEnd);
-        PlayerPrefs.DeleteAll();
-        TrainARSceneManager.LoadRedirection();
-    }
-
-    public void No()
-    { PanelQuestionAnimation(State.PanelEnd); }
-
-    private void PanelQuestionAnimation(string animationName) => questionPanelAnimator.Play(animationName);
-    public string UpdateProfileButtonName
-    { set => updateProfileButton.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = value; }
-    public string EditAccountButtonName
-    { set => editAccountButton.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = value; }
-    public string LanguageButtonName
-    { set => languageButton.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = value; }
-    public string DeleteAccountButtonName
-    { set => deleteAccountButton.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = value; }
-    public string SignOutButtonName
-    { set => signOutButton.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = value; }
-    public string YesButtonName
-    { set => yesButton.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = value; }
-    public string NoButtonName
-    { set => noButton.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = value; }
+    public void Back() => TrainARSceneManager.LoadTrainAR();
 }

@@ -13,18 +13,6 @@ public static class Tag
     public const string Muscle = "muscle";
 }
 
-public static class Parameter
-{
-    public const string Breathing = "BreathingBlend";
-    public const string floatIsOpen = "floatIsOpen";
-}
-
-public static class State
-{
-    public const string PanelStart = "panelQuestionStart";
-    public const string PanelEnd = "panelQuestionEnd";
-}
-
 public static class ButtonDDM
 {
     public const int SQUAT = 0;
