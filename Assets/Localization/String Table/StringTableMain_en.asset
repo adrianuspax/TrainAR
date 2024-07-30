@@ -402,6 +402,22 @@ MonoBehaviour:
     m_Localized: Wait
     m_Metadata:
       m_Items: []
+  - m_Id: 1808419504111616
+    m_Localized: Athletic Performance
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1811062607691776
+    m_Localized: Athletic Ability
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1812388678844416
+    m_Localized: Calories Burned
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1814103545200640
+    m_Localized: Biotype
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []

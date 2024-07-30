@@ -402,6 +402,22 @@ MonoBehaviour:
     m_Localized: ...
     m_Metadata:
       m_Items: []
+  - m_Id: 1808419504111616
+    m_Localized: "Performance Atl\xE9tica"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1811062607691776
+    m_Localized: "Habilidade Atl\xE9tica"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1812388678844416
+    m_Localized: Calorias Queimadas
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1814103545200640
+    m_Localized: Biotipo
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []

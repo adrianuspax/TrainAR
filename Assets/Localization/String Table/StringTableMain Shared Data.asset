@@ -399,6 +399,22 @@ MonoBehaviour:
     m_Key: Wait
     m_Metadata:
       m_Items: []
+  - m_Id: 1808419504111616
+    m_Key: AthleticPerformance
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1811062607691776
+    m_Key: AthleticAbility
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1812388678844416
+    m_Key: CaloriesBurned
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1814103545200640
+    m_Key: Biotype
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:
