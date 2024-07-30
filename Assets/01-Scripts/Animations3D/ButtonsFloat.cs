@@ -111,45 +111,45 @@ public class ButtonsFloat : MonoBehaviour
 
         bool _chest(int i)
         {
-            return i == ButtonDDM.BURPEE ||
-                   i == ButtonDDM.BICYCLECRUNCH ||
-                   i == ButtonDDM.CIRCLECRUNCH ||
-                   i == ButtonDDM.PIKEWALK ||
-                   i == ButtonDDM.PUSHUP ||
-                   i == ButtonDDM.SITUPS;
+            return i == DropDownMenuIndex.BURPEE ||
+                   i == DropDownMenuIndex.BICYCLECRUNCH ||
+                   i == DropDownMenuIndex.CIRCLECRUNCH ||
+                   i == DropDownMenuIndex.PIKEWALK ||
+                   i == DropDownMenuIndex.PUSHUP ||
+                   i == DropDownMenuIndex.SITUPS;
         }
 
         bool _abdomen(int i)
         {
-            return i == ButtonDDM.BURPEE ||
-                   i == ButtonDDM.BICYCLECRUNCH ||
-                   i == ButtonDDM.PIKEWALK ||
-                   i == ButtonDDM.PUSHUP ||
-                   i == ButtonDDM.SITUPS;
+            return i == DropDownMenuIndex.BURPEE ||
+                   i == DropDownMenuIndex.BICYCLECRUNCH ||
+                   i == DropDownMenuIndex.PIKEWALK ||
+                   i == DropDownMenuIndex.PUSHUP ||
+                   i == DropDownMenuIndex.SITUPS;
         }
 
         bool _legs(int i)
         {
-            return i == ButtonDDM.SQUAT ||
-                   i == ButtonDDM.SQUATBENTARMS ||
-                   i == ButtonDDM.BOXJUMP ||
-                   i == ButtonDDM.BURPEE ||
-                   i == ButtonDDM.BICYCLECRUNCH ||
-                   i == ButtonDDM.JUMPINGJACKS ||
-                   i == ButtonDDM.PISTOL ||
-                   i == ButtonDDM.PLANK ||
-                   i == ButtonDDM.PUSHUP;
+            return i == DropDownMenuIndex.SQUAT ||
+                   i == DropDownMenuIndex.SQUATBENTARMS ||
+                   i == DropDownMenuIndex.BOXJUMP ||
+                   i == DropDownMenuIndex.BURPEE ||
+                   i == DropDownMenuIndex.BICYCLECRUNCH ||
+                   i == DropDownMenuIndex.JUMPINGJACKS ||
+                   i == DropDownMenuIndex.PISTOL ||
+                   i == DropDownMenuIndex.PLANK ||
+                   i == DropDownMenuIndex.PUSHUP;
         }
 
         bool _arms(int i)
         {
-            return i == ButtonDDM.SQUATBENTARMS ||
-                   i == ButtonDDM.BICEPCURL ||
-                   i == ButtonDDM.BURPEE ||
-                   i == ButtonDDM.JUMPINGJACKS ||
-                   i == ButtonDDM.PLANK ||
-                   i == ButtonDDM.PIKEWALK ||
-                   i == ButtonDDM.PUSHUP;
+            return i == DropDownMenuIndex.SQUATBENTARMS ||
+                   i == DropDownMenuIndex.BICEPCURL ||
+                   i == DropDownMenuIndex.BURPEE ||
+                   i == DropDownMenuIndex.JUMPINGJACKS ||
+                   i == DropDownMenuIndex.PLANK ||
+                   i == DropDownMenuIndex.PIKEWALK ||
+                   i == DropDownMenuIndex.PUSHUP;
         }
 
         void _buttonsFloatFunction()

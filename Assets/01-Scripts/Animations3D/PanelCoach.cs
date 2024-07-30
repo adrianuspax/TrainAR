@@ -247,51 +247,51 @@ public class PanelCoach : MonoBehaviour
                 case Focus.chest:
                     linesToActivate =
                         i == 0 ||
-                        i == ButtonDDM.BURPEE + 1 ||
-                        i == ButtonDDM.BICYCLECRUNCH + 1 ||
-                        i == ButtonDDM.CIRCLECRUNCH + 1 ||
-                        i == ButtonDDM.PIKEWALK + 1 ||
-                        i == ButtonDDM.PUSHUP + 1 ||
-                        i == ButtonDDM.SITUPS + 1 ||
+                        i == DropDownMenuIndex.BURPEE + 1 ||
+                        i == DropDownMenuIndex.BICYCLECRUNCH + 1 ||
+                        i == DropDownMenuIndex.CIRCLECRUNCH + 1 ||
+                        i == DropDownMenuIndex.PIKEWALK + 1 ||
+                        i == DropDownMenuIndex.PUSHUP + 1 ||
+                        i == DropDownMenuIndex.SITUPS + 1 ||
                         i == 15;
                     recomendation[i].SetActive(linesToActivate);
                     break;
                 case Focus.abdomen:
                     linesToActivate =
                         i == 0 ||
-                        i == ButtonDDM.BURPEE + 1 ||
-                        i == ButtonDDM.BICYCLECRUNCH + 1 ||
-                        i == ButtonDDM.PIKEWALK + 1 ||
-                        i == ButtonDDM.PUSHUP + 1 ||
-                        i == ButtonDDM.SITUPS + 1 ||
+                        i == DropDownMenuIndex.BURPEE + 1 ||
+                        i == DropDownMenuIndex.BICYCLECRUNCH + 1 ||
+                        i == DropDownMenuIndex.PIKEWALK + 1 ||
+                        i == DropDownMenuIndex.PUSHUP + 1 ||
+                        i == DropDownMenuIndex.SITUPS + 1 ||
                         i == 15;
                     recomendation[i].SetActive(linesToActivate);
                     break;
                 case Focus.legs:
                     linesToActivate =
                         i == 0 ||
-                        i == ButtonDDM.SQUAT + 1 ||
-                        i == ButtonDDM.SQUATBENTARMS + 1 ||
-                        i == ButtonDDM.BOXJUMP + 1 ||
-                        i == ButtonDDM.BURPEE + 1 ||
-                        i == ButtonDDM.BICYCLECRUNCH + 1 ||
-                        i == ButtonDDM.JUMPINGJACKS + 1 ||
-                        i == ButtonDDM.PISTOL + 1 ||
-                        i == ButtonDDM.PLANK + 1 ||
-                        i == ButtonDDM.PUSHUP + 1 ||
+                        i == DropDownMenuIndex.SQUAT + 1 ||
+                        i == DropDownMenuIndex.SQUATBENTARMS + 1 ||
+                        i == DropDownMenuIndex.BOXJUMP + 1 ||
+                        i == DropDownMenuIndex.BURPEE + 1 ||
+                        i == DropDownMenuIndex.BICYCLECRUNCH + 1 ||
+                        i == DropDownMenuIndex.JUMPINGJACKS + 1 ||
+                        i == DropDownMenuIndex.PISTOL + 1 ||
+                        i == DropDownMenuIndex.PLANK + 1 ||
+                        i == DropDownMenuIndex.PUSHUP + 1 ||
                         i == 15;
                     recomendation[i].SetActive(linesToActivate);
                     break;
                 case Focus.arms:
                     linesToActivate =
                         i == 0 ||
-                        i == ButtonDDM.SQUATBENTARMS + 1 ||
-                        i == ButtonDDM.BICEPCURL + 1 ||
-                        i == ButtonDDM.BURPEE + 1 ||
-                        i == ButtonDDM.JUMPINGJACKS + 1 ||
-                        i == ButtonDDM.PLANK + 1 ||
-                        i == ButtonDDM.PIKEWALK + 1 ||
-                        i == ButtonDDM.PUSHUP + 1 ||
+                        i == DropDownMenuIndex.SQUATBENTARMS + 1 ||
+                        i == DropDownMenuIndex.BICEPCURL + 1 ||
+                        i == DropDownMenuIndex.BURPEE + 1 ||
+                        i == DropDownMenuIndex.JUMPINGJACKS + 1 ||
+                        i == DropDownMenuIndex.PLANK + 1 ||
+                        i == DropDownMenuIndex.PIKEWALK + 1 ||
+                        i == DropDownMenuIndex.PUSHUP + 1 ||
                         i == 15;
                     recomendation[i].SetActive(linesToActivate);
                     break;
@@ -307,9 +307,9 @@ public class PanelCoach : MonoBehaviour
         {
             linesToActivate =
                 i == 0 ||
-                i == ButtonDDM.SQUAT + 1 ||
-                i == ButtonDDM.BURPEE + 1 ||
-                i == ButtonDDM.PISTOL + 1 ||
+                i == DropDownMenuIndex.SQUAT + 1 ||
+                i == DropDownMenuIndex.BURPEE + 1 ||
+                i == DropDownMenuIndex.PISTOL + 1 ||
                 i == 15;
             recomendation[i].SetActive(linesToActivate);
         }

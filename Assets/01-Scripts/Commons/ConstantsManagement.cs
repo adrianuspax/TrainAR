@@ -1,9 +1,3 @@
-public static class Key
-{
-    public const string signed = "signed";
-    public const string CurrentScene = "currentScene";
-}
-
 public static class Tag
 {
     public const string Anchor = "aniAnchorAR";
@@ -13,7 +7,7 @@ public static class Tag
     public const string Muscle = "muscle";
 }
 
-public static class ButtonDDM
+public static class DropDownMenuIndex
 {
     public const int SQUAT = 0;
     public const int SQUATBENTARMS = 1;
