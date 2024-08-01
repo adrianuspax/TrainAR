@@ -53,8 +53,8 @@ public class ButtonsMainUserData : MonoBehaviour
 
     public void Next()
     {
-        dataManagement.PagesSavePreferences(pagesControl.CurrentIndex);
         SetNextButtonInteractable(false);
+        dataManagement.PagesSavePreferences(pagesControl.CurrentIndex);
         bool isNext = pagesControl.SetActiveNextPage();
 
         if (isNext)
@@ -72,6 +72,9 @@ public class ButtonsMainUserData : MonoBehaviour
 
     public void SetNextButtonInteractable(bool value)
     {
+        if (buttonNext.IsInteractable() == value)
+            return;
+
         buttonNext.interactable = value;
         nextTMP.SetAlpha(value ? 1f : 0.5f);
     }

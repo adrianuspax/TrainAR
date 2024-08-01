@@ -24,4 +24,6 @@ public class PageDefault : MonoBehaviour
         animator.SetBool(PARAMETER, isOpen);
         return animator.GetCurrentAnimatorStateInfo(0).length;
     }
+
+    [field: SerializeField, ReadOnly] public string Content { get; protected set; }
 }

@@ -1,4 +1,5 @@
-﻿using TMPro;
+﻿using ASP.Extensions;
+using TMPro;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
@@ -32,7 +33,6 @@ public static class ButtonsManager
 
     public static void AddListners(this Button[] buttons, bool[] isPressed, UnityAction<int, bool> call)
     {
-
         for (int i = 0; i < buttons.Length; i++)
         {
             int index = i;

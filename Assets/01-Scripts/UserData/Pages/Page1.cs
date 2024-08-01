@@ -6,9 +6,6 @@ using UnityEngine;
 public class Page1 : PageDefault
 {
     [SerializeField, ReadOnly] private TMP_InputField inputField;
-    [Space(-10, order = 0)]
-    [Header(Header.variables, order = 1)]
-    [SerializeField, ReadOnly] private string content;
 
     [Header(Header.scripts, order = 1)]
     [SerializeField, ReadOnly] private ButtonsMainUserData buttonsMainUserData;
@@ -55,25 +52,25 @@ public class Page1 : PageDefault
 
     public void OnSelect(string content)
     {
-        this.content = content;
+        Content = content;
     }
 
     public void OnDeselect(string content)
     {
         NextButtonInteraction();
-        this.content = content;
+        Content = content;
     }
 
     public void OnValueChanged(string content)
     {
         NextButtonInteraction();
-        this.content = content;
+        Content = content;
     }
 
     public void OnEndEdit(string content)
     {
         NextButtonInteraction();
-        this.content = content;
+        Content = content;
     }
 
     /*public void OnTouchScreenKeyboardStatusChanged(TouchScreenKeyboard.Status status)
@@ -86,6 +83,4 @@ public class Page1 : PageDefault
         bool isFilled = !string.IsNullOrEmpty(inputField.text);
         buttonsMainUserData.SetNextButtonInteractable(isFilled);
     }
-
-    public string ContentIputField => content;
 }

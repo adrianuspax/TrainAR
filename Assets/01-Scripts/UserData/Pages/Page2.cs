@@ -72,6 +72,7 @@ public class Page2 : PageDefault
         }
 
         isMale = !index.ToBool();
+        Content = isMale ? "Male" : "Female";
         buttonsMainUserData.SetNextButtonInteractable(isPressed);
     }
 

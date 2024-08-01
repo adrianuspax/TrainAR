@@ -13,6 +13,11 @@ public class PagesControl : MonoBehaviour
     [Header(Header.scripts, order = 0)]
     [SerializeField, ReadOnly] private ButtonsMainUserData buttonsMainUserData;
     [SerializeField, NonReorderable, ReadOnly] private PageDefault[] pages;
+    /// Reset to default values.
+    private void Reset()
+    {
+        ComponentsAssignment();
+    }
     /// Awake is called when an enabled script instance is being loaded.
     private void Awake()
     {
