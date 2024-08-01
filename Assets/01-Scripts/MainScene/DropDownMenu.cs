@@ -45,6 +45,7 @@ public class DropDownMenu : MonoBehaviour
     {
         btnOpenDropDown.onClick.AddListener(() => ButtonOpenDropDown());
         btnCloseDropDown.onClick.AddListener(() => ButtonCloseDropDown());
+        gridButtonDDM.AddListners(isPressDDM, ButtonsDDMBehaviour);
     }
     /// <summary>
     /// Assignment of components and variables
@@ -63,8 +64,8 @@ public class DropDownMenu : MonoBehaviour
             coachAnimations = FindAnyObjectByType<Coach>();
         if (buttonsMain.IsNull())
             buttonsMain = FindAnyObjectByType<ButtonsMain>();
-        //if (gridButtonDDM.IsNullOrEmpty())
-            (gridButtonDDM, isPressDDM) = ButtonsManager.Assignment(buttonsHeader, ButtonsDDMBehaviour);
+        if (gridButtonDDM.IsNullOrEmpty())
+            this.GetComponentsInAllChildrenIfNull(ref gridButtonDDM);
         if (tmps.IsNullOrEmpty())
         {
             tmps = new TextMeshProUGUI[buttonsHeader.childCount];
@@ -128,14 +129,13 @@ public class DropDownMenu : MonoBehaviour
         }
     }
 
-    private void ButtonsDDMBehaviour(int index)
+    private void ButtonsDDMBehaviour(int index, bool isPressed)
     {
         Vector3 deslocation;
-        isPressDDM[index] = !isPressDDM[index];
 
         for (int i = 0; i < gridButtonDDM.Length; i++)
         {
-            if (i == index && isPressDDM[index])
+            if (i == index && isPressed)
             {
                 deslocation.x = gridButtonDDM[index].transform.localPosition.x;
                 deslocation.y = gridButtonDDM[index].transform.localPosition.y;
@@ -155,15 +155,15 @@ public class DropDownMenu : MonoBehaviour
                 tmps[i].color = unpressedTxtColor;
                 gridButtonDDM[i].image.color = unpressedColor;
                 gridButtonDDM[i].transform.localPosition = deslocation;
-                ButtonsManager.SetInteraction(!isPressDDM[index], gridButtonDDM[i]);
+                ButtonsManager.SetInteraction(!isPressed, gridButtonDDM[i]);
                 isPressDDM[i] = false;
             }
         }
 
-        if (!isPressDDM[index])
+        if (!isPressed)
             coachAnimations.StartIdleAnimation();
 
-        IsPressed = isPressDDM[index];
+        IsPressed = isPressed;
     }
 
     public void SetAllButtonsDefault()
