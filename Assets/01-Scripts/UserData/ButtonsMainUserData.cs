@@ -1,0 +1,78 @@
+using ASP;
+using ASP.Extensions;
+using TMPro;
+using UnityEngine;
+using UnityEngine.UI;
+
+public class ButtonsMainUserData : MonoBehaviour
+{
+    [Header(Header.READONLY, order = 0)]
+    [Space(-10, order = 1)]
+    [Header(Header.components, order = 2)]
+    [SerializeField, ReadOnly] private Button buttonClose;
+    [SerializeField, ReadOnly] private Button buttonNext;
+    [SerializeField, ReadOnly] private Button buttonBack;
+    [SerializeField, ReadOnly] private TextMeshProUGUI nextTMP;
+    [Header(Header.scripts, order = 0)]
+    [SerializeField, ReadOnly] private PagesControl pagesControl;
+    [SerializeField, ReadOnly] private DataManagement dataManagement;
+    /// Awake is called when an enabled script instance is being loaded.
+    private void Awake()
+    {
+        ComponentsAssignment();
+    }
+    /// This function is called when the object becomes enabled and active.
+    private void OnEnable()
+    {
+        buttonClose.onClick.AddListener(Close);
+        buttonNext.onClick.AddListener(Next);
+        buttonBack.onClick.AddListener(Back);
+    }
+    /// <summary>
+    /// Assignment of components and variables
+    /// </summary>
+    [ContextMenu("Components Assignment")]
+    private void ComponentsAssignment()
+    {
+        this.GetComponentIfNull(ref buttonClose, 0, 0);
+        this.GetComponentIfNull(ref buttonNext, 1, 0);
+        this.GetComponentIfNull(ref buttonBack, 1, 1);
+        buttonNext.GetComponentInChildrenIfNull(ref nextTMP);
+        if (pagesControl.IsNull())
+            pagesControl = FindAnyObjectByType<PagesControl>();
+        if (dataManagement.IsNull())
+            dataManagement = FindAnyObjectByType<DataManagement>();
+
+        ASP.SceneManagement.SceneManager.SaveCurrentScene();
+    }
+
+    public void Close()
+    {
+        ButtonsManager.CloseApplication();
+    }
+
+    public void Next()
+    {
+        dataManagement.PagesSavePreferences(pagesControl.CurrentIndex);
+        SetNextButtonInteractable(false);
+        bool isNext = pagesControl.SetActiveNextPage();
+
+        if (isNext)
+            return;
+        else if (TrainARSceneManager.GetPreviousSceneSaved() == TrainARSceneManager.menu)
+            TrainARSceneManager.LoadMenu();
+        else
+            TrainARSceneManager.LoadTrainAR();
+    }
+
+    public void Back()
+    {
+        TrainARSceneManager.LoadMenu();
+    }
+
+    public void SetNextButtonInteractable(bool value)
+    {
+        buttonNext.interactable = value;
+        nextTMP.SetAlpha(value ? 1f : 0.5f);
+    }
+}

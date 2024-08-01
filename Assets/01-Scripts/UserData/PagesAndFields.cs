@@ -174,6 +174,7 @@ public class PagesAndFields : MonoBehaviour
     {
         userDataButtons.NextButtonInteraction = !string.IsNullOrEmpty(userNameInput.text);
         UserName = name;
+
         if (keepOldTextUsername && !string.IsNullOrEmpty(oldEditTextUsername))
         {
             editTextUsername = oldEditTextUsername;

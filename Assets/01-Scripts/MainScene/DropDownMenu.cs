@@ -63,7 +63,7 @@ public class DropDownMenu : MonoBehaviour
             coachAnimations = FindAnyObjectByType<Coach>();
         if (buttonsMain.IsNull())
             buttonsMain = FindAnyObjectByType<ButtonsMain>();
-        if (gridButtonDDM.IsNullOrEmpty())
+        //if (gridButtonDDM.IsNullOrEmpty())
             (gridButtonDDM, isPressDDM) = ButtonsManager.Assignment(buttonsHeader, ButtonsDDMBehaviour);
         if (tmps.IsNullOrEmpty())
         {
