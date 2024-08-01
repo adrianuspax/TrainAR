@@ -246,7 +246,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 63
+  m_fontSize: 62.2
   m_fontSizeBase: 63
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -835,11 +835,24 @@ MonoBehaviour:
   m_GameObject: {fileID: 124839114}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 99c0252517a0ec2468183692a21ec0fb, type: 3}
+  m_Script: {fileID: 11500000, guid: 21c8ae02410279c439f5546d071124e7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   animator: {fileID: 1249071847}
   <Content>k__BackingField: 
+  buttons:
+  - {fileID: 1931407067}
+  - {fileID: 915509913}
+  - {fileID: 529985455}
+  - {fileID: 1523038888}
+  tmps:
+  - {fileID: 517136486}
+  - {fileID: 2019781739}
+  - {fileID: 635234201}
+  - {fileID: 938766698}
+  isPressed: 00000000
+  index: 0
+  buttonsMainUserData: {fileID: 584496965658112698}
 --- !u!1 &142853943
 GameObject:
   m_ObjectHideFlags: 0
@@ -1204,7 +1217,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 95.95
+  m_fontSize: 115.75
   m_fontSizeBase: 133.76
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -2097,7 +2110,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 73.85
+  m_fontSize: 72.4
   m_fontSizeBase: 70
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -2603,7 +2616,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 89
+  m_fontSize: 70
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -3375,7 +3388,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 82.55
+  m_fontSize: 77.45
   m_fontSizeBase: 100
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -3551,7 +3564,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 97.25
+  m_fontSize: 99.1
   m_fontSizeBase: 133.76
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -3727,7 +3740,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 67.15
+  m_fontSize: 75
   m_fontSizeBase: 75
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -4153,7 +4166,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 88.65
+  m_fontSize: 90.75
   m_fontSizeBase: 133.76
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -7493,7 +7506,6 @@ GameObject:
   - component: {fileID: 915557220}
   - component: {fileID: 915557222}
   - component: {fileID: 915557221}
-  - component: {fileID: 915557223}
   m_Layer: 0
   m_Name: tmpFitnessLevelName
   m_TagString: Untagged
@@ -7618,46 +7630,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 915557219}
   m_CullTransparentMesh: 1
---- !u!114 &915557223
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 915557219}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 56eb0353ae6e5124bb35b17aff880f16, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_StringReference:
-    m_TableReference:
-      m_TableCollectionName: GUID:41ce18917a87c984b810f28c58b78c3e
-    m_TableEntryReference:
-      m_KeyId: 22569954951168
-      m_Key: 
-    m_FallbackState: 0
-    m_WaitForCompletion: 0
-    m_LocalVariables: []
-  m_FormatArguments: []
-  m_UpdateString:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 915557221}
-        m_TargetAssemblyTypeName: TMPro.TMP_Text, Unity.TextMeshPro
-        m_MethodName: set_text
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: 
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 1
-  references:
-    version: 2
-    RefIds: []
 --- !u!1 &918351487
 GameObject:
   m_ObjectHideFlags: 0
@@ -7744,7 +7716,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 68.55
+  m_fontSize: 85.35
   m_fontSizeBase: 133.76
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -7920,7 +7892,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 103.45
+  m_fontSize: 87.85
   m_fontSizeBase: 133.76
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -8760,7 +8732,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 115.55
+  m_fontSize: 112.75
   m_fontSizeBase: 133.76
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -9513,7 +9485,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1127046625}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1eacea80606e36442b32acc63b9b3092, type: 3}
   m_Name: 
@@ -9557,7 +9529,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1127046625}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 898db59d6c1811f49a25622d6ec9233a, type: 3}
   m_Name: 
@@ -9607,7 +9579,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1127046625}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9a121b0fe84749647ad6b891fa334c75, type: 3}
   m_Name: 
@@ -10303,7 +10275,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 85.75
+  m_fontSize: 84.1
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -11354,7 +11326,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 60.85
+  m_fontSize: 63
   m_fontSizeBase: 63
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -13984,7 +13956,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 62.7
+  m_fontSize: 75
   m_fontSizeBase: 75
   m_fontWeight: 400
   m_enableAutoSizing: 1

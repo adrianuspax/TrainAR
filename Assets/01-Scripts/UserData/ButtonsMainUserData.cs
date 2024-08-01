@@ -54,7 +54,7 @@ public class ButtonsMainUserData : MonoBehaviour
     public void Next()
     {
         SetNextButtonInteractable(false);
-        dataManagement.PagesSavePreferences(pagesControl.CurrentIndex);
+        //dataManagement.PagesSavePreferences(pagesControl.CurrentIndex);
         bool isNext = pagesControl.SetActiveNextPage();
 
         if (isNext)
