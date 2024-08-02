@@ -61,12 +61,12 @@ public class SignIn : MonoBehaviour
         passwordInput.onEndEdit.AddListener(OnEndEditPassword);
         passwordInput.onTouchScreenKeyboardStatusChanged.AddListener(ReportChangeStatusPassword);
 
-        PlaceHolderUsername = LanguageManager.placeHolderID;
-        PlaceHolderPassword = LanguageManager.placeHolderPassword;
-        IDString = LanguageManager.id;
-        PasswordString = LanguageManager.password;
-        SignInButtonsString = LanguageManager.signIn;
-        SignOnButtonsString = LanguageManager.signOn;
+        //PlaceHolderUsername = LanguageManager.placeHolderID;
+        //PlaceHolderPassword = LanguageManager.placeHolderPassword;
+        //IDString = LanguageManager.id;
+        //PasswordString = LanguageManager.password;
+        //SignInButtonsString = LanguageManager.signIn;
+        //SignOnButtonsString = LanguageManager.signOn;
     }
 
     private void Start()
@@ -92,8 +92,8 @@ public class SignIn : MonoBehaviour
         }
         else
         {
-            WarningString = (string.IsNullOrEmpty(usernameInput.text) || string.IsNullOrEmpty(passwordInput.text)) ?
-                LanguageManager.fieldEmptyWarning : LanguageManager.incorrectWarning;
+            //WarningString = (string.IsNullOrEmpty(usernameInput.text) || string.IsNullOrEmpty(passwordInput.text)) ?
+                //LanguageManager.fieldEmptyWarning : LanguageManager.incorrectWarning;
         }
     }
 
@@ -108,12 +108,12 @@ public class SignIn : MonoBehaviour
 
     public void OnDeselectUsername(string username)
     {
-        PlaceHolderUsername = usernameInput.isFocused ? string.Empty : LanguageManager.placeHolderID;
+        //PlaceHolderUsername = usernameInput.isFocused ? string.Empty : LanguageManager.placeHolderID;
     }
 
     public void OnValueChangedUsername(string username)
     {
-        PlaceHolderUsername = usernameInput.isFocused ? string.Empty : LanguageManager.placeHolderID;
+        //PlaceHolderUsername = usernameInput.isFocused ? string.Empty : LanguageManager.placeHolderID;
 
         oldEditTextUsername = editTextUsername;
         editTextUsername = username;
@@ -122,7 +122,7 @@ public class SignIn : MonoBehaviour
     public void OnEndEditUsername(string username)
     {
         this.username = username;
-        PlaceHolderUsername = usernameInput.isFocused ? string.Empty : LanguageManager.placeHolderID;
+        //PlaceHolderUsername = usernameInput.isFocused ? string.Empty : LanguageManager.placeHolderID;
 
         if (keepOldTextUsername && !string.IsNullOrEmpty(oldEditTextUsername))
         {
@@ -155,12 +155,12 @@ public class SignIn : MonoBehaviour
 
     public void OnDeselectPassword(string password)
     {
-        PlaceHolderPassword = passwordInput.isFocused ? string.Empty : LanguageManager.placeHolderPassword;
+        //PlaceHolderPassword = passwordInput.isFocused ? string.Empty : LanguageManager.placeHolderPassword;
     }
 
     public void OnValueChangedPassword(string password)
     {
-        PlaceHolderPassword = passwordInput.isFocused ? string.Empty : LanguageManager.placeHolderPassword;
+        //PlaceHolderPassword = passwordInput.isFocused ? string.Empty : LanguageManager.placeHolderPassword;
 
         oldEditTextPassword = editTextPassword;
         editTextPassword = password;
@@ -169,7 +169,7 @@ public class SignIn : MonoBehaviour
     public void OnEndEditPassword(string password)
     {
         this.password = password;
-        PlaceHolderPassword = passwordInput.isFocused ? string.Empty : LanguageManager.placeHolderPassword;
+        //PlaceHolderPassword = passwordInput.isFocused ? string.Empty : LanguageManager.placeHolderPassword;
 
         if (keepOldTextPassword && !string.IsNullOrEmpty(oldEditTextPassword))
         {

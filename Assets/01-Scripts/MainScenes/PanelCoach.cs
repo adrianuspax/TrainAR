@@ -326,11 +326,11 @@ public class PanelCoach : MonoBehaviour
         get
         {
             return (AccountData.CompleteName,
-                    AccountData.Age.ToString() + " " + LanguageManager.valueUnits[0],
-                    AccountData.IsMale ? LanguageManager.male : LanguageManager.female,
+                    AccountData.Age.ToString() + " " /*+ LanguageManager.valueUnits[0]*/,
+                    /*AccountData.IsMale ? LanguageManager.male : LanguageManager.female*/ default,
                     AccountData.CurrentWeight.ToString() + " kg",
                    (AccountData.Height).ToString() + " cm",
-                    LanguageManager.levelPhrase[Calculation.IndexLevel]);
+                    /*LanguageManager.levelPhrase[Calculation.IndexLevel]*/ default);
         }
     }
 
@@ -343,7 +343,7 @@ public class PanelCoach : MonoBehaviour
         get
         {
             return (Calculation.ValueBMI.ToString("F2") + " kg/m�",
-                    LanguageManager.statusBMI[(int)Calculation.StatusBMI],
+                    /*LanguageManager.statusBMI[(int)Calculation.StatusBMI]*/ default,
                    (Calculation.BodyFat * 100f).ToString("F2") + "%",
                     Calculation.CurrentFat.ToString("F2") + " kg");
         }
@@ -359,8 +359,8 @@ public class PanelCoach : MonoBehaviour
     {
         get
         {
-            return (LanguageManager.goalPhrase[Calculation.IndexGoal],
-                    LanguageManager.levelPhrase[((int)Calculation.TargetLevel - 1)],
+            return (/*LanguageManager.goalPhrase[Calculation.IndexGoal]*/ default,
+                    /*LanguageManager.levelPhrase[((int)Calculation.TargetLevel - 1)]*/ default,
                     AccountData.TargetWeight.ToString() + " kg",
                    (Calculation.TargetBodyFat * 100f).ToString("F2") + "%",
                     toLoseFatTMP.text = Calculation.ToLoseWeight.ToString("F2") + " kg",

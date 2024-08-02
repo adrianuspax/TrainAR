@@ -75,13 +75,13 @@ public class SignOn : MonoBehaviour
         okButton.onClick.AddListener(() => Ok());
         returnButton.onClick.AddListener(() => Return());
 
-        enterNewUsernameTMP.text = LanguageManager.newID;
+        /*enterNewUsernameTMP.text = LanguageManager.newID;
         enterNewPasswordTMP.text = LanguageManager.newPassword;
         repeatNewPasswordTMP.text = LanguageManager.repeatPassword;
         PlaceHolderNewUsername = LanguageManager.placeHolderNewID;
         PlaceHolderNewPassword = LanguageManager.placeHolderNewPassword;
         PlaceHolderRepeatPassword = LanguageManager.placeHolderRepeatPassword;
-        OkButtonString = LanguageManager.okButtonString;
+        OkButtonString = LanguageManager.okButtonString;*/
     }
 
     private void Start()
@@ -128,7 +128,7 @@ public class SignOn : MonoBehaviour
 
     public void OnDeselectNewUsername(string newUsername)
     {
-        PlaceHolderNewUsername = LanguageManager.placeHolderNewID;
+        //PlaceHolderNewUsername = LanguageManager.placeHolderNewID;
     }
 
     public void OnValueChangedNewUsername(string newUsername)
@@ -150,10 +150,10 @@ public class SignOn : MonoBehaviour
 
         if (AccountData.HasUsername)
         {
-            if (newUsername == AccountData.Username)
+            /*if (newUsername == AccountData.Username)
             { warningTMP.text = LanguageManager.alreadyIDWarning; }
             else if (string.IsNullOrEmpty(newUsernameInput.text))
-            { warningTMP.text = string.Empty; }
+            { warningTMP.text = string.Empty; }*/
 
             usernameReleased = !(newUsername == AccountData.Username);
         }
@@ -184,7 +184,7 @@ public class SignOn : MonoBehaviour
 
     public void OnDeselectNewPassword(string newPassword)
     {
-        PlaceHolderNewPassword = LanguageManager.placeHolderNewPassword;
+        //PlaceHolderNewPassword = LanguageManager.placeHolderNewPassword;
     }
 
     public void OnValueChangedNewPassword(string newPassword)
@@ -226,7 +226,7 @@ public class SignOn : MonoBehaviour
 
     public void OnDeselectRepeatPassword(string repeatPassword)
     {
-        PlaceHolderRepeatPassword = LanguageManager.placeHolderRepeatPassword;
+        //PlaceHolderRepeatPassword = LanguageManager.placeHolderRepeatPassword;
     }
 
     public void OnValueChangedRepeatPassword(string repeatPassword)
@@ -261,8 +261,7 @@ public class SignOn : MonoBehaviour
     {
         if (usernameReleased)
         {
-            warningTMP.text =
-                (string.IsNullOrEmpty(newPasswordInput.text) && string.IsNullOrEmpty(repeatPasswordInput.text)) || (newPassword == repeatPassword) ? string.Empty : LanguageManager.passwordsDontMatch;
+            //warningTMP.text = (string.IsNullOrEmpty(newPasswordInput.text) && string.IsNullOrEmpty(repeatPasswordInput.text)) || (newPassword == repeatPassword) ? string.Empty : LanguageManager.passwordsDontMatch;
         }
     }
 

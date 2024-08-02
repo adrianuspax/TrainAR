@@ -71,7 +71,7 @@ public class DataManagement : MonoBehaviour
     {
         ComponentsAssignment();
 
-        pagesAndFields.PagesQuestionString = LanguageManager.pageQuestion;
+        /*pagesAndFields.PagesQuestionString = LanguageManager.pageQuestion;
         userDataButtons.NextButtonString = LanguageManager.nextButton;
         pagesAndFields.Page1PlaceHolder = LanguageManager.page1PlaceHolder;
         userDataButtons.GoalButtonsName = LanguageManager.goalPhrase;
@@ -83,7 +83,7 @@ public class DataManagement : MonoBehaviour
         pagesAndFields.FootersPlaceholer = LanguageManager.footerPlaceholder;
         userDataButtons.SaveButtonString = LanguageManager.saveButton;
         userDataButtons.CancelButtonString = LanguageManager.cancelButton;
-        levelPhrase = LanguageManager.levelPhrase;
+        levelPhrase = LanguageManager.levelPhrase;*/
     }
 
     public void Start()

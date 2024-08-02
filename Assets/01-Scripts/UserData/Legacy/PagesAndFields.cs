@@ -159,7 +159,7 @@ public class PagesAndFields : MonoBehaviour
 
     public void OnDeselectUserName(string name)
     {
-        Page1PlaceHolder = LanguageManager.page1PlaceHolder;
+        //Page1PlaceHolder = LanguageManager.page1PlaceHolder;
         userDataButtons.NextButtonInteraction = !string.IsNullOrEmpty(userNameInput.text);
     }
 
@@ -280,7 +280,7 @@ public class PagesAndFields : MonoBehaviour
 
     public void SetMoreValueTMP(int index, string data)
     {
-        moreValueTMP[index].text = data + LanguageManager.valueUnits[index];
+        //moreValueTMP[index].text = data + LanguageManager.valueUnits[index];
     }
     #endregion
     #region FOOTERS_BEHAVIOURS
@@ -317,7 +317,7 @@ public class PagesAndFields : MonoBehaviour
 
     public void OnDeselectFooter(string data)
     {
-        footerInput[CurrentFooterIndex].placeholder.GetComponent<TextMeshProUGUI>().text = LanguageManager.footerPlaceholder;
+        //footerInput[CurrentFooterIndex].placeholder.GetComponent<TextMeshProUGUI>().text = LanguageManager.footerPlaceholder;
         userDataButtons.SaveButtonInteraction = !string.IsNullOrEmpty(footerInput[CurrentFooterIndex].text);
     }
 
