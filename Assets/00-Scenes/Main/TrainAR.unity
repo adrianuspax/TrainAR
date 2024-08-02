@@ -1249,9 +1249,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_StringReference:
     m_TableReference:
-      m_TableCollectionName: 
+      m_TableCollectionName: GUID:41ce18917a87c984b810f28c58b78c3e
     m_TableEntryReference:
-      m_KeyId: 0
+      m_KeyId: 1814103545200640
       m_Key: 
     m_FallbackState: 0
     m_WaitForCompletion: 0
@@ -5977,7 +5977,7 @@ GameObject:
   - component: {fileID: 929393703}
   - component: {fileID: 929393702}
   m_Layer: 0
-  m_Name: cnvLoading
+  m_Name: cnvCounterAndTimer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -11457,7 +11457,7 @@ MonoBehaviour:
   pressedTxtColor: {r: 0.98039216, g: 0.8509804, b: 0.4, a: 1}
   unpressedColor: {r: 0.20392157, g: 0.69411767, b: 0.98039216, a: 1}
   unpressedTxtColor: {r: 0.6156863, g: 0.98039216, b: 0.4, a: 1}
-  floatMenu: {fileID: 0}
+  floatMenu: {fileID: 1395890265}
   coachAnimations: {fileID: 1576220128}
   buttonsMain: {fileID: 408213808}
 --- !u!224 &1723897438 stripped
@@ -11955,10 +11955,10 @@ MonoBehaviour:
   trackableTypes: 0
   stateButtonAR: 0
   animationsMain: {fileID: 76211142}
-  floatMenu: {fileID: 0}
+  floatMenu: {fileID: 1395890265}
   transition: {fileID: 1204035450}
-  buttonsMain: {fileID: 0}
-  dropDownMenu: {fileID: 0}
+  buttonsMain: {fileID: 408213808}
+  dropDownMenu: {fileID: 1680650644}
   coach: {fileID: 1576220128}
 --- !u!114 &1779689984 stripped
 MonoBehaviour:
@@ -16541,10 +16541,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2130998329}
+  - component: {fileID: 2130998333}
   - component: {fileID: 2130998332}
   - component: {fileID: 2130998331}
   - component: {fileID: 2130998330}
-  - component: {fileID: 2130998333}
   m_Layer: 0
   m_Name: btnBarC
   m_TagString: Untagged
@@ -21485,9 +21485,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8110813797084932336}
+  - component: {fileID: 8110813797084932339}
   - component: {fileID: 8110813797084932338}
   - component: {fileID: 8110813797084932340}
-  - component: {fileID: 8110813797084932339}
   m_Layer: 0
   m_Name: RecomendPanel
   m_TagString: Untagged

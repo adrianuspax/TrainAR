@@ -9,9 +9,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8110813795890704353}
+  - component: {fileID: 53464964378718088}
   - component: {fileID: 1527394434240437222}
   - component: {fileID: 7084195671141302360}
-  - component: {fileID: 53464964378718088}
   m_Layer: 0
   m_Name: InfoData
   m_TagString: Untagged
@@ -39,6 +39,37 @@ RectTransform:
   m_AnchoredPosition: {x: 50, y: -50}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &53464964378718088
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8110813795890704352}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 681cd330b1196d446888119bb97d51a4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  button: {fileID: 1527394434240437222}
+  canvasGroup: {fileID: 7084195671141302360}
+  background: {fileID: 6562560348051912405}
+  titleHeaderTMP: {fileID: 1049221750138415236}
+  cells:
+  - {fileID: 9012889319430280305}
+  - {fileID: 222018502179995979}
+  - {fileID: 222018502806974323}
+  - {fileID: 222018501736276949}
+  - {fileID: 222018501882112714}
+  - {fileID: 222018502815520773}
+  - {fileID: 222018502633548056}
+  infoTMPs:
+  - {fileID: 8110813796569472226}
+  - {fileID: 8110813796882395866}
+  - {fileID: 8110813795805478524}
+  - {fileID: 8110813796200871779}
+  - {fileID: 8110813796877895084}
+  - {fileID: 8110813796652938417}
 --- !u!114 &1527394434240437222
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -95,37 +126,6 @@ CanvasGroup:
   m_Interactable: 1
   m_BlocksRaycasts: 1
   m_IgnoreParentGroups: 0
---- !u!114 &53464964378718088
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8110813795890704352}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 681cd330b1196d446888119bb97d51a4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  button: {fileID: 1527394434240437222}
-  canvasGroup: {fileID: 7084195671141302360}
-  background: {fileID: 6562560348051912405}
-  titleHeaderTMP: {fileID: 1049221750138415236}
-  cells:
-  - {fileID: 9012889319430280305}
-  - {fileID: 222018502179995979}
-  - {fileID: 222018502806974323}
-  - {fileID: 222018501736276949}
-  - {fileID: 222018501882112714}
-  - {fileID: 222018502815520773}
-  - {fileID: 222018502633548056}
-  infoTMPs:
-  - {fileID: 8110813796569472226}
-  - {fileID: 8110813796882395866}
-  - {fileID: 8110813795805478524}
-  - {fileID: 8110813796200871779}
-  - {fileID: 8110813796877895084}
-  - {fileID: 8110813796652938417}
 --- !u!1 &8110813796892275938
 GameObject:
   m_ObjectHideFlags: 0
