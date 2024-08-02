@@ -49,7 +49,7 @@ public class Transition : MonoBehaviour
     private void Start()
     {
         canvasGroup.alpha = 1.0f;
-        LanguageManager.LoadLang(AccountData.Language);
+        //LanguageManager.LoadLang(AccountData.Language);
     }
     /// This function is called when the behaviour becomes disabled.
     private void OnDisable()

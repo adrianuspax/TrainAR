@@ -3,7 +3,7 @@ using ASP.Extensions;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class Page2 : PageDefault
+public sealed class Page2 : PageDefault
 {
     [SerializeField, NonReorderable, ReadOnly] private Button[] buttons;
     [SerializeField, NonReorderable, ReadOnly] private Image[] icons;

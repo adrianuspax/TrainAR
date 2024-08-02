@@ -4,7 +4,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class Page5 : PageDefault
+public sealed class Page5 : PageDefault
 {
     [SerializeField, NonReorderable, ReadOnly] private Button[] buttons;
     [SerializeField, NonReorderable, ReadOnly] private TextMeshProUGUI[] tmps;

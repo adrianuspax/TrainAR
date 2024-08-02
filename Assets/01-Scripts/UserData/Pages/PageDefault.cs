@@ -2,7 +2,7 @@ using ASP;
 using ASP.Extensions;
 using UnityEngine;
 
-public class PageDefault : MonoBehaviour
+public abstract class PageDefault : MonoBehaviour
 {
     [Header(Header.READONLY, order = 0)]
     [Space(-10, order = 1)]

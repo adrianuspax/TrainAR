@@ -4,7 +4,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class Page3 : PageDefault
+public sealed class Page3 : PageDefault
 {
     [SerializeField, NonReorderable, ReadOnly] private Button[] buttons;
     [SerializeField, NonReorderable, ReadOnly] private Image[] icons;

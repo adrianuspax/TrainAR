@@ -3,7 +3,7 @@ using ASP.Extensions;
 using TMPro;
 using UnityEngine;
 
-public class Page1 : PageDefault
+public sealed class Page1 : PageDefault
 {
     [SerializeField, ReadOnly] private TMP_InputField inputField;
 

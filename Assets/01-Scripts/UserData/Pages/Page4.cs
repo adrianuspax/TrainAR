@@ -4,7 +4,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class Page4 : PageDefault
+public sealed class Page4 : PageDefault
 {
     [SerializeField, NonReorderable, ReadOnly] private Button[] buttons;
     [SerializeField, ReadOnly] private TextMeshProUGUI fitnessLevelTMP;
