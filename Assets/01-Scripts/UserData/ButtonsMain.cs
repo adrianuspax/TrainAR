@@ -24,6 +24,11 @@ public class ButtonsMain : MonoBehaviour
     {
         ComponentsAssignment();
     }
+    /// Start is called on the frame when a script is enabled just before any of the Update methods are called the first time.
+    private void Start()
+    {
+        SetNextButtonInteractable(false);
+    }
     /// This function is called when the object becomes enabled and active.
     private void OnEnable()
     {

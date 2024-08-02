@@ -8,6 +8,7 @@ namespace TreinAR.UserData.Pages
 {
     public sealed class Page6 : PageDefault
     {
+        [Space(20, order = 0)]
         [SerializeField, NonReorderable, ReadOnly] private Button[] buttons;
         [SerializeField, ReadOnly] private FootersControl footersControl;
         /// Awake is called when an enabled script instance is being loaded.
@@ -20,7 +21,8 @@ namespace TreinAR.UserData.Pages
         {
             for (int i = 0; i < buttons.Length; i++)
             {
-                //buttons[i].onClick.AddListener(footersControl.Footers[i].);
+                int index = i;
+                buttons[index].onClick.AddListener(() => footersControl.SetCallFooter(index));
             }
         }
         /// <summary>

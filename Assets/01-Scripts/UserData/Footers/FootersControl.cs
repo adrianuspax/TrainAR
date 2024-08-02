@@ -4,6 +4,7 @@ using System.Collections;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
+using Debug = ASP.Debug;
 
 namespace TreinAR.UserData.Footers
 {
@@ -21,7 +22,7 @@ namespace TreinAR.UserData.Footers
         [SerializeField, ReadOnly] private int currentFooterIndex;
 
         [Header(Header.scripts, order = 0)]
-        [SerializeField, NonReorderable, ReadOnly] private FooterDefault[] footers;
+        [SerializeField, NonReorderable, ReadOnly] private Footer[] footers;
         [SerializeField, ReadOnly] private ButtonsMain buttonsMain;
         /// Awake is called when an enabled script instance is being loaded.
         private void Awake()
@@ -31,18 +32,14 @@ namespace TreinAR.UserData.Footers
         /// This function is called when the object becomes enabled and active.
         private void OnEnable()
         {
-            saveButton.onClick.AddListener(SaveButtonFunction);
-            cancelButton.onClick.AddListener(CancelButtonFunction);
+            saveButton.onClick.AddListener(SetSaveBehaviour);
+            cancelButton.onClick.AddListener(SetCancelBehaviour);
         }
         /// Start is called on the frame when a script is enabled just before any of the Update methods are called the first time.
         private void Start()
         {
-            currentFooterIndex = 0;
-
-            foreach (FooterDefault footer in footers)
-            {
-                footer.SetVisible(false);
-            }
+            SetAllFootersVisible(false);
+            SetSaveButtonInteractable(false);
         }
         /// <summary>
         /// Assignment of components and variables
@@ -60,62 +57,54 @@ namespace TreinAR.UserData.Footers
             ASP.SceneManagement.SceneManager.SaveCurrentScene();
         }
 
-        public void SaveButtonFunction()
+        public void SetCallFooter(int index)
         {
-            /*StartCoroutine(_delay());
-
-            IEnumerator _delay()
+            if (index >= 0 && index < footers.Length)
             {
-                float s = animator.GetCurrentAnimatorStateInfo(0).length;
-
-                if (currentFooterIndex < footers.Length - 1)
-                {
-                    SaveButtonInteractable(false);
-                    animator.SetTrigger(Parameter.save);
-                    yield return new WaitForSeconds(s);
-                    footers[currentFooterIndex].SetVisible(false);
-                    currentFooterIndex++;
-                    footers[currentFooterIndex].SetVisible(true);
-                    animator.SetTrigger(Parameter.enter);
-                }
-                else
-                {
-                    buttonsMainUserData.SetNextButtonInteractable(true);
-                }
-            }*/
-        }
-
-        public void CallFooter(int index)
-        {
-            StartCoroutine(_delay());
-
-            IEnumerator _delay()
+                SetSaveButtonInteractable(false);
+                animator.SetTrigger(Parameter.enter);
+                SetAllFootersVisible(false);
+                footers[index].SetVisible(true);
+                currentFooterIndex = index;
+            }
+            else
             {
-                float s = animator.GetCurrentAnimatorStateInfo(0).length;
-
-                if (currentFooterIndex < footers.Length - 1)
-                {
-                    SaveButtonInteractable(false);
-                    animator.SetTrigger(Parameter.enter);
-                    yield return new WaitForSeconds(s);
-                    footers[currentFooterIndex].SetVisible(false);
-                    footers[index].SetVisible(true);
-                    currentFooterIndex = index;
-                    animator.SetTrigger(Parameter.enter);
-                }
-                else
-                {
-                    //buttonsMainUserData.SetNextButtonInteractable(true);
-                }
+                Debug.LogError($"The value of {nameof(index)} must be between 0 and {footers.Length - 1}, but {index} has been inserted!");
             }
         }
 
-        public void CancelButtonFunction()
+        public void SetSaveBehaviour()
         {
-            animator.SetTrigger(Parameter.cancel);
+            SetSaveButtonInteractable(false);
+            animator.SetTrigger(Parameter.save);
+            footers[currentFooterIndex].isFilled = true;
+
+            for (int i = 0; i < footers.Length; i++)
+            {
+                if (!footers[i].isFilled)
+                    return;
+            }
+
+            buttonsMain.SetNextButtonInteractable(true);
         }
 
-        public void SaveButtonInteractable(bool value)
+        public void SetCancelBehaviour()
+        {
+            StartCoroutine(_call());
+
+            IEnumerator _call()
+            {
+                float s = animator.GetCurrentAnimatorStateInfo(0).length;
+                animator.SetTrigger(Parameter.cancel);
+                footers[currentFooterIndex].SetClearInputField();
+                footers[currentFooterIndex].isFilled = false;
+                buttonsMain.SetNextButtonInteractable(true);
+                yield return new WaitForSeconds(s);
+                SetAllFootersVisible(false);
+            }
+        }
+
+        public void SetSaveButtonInteractable(bool value)
         {
             if (saveButton.IsInteractable() == value)
                 return;
@@ -124,7 +113,12 @@ namespace TreinAR.UserData.Footers
             saveTMP.SetAlpha(value ? 1f : 0.5f);
         }
 
-        public FooterDefault[] Footers => footers;
+        private void SetAllFootersVisible(bool value)
+        {
+            foreach (Footer footer in footers)
+                footer.SetVisible(value);
+        }
+
         public (string enter, string cancel, string save) Parameter => ("enter", "cancel", "save");
     }
 }

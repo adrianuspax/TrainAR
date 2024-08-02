@@ -8,11 +8,12 @@ namespace TreinAR.UserData.Pages
     {
         [Header(Header.READONLY, order = 0)]
         [Space(-10, order = 1)]
-        [Header(Header.components, order = 2)]
+        [Header(Header.scripts, order = 2)]
+        [SerializeField, ReadOnly] protected ButtonsMain buttonsMain;
+
+        [Header(Header.components, order = 0)]
         [SerializeField, ReadOnly] protected Animator animator;
 
-        [Header(Header.scripts, order = 1)]
-        [SerializeField, ReadOnly] protected ButtonsMain buttonsMain;
 
         public const string PARAMETER = "isOpen";
         /// <summary>

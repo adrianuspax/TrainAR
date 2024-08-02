@@ -443,10 +443,34 @@ MonoBehaviour:
       m_Calls: []
   m_OnSelect:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 837863361}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   m_OnDeselect:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 837863361}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
   m_OnTextSelection:
     m_PersistentCalls:
       m_Calls: []
@@ -568,14 +592,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentIndex: 0
-  buttonsMain: {fileID: 0}
+  buttonsMain: {fileID: 584496965658112698}
   pages:
   - {fileID: 1512928803}
   - {fileID: 1293068273}
   - {fileID: 739031704}
   - {fileID: 646936485}
   - {fileID: 124839116}
-  - {fileID: 0}
+  - {fileID: 1362275366}
 --- !u!1 &91627187
 GameObject:
   m_ObjectHideFlags: 0
@@ -806,6 +830,8 @@ MonoBehaviour:
   inputField: {fileID: 1872754607}
   canvasGroup: {fileID: 110784998}
   footerIndex: 2
+  content: 
+  footersControl: {fileID: 1358066335}
 --- !u!225 &110784998
 CanvasGroup:
   m_ObjectHideFlags: 0
@@ -867,6 +893,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 21c8ae02410279c439f5546d071124e7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  buttonsMain: {fileID: 584496965658112698}
   animator: {fileID: 1249071847}
   <Content>k__BackingField: 
   buttons:
@@ -881,7 +908,6 @@ MonoBehaviour:
   - {fileID: 938766698}
   isPressed: 00000000
   index: 0
-  buttonsMain: {fileID: 584496965658112698}
 --- !u!1 &142853943
 GameObject:
   m_ObjectHideFlags: 0
@@ -1795,10 +1821,34 @@ MonoBehaviour:
       m_Calls: []
   m_OnSelect:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1781573421}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   m_OnDeselect:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1781573421}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
   m_OnTextSelection:
     m_PersistentCalls:
       m_Calls: []
@@ -5326,6 +5376,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 300912d63bb6cae47b105965d9c14718, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  buttonsMain: {fileID: 584496965658112698}
   animator: {fileID: 903882327}
   <Content>k__BackingField: 
   buttons:
@@ -5337,7 +5388,6 @@ MonoBehaviour:
   fitnessLevelTMP: {fileID: 915557221}
   isPressed: 0000000000
   index: 0
-  buttonsMain: {fileID: 584496965658112698}
 --- !u!1 &668846090
 GameObject:
   m_ObjectHideFlags: 0
@@ -6064,6 +6114,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0594c80f30fa6d3498202afb3910d0da, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  buttonsMain: {fileID: 584496965658112698}
   animator: {fileID: 2083249134}
   <Content>k__BackingField: 
   buttons:
@@ -6080,7 +6131,6 @@ MonoBehaviour:
   - {fileID: 297370732}
   isPressed: 000000
   index: 0
-  buttonsMain: {fileID: 584496965658112698}
 --- !u!1 &785045290
 GameObject:
   m_ObjectHideFlags: 0
@@ -8692,6 +8742,8 @@ MonoBehaviour:
   inputField: {fileID: 197544339}
   canvasGroup: {fileID: 993186489}
   footerIndex: 0
+  content: 
+  footersControl: {fileID: 1358066335}
 --- !u!225 &993186489
 CanvasGroup:
   m_ObjectHideFlags: 0
@@ -9383,6 +9435,8 @@ MonoBehaviour:
   inputField: {fileID: 85041552}
   canvasGroup: {fileID: 1117998975}
   footerIndex: 3
+  content: 
+  footersControl: {fileID: 1358066335}
 --- !u!225 &1117998975
 CanvasGroup:
   m_ObjectHideFlags: 0
@@ -10501,6 +10555,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 69198247012cf124388295756bb6c11d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  buttonsMain: {fileID: 584496965658112698}
   animator: {fileID: 1778530636}
   <Content>k__BackingField: 
   buttons:
@@ -10514,7 +10569,6 @@ MonoBehaviour:
   - {r: 0.98039216, g: 0.3019608, b: 0.3254902, a: 1}
   isPressed: 0000
   isMale: 0
-  buttonsMain: {fileID: 584496965658112698}
 --- !u!1 &1315431817
 GameObject:
   m_ObjectHideFlags: 0
@@ -10800,7 +10854,7 @@ MonoBehaviour:
   - {fileID: 1505936401}
   - {fileID: 110784997}
   - {fileID: 1117998974}
-  buttonsMain: {fileID: 0}
+  buttonsMain: {fileID: 584496965658112698}
 --- !u!1 &1359481330
 GameObject:
   m_ObjectHideFlags: 0
@@ -11047,6 +11101,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 719c3cb36536318488adffe31413190f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  buttonsMain: {fileID: 584496965658112698}
   animator: {fileID: 1226641322}
   <Content>k__BackingField: 
   buttons:
@@ -11711,6 +11766,8 @@ MonoBehaviour:
   inputField: {fileID: 2134901156}
   canvasGroup: {fileID: 1505936402}
   footerIndex: 1
+  content: 
+  footersControl: {fileID: 1358066335}
 --- !u!225 &1505936402
 CanvasGroup:
   m_ObjectHideFlags: 0
@@ -11861,10 +11918,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8549b4de2433b614d847d0e020ebb132, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  buttonsMain: {fileID: 584496965658112698}
   animator: {fileID: 816342926}
   <Content>k__BackingField: 
   inputField: {fileID: 339054861}
-  buttonsMain: {fileID: 584496965658112698}
 --- !u!1 &1523038885
 GameObject:
   m_ObjectHideFlags: 0
@@ -13946,10 +14003,34 @@ MonoBehaviour:
       m_Calls: []
   m_OnSelect:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 847092187}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   m_OnDeselect:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 847092187}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
   m_OnTextSelection:
     m_PersistentCalls:
       m_Calls: []
@@ -16503,10 +16584,34 @@ MonoBehaviour:
       m_Calls: []
   m_OnSelect:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1359481330}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   m_OnDeselect:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1359481330}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
   m_OnTextSelection:
     m_PersistentCalls:
       m_Calls: []

@@ -23,11 +23,6 @@ namespace TreinAR.UserData.Pages
             inputField.onEndEdit.AddListener(OnEndEdit);
             //inputField.onTouchScreenKeyboardStatusChanged.AddListener(OnTouchScreenKeyboardStatusChanged);
         }
-        /// Start is called on the frame when a script is enabled just before any of the Update methods are called the first time.
-        private void Start()
-        {
-            NextButtonInteraction();
-        }
         /// <summary>
         /// Assignment of components and variables
         /// </summary>
@@ -55,19 +50,19 @@ namespace TreinAR.UserData.Pages
 
         public void OnDeselect(string content)
         {
-            NextButtonInteraction();
+            SetNextButtonInteractableByContent(content);
             Content = content;
         }
 
         public void OnValueChanged(string content)
         {
-            NextButtonInteraction();
+            SetNextButtonInteractableByContent(content);
             Content = content;
         }
 
         public void OnEndEdit(string content)
         {
-            NextButtonInteraction();
+            SetNextButtonInteractableByContent(content);
             Content = content;
         }
 
@@ -76,9 +71,9 @@ namespace TreinAR.UserData.Pages
 
         }*/
 
-        public void NextButtonInteraction()
+        public void SetNextButtonInteractableByContent(string content)
         {
-            bool isFilled = !string.IsNullOrEmpty(inputField.text);
+            bool isFilled = !string.IsNullOrEmpty(content);
             buttonsMain.SetNextButtonInteractable(isFilled);
         }
     }
