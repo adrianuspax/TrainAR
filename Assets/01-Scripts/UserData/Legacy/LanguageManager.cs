@@ -1,4 +1,7 @@
 ﻿using ASP;
+using TreinAR;
+using TreinAR.Commons;
+using TreinAR.UserData;
 using UnityEngine;
 using UnityEngine.UI;
 

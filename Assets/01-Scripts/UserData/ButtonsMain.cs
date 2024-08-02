@@ -1,10 +1,13 @@
 using ASP;
 using ASP.Extensions;
 using TMPro;
+using TreinAR;
+using TreinAR.UserData;
+using TreinAR.UserData.Pages;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class ButtonsMainUserData : MonoBehaviour
+public class ButtonsMain : MonoBehaviour
 {
     [Header(Header.READONLY, order = 0)]
     [Space(-10, order = 1)]

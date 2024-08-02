@@ -1,31 +1,35 @@
+using TreinAR.UserData;
 using UnityEngine;
 
-public class Redirection : MonoBehaviour
+namespace TreinAR.MainScenes
 {
-    private void Start()
+    public class Redirection : MonoBehaviour
     {
-        RedirectionScene();
-    }
-
-    public void RedirectionScene()
-    {
-        if (AccountData.HasAccount)
+        private void Start()
         {
-            if (AccountData.Signed)
+            RedirectionScene();
+        }
+
+        public void RedirectionScene()
+        {
+            if (AccountData.HasAccount)
             {
-                TrainARSceneManager.LoadTrainAR(); 
+                if (AccountData.Signed)
+                {
+                    TrainARSceneManager.LoadTrainAR();
+                }
+                else
+                {
+                    if (AccountData.HasLanguage)
+                        TrainARSceneManager.LoadSignIn();
+                    else
+                        TrainARSceneManager.LoadLanguage();
+                }
             }
             else
             {
-                if (AccountData.HasLanguage)
-                    TrainARSceneManager.LoadSignIn();
-                else
-                    TrainARSceneManager.LoadLanguage();
+                TrainARSceneManager.LoadLanguage();
             }
-        }
-        else
-        { 
-            TrainARSceneManager.LoadLanguage(); 
         }
     }
 }

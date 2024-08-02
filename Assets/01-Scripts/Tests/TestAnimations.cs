@@ -1,8 +1,8 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine.UI;
-using UnityEngine;
 using TMPro;
+using TreinAR.MainScenes;
+using UnityEngine;
+using UnityEngine.UI;
 
 public class TestAnimations : MonoBehaviour
 {
@@ -54,7 +54,8 @@ public class TestAnimations : MonoBehaviour
                 gridButton[index].image.color = pressedColor;
                 tmpButton[index].color = noPressedColor;
 
-                if (index != 0) { animations.StartAnimation(index); }
+                if (index != 0)
+                { animations.StartAnimation(index); }
             }
             else
             {

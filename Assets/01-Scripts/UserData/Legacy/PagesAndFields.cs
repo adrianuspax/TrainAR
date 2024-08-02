@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using ASP;
 using Debug = ASP.Debug;
+using TreinAR.UserData;
 
 [RequireComponent(typeof(UserDataAnimations))]
 public class PagesAndFields : MonoBehaviour

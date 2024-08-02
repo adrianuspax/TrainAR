@@ -4,72 +4,73 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-public sealed class Page4 : PageDefault
+namespace TreinAR.UserData.Pages
 {
-    [SerializeField, NonReorderable, ReadOnly] private Button[] buttons;
-    [SerializeField, ReadOnly] private TextMeshProUGUI fitnessLevelTMP;
-    [Space(-10, order = 0)]
-    [Header(Header.variables, order = 1)]
-    [SerializeField, ReadOnly] private bool[] isPressed;
-    [SerializeField, ReadOnly] private int index;
-
-    [Header(Header.scripts, order = 0)]
-    [SerializeField, ReadOnly] private ButtonsMainUserData buttonsMainUserData;
-
-    public readonly string[] entry = new string[] { "Sedentary", "Walker", "Runner", "Athletic", "BodyBuilder" };
-
-    /// Awake is called when an enabled script instance is being loaded.
-    private void Awake()
+    public sealed class Page4 : PageDefault
     {
-        ComponentsAssignment();
-    }
-    /// This function is called when the object becomes enabled and active.
-    private void OnEnable()
-    {
-        for (int i = 0; i < buttons.Length; i++)
+        [Space(20, order = 0)]
+        [SerializeField, NonReorderable, ReadOnly] private Button[] buttons;
+        [SerializeField, ReadOnly] private TextMeshProUGUI fitnessLevelTMP;
+        [Space(-10, order = 0)]
+        [Header(Header.variables, order = 1)]
+        [SerializeField, ReadOnly] private bool[] isPressed;
+        [SerializeField, ReadOnly] private int index;
+
+        public readonly string[] entry = new string[] { "Sedentary", "Walker", "Runner", "Athletic", "BodyBuilder" };
+
+        /// Awake is called when an enabled script instance is being loaded.
+        private void Awake()
         {
-            int index = i;
-            buttons[index].onClick.AddListener(() => ButtonsBehaviour(index));
+            ComponentsAssignment();
         }
-    }
-    /// Start is called on the frame when a script is enabled just before any of the Update methods are called the first time.
-    private void Start()
-    {
-        ButtonsBehaviour(0);
-    }
-    /// <summary>
-    /// Assignment of components and variables
-    /// </summary>
-    [ContextMenu("Components Assignment")]
-    private new void ComponentsAssignment()
-    {
-        if (buttons.IsNullOrEmpty())
+        /// This function is called when the object becomes enabled and active.
+        private void OnEnable()
         {
-            buttons = GetComponentsInChildren<Button>();
-            isPressed = new bool[buttons.Length];
+            for (int i = 0; i < buttons.Length; i++)
+            {
+                int index = i;
+                buttons[index].onClick.AddListener(() => ButtonsBehaviour(index));
+            }
         }
-
-        animator.GetComponentIfNull(ref fitnessLevelTMP, 2);
-        buttonsMainUserData = FindAnyObjectByType<ButtonsMainUserData>();
-
-        base.ComponentsAssignment();
-        ASP.SceneManagement.SceneManager.SaveCurrentScene();
-    }
-
-    public void ButtonsBehaviour(int index)
-    {
-        for (int i = 0; i < buttons.Length; i++)
+        /// Start is called on the frame when a script is enabled just before any of the Update methods are called the first time.
+        private void Start()
         {
-            bool conditional = (i <= index);
-            buttons[i].image.color = conditional ? PalleteColors.Main : PalleteColors.BlueGray_WhiteBlue;
-            isPressed[i] = conditional;
+            ButtonsBehaviour(0);
+        }
+        /// <summary>
+        /// Assignment of components and variables
+        /// </summary>
+        [ContextMenu("Components Assignment")]
+        private new void ComponentsAssignment()
+        {
+            if (buttons.IsNullOrEmpty())
+            {
+                buttons = GetComponentsInChildren<Button>();
+                isPressed = new bool[buttons.Length];
+            }
+
+            animator.GetComponentIfNull(ref fitnessLevelTMP, 2);
+
+            base.ComponentsAssignment();
+            ASP.SceneManagement.SceneManager.SaveCurrentScene();
         }
 
-        this.index = index;
-        fitnessLevelTMP.SetLocalizationString(entry[index], "StringTableMain");
-        buttonsMainUserData.SetNextButtonInteractable(true);
-        Content = fitnessLevelTMP.text;
-    }
+        public void ButtonsBehaviour(int index)
+        {
+            for (int i = 0; i < buttons.Length; i++)
+            {
+                bool conditional = (i <= index);
+                buttons[i].image.color = conditional ? PalleteColors.Main : PalleteColors.BlueGray_WhiteBlue;
+                isPressed[i] = conditional;
+            }
 
-    public int Index => index;
+            this.index = index;
+            fitnessLevelTMP.SetLocalizationString(entry[index], "StringTableMain");
+            buttonsMain.SetNextButtonInteractable(true);
+            Content = fitnessLevelTMP.text;
+        }
+
+        public int Index => index;
+    }
 }
+

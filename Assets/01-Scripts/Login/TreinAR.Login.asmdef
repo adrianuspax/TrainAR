@@ -1,6 +1,6 @@
 {
     "name": "TreinAR.Login",
-    "rootNamespace": "",
+    "rootNamespace": "TreinAR.Login",
     "references": [
         "GUID:7112c82b7aaa69840b088105586afcd6",
         "GUID:ba76f6ca242a7db4a89b0637af752718",

@@ -4,83 +4,83 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-public sealed class Page3 : PageDefault
+namespace TreinAR.UserData.Pages
 {
-    [SerializeField, NonReorderable, ReadOnly] private Button[] buttons;
-    [SerializeField, NonReorderable, ReadOnly] private Image[] icons;
-    [SerializeField, NonReorderable, ReadOnly] private TextMeshProUGUI[] tmps;
-    [Space(-10, order = 0)]
-    [Header(Header.variables, order = 1)]
-    [SerializeField, ReadOnly] private bool[] isPressed;
-    [SerializeField, ReadOnly] private int index;
-
-    [Header(Header.scripts, order = 0)]
-    [SerializeField, ReadOnly] private ButtonsMainUserData buttonsMainUserData;
-    /// Awake is called when an enabled script instance is being loaded.
-    private void Awake()
+    public sealed class Page3 : PageDefault
     {
-        ComponentsAssignment();
-    }
-    /// This function is called when the object becomes enabled and active.
-    private void OnEnable()
-    {
-        buttons.AddListners(isPressed, ButtonsBehaviour);
-    }
-    /// <summary>
-    /// Assignment of components and variables
-    /// </summary>
-    [ContextMenu("Components Assignment")]
-    private new void ComponentsAssignment()
-    {
-        if (buttons.IsNullOrEmpty())
+        [Space(20, order = 0)]
+        [SerializeField, NonReorderable, ReadOnly] private Button[] buttons;
+        [SerializeField, NonReorderable, ReadOnly] private Image[] icons;
+        [SerializeField, NonReorderable, ReadOnly] private TextMeshProUGUI[] tmps;
+        [Space(-10, order = 0)]
+        [Header(Header.variables, order = 1)]
+        [SerializeField, ReadOnly] private bool[] isPressed;
+        [SerializeField, ReadOnly] private int index;
+        /// Awake is called when an enabled script instance is being loaded.
+        private void Awake()
         {
-            int length;
-
-            buttons = GetComponentsInChildren<Button>();
-            length = buttons.Length;
-
-            icons = new Image[length];
-            tmps = new TextMeshProUGUI[length];
-            isPressed = new bool[length];
-
-            for (int i = 0; i < length; i++)
+            ComponentsAssignment();
+        }
+        /// This function is called when the object becomes enabled and active.
+        private void OnEnable()
+        {
+            buttons.AddListners(isPressed, ButtonsBehaviour);
+        }
+        /// <summary>
+        /// Assignment of components and variables
+        /// </summary>
+        [ContextMenu("Components Assignment")]
+        private new void ComponentsAssignment()
+        {
+            if (buttons.IsNullOrEmpty())
             {
-                icons[i] = buttons[i].transform.GetChild(0).GetComponent<Image>();
-                tmps[i] = buttons[i].GetComponentInChildren<TextMeshProUGUI>();
+                int length;
+
+                buttons = GetComponentsInChildren<Button>();
+                length = buttons.Length;
+
+                icons = new Image[length];
+                tmps = new TextMeshProUGUI[length];
+                isPressed = new bool[length];
+
+                for (int i = 0; i < length; i++)
+                {
+                    icons[i] = buttons[i].transform.GetChild(0).GetComponent<Image>();
+                    tmps[i] = buttons[i].GetComponentInChildren<TextMeshProUGUI>();
+                }
             }
+
+            base.ComponentsAssignment();
+            ASP.SceneManagement.SceneManager.SaveCurrentScene();
         }
 
-        buttonsMainUserData = FindAnyObjectByType<ButtonsMainUserData>();
-
-        base.ComponentsAssignment();
-        ASP.SceneManagement.SceneManager.SaveCurrentScene();
-    }
-
-    public void ButtonsBehaviour(int index, bool isPressed)
-    {
-        for (int i = 0; i < buttons.Length; i++)
+        public void ButtonsBehaviour(int index, bool isPressed)
         {
-            if (i == index && isPressed)
+            for (int i = 0; i < buttons.Length; i++)
             {
-                icons[index].color = PalleteColors.BlueGray_White;
-                tmps[index].color = PalleteColors.BlueGray_White;
-                tmps[index].fontStyle = FontStyles.Bold;
-                buttons[index].image.color = PalleteColors.Main;
+                if (i == index && isPressed)
+                {
+                    icons[index].color = PalleteColors.BlueGray_White;
+                    tmps[index].color = PalleteColors.BlueGray_White;
+                    tmps[index].fontStyle = FontStyles.Bold;
+                    buttons[index].image.color = PalleteColors.Main;
+                }
+                else
+                {
+                    icons[i].color = PalleteColors.Main;
+                    tmps[i].color = PalleteColors.BlueGrey(4);
+                    tmps[i].fontStyle = FontStyles.Normal;
+                    buttons[i].image.color = PalleteColors.BlueGray_White;
+                    this.isPressed[i] = false;
+                }
             }
-            else
-            {
-                icons[i].color = PalleteColors.Main;
-                tmps[i].color = PalleteColors.BlueGrey(4);
-                tmps[i].fontStyle = FontStyles.Normal;
-                buttons[i].image.color = PalleteColors.BlueGray_White;
-                this.isPressed[i] = false;
-            }
+
+            this.index = index;
+            Content = tmps[index].text;
+            buttonsMain.SetNextButtonInteractable(isPressed);
         }
 
-        this.index = index;
-        Content = tmps[index].text;
-        buttonsMainUserData.SetNextButtonInteractable(isPressed);
+        public int Index => index;
     }
-
-    public int Index => index;
 }
+

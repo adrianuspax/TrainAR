@@ -2,28 +2,32 @@ using ASP;
 using ASP.Extensions;
 using UnityEngine;
 
-public class ButtonAR : MonoBehaviour
+namespace TreinAR.MainScenes
 {
-    [Header(Header.READONLY, order = 0)]
-    [Space(-10, order = 1)]
-    [Header(Header.components, order = 2)]
-    [SerializeField, ReadOnly] private Animator animator;
-
-    public const string PARAMETER = "isStarted";
-    /// Awake is called when an enabled script instance is being loaded.
-    private void Awake()
+    public class ButtonAR : MonoBehaviour
     {
-        ComponentsAssignment();
-    }
-    /// <summary>
-    /// Assignment of components and variables
-    /// </summary>
-    [ContextMenu("Components Assignment")]
-    private void ComponentsAssignment()
-    {
-        this.GetComponentInChildrenIfNull(ref animator);
-        ASP.SceneManagement.SceneManager.SaveCurrentScene();
-    }
+        [Header(Header.READONLY, order = 0)]
+        [Space(-10, order = 1)]
+        [Header(Header.components, order = 2)]
+        [SerializeField, ReadOnly] private Animator animator;
 
-    public Animator Animator => animator;
+        public const string PARAMETER = "isStarted";
+        /// Awake is called when an enabled script instance is being loaded.
+        private void Awake()
+        {
+            ComponentsAssignment();
+        }
+        /// <summary>
+        /// Assignment of components and variables
+        /// </summary>
+        [ContextMenu("Components Assignment")]
+        private void ComponentsAssignment()
+        {
+            this.GetComponentInChildrenIfNull(ref animator);
+            ASP.SceneManagement.SceneManager.SaveCurrentScene();
+        }
+
+        public Animator Animator => animator;
+    }
 }
+

@@ -1,107 +1,112 @@
 using ASP;
 using ASP.Extensions;
+using ASP.SceneManagement;
 using System;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.Events;
-using ASP.SceneManagement;
 
-public class Transition : MonoBehaviour
+namespace TreinAR.Commons
 {
-    [Header(Header.READONLY, order = 0)]
-    [Space(-10, order = 1)]
-    [Header(Header.components, order = 2)]
-    [SerializeField, ReadOnly] private Animator animator;
-    [SerializeField, ReadOnly] private CanvasGroup canvasGroup;
-
-    [Serializable]
-    public struct AnimationControl
+    public class Transition : MonoBehaviour
     {
-        public string name;
+        [Header(Header.READONLY, order = 0)]
+        [Space(-10, order = 1)]
+        [Header(Header.components, order = 2)]
+        [SerializeField, ReadOnly] private Animator animator;
+        [SerializeField, ReadOnly] private CanvasGroup canvasGroup;
 
-        public AnimationControl(string name)
+        [Serializable]
+        public struct AnimationControl
         {
-            this.name = name;
+            public string name;
+
+            public AnimationControl(string name)
+            {
+                this.name = name;
+            }
+
+            public static (AnimationControl start,
+                           AnimationControl idle,
+                           AnimationControl end,
+                           AnimationControl @null)
+            State => (new("TransitionStart"),
+                      new("TransitionIdle"),
+                      new("TransitionEnd"),
+                      new("TransitionNull"));
+
+            public static AnimationControl Parameter => new("isStarts");
         }
 
-        public static (AnimationControl start,
-                       AnimationControl idle,
-                       AnimationControl end,
-                       AnimationControl @null)
-        State => (new("TransitionStart"),
-                  new("TransitionIdle"),
-                  new("TransitionEnd"),
-                  new("TransitionNull"));
-
-        public static AnimationControl Parameter => new("isStarts");
-    }
-
-    private void Awake()
-    {
-        ComponentsAssignment();
-    }
-    /// This function is called when the object becomes enabled and active.
-    private void OnEnable()
-    {
-        TrainARSceneManager.Load += CallSceneWithClip;
-    }
-    /// Start is called on the frame when a script is enabled just before any of the Update methods are called the first time.
-    private void Start()
-    {
-        canvasGroup.alpha = 1.0f;
-        //LanguageManager.LoadLang(AccountData.Language);
-    }
-    /// This function is called when the behaviour becomes disabled.
-    private void OnDisable()
-    {
-        TrainARSceneManager.Load -= CallSceneWithClip;
-    }
-    /// <summary>
-    /// Assignment of components and variables
-    /// </summary>
-    [ContextMenu("Components Assignment")]
-    private void ComponentsAssignment()
-    {
-        this.GetComponentIfNull(ref animator, 0);
-        animator.GetComponentIfNull(ref canvasGroup);
-        ASP.SceneManagement.SceneManager.SaveCurrentScene();
-    }
-
-    public void StartClip()
-    {
-        animator.SetBool(AnimationControl.Parameter.name, true);
-    }
-
-    public void StartClip(float delay)
-    {
-        StartCoroutine(DelayClip(delay, () => animator.SetBool(AnimationControl.Parameter.name, true)));
-    }
-
-    public void EndClip()
-    {
-        animator.SetBool(AnimationControl.Parameter.name, false);
-    }
-
-    public void EndClip(float delay)
-    {
-        StartCoroutine(DelayClip(delay, () => animator.SetBool(AnimationControl.Parameter.name, false)));
-    }
-
-    private IEnumerator DelayClip(float time, UnityAction action)
-    {
-        yield return new WaitForSeconds(time);
-        action?.Invoke();
-    }
-
-    private void CallSceneWithClip(SceneManager.Scene scene)
-    {
-        StartCoroutine(_delay(scene));
-
-        IEnumerator _delay(SceneManager.Scene scene)
+        private void Awake()
         {
-            StartClip();
-            yield return new WaitForSeconds(animator.GetAnimationClipLength(AnimationControl.State.start.name));
-            SceneManager.Load(scene);
+            ComponentsAssignment();
+        }
+        /// This function is called when the object becomes enabled and active.
+        private void OnEnable()
+        {
+            TrainARSceneManager.Load += CallSceneWithClip;
+        }
+        /// Start is called on the frame when a script is enabled just before any of the Update methods are called the first time.
+        private void Start()
+        {
+            canvasGroup.alpha = 1.0f;
+            //LanguageManager.LoadLang(AccountData.Language);
+        }
+        /// This function is called when the behaviour becomes disabled.
+        private void OnDisable()
+        {
+            TrainARSceneManager.Load -= CallSceneWithClip;
+        }
+        /// <summary>
+        /// Assignment of components and variables
+        /// </summary>
+        [ContextMenu("Components Assignment")]
+        private void ComponentsAssignment()
+        {
+            this.GetComponentIfNull(ref animator, 0);
+            animator.GetComponentIfNull(ref canvasGroup);
+            ASP.SceneManagement.SceneManager.SaveCurrentScene();
+        }
+
+        public void StartClip()
+        {
+            animator.SetBool(AnimationControl.Parameter.name, true);
+        }
+
+        public void StartClip(float delay)
+        {
+            StartCoroutine(DelayClip(delay, () => animator.SetBool(AnimationControl.Parameter.name, true)));
+        }
+
+        public void EndClip()
+        {
+            animator.SetBool(AnimationControl.Parameter.name, false);
+        }
+
+        public void EndClip(float delay)
+        {
+            StartCoroutine(DelayClip(delay, () => animator.SetBool(AnimationControl.Parameter.name, false)));
+        }
+
+        private IEnumerator DelayClip(float time, UnityAction action)
+        {
+            yield return new WaitForSeconds(time);
+            action?.Invoke();
+        }
+
+        private void CallSceneWithClip(SceneManager.Scene scene)
+        {
+            StartCoroutine(_delay(scene));
+
+            IEnumerator _delay(SceneManager.Scene scene)
+            {
+                StartClip();
+                yield return new WaitForSeconds(animator.GetAnimationClipLength(AnimationControl.State.start.name));
+                SceneManager.Load(scene);
+            }
         }
     }
+
 }
+
