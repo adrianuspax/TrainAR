@@ -94,7 +94,7 @@ namespace TreinAR.UserData.Pages
             }
 
             data[index] = value;
-            blockDigtTMPs[index].text = value + units[index];
+            content = blockDigtTMPs[index].text = value + units[index];
         }
 
         private void UnitsAssignment()

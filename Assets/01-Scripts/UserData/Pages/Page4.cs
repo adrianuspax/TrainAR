@@ -67,7 +67,7 @@ namespace TreinAR.UserData.Pages
             this.index = index;
             fitnessLevelTMP.SetLocalizationString(entry[index], "StringTableMain");
             buttonsMain.SetNextButtonInteractable(true);
-            Content = fitnessLevelTMP.text;
+            content = fitnessLevelTMP.text;
         }
 
         public int Index => index;

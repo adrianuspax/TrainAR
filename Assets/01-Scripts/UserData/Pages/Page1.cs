@@ -45,25 +45,25 @@ namespace TreinAR.UserData.Pages
 
         public void OnSelect(string content)
         {
-            Content = content;
+            this.content = content;
         }
 
         public void OnDeselect(string content)
         {
             SetNextButtonInteractableByContent(content);
-            Content = content;
+            this.content = content;
         }
 
         public void OnValueChanged(string content)
         {
             SetNextButtonInteractableByContent(content);
-            Content = content;
+            this.content = content;
         }
 
         public void OnEndEdit(string content)
         {
             SetNextButtonInteractableByContent(content);
-            Content = content;
+            this.content = content;
         }
 
         /*public void OnTouchScreenKeyboardStatusChanged(TouchScreenKeyboard.Status status)

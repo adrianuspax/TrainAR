@@ -13,6 +13,8 @@ namespace TreinAR.UserData.Pages
 
         [Header(Header.components, order = 0)]
         [SerializeField, ReadOnly] protected Animator animator;
+        [Space(20, order = 0)]
+        [SerializeField, ReadOnly] protected string content;
 
 
         public const string PARAMETER = "isOpen";
@@ -33,6 +35,6 @@ namespace TreinAR.UserData.Pages
             return animator.GetCurrentAnimatorStateInfo(0).length;
         }
 
-        [field: SerializeField, ReadOnly] public string Content { get; protected set; }
+        public string Content => content;
     }
 }

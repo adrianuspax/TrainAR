@@ -70,7 +70,7 @@ namespace TreinAR.UserData.Pages
             }
 
             isMale = !index.ToBool();
-            Content = isMale ? "Male" : "Female";
+            content = isMale ? "Male" : "Female";
             buttonsMain.SetNextButtonInteractable(isPressed);
         }
 

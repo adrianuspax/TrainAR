@@ -11,9 +11,12 @@ namespace TreinAR.DataManager
         public string name;
         public bool isMale;
         public int age;
-        public float weight;
+        public float currentWeight;
         public float height;
         public int levelIndex;
+        public int goalIndex;
+        public int focusIndex;
+        public float goalWeight;
 
         public string ToString(bool prettyPrint = false)
         {

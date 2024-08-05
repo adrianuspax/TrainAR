@@ -71,7 +71,7 @@ namespace TreinAR.UserData.Pages
             }
 
             this.index = index;
-            Content = tmps[index].text;
+            content = tmps[index].text;
             buttonsMain.SetNextButtonInteractable(isPressed);
         }
 
