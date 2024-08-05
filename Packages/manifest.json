@@ -1,6 +1,7 @@
 {
   "dependencies": {
     "com.adrianuspax.basicphysics": "https://github.com/adrianuspax/BasicPhysics.git",
+    "com.adrianuspax.datamanager": "https://github.com/adrianuspax/DataManager.git",
     "com.adrianuspax.tmprolocalization": "https://github.com/adrianuspax/TMProExtensions_Localization.git",
     "com.adrianuspax.usefulscripts": "https://github.com/adrianuspax/usefulscripts.git",
     "com.google.ar.core.arfoundation.extensions": "https://github.com/google-ar/arcore-unity-extensions.git",

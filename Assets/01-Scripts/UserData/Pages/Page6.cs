@@ -17,11 +17,15 @@ namespace TreinAR.UserData.Pages
         [SerializeField, ReadOnly] private FootersControl footersControl;
         [SerializeField, NonReorderable, ReadOnly] private Button[] buttons;
         [SerializeField, NonReorderable, ReadOnly] private TextMeshProUGUI[] blockDigtTMPs;
+        [Space(-10, order = 0)]
+        [Header(Header.variables, order = 1)]
+        [SerializeField, NonReorderable, ReadOnly] private string[] data;
+        [SerializeField, NonReorderable, ReadOnly] private string[] units;
+        [Space(20, order = 0)]
+        [SerializeField, ReadOnly] private LocalizedStringDatabase _database;
 
-        private string[] _units;
         private readonly string[] _entrys = { "Years", "kg", "kg", "cm" };
         private AsyncOperationHandle<string> _operation;
-        private LocalizedStringDatabase _database;
         /// Awake is called when an enabled script instance is being loaded.
         private void Awake()
         {
@@ -39,6 +43,8 @@ namespace TreinAR.UserData.Pages
         /// Start is called on the frame when a script is enabled just before any of the Update methods are called the first time.
         private void Start()
         {
+            data = new string[buttons.Length];
+
             UnitsAssignment();
             StartCoroutine(_delay());
 
@@ -87,12 +93,13 @@ namespace TreinAR.UserData.Pages
                 return;
             }
 
-            blockDigtTMPs[index].text = value + _units[index];
+            data[index] = value;
+            blockDigtTMPs[index].text = value + units[index];
         }
 
         private void UnitsAssignment()
         {
-            _units = new string[_entrys.Length];
+            units = new string[_entrys.Length];
             _database = LocalizationSettings.StringDatabase;
 
             for (int i = 0; i < _entrys.Length; i++)
@@ -110,8 +117,52 @@ namespace TreinAR.UserData.Pages
                         return;
                     }
 
-                    _units[index] = operation.Result;
+                    units[index] = operation.Result;
                 }
+            }
+        }
+
+        public int Age
+        {
+            get
+            {
+                if (int.TryParse(data[0], out int result))
+                    return result;
+                else
+                    return 0;
+            }
+        }
+
+        public float CurrentWeight
+        {
+            get
+            {
+                if (float.TryParse(data[1], out float result))
+                    return result;
+                else
+                    return 0;
+            }
+        }
+
+        public float GoalWeight
+        {
+            get
+            {
+                if (float.TryParse(data[2], out float results))
+                    return results;
+                else
+                    return 0;
+            }
+        }
+
+        public float Height
+        {
+            get
+            {
+                if (float.TryParse(data[3], out float results))
+                    return results;
+                else
+                    return 0;
             }
         }
     }

@@ -127,6 +127,7 @@ namespace TreinAR.UserData.Footers
                 footer.SetVisible(value);
         }
 
+        public Footer[] Footers => footers;
         public (string enter, string cancel, string save) Parameter => ("enter", "cancel", "save");
     }
 }

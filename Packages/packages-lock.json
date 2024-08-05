@@ -7,6 +7,13 @@
       "dependencies": {},
       "hash": "86dcef928c971e6512be54335cfce500fd4bb9dd"
     },
+    "com.adrianuspax.datamanager": {
+      "version": "https://github.com/adrianuspax/DataManager.git",
+      "depth": 0,
+      "source": "git",
+      "dependencies": {},
+      "hash": "f290db298bed2ff364b34fa9008e89e74ca6bb13"
+    },
     "com.adrianuspax.tmprolocalization": {
       "version": "https://github.com/adrianuspax/TMProExtensions_Localization.git",
       "depth": 0,

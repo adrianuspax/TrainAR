@@ -15,6 +15,9 @@ namespace TreinAR.UserData.Pages
         [Header(Header.scripts, order = 0)]
         [SerializeField, ReadOnly] private ButtonsMain buttonsMain;
         [SerializeField, NonReorderable, ReadOnly] private PageDefault[] pages;
+        [Space(20, order = 0)]
+        [SerializeField, ReadOnly] private DataManager.UserData userData;
+        [SerializeField, ReadOnly] private DataManager.GoalData goalData;
         /// Reset to default values.
         private void Reset()
         {
@@ -77,6 +80,30 @@ namespace TreinAR.UserData.Pages
             return true;
         }
 
+        public void SaveData()
+        {
+            userData = new()
+            {
+                name = pages[0].Content,
+                isMale = ((Page2)pages[1]).IsMale,
+                levelIndex = ((Page4)pages[3]).Index,
+                age = ((Page6)pages[5]).Age,
+                weight = ((Page6)pages[5]).CurrentWeight,
+                height = ((Page6)pages[5]).Height
+            };
+
+            goalData = new()
+            {
+                goalIndex = ((Page3)pages[2]).Index,
+                focusIndex = ((Page5)pages[4]).Index,
+                weight = ((Page6)pages[5]).GoalWeight
+            };
+
+            userData.Save();
+            goalData.Save();
+        }
+
+        public PageDefault[] Pages => pages;
         public int CurrentIndex => currentIndex;
     }
 }

@@ -61,13 +61,15 @@ public class ButtonsMain : MonoBehaviour
 
     public void Next()
     {
-        SetNextButtonInteractable(false);
-        //dataManagement.PagesSavePreferences(pagesControl.CurrentIndex);
         bool isNext = pagesControl.SetActiveNextPage();
+        SetNextButtonInteractable(false);
 
         if (isNext)
             return;
-        else if (TrainARSceneManager.GetPreviousSceneSaved() == TrainARSceneManager.menu)
+
+        pagesControl.SaveData();
+
+        if (TrainARSceneManager.GetPreviousSceneSaved() == TrainARSceneManager.menu)
             TrainARSceneManager.LoadMenu();
         else
             TrainARSceneManager.LoadTrainAR();
