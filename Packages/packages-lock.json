@@ -1,13 +1,27 @@
 {
   "dependencies": {
-    "com.adrianuspax.usefulscripts": {
-      "version": "https://github.com/adrianuspax/usefulscripts.git",
+    "com.adrianuspax.basicphysics": {
+      "version": "https://github.com/adrianuspax/BasicPhysics.git",
+      "depth": 0,
+      "source": "git",
+      "dependencies": {},
+      "hash": "86dcef928c971e6512be54335cfce500fd4bb9dd"
+    },
+    "com.adrianuspax.tmprolocalization": {
+      "version": "https://github.com/adrianuspax/TMProExtensions_Localization.git",
       "depth": 0,
       "source": "git",
       "dependencies": {
         "com.unity.localization": "1.0.0"
       },
-      "hash": "c7e4a56bac9b632c0a87789547d61c02bb959f38"
+      "hash": "b498dd1f059503a430b45f5a88223013293458a9"
+    },
+    "com.adrianuspax.usefulscripts": {
+      "version": "https://github.com/adrianuspax/usefulscripts.git",
+      "depth": 0,
+      "source": "git",
+      "dependencies": {},
+      "hash": "aef3258b4b232627a62cbc5e13dcb4ba8560e98a"
     },
     "com.autodesk.fbx": {
       "version": "4.2.1",
