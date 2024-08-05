@@ -17,10 +17,8 @@ namespace TreinAR.UserData.Pages
         [SerializeField, ReadOnly] private FootersControl footersControl;
         [SerializeField, NonReorderable, ReadOnly] private Button[] buttons;
         [SerializeField, NonReorderable, ReadOnly] private TextMeshProUGUI[] blockDigtTMPs;
-        [Space(-10, order = 0)]
-        [Header(Header.variables, order = 1)]
-        [SerializeField, ReadOnly] private string[] units;
 
+        private string[] _units;
         private readonly string[] _entrys = { "Years", "kg", "kg", "cm" };
         private AsyncOperationHandle<string> _operation;
         private LocalizedStringDatabase _database;
@@ -89,12 +87,12 @@ namespace TreinAR.UserData.Pages
                 return;
             }
 
-            blockDigtTMPs[index].text = value + units[index];
+            blockDigtTMPs[index].text = value + _units[index];
         }
 
         private void UnitsAssignment()
         {
-            units = new string[_entrys.Length];
+            _units = new string[_entrys.Length];
             _database = LocalizationSettings.StringDatabase;
 
             for (int i = 0; i < _entrys.Length; i++)
@@ -112,7 +110,7 @@ namespace TreinAR.UserData.Pages
                         return;
                     }
 
-                    units[index] = operation.Result;
+                    _units[index] = operation.Result;
                 }
             }
         }

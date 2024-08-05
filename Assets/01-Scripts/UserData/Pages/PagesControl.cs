@@ -70,7 +70,7 @@ namespace TreinAR.UserData.Pages
 
         public bool SetActiveNextPage()
         {
-            if (currentIndex < 0 || currentIndex > pages.Length - 1)
+            if (currentIndex < 0 || currentIndex >= pages.Length - 1)
                 return false;
 
             SetActivePageByIndex(currentIndex + 1);
