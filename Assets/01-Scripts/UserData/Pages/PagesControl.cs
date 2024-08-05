@@ -49,7 +49,7 @@ namespace TreinAR.UserData.Pages
 
             if (index < 0 || index >= length)
             {
-                Debug.LogError($"Parameter value out of range! min: 0 and max: {length - 1}.");
+                Debug.LogError($"Parameter value out of range! min: 0 and max: {length - 1}. But the value is {index}!");
                 return;
             }
 

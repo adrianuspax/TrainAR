@@ -831,6 +831,7 @@ MonoBehaviour:
   canvasGroup: {fileID: 110784998}
   footerIndex: 2
   content: 
+  isFilled: 0
   footersControl: {fileID: 1358066335}
 --- !u!225 &110784998
 CanvasGroup:
@@ -5379,13 +5380,13 @@ MonoBehaviour:
   buttonsMain: {fileID: 584496965658112698}
   animator: {fileID: 903882327}
   <Content>k__BackingField: 
+  fitnessLevelTMP: {fileID: 915557221}
   buttons:
   - {fileID: 2121820645}
   - {fileID: 1028034931}
   - {fileID: 1898790487}
   - {fileID: 1604860765}
   - {fileID: 560747050}
-  fitnessLevelTMP: {fileID: 915557221}
   isPressed: 0000000000
   index: 0
 --- !u!1 &668846090
@@ -8743,6 +8744,7 @@ MonoBehaviour:
   canvasGroup: {fileID: 993186489}
   footerIndex: 0
   content: 
+  isFilled: 0
   footersControl: {fileID: 1358066335}
 --- !u!225 &993186489
 CanvasGroup:
@@ -9292,7 +9294,7 @@ GameObject:
   - component: {fileID: 1107209563}
   - component: {fileID: 1107209562}
   m_Layer: 0
-  m_Name: cnvData
+  m_Name: cnvPages
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -9436,6 +9438,7 @@ MonoBehaviour:
   canvasGroup: {fileID: 1117998975}
   footerIndex: 3
   content: 
+  isFilled: 0
   footersControl: {fileID: 1358066335}
 --- !u!225 &1117998975
 CanvasGroup:
@@ -11104,12 +11107,17 @@ MonoBehaviour:
   buttonsMain: {fileID: 584496965658112698}
   animator: {fileID: 1226641322}
   <Content>k__BackingField: 
+  footersControl: {fileID: 1358066335}
   buttons:
   - {fileID: 1197637844}
   - {fileID: 1809055080}
   - {fileID: 284247381}
   - {fileID: 1818240958}
-  footersControl: {fileID: 1358066335}
+  blockDigtTMPs:
+  - {fileID: 698067849}
+  - {fileID: 1886637215}
+  - {fileID: 638035864}
+  - {fileID: 226978029}
 --- !u!1 &1376320789
 GameObject:
   m_ObjectHideFlags: 0
@@ -11767,6 +11775,7 @@ MonoBehaviour:
   canvasGroup: {fileID: 1505936402}
   footerIndex: 1
   content: 
+  isFilled: 0
   footersControl: {fileID: 1358066335}
 --- !u!225 &1505936402
 CanvasGroup:

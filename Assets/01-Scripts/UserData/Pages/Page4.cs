@@ -9,8 +9,8 @@ namespace TreinAR.UserData.Pages
     public sealed class Page4 : PageDefault
     {
         [Space(20, order = 0)]
-        [SerializeField, NonReorderable, ReadOnly] private Button[] buttons;
         [SerializeField, ReadOnly] private TextMeshProUGUI fitnessLevelTMP;
+        [SerializeField, NonReorderable, ReadOnly] private Button[] buttons;
         [Space(-10, order = 0)]
         [Header(Header.variables, order = 1)]
         [SerializeField, ReadOnly] private bool[] isPressed;

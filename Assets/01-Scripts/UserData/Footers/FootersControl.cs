@@ -2,6 +2,7 @@ using ASP;
 using ASP.Extensions;
 using System.Collections;
 using TMPro;
+using TreinAR.UserData.Pages;
 using UnityEngine;
 using UnityEngine.UI;
 using Debug = ASP.Debug;
@@ -22,8 +23,9 @@ namespace TreinAR.UserData.Footers
         [SerializeField, ReadOnly] private int currentFooterIndex;
 
         [Header(Header.scripts, order = 0)]
-        [SerializeField, NonReorderable, ReadOnly] private Footer[] footers;
         [SerializeField, ReadOnly] private ButtonsMain buttonsMain;
+        [SerializeField, ReadOnly] private Page6 page6;
+        [SerializeField, NonReorderable, ReadOnly] private Footer[] footers;
         /// Awake is called when an enabled script instance is being loaded.
         private void Awake()
         {
@@ -54,6 +56,8 @@ namespace TreinAR.UserData.Footers
             saveButton.GetComponentInChildrenIfNull(ref saveTMP);
             if (buttonsMain.IsNull())
                 buttonsMain = FindAnyObjectByType<ButtonsMain>();
+            if (page6.IsNull())
+                page6 = FindAnyObjectByType<Page6>();
             ASP.SceneManagement.SceneManager.SaveCurrentScene();
         }
 
@@ -75,9 +79,11 @@ namespace TreinAR.UserData.Footers
 
         public void SetSaveBehaviour()
         {
+            Footer currentFooter = footers[currentFooterIndex];
             SetSaveButtonInteractable(false);
             animator.SetTrigger(Parameter.save);
-            footers[currentFooterIndex].isFilled = true;
+            currentFooter.isFilled = true;
+            page6.SetSaveInfoValue(currentFooterIndex, currentFooter.Content);
 
             for (int i = 0; i < footers.Length; i++)
             {
@@ -94,11 +100,13 @@ namespace TreinAR.UserData.Footers
 
             IEnumerator _call()
             {
+                Footer currentFooter = footers[currentFooterIndex];
                 float s = animator.GetCurrentAnimatorStateInfo(0).length;
                 animator.SetTrigger(Parameter.cancel);
-                footers[currentFooterIndex].SetClearInputField();
-                footers[currentFooterIndex].isFilled = false;
-                buttonsMain.SetNextButtonInteractable(true);
+                currentFooter.SetClearInputField();
+                currentFooter.isFilled = false;
+                page6.SetSaveInfoValue(currentFooterIndex, "--");
+                buttonsMain.SetNextButtonInteractable(false);
                 yield return new WaitForSeconds(s);
                 SetAllFootersVisible(false);
             }
@@ -122,4 +130,3 @@ namespace TreinAR.UserData.Footers
         public (string enter, string cancel, string save) Parameter => ("enter", "cancel", "save");
     }
 }
-
