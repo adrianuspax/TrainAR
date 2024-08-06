@@ -95,7 +95,10 @@ namespace TreinAR.UserData.Pages
             };
 
             userData.Save();
+            UserData = userData;
         }
+
+        public static DataManager.UserData UserData { get; private set; }
     }
 }
 

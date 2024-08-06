@@ -2,7 +2,6 @@ using ASP;
 using ASP.Extensions;
 using TMPro;
 using TreinAR;
-using TreinAR.UserData;
 using TreinAR.UserData.Pages;
 using UnityEngine;
 using UnityEngine.UI;
@@ -18,7 +17,6 @@ public class ButtonsMain : MonoBehaviour
     [SerializeField, ReadOnly] private TextMeshProUGUI nextTMP;
     [Header(Header.scripts, order = 0)]
     [SerializeField, ReadOnly] private PagesControl pagesControl;
-    [SerializeField, ReadOnly] private DataManagement dataManagement;
     /// Awake is called when an enabled script instance is being loaded.
     private void Awake()
     {
@@ -48,8 +46,6 @@ public class ButtonsMain : MonoBehaviour
         buttonNext.GetComponentInChildrenIfNull(ref nextTMP);
         if (pagesControl.IsNull())
             pagesControl = FindAnyObjectByType<PagesControl>();
-        if (dataManagement.IsNull())
-            dataManagement = FindAnyObjectByType<DataManagement>();
 
         ASP.SceneManagement.SceneManager.SaveCurrentScene();
     }

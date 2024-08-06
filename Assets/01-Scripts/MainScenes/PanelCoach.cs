@@ -1,7 +1,7 @@
 using ASP;
 using ASP.Extensions;
 using TMPro;
-using TreinAR.UserData;
+using TreinAR.UserData.Pages;
 using UnityEngine;
 using UnityEngine.UI;
 using Debug = ASP.Debug;
@@ -328,11 +328,11 @@ namespace TreinAR.MainScenes
         {
             get
             {
-                return (AccountData.CompleteName,
-                        AccountData.Age.ToString() + " " /*+ LanguageManager.valueUnits[0]*/,
+                return (PagesControl.UserData.name,
+                        PagesControl.UserData.age.ToString() + " " /*+ LanguageManager.valueUnits[0]*/,
                         /*AccountData.IsMale ? LanguageManager.male : LanguageManager.female*/ default,
-                        AccountData.CurrentWeight.ToString() + " kg",
-                       (AccountData.Height).ToString() + " cm",
+                        PagesControl.UserData.currentWeight.ToString() + " kg",
+                        PagesControl.UserData.height.ToString() + " cm",
                         /*LanguageManager.levelPhrase[Calculation.IndexLevel]*/ default);
             }
         }
@@ -364,7 +364,7 @@ namespace TreinAR.MainScenes
             {
                 return (/*LanguageManager.goalPhrase[Calculation.IndexGoal]*/ default,
                         /*LanguageManager.levelPhrase[((int)Calculation.TargetLevel - 1)]*/ default,
-                        AccountData.TargetWeight.ToString() + " kg",
+                        PagesControl.UserData.goalWeight.ToString() + " kg",
                        (Calculation.TargetBodyFat * 100f).ToString("F2") + "%",
                         toLoseFatTMP.text = Calculation.ToLoseWeight.ToString("F2") + " kg",
                         toBurnCalTMP.text = (Calculation.ToBurnCalories * 0.0001f).ToString("F2") + " kcal");

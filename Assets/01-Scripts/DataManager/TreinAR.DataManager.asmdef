@@ -1,0 +1,17 @@
+{
+    "name": "TreinAR.DataManager",
+    "rootNamespace": "TreinAR.DataManager",
+    "references": [
+        "GUID:0ffb2380fa6475a428676a4ee274208c",
+        "GUID:7112c82b7aaa69840b088105586afcd6"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

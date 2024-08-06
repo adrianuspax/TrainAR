@@ -1,6 +1,5 @@
-using System;
 using TreinAR.MainScenes;
-using TreinAR.UserData;
+using TreinAR.UserData.Pages;
 using UnityEngine;
 
 namespace TreinAR
@@ -161,14 +160,14 @@ namespace TreinAR
                         PanelCoach.Focus focus)
         InputedData
         {
-            get => (AccountData.IsMale,
-                    AccountData.Age,
-                    AccountData.Height,
-                    AccountData.CurrentWeight,
-                    AccountData.TargetWeight,
-                    (Goal)Enum.Parse(typeof(Goal), AccountData.Goal),
-                    (Level)AccountData.Level,
-                    (PanelCoach.Focus)Enum.Parse(typeof(PanelCoach.Focus), AccountData.Focus));
+            get => (PagesControl.UserData.isMale,
+                    PagesControl.UserData.age,
+                    PagesControl.UserData.height,
+                    PagesControl.UserData.currentWeight,
+                    PagesControl.UserData.goalWeight,
+                    (Goal)PagesControl.UserData.goalIndex,
+                    (Level)PagesControl.UserData.levelIndex,
+                    (PanelCoach.Focus)PagesControl.UserData.focusIndex);
         }
     }
 }

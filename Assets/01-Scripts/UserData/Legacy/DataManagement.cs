@@ -7,6 +7,9 @@ using PlayerPrefs = ASP.PlayerPrefs;
 
 namespace TreinAR.UserData
 {
+    using TreinAR.DataManager;
+
+
     public class DataManagement : MonoBehaviour
     {
         [Header(Header.READONLY, order = 0)]

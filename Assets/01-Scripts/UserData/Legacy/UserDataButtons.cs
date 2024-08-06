@@ -67,7 +67,6 @@ public class UserDataButtons : MonoBehaviour
     [SerializeField, ReadOnly] private PagesAndFields PagesAndFields;
     [SerializeField, ReadOnly] private DataManagement Data;
     [SerializeField, ReadOnly] private UserDataAnimations userDataAnimations;
-    [SerializeField, ReadOnly] private UserDataButtons userDataButtons;
 
     private void Awake()
     {
@@ -343,7 +342,7 @@ public class UserDataButtons : MonoBehaviour
         PagesAndFields.SetMoreValueTMP(index, PagesAndFields.DataFooter);
         userDataAnimations.PlayFooterSaveClip();
         PagesAndFields.ClearAllInputFooter(userDataAnimations.EnterClipTime);
-        userDataButtons.NextButtonInteraction = AllFooterValuesItsEdited;
+        NextButtonInteraction = AllFooterValuesItsEdited;
     }
 
     public bool AllFooterValuesItsEdited
