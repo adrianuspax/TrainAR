@@ -3,7 +3,14 @@ guid: 07625073b02112b4b83f55768080de7a
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - pageEnterClip: {instanceID: 0}
+  - pageOutClip: {instanceID: 0}
+  - footerAnimator: {instanceID: 0}
+  - footerEnterClip: {instanceID: 0}
+  - footerSaveClip: {instanceID: 0}
+  - footerCancelClip: {instanceID: 0}
+  - PagesAndFields: {instanceID: 0}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

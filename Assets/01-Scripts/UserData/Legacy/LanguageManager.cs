@@ -30,9 +30,6 @@ public class LanguageManager : MonoBehaviour
     [NonReorderable][ReadOnly, SerializeField] private Button[] langButton;
     [NonReorderable][ReadOnly, SerializeField] private bool[] langPressed;
 
-    [Header("Scripts", order = 0)]
-    [SerializeField, ReadOnly] private Transition transition;
-
     ///pages and fields
     public static string[] pageQuestion;
     public static string nextButton;
@@ -452,9 +449,7 @@ public class LanguageManager : MonoBehaviour
 
     private void Awake()
     {
-        transition = GameObject.FindGameObjectWithTag(Tag.Transition).GetComponent<Transition>();
-
-        (langButton, langPressed) = ButtonsManager.Assignment(buttonsLangHeader, LangButtonsBehaviour);
+        //(langButton, langPressed) = ButtonsManager.Assignment(buttonsLangHeader, LangButtonsBehaviour);
         okButton.onClick.AddListener(OkFunction);
         closeButton.onClick.AddListener(ButtonsManager.CloseApplication);
         returnButton.onClick.AddListener(() => TrainARSceneManager.LoadMenu());
@@ -462,7 +457,7 @@ public class LanguageManager : MonoBehaviour
 
     private void Start()
     {
-        transition.EndClip();
+        //transition.EndClip();
         LangButtonsBehaviour(AccountData.Language);
         returnButton.gameObject.SetActive(TrainARSceneManager.GetPreviousSceneSaved() == TrainARSceneManager.menu);
     }

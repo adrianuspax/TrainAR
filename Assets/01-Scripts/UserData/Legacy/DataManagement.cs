@@ -33,7 +33,6 @@ namespace TreinAR.UserData
 #pragma warning restore IDE0052
         [Header(Header.scripts, order = 0)]
         [SerializeField, ReadOnly] private PagesAndFields pagesAndFields;
-        [SerializeField, ReadOnly] private Transition transition;
         [SerializeField, ReadOnly] private UserDataButtons userDataButtons;
         [Space(20, order = 0)]
         [NonReorderable, ReadOnly] public string[] levelPhrase;
@@ -95,7 +94,7 @@ namespace TreinAR.UserData
         public void Start()
         {
             ValuesAssignment();
-            transition.EndClip();
+            //transition.EndClip();
             userDataButtons.NextButtonInteraction = false;
 
         }
@@ -109,8 +108,6 @@ namespace TreinAR.UserData
                 pagesAndFields = FindAnyObjectByType<PagesAndFields>();
             if (userDataButtons.IsNull())
                 userDataButtons = FindAnyObjectByType<UserDataButtons>();
-            if (transition.IsNull())
-                transition = GameObject.FindGameObjectWithTag(Tag.Transition).GetComponent<Transition>();
 
             ASP.SceneManagement.SceneManager.SaveCurrentScene();
         }

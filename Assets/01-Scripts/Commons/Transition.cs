@@ -51,7 +51,7 @@ namespace TreinAR.Commons
         private void Start()
         {
             canvasGroup.alpha = 1.0f;
-            //LanguageManager.LoadLang(AccountData.Language);
+            EndClip();
         }
         /// This function is called when the behaviour becomes disabled.
         private void OnDisable()

@@ -1,6 +1,5 @@
-﻿using UnityEngine;
-using ASP;
-using Debug = ASP.Debug;
+﻿using ASP;
+using UnityEngine;
 
 public class UserDataAnimations : MonoBehaviour
 {
@@ -45,7 +44,7 @@ public class UserDataAnimations : MonoBehaviour
         return animator;
     }
 
-    public Animator[] AnimatorsPage 
+    public Animator[] AnimatorsPage
     { set => animatorsPages = value; }
     public float EnterClipTime => pageEnterClip.length;
     public float OutClipTime => pageOutClip.length;

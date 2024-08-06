@@ -1,6 +1,6 @@
 using ASP;
+using ASP.Extensions;
 using TMPro;
-using TreinAR.Commons;
 using TreinAR.DataManager;
 using UnityEngine;
 using UnityEngine.UI;
@@ -9,24 +9,24 @@ namespace TreinAR.Login
 {
     public class SignIn : MonoBehaviour
     {
-        [Header("BUTTONS", order = 0)]
+        [Header(Header.READONLY, order = 0)]
         [Space(-10, order = 1)]
-        [Header("Canvas Buttons", order = 2)]
-        [SerializeField] private Button signInButton;
-        [SerializeField] private Button signOnButton;
+        [Header(Header.components, order = 2)]
+        [Space(-10, order = 3)]
+        [Header(Header.buttons, order = 4)]
+        [SerializeField, ReadOnly] private Button signInButton;
+        [SerializeField, ReadOnly] private Button signUpButton;
         [Space(-10, order = 0)]
         [Header("Input", order = 1)]
-        [SerializeField] private TMP_InputField usernameInput;
-        [SerializeField] private TMP_InputField passwordInput;
+        [SerializeField, ReadOnly] private TMP_InputField usernameInput;
+        [SerializeField, ReadOnly] private TMP_InputField passwordInput;
         [Space(-10, order = 0)]
-        [Header("TMP", order = 1)]
-        [SerializeField] private TextMeshProUGUI idTMP;
-        [SerializeField] private TextMeshProUGUI passwordTMP;
-        [SerializeField] private TextMeshProUGUI warningTMP;
-
-        [Header(" =========================== READY ONLY =========================== ", order = 0)]
-        [Space(-10, order = 1)]
-        [Header("DATA INPUTED", order = 2)]
+        [Header(Header.TMPro, order = 1)]
+        [SerializeField, ReadOnly] private TextMeshProUGUI warningTMP;
+        [Space(-10, order = 0)]
+        [Header(Header.variables, order = 2)]
+        [Space(-10, order = 3)]
+        [Header("DATA INPUTED", order = 4)]
         [SerializeField, ReadOnly] private string username;
         [SerializeField, ReadOnly] private string password;
         [Space(-10, order = 1)]
@@ -35,88 +35,106 @@ namespace TreinAR.Login
         [SerializeField, ReadOnly] private string editTextUsername;
         [SerializeField, ReadOnly] private string oldEditTextPassword;
         [SerializeField, ReadOnly] private string editTextPassword;
-
-        [Header("Variables", order = 0)]
+        [Space(-10, order = 0)]
+        [Header("Error", order = 1)]
+        [SerializeField, ReadOnly] private string fieldEmptyWarning;
+        [SerializeField, ReadOnly] private string incorrectWarning;
+        [Space(20, order = 0)]
         [SerializeField, ReadOnly] private bool keepOldTextUsername;
         [SerializeField, ReadOnly] private bool keepOldTextPassword;
-        [SerializeField, ReadOnly] private bool signed;
-
-        [Header("Scripts", order = 0)]
-        [SerializeField, ReadOnly] private Transition transition;
 
         private void Awake()
         {
-            transition = GameObject.FindGameObjectWithTag(Tag.Transition).GetComponent<Transition>();
-
+            ComponentsAssignment();
+        }
+        /// This function is called when the object becomes enabled and active.
+        private void OnEnable()
+        {
             signInButton.onClick.AddListener(() => SignInFunction());
-            signOnButton.onClick.AddListener(() => SignOnFunction());
-            //username
+            signUpButton.onClick.AddListener(() => SignOnFunction());
+            ///username
             usernameInput.onSelect.AddListener(OnSelectUsername);
             usernameInput.onDeselect.AddListener(OnDeselectUsername);
             usernameInput.onValueChanged.AddListener(OnValueChangedUsername);
             usernameInput.onEndEdit.AddListener(OnEndEditUsername);
             usernameInput.onTouchScreenKeyboardStatusChanged.AddListener(ReportChangeStatusUsername);
-            //pssword
+            ///pssword
             passwordInput.onSelect.AddListener(OnSelectPassword);
             passwordInput.onDeselect.AddListener(OnDeselectPassword);
             passwordInput.onValueChanged.AddListener(OnValueChangedPassword);
             passwordInput.onEndEdit.AddListener(OnEndEditPassword);
             passwordInput.onTouchScreenKeyboardStatusChanged.AddListener(ReportChangeStatusPassword);
-
-            //PlaceHolderUsername = LanguageManager.placeHolderID;
-            //PlaceHolderPassword = LanguageManager.placeHolderPassword;
-            //IDString = LanguageManager.id;
-            //PasswordString = LanguageManager.password;
-            //SignInButtonsString = LanguageManager.signIn;
-            //SignOnButtonsString = LanguageManager.signOn;
         }
 
         private void Start()
         {
-            transition.EndClip();
             warningTMP.text = string.Empty;
-            signed = AccountData.Signed;
+            LocalizationManager.SetLocalizationString("ThereAreEmptyFields", "StringTableMain", (result) => fieldEmptyWarning = result);
+            LocalizationManager.SetLocalizationString("WrongUsernameOrPassword", "StringTableMain", (result) => incorrectWarning = result);
+        }
+        /// <summary>
+        /// Assignment of components and variables
+        /// </summary>
+        [ContextMenu("Components Assignment")]
+        private void ComponentsAssignment()
+        {
+            if (signInButton.IsNull() || signUpButton.IsNull())
+            {
+                Button[] buttons = GetComponentsInChildren<Button>();
+                signInButton = buttons[0];
+                signUpButton = buttons[1];
+            }
+
+            if (usernameInput.IsNull() || passwordInput.IsNull())
+            {
+                TMP_InputField[] inputs = GetComponentsInChildren<TMP_InputField>();
+                usernameInput = inputs[0];
+                passwordInput = inputs[1];
+            }
+
+            this.GetComponentIfNull(ref warningTMP, 0, 3, 0);
+
+            ASP.SceneManagement.SceneManager.SaveCurrentScene();
         }
 
         public void SignInFunction()
         {
-            bool validationData;
-            validationData = (username == AccountData.Username && password == AccountData.Password);
+            bool conditional = username == AccountData.Username && password == AccountData.Password && AccountData.HasAccount;
 
-            if (AccountData.HasAccount && validationData)
+            if (conditional)
             {
                 AccountData.Signed = true;
 
-                if (TrainARSceneManager.GetPreviousSceneSaved() == TrainARSceneManager.signOn)
+                if (TrainARSceneManager.GetPreviousSceneSaved() == TrainARSceneManager.signUp)
                     TrainARSceneManager.LoadUserData();
                 else
                     TrainARSceneManager.LoadTrainAR();
             }
             else
             {
-                //WarningString = (string.IsNullOrEmpty(usernameInput.text) || string.IsNullOrEmpty(passwordInput.text)) ?
-                //LanguageManager.fieldEmptyWarning : LanguageManager.incorrectWarning;
+                warningTMP.text = (string.IsNullOrEmpty(usernameInput.text) || string.IsNullOrEmpty(passwordInput.text)) ? fieldEmptyWarning : incorrectWarning;
             }
         }
 
         public void SignOnFunction()
-        { TrainARSceneManager.LoadSignOn(); }
-        #region USERNAME
+        {
+            TrainARSceneManager.LoadSignOn();
+        }
+
         public void OnSelectUsername(string username)
         {
-            WarningString = string.Empty;
-            PlaceHolderUsername = string.Empty;
+            this.username = username;
+            warningTMP.text = string.Empty;
         }
 
         public void OnDeselectUsername(string username)
         {
-            //PlaceHolderUsername = usernameInput.isFocused ? string.Empty : LanguageManager.placeHolderID;
+            this.username = username;
         }
 
         public void OnValueChangedUsername(string username)
         {
-            //PlaceHolderUsername = usernameInput.isFocused ? string.Empty : LanguageManager.placeHolderID;
-
+            this.username = username;
             oldEditTextUsername = editTextUsername;
             editTextUsername = username;
         }
@@ -124,7 +142,6 @@ namespace TreinAR.Login
         public void OnEndEditUsername(string username)
         {
             this.username = username;
-            //PlaceHolderUsername = usernameInput.isFocused ? string.Empty : LanguageManager.placeHolderID;
 
             if (keepOldTextUsername && !string.IsNullOrEmpty(oldEditTextUsername))
             {
@@ -136,34 +153,30 @@ namespace TreinAR.Login
 
             if (usernameInput.wasCanceled)
             {
-                PlaceHolderUsername = string.Empty;
+                usernameInput.placeholder.gameObject.SetActive(false);
             }
         }
 
         public void ReportChangeStatusUsername(TouchScreenKeyboard.Status newStatus)
         {
             if (newStatus == TouchScreenKeyboard.Status.Canceled)
-            { keepOldTextUsername = true; }
+                keepOldTextUsername = true;
         }
 
-        public string PlaceHolderUsername { set => usernameInput.placeholder.GetComponent<TextMeshProUGUI>().text = value; }
-        #endregion
-        #region PASSWORD
         public void OnSelectPassword(string password)
         {
-            WarningString = string.Empty;
-            PlaceHolderPassword = string.Empty;
+            this.password = password;
+            warningTMP.text = string.Empty;
         }
 
         public void OnDeselectPassword(string password)
         {
-            //PlaceHolderPassword = passwordInput.isFocused ? string.Empty : LanguageManager.placeHolderPassword;
+            this.password = password;
         }
 
         public void OnValueChangedPassword(string password)
         {
-            //PlaceHolderPassword = passwordInput.isFocused ? string.Empty : LanguageManager.placeHolderPassword;
-
+            this.password = password;
             oldEditTextPassword = editTextPassword;
             editTextPassword = password;
         }
@@ -171,7 +184,6 @@ namespace TreinAR.Login
         public void OnEndEditPassword(string password)
         {
             this.password = password;
-            //PlaceHolderPassword = passwordInput.isFocused ? string.Empty : LanguageManager.placeHolderPassword;
 
             if (keepOldTextPassword && !string.IsNullOrEmpty(oldEditTextPassword))
             {
@@ -183,33 +195,14 @@ namespace TreinAR.Login
 
             if (passwordInput.wasCanceled)
             {
-                PlaceHolderPassword = string.Empty;
+                passwordInput.placeholder.gameObject.SetActive(false);
             }
         }
 
         public void ReportChangeStatusPassword(TouchScreenKeyboard.Status newStatus)
         {
             if (newStatus == TouchScreenKeyboard.Status.Canceled)
-            { keepOldTextPassword = true; }
+                keepOldTextPassword = true;
         }
-
-        public string PlaceHolderPassword
-        { set => passwordInput.placeholder.GetComponent<TextMeshProUGUI>().text = value; }
-        #endregion
-
-        public string IDString
-        { set => idTMP.text = value; }
-
-        public string PasswordString
-        { set => passwordTMP.text = value; }
-
-        public string SignInButtonsString
-        { set => signInButton.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = value; }
-
-        public string SignOnButtonsString
-        { set => signOnButton.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = value; }
-
-        public string WarningString
-        { set => warningTMP.text = value; }
     }
 }

@@ -82,15 +82,15 @@ public class UserDataButtons : MonoBehaviour
         #endregion
         #region GENRE
         genreColorPressed = new Color[2] { PalleteColors.Triad(3), PalleteColors.Main };
-        (genreButton, genreIsPressed) = ButtonsManager.Assignment(genreButtonsHeader, GenreButtonBehaviour);
+        //(genreButton, genreIsPressed) = ButtonsManager.Assignment(genreButtonsHeader, GenreButtonBehaviour);
         #endregion
         #region GOAL
         goalbyIndex = Data.goalName;
-        (goalButton, goalIsPressed) = ButtonsManager.Assignment(goalButtonsHeader, GoalButtonsBehaviour);
+        //(goalButton, goalIsPressed) = ButtonsManager.Assignment(goalButtonsHeader, GoalButtonsBehaviour);
         #endregion
         #region FOCUS
         focusByIndex = Data.focusName;
-        (focusButton, focusIsPressed) = ButtonsManager.Assignment(focusButtonsHeader, FocusButtonsBehaviour);
+        //(focusButton, focusIsPressed) = ButtonsManager.Assignment(focusButtonsHeader, FocusButtonsBehaviour);
         #endregion
         #region MORE
         (moreEditButton, moreValueIsEdited) = PagesAndFields.AssignmentEditMore(CallFooterField);
@@ -100,7 +100,7 @@ public class UserDataButtons : MonoBehaviour
         cancelButton.onClick.AddListener(() => CancelButtonFunction());
         #endregion
         #region LEVEL
-        (levelButton, levelIsPressed) = ButtonsManager.Assignment(levelButtonsHeader, LevelButtonsBehaviour);
+        //(levelButton, levelIsPressed) = ButtonsManager.Assignment(levelButtonsHeader, LevelButtonsBehaviour);
         #endregion
     }
 
@@ -373,7 +373,7 @@ public class UserDataButtons : MonoBehaviour
     public bool SaveButtonInteraction
     {
         get => saveButton.IsInteractable();
-        set => ButtonsManager.SetInteraction(value, saveButton);
+        set => value = default; //ButtonsManager.SetInteraction(value, saveButton);
     }
 
     public string SaveButtonString
@@ -405,7 +405,7 @@ public class UserDataButtons : MonoBehaviour
     public bool NextButtonInteraction
     {
         get => nextButton.IsInteractable();
-        set => ButtonsManager.SetInteraction(value, nextButton);
+        set => value = default; //ButtonsManager.SetInteraction(value, nextButton);
     }
 
     public string NextButtonString

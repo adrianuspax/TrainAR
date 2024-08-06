@@ -28,7 +28,6 @@ namespace TreinAR.MainScenes
         [Header(Header.scripts)]
         [SerializeField, ReadOnly] private AnchorAnimation animationsMain;
         [SerializeField, ReadOnly] private ButtonsFloat floatMenu;
-        [SerializeField, ReadOnly] private Transition transition;
         [SerializeField, ReadOnly] private ButtonsMain buttonsMain;
         [SerializeField, ReadOnly] private DropDownMenu dropDownMenu;
         [SerializeField, ReadOnly] private Coach coach;
@@ -42,7 +41,7 @@ namespace TreinAR.MainScenes
 
         private void Start()
         {
-            transition.EndClip();
+            //transition.EndClip();
             coach.gameObject.SetActive(false);
             anchorIsHitting = false;
             trackableTypes = TrackableType.PlaneWithinPolygon;
@@ -84,8 +83,6 @@ namespace TreinAR.MainScenes
                 dropDownMenu = FindAnyObjectByType<DropDownMenu>();
             if (buttonsMain.IsNull())
                 buttonsMain = FindAnyObjectByType<ButtonsMain>();
-            if (transition.IsNull())
-                transition = GameObject.FindGameObjectWithTag(Tag.Transition).GetComponent<Transition>();
 
             ASP.SceneManagement.SceneManager.SaveCurrentScene();
         }

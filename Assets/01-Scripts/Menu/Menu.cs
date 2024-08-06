@@ -20,7 +20,6 @@ namespace TreinAR.Menu
 
         [Header(Header.scripts, order = 0)]
         [SerializeField, ReadOnly] private QuestionPanel questionPanel;
-        [SerializeField, ReadOnly] private Transition transition;
 
         public const int CLOSE = 0;
         public const int UPDATEPROFILE = 1;
@@ -49,7 +48,7 @@ namespace TreinAR.Menu
         private void Start()
         {
             usernameTMP.text = AccountData.Username;
-            transition.EndClip();
+            //transition.EndClip();
         }
         /// <summary>
         /// Assignment of components and variables
@@ -57,8 +56,6 @@ namespace TreinAR.Menu
         [ContextMenu("Components Assignment")]
         private void ComponentsAssignment()
         {
-            if (transition.IsNull())
-                transition = GameObject.FindGameObjectWithTag(Tag.Transition).GetComponent<Transition>();
             if (questionPanel.IsNull())
                 questionPanel = FindAnyObjectByType<QuestionPanel>();
             this.GetComponentIfNull(ref usernameTMP, 1, 0, 1);

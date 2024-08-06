@@ -1,32 +1,28 @@
 using ASP;
+using ASP.Extensions;
 using TMPro;
-using TreinAR.Commons;
 using TreinAR.DataManager;
 using UnityEngine;
 using UnityEngine.UI;
 
 namespace TreinAR.Login
 {
-    public class SignOn : MonoBehaviour
+    public class SignUp : MonoBehaviour
     {
-        [Header("UI", order = 0)]
+        [Header(Header.READONLY, order = 0)]
         [Space(-10, order = 1)]
         [Header("Buttons", order = 2)]
-        [SerializeField] private Button okButton;
-        [SerializeField] private Button returnButton;
+        [SerializeField, ReadOnly] private Button okButton;
+        [SerializeField, ReadOnly] private Button returnButton;
         [Space(-10, order = 0)]
         [Header("Input", order = 1)]
-        [SerializeField] private TMP_InputField newUsernameInput;
-        [SerializeField] private TMP_InputField newPasswordInput;
-        [SerializeField] private TMP_InputField repeatPasswordInput;
+        [SerializeField, ReadOnly] private TMP_InputField newUsernameInput;
+        [SerializeField, ReadOnly] private TMP_InputField newPasswordInput;
+        [SerializeField, ReadOnly] private TMP_InputField repeatPasswordInput;
         [Space(-10, order = 0)]
         [Header("TMP", order = 1)]
-        [SerializeField] private TextMeshProUGUI enterNewUsernameTMP;
-        [SerializeField] private TextMeshProUGUI enterNewPasswordTMP;
-        [SerializeField] private TextMeshProUGUI repeatNewPasswordTMP;
-        [SerializeField] private TextMeshProUGUI warningTMP;
-
-        [Header(" =========================== READY ONLY =========================== ", order = 0)]
+        [SerializeField, ReadOnly] private TextMeshProUGUI warningTMP;
+        [SerializeField, ReadOnly] private TextMeshProUGUI okButtonTMP;
         [Space(-10, order = 1)]
         [Header("DATA INPUTED", order = 2)]
         [SerializeField, ReadOnly] private string username;
@@ -40,8 +36,10 @@ namespace TreinAR.Login
         [SerializeField, ReadOnly] private string editTextNewPassword;
         [SerializeField, ReadOnly] private string oldEditTextRepeatPassword;
         [SerializeField, ReadOnly] private string editTextRepeatPassword;
-
-        [Header("Variables", order = 0)]
+        [Space(20, order = 0)]
+        [SerializeField, ReadOnly] private string passwordsDontMatch;
+        [SerializeField, ReadOnly] private string alreadyIDWarning;
+        [Space(20, order = 0)]
         [SerializeField, ReadOnly] private bool usernameReleased;
         [SerializeField, ReadOnly] private bool passwordReleased;
         [SerializeField, ReadOnly] private bool buttonOkRealeased;
@@ -49,13 +47,13 @@ namespace TreinAR.Login
         [SerializeField, ReadOnly] private bool keepOldTextNewPassword;
         [SerializeField, ReadOnly] private bool keepOldTextRepeatPassword;
 
-        [Header("Scripts", order = 0)]
-        [SerializeField, ReadOnly] private Transition transition;
-
         private void Awake()
         {
-            transition = GameObject.FindGameObjectWithTag(Tag.Transition).GetComponent<Transition>();
-
+            ComponentsAssignment();
+        }
+        /// This function is called when the object becomes enabled and active.
+        private void OnEnable()
+        {
             newUsernameInput.onSelect.AddListener(OnSelectNewUsername);
             newUsernameInput.onDeselect.AddListener(OnDeselectNewUsername);
             newUsernameInput.onValueChanged.AddListener(OnValueChangedNewUsername);
@@ -76,21 +74,41 @@ namespace TreinAR.Login
 
             okButton.onClick.AddListener(() => Ok());
             returnButton.onClick.AddListener(() => Return());
-
-            /*enterNewUsernameTMP.text = LanguageManager.newID;
-            enterNewPasswordTMP.text = LanguageManager.newPassword;
-            repeatNewPasswordTMP.text = LanguageManager.repeatPassword;
-            PlaceHolderNewUsername = LanguageManager.placeHolderNewID;
-            PlaceHolderNewPassword = LanguageManager.placeHolderNewPassword;
-            PlaceHolderRepeatPassword = LanguageManager.placeHolderRepeatPassword;
-            OkButtonString = LanguageManager.okButtonString;*/
         }
 
         private void Start()
         {
-            transition.EndClip();
+            LocalizationManager.SetLocalizationString("PasswordsDontMatch", "StringTableMain", (result) => passwordsDontMatch = result);
+            LocalizationManager.SetLocalizationString("ThisUsernameIsAlreadyUsed", "StringTableMain", (result) => alreadyIDWarning = result);
             warningTMP.text = string.Empty;
-            ButtonsManager.SetInteraction(false, okButton);
+            okButton.interactable = false;
+            okButtonTMP.SetAlpha(0.5f);
+        }
+        /// <summary>
+            /// Assignment of components and variables
+            /// </summary>
+        [ContextMenu("Components Assignment")]
+        private void ComponentsAssignment()
+        {
+            if (okButton.IsNull() || returnButton.IsNull())
+            {
+                Button[] buttons = GetComponentsInChildren<Button>();
+                okButton = buttons[0];
+                returnButton = buttons[1];
+            }
+
+            if (newUsernameInput.IsNull() || newPasswordInput.IsNull() || repeatPasswordInput.IsNull())
+            {
+                TMP_InputField[] inputs = GetComponentsInChildren<TMP_InputField>();
+                newUsernameInput = inputs[0];
+                newPasswordInput = inputs[1];
+                repeatPasswordInput = inputs[2];
+            }
+
+            okButton.GetComponentInChildrenIfNull(ref okButtonTMP);
+            this.GetComponentIfNull(ref warningTMP, 0, 2, 0);
+
+            ASP.SceneManagement.SceneManager.SaveCurrentScene();
         }
         #region BUTTONS
         public void Ok()
@@ -124,17 +142,18 @@ namespace TreinAR.Login
         #region newUsername
         public void OnSelectNewUsername(string newUsername)
         {
-            PlaceHolderNewUsername = string.Empty;
+            username = newUsername;
             warningTMP.text = string.Empty;
         }
 
         public void OnDeselectNewUsername(string newUsername)
         {
-            //PlaceHolderNewUsername = LanguageManager.placeHolderNewID;
+            username = newUsername;
         }
 
         public void OnValueChangedNewUsername(string newUsername)
         {
+            username = newUsername;
             warningTMP.text = string.Empty;
             oldEditTextNewUsername = editTextNewUsername;
             editTextNewUsername = newUsername;
@@ -146,51 +165,53 @@ namespace TreinAR.Login
             {
                 editTextNewUsername = oldEditTextNewUsername;
                 newUsernameInput.text = oldEditTextNewUsername;
-                this.username = oldEditTextNewUsername;
+                username = oldEditTextNewUsername;
                 keepOldTextNewUsername = false;
             }
 
             if (AccountData.HasUsername)
             {
-                /*if (newUsername == AccountData.Username)
-                { warningTMP.text = LanguageManager.alreadyIDWarning; }
+                if (newUsername == AccountData.Username)
+                    warningTMP.text = alreadyIDWarning;
                 else if (string.IsNullOrEmpty(newUsernameInput.text))
-                { warningTMP.text = string.Empty; }*/
+                    warningTMP.text = string.Empty;
 
                 usernameReleased = !(newUsername == AccountData.Username);
             }
             else if (string.IsNullOrEmpty(newUsernameInput.text))
-            { warningTMP.text = string.Empty; }
+            {
+                warningTMP.text = string.Empty; 
+            }
             else
-            { usernameReleased = true; }
+            {
+                usernameReleased = true; 
+            }
 
             username = newUsername;
             ValidationPasswords();
-            ValidationRealease();
+            ReleaseValidation();
         }
 
         public void ReportChangeStatusNewUsername(TouchScreenKeyboard.Status newStatus)
         {
             if (newStatus == TouchScreenKeyboard.Status.Canceled)
-            { keepOldTextNewUsername = true; }
+                keepOldTextNewUsername = true;
         }
-
-        public string PlaceHolderNewUsername
-        { set => newUsernameInput.placeholder.GetComponent<TextMeshProUGUI>().text = value; }
         #endregion
         #region newPassword
         public void OnSelectNewPassword(string newPassword)
         {
-            PlaceHolderNewPassword = string.Empty;
+            this.newPassword = newPassword;
         }
 
         public void OnDeselectNewPassword(string newPassword)
         {
-            //PlaceHolderNewPassword = LanguageManager.placeHolderNewPassword;
+            this.newPassword = newPassword;
         }
 
         public void OnValueChangedNewPassword(string newPassword)
         {
+            this.newPassword = newPassword;
             oldEditTextNewPassword = editTextNewPassword;
             editTextNewPassword = newPassword;
         }
@@ -208,31 +229,29 @@ namespace TreinAR.Login
             }
 
             ValidationPasswords();
-            ValidationRealease();
+            ReleaseValidation();
         }
 
         public void ReportChangeStatusNewPassword(TouchScreenKeyboard.Status newStatus)
         {
             if (newStatus == TouchScreenKeyboard.Status.Canceled)
-            { keepOldTextNewPassword = true; }
+                keepOldTextNewPassword = true;
         }
-
-        public string PlaceHolderNewPassword
-        { set => newPasswordInput.placeholder.GetComponent<TextMeshProUGUI>().text = value; }
         #endregion
         #region repeatPassword
         public void OnSelectRepeatPassword(string repeatPassword)
         {
-            PlaceHolderRepeatPassword = string.Empty;
+            this.repeatPassword = repeatPassword;
         }
 
         public void OnDeselectRepeatPassword(string repeatPassword)
         {
-            //PlaceHolderRepeatPassword = LanguageManager.placeHolderRepeatPassword;
+            this.repeatPassword = repeatPassword;
         }
 
         public void OnValueChangedRepeatPassword(string repeatPassword)
         {
+            this.repeatPassword = repeatPassword;
             oldEditTextRepeatPassword = editTextRepeatPassword;
             editTextRepeatPassword = repeatPassword;
         }
@@ -250,38 +269,32 @@ namespace TreinAR.Login
             }
 
             ValidationPasswords();
-            ValidationRealease();
+            ReleaseValidation();
         }
 
         public void ReportChangeStatusRepeatPassword(TouchScreenKeyboard.Status newStatus)
         {
             if (newStatus == TouchScreenKeyboard.Status.Canceled)
-            { keepOldTextRepeatPassword = true; }
+                keepOldTextRepeatPassword = true;
         }
 
         private void ValidationPasswords()
         {
             if (usernameReleased)
             {
-                //warningTMP.text = (string.IsNullOrEmpty(newPasswordInput.text) && string.IsNullOrEmpty(repeatPasswordInput.text)) || (newPassword == repeatPassword) ? string.Empty : LanguageManager.passwordsDontMatch;
+                bool conditional = (string.IsNullOrEmpty(newPasswordInput.text) && string.IsNullOrEmpty(repeatPasswordInput.text)) || (newPassword == repeatPassword);
+                warningTMP.text = conditional ? string.Empty : passwordsDontMatch;
             }
         }
 
-        private void ValidationRealease()
+        private void ReleaseValidation()
         {
-            passwordReleased = (newPassword == repeatPassword) &&
-                (!string.IsNullOrEmpty(newPasswordInput.text) && !string.IsNullOrEmpty(repeatPasswordInput.text));
-
+            passwordReleased = (newPassword == repeatPassword) && !string.IsNullOrEmpty(newPasswordInput.text) && !string.IsNullOrEmpty(repeatPasswordInput.text);
             buttonOkRealeased = usernameReleased && passwordReleased;
-            ButtonsManager.SetInteraction(buttonOkRealeased, okButton);
+            okButton.interactable = buttonOkRealeased;
+            okButtonTMP.SetAlpha(buttonOkRealeased ? 1f : 0.5f);
         }
-
-        public string PlaceHolderRepeatPassword
-        { set => repeatPasswordInput.placeholder.GetComponent<TextMeshProUGUI>().text = value; }
         #endregion
-
-        public string OkButtonString
-        { set => okButton.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = value; }
     }
 }
 

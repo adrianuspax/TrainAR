@@ -5,7 +5,7 @@
       "depth": 0,
       "source": "git",
       "dependencies": {},
-      "hash": "86dcef928c971e6512be54335cfce500fd4bb9dd"
+      "hash": "6b859db67c5ae665a7d9eb1155969b6a72dd48ec"
     },
     "com.adrianuspax.datamanager": {
       "version": "https://github.com/adrianuspax/DataManager.git",
@@ -21,7 +21,7 @@
       "dependencies": {
         "com.unity.localization": "1.0.0"
       },
-      "hash": "b498dd1f059503a430b45f5a88223013293458a9"
+      "hash": "87d93d823b647474c61b1464127a84c943150bb6"
     },
     "com.adrianuspax.usefulscripts": {
       "version": "https://github.com/adrianuspax/usefulscripts.git",

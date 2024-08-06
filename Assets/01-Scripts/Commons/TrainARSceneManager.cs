@@ -9,7 +9,7 @@ namespace TreinAR
         public static readonly SceneManager.Scene redirection = new("Redirection");
         public static readonly SceneManager.Scene language = new("Language");
         public static readonly SceneManager.Scene signIn = new("SignIn");
-        public static readonly SceneManager.Scene signOn = new("SignOn");
+        public static readonly SceneManager.Scene signUp = new("SignUp");
         public static readonly SceneManager.Scene userData = new("UserData");
         public static readonly SceneManager.Scene trainAR = new("TrainAR");
         public static readonly SceneManager.Scene menu = new("Menu");
@@ -37,7 +37,7 @@ namespace TreinAR
         public static void LoadSignOn()
         {
             PlayerPrefs.String.Set(currentScene, SceneManager.CurrentScene.name);
-            Load?.Invoke(signOn);
+            Load?.Invoke(signUp);
         }
 
         public static void LoadUserData()

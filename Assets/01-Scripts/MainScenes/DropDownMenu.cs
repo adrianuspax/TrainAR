@@ -157,7 +157,8 @@ namespace TreinAR.MainScenes
                     tmps[i].color = unpressedTxtColor;
                     gridButtonDDM[i].image.color = unpressedColor;
                     gridButtonDDM[i].transform.localPosition = deslocation;
-                    ButtonsManager.SetInteraction(!isPressed, gridButtonDDM[i]);
+                    gridButtonDDM[i].interactable = !isPressed;
+                    tmps[i].SetAlpha(!isPressed ? 1f : 0.5f);
                     isPressDDM[i] = false;
                 }
             }
@@ -179,9 +180,10 @@ namespace TreinAR.MainScenes
                 deslocation.z = 0f;
 
                 tmps[i].color = unpressedTxtColor;
+                tmps[i].SetAlpha(1f);
                 gridButtonDDM[i].image.color = unpressedColor;
                 gridButtonDDM[i].transform.localPosition = deslocation;
-                ButtonsManager.SetInteraction(true, gridButtonDDM);
+                gridButtonDDM[i].interactable = true;
                 isPressDDM[i] = false;
             }
         }
