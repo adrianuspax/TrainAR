@@ -21,7 +21,7 @@ namespace TreinAR.UserData.Pages
             inputField.onDeselect.AddListener(OnDeselect);
             inputField.onValueChanged.AddListener(OnValueChanged);
             inputField.onEndEdit.AddListener(OnEndEdit);
-            //inputField.onTouchScreenKeyboardStatusChanged.AddListener(OnTouchScreenKeyboardStatusChanged);
+            inputField.onTouchScreenKeyboardStatusChanged.AddListener(OnTouchScreenKeyboardStatusChanged);
         }
         /// <summary>
         /// Assignment of components and variables
@@ -64,12 +64,25 @@ namespace TreinAR.UserData.Pages
         {
             SetNextButtonInteractableByContent(content);
             this.content = content;
+
+            /*if (keepOldTextUsername && !string.IsNullOrEmpty(oldEditTextUsername))
+            {
+                editTextUsername = oldEditTextUsername;
+                userNameInput.text = oldEditTextUsername;
+                UserName = oldEditTextUsername;
+                keepOldTextUsername = false;
+            }
+
+            if (userNameInput.wasCanceled)
+            {
+                Page1PlaceHolder = string.Empty;
+            }*/
         }
 
-        /*public void OnTouchScreenKeyboardStatusChanged(TouchScreenKeyboard.Status status)
+        public void OnTouchScreenKeyboardStatusChanged(TouchScreenKeyboard.Status status)
         {
 
-        }*/
+        }
 
         public void SetNextButtonInteractableByContent(string content)
         {

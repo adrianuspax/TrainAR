@@ -345,7 +345,7 @@ namespace TreinAR.MainScenes
         {
             get
             {
-                return (Calculation.ValueBMI.ToString("F2") + " kg/m�",
+                return (Calculation.ValueBMI.ToString("F2") + " kg/m²",
                         /*LanguageManager.statusBMI[(int)Calculation.StatusBMI]*/ default,
                        (Calculation.BodyFat * 100f).ToString("F2") + "%",
                         Calculation.CurrentFat.ToString("F2") + " kg");

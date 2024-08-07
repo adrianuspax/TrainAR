@@ -1,7 +1,6 @@
 using ASP;
 using ASP.Extensions;
 using TMPro;
-using TreinAR.Commons;
 using TreinAR.DataManager;
 using UnityEngine;
 using UnityEngine.UI;
@@ -48,7 +47,6 @@ namespace TreinAR.Menu
         private void Start()
         {
             usernameTMP.text = AccountData.Username;
-            //transition.EndClip();
         }
         /// <summary>
         /// Assignment of components and variables

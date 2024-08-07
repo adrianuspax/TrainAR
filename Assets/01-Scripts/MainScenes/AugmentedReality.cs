@@ -1,7 +1,6 @@
 ﻿using ASP;
 using ASP.Extensions;
 using System.Collections.Generic;
-using TreinAR.Commons;
 using UnityEngine;
 using UnityEngine.XR.ARFoundation;
 using UnityEngine.XR.ARSubsystems;
@@ -41,7 +40,6 @@ namespace TreinAR.MainScenes
 
         private void Start()
         {
-            //transition.EndClip();
             coach.gameObject.SetActive(false);
             anchorIsHitting = false;
             trackableTypes = TrackableType.PlaneWithinPolygon;
