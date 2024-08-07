@@ -92,7 +92,7 @@ namespace TreinAR.MainScenes
 
             length = Enum.GetValues(typeof(Calculation.Level)).Length;
             levelPhrase = new string[length];
-            string[] entry = new string[] { "Sedentary", "Walker", "Rrunner", "Athletic", "BodyBuilder"};
+            string[] entry = new string[] { "Sedentary", "Walker", "Runner", "Athletic", "BodyBuilder"};
 
 
             for (int i = 0; i < length; i++)
@@ -102,6 +102,7 @@ namespace TreinAR.MainScenes
             }
 
             length = Enum.GetValues(typeof(Calculation.Goal)).Length;
+            goalPhrase = new string[length];
 
             for (int i = 0; i < length; i++)
             {
