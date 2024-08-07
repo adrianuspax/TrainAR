@@ -2,7 +2,7 @@ using ASP;
 using ASP.Extensions;
 using UnityEngine;
 
-namespace TreinAR.UserData.Pages
+namespace TreinAR.DataManager.Pages
 {
     public abstract class PageDefault : MonoBehaviour
     {

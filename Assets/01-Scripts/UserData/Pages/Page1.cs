@@ -3,7 +3,7 @@ using ASP.Extensions;
 using TMPro;
 using UnityEngine;
 
-namespace TreinAR.UserData.Pages
+namespace TreinAR.DataManager.Pages
 {
     public sealed class Page1 : PageDefault
     {

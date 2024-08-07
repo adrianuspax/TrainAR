@@ -2,7 +2,7 @@ using ASP;
 using ASP.Extensions;
 using TMPro;
 using TreinAR;
-using TreinAR.UserData.Pages;
+using TreinAR.DataManager.Pages;
 using UnityEngine;
 using UnityEngine.UI;
 

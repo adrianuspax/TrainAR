@@ -3,7 +3,7 @@ using ASP.Extensions;
 using TMPro;
 using UnityEngine;
 
-namespace TreinAR.UserData.Footers
+namespace TreinAR.DataManager.Footers
 {
     public sealed class Footer : MonoBehaviour
     {

@@ -4,7 +4,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace TreinAR.UserData.Pages
+namespace TreinAR.DataManager.Pages
 {
     public sealed class Page4 : PageDefault
     {

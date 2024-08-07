@@ -32,7 +32,14 @@ namespace TreinAR.DataManager
         {
             return Json.Load<UserData>();
         }
+
+        public static bool TryLoad(out UserData userData)
+        {
+            return Json.TryLoad(out userData);
+        }
     }
+
+
 }
 
 

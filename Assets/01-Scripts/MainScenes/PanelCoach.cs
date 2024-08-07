@@ -1,7 +1,8 @@
 using ASP;
 using ASP.Extensions;
 using TMPro;
-using TreinAR.UserData.Pages;
+using TreinAR.DataManager;
+using TreinAR.DataManager.Pages;
 using UnityEngine;
 using UnityEngine.UI;
 using Debug = ASP.Debug;
@@ -64,6 +65,8 @@ namespace TreinAR.MainScenes
         [SerializeField, ReadOnly] private TrainingSystem trainingSystem;
         [SerializeField, ReadOnly] private ButtonsFloat floatMenu;
         [SerializeField, ReadOnly] private ButtonsMain buttonsMain;
+        [SerializeField, ReadOnly] private ContentData contentData;
+        [SerializeField, ReadOnly] private UserData userData;
         [SerializeField, NonReorderable, ReadOnly] private InfoData[] infoDatas;
 
         public const string PARAMETER = "isOpen";
@@ -82,12 +85,18 @@ namespace TreinAR.MainScenes
             Quaternion localRotation = Quaternion.Euler(new Vector3(0f, -180f, 0f));
             pivotCorrection.SetLocalPositionAndRotation(Vector3.up, localRotation);
 
-            nameTMP.text = DataInputed.completeName;
-            ageTMP.text = DataInputed.age;
-            genderTMP.text = DataInputed.gender;
-            weightTMP.text = DataInputed.weight;
-            heightTMP.text = DataInputed.height;
-            levelTMP.text = DataInputed.level;
+            if (ContentData.TryLoad(out ContentData content))
+                contentData = content;
+
+            if (UserData.TryLoad(out UserData user))
+                userData = user;
+
+            nameTMP.text = contentData.name;
+            ageTMP.text = contentData.age;
+            genderTMP.text = contentData.gender;
+            weightTMP.text = contentData.currentWeight;
+            heightTMP.text = contentData.height;
+            levelTMP.text = contentData.level;
             bmiTMP.text = Calc.bmi;
             statusTMP.text = Calc.statusBMI;
             bodyFatTMP.text = Calc.bodyFat;
@@ -318,25 +327,6 @@ namespace TreinAR.MainScenes
             }
         }
 
-        private (string completeName,
-                 string age,
-                 string gender,
-                 string weight,
-                 string height,
-                 string level)
-        DataInputed
-        {
-            get
-            {
-                return (PagesControl.UserData.name,
-                        PagesControl.UserData.age.ToString() + " " /*+ LanguageManager.valueUnits[0]*/,
-                        /*AccountData.IsMale ? LanguageManager.male : LanguageManager.female*/ default,
-                        PagesControl.UserData.currentWeight.ToString() + " kg",
-                        PagesControl.UserData.height.ToString() + " cm",
-                        /*LanguageManager.levelPhrase[Calculation.IndexLevel]*/ default);
-            }
-        }
-
         private (string bmi,
                  string statusBMI,
                  string bodyFat,
@@ -362,9 +352,9 @@ namespace TreinAR.MainScenes
         {
             get
             {
-                return (/*LanguageManager.goalPhrase[Calculation.IndexGoal]*/ default,
+                return (contentData.goal,
                         /*LanguageManager.levelPhrase[((int)Calculation.TargetLevel - 1)]*/ default,
-                        PagesControl.UserData.goalWeight.ToString() + " kg",
+                        contentData.goalWeight,
                        (Calculation.TargetBodyFat * 100f).ToString("F2") + "%",
                         toLoseFatTMP.text = Calculation.ToLoseWeight.ToString("F2") + " kg",
                         toBurnCalTMP.text = (Calculation.ToBurnCalories * 0.0001f).ToString("F2") + " kcal");

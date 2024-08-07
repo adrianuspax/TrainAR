@@ -4,7 +4,7 @@ using System.Collections;
 using UnityEngine;
 using Debug = ASP.Debug;
 
-namespace TreinAR.UserData.Pages
+namespace TreinAR.DataManager.Pages
 {
     public class PagesControl : MonoBehaviour
     {
@@ -16,7 +16,8 @@ namespace TreinAR.UserData.Pages
         [SerializeField, ReadOnly] private ButtonsMain buttonsMain;
         [SerializeField, NonReorderable, ReadOnly] private PageDefault[] pages;
         [Space(20, order = 0)]
-        [SerializeField, ReadOnly] private DataManager.UserData userData;
+        [SerializeField, ReadOnly] private UserData userData;
+        [SerializeField, ReadOnly] private ContentData contentData;
         /// Reset to default values.
         private void Reset()
         {
@@ -90,15 +91,26 @@ namespace TreinAR.UserData.Pages
                 focusIndex = ((Page5)pages[4]).Index,
                 age = ((Page6)pages[5]).Age,
                 currentWeight = ((Page6)pages[5]).CurrentWeight,
-                height = ((Page6)pages[5]).Height,
-                goalWeight = ((Page6)pages[5]).GoalWeight
+                goalWeight = ((Page6)pages[5]).GoalWeight,
+                height = ((Page6)pages[5]).Height
+            };
+
+            contentData = new()
+            {
+                name = pages[0].Content,
+                gender = pages[1].Content,
+                goal = pages[2].Content,
+                level = pages[3].Content,
+                focus = pages[4].Content,
+                age = ((Page6)pages[5]).Contents[0],
+                currentWeight = ((Page6)pages[5]).Contents[1],
+                goalWeight = ((Page6)pages[5]).Contents[2],
+                height = ((Page6)pages[5]).Contents[3]
             };
 
             userData.Save();
-            UserData = userData;
+            contentData.Save();
         }
-
-        public static DataManager.UserData UserData { get; private set; }
     }
 }
 

@@ -2,14 +2,14 @@ using ASP;
 using ASP.Extensions;
 using System.Collections;
 using TMPro;
-using TreinAR.UserData.Footers;
+using TreinAR.DataManager.Footers;
 using UnityEngine;
 using UnityEngine.Localization.Settings;
 using UnityEngine.ResourceManagement.AsyncOperations;
 using UnityEngine.UI;
 using Debug = ASP.Debug;
 
-namespace TreinAR.UserData.Pages
+namespace TreinAR.DataManager.Pages
 {
     public sealed class Page6 : PageDefault
     {
@@ -19,7 +19,8 @@ namespace TreinAR.UserData.Pages
         [SerializeField, NonReorderable, ReadOnly] private TextMeshProUGUI[] blockDigtTMPs;
         [Space(-10, order = 0)]
         [Header(Header.variables, order = 1)]
-        [SerializeField, NonReorderable, ReadOnly] private string[] data;
+        [SerializeField, NonReorderable, ReadOnly] private string[] values;
+        [SerializeField, NonReorderable, ReadOnly] private string[] contents;
         [SerializeField, NonReorderable, ReadOnly] private string[] units;
         [Space(20, order = 0)]
         [SerializeField, ReadOnly] private LocalizedStringDatabase _database;
@@ -43,7 +44,8 @@ namespace TreinAR.UserData.Pages
         /// Start is called on the frame when a script is enabled just before any of the Update methods are called the first time.
         private void Start()
         {
-            data = new string[buttons.Length];
+            values = new string[buttons.Length];
+            contents = new string[values.Length];
 
             UnitsAssignment();
             StartCoroutine(_delay());
@@ -72,6 +74,8 @@ namespace TreinAR.UserData.Pages
             {
                 int length = buttons.Length;
                 blockDigtTMPs = new TextMeshProUGUI[length];
+                values = new string[length];
+                contents = new string[length];
 
                 for (int i = 0; i < length; i++)
                 {
@@ -93,8 +97,8 @@ namespace TreinAR.UserData.Pages
                 return;
             }
 
-            data[index] = value;
-            content = blockDigtTMPs[index].text = value + units[index];
+            values[index] = value;
+            contents[index] = content = blockDigtTMPs[index].text = value + units[index];
         }
 
         private void UnitsAssignment()
@@ -126,7 +130,7 @@ namespace TreinAR.UserData.Pages
         {
             get
             {
-                if (int.TryParse(data[0], out int result))
+                if (int.TryParse(values[0], out int result))
                     return result;
                 else
                     return 0;
@@ -137,7 +141,7 @@ namespace TreinAR.UserData.Pages
         {
             get
             {
-                if (float.TryParse(data[1], out float result))
+                if (float.TryParse(values[1], out float result))
                     return result;
                 else
                     return 0;
@@ -148,7 +152,7 @@ namespace TreinAR.UserData.Pages
         {
             get
             {
-                if (float.TryParse(data[2], out float results))
+                if (float.TryParse(values[2], out float results))
                     return results;
                 else
                     return 0;
@@ -159,12 +163,14 @@ namespace TreinAR.UserData.Pages
         {
             get
             {
-                if (float.TryParse(data[3], out float results))
+                if (float.TryParse(values[3], out float results))
                     return results;
                 else
                     return 0;
             }
         }
+
+        public string[] Contents => contents;
     }
 }
 

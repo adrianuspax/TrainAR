@@ -600,6 +600,16 @@ MonoBehaviour:
   - {fileID: 646936485}
   - {fileID: 124839116}
   - {fileID: 1362275366}
+  userData:
+    name: 
+    isMale: 0
+    age: 0
+    currentWeight: 0
+    height: 0
+    levelIndex: 0
+    goalIndex: 0
+    focusIndex: 0
+    goalWeight: 0
 --- !u!1 &91627187
 GameObject:
   m_ObjectHideFlags: 0
@@ -896,7 +906,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   buttonsMain: {fileID: 584496965658112698}
   animator: {fileID: 1249071847}
-  <Content>k__BackingField: 
+  content: 
   buttons:
   - {fileID: 1931407067}
   - {fileID: 915509913}
@@ -1273,7 +1283,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 95.95
+  m_fontSize: 133.76
   m_fontSizeBase: 133.76
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -2190,7 +2200,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 73.85
+  m_fontSize: 88.75
   m_fontSizeBase: 70
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -2696,7 +2706,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 89
+  m_fontSize: 90
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -3468,7 +3478,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 82.55
+  m_fontSize: 90
   m_fontSizeBase: 100
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -3644,7 +3654,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 97.25
+  m_fontSize: 124.45
   m_fontSizeBase: 133.76
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -3820,7 +3830,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 67.15
+  m_fontSize: 75
   m_fontSizeBase: 75
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -4246,7 +4256,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 88.65
+  m_fontSize: 124.45
   m_fontSizeBase: 133.76
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -5379,7 +5389,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   buttonsMain: {fileID: 584496965658112698}
   animator: {fileID: 903882327}
-  <Content>k__BackingField: 
+  content: 
   fitnessLevelTMP: {fileID: 915557221}
   buttons:
   - {fileID: 2121820645}
@@ -6117,7 +6127,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   buttonsMain: {fileID: 584496965658112698}
   animator: {fileID: 2083249134}
-  <Content>k__BackingField: 
+  content: 
   buttons:
   - {fileID: 686829626}
   - {fileID: 1719390801}
@@ -7796,7 +7806,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 68.55
+  m_fontSize: 133.76
   m_fontSizeBase: 133.76
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -7972,7 +7982,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 103.45
+  m_fontSize: 124.45
   m_fontSizeBase: 133.76
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -8844,7 +8854,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 115.55
+  m_fontSize: 133.76
   m_fontSizeBase: 133.76
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -10419,7 +10429,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 85.75
+  m_fontSize: 90
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -10560,7 +10570,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   buttonsMain: {fileID: 584496965658112698}
   animator: {fileID: 1778530636}
-  <Content>k__BackingField: 
+  content: 
   buttons:
   - {fileID: 854813189}
   - {fileID: 185633871}
@@ -10852,12 +10862,13 @@ MonoBehaviour:
   cancelButton: {fileID: 165022774}
   saveTMP: {fileID: 628547817}
   currentFooterIndex: 0
+  buttonsMain: {fileID: 584496965658112698}
+  page6: {fileID: 0}
   footers:
   - {fileID: 993186488}
   - {fileID: 1505936401}
   - {fileID: 110784997}
   - {fileID: 1117998974}
-  buttonsMain: {fileID: 584496965658112698}
 --- !u!1 &1359481330
 GameObject:
   m_ObjectHideFlags: 0
@@ -11106,7 +11117,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   buttonsMain: {fileID: 584496965658112698}
   animator: {fileID: 1226641322}
-  <Content>k__BackingField: 
+  content: 
   footersControl: {fileID: 1358066335}
   buttons:
   - {fileID: 1197637844}
@@ -11118,6 +11129,183 @@ MonoBehaviour:
   - {fileID: 1886637215}
   - {fileID: 638035864}
   - {fileID: 226978029}
+  values:
+  - 
+  - 
+  - 
+  - 
+  units: []
+  contents:
+  - 
+  - 
+  - 
+  - 
+  _database:
+    m_DefaultTableReference:
+      m_TableCollectionName: 
+    m_CustomTableProvider:
+      rid: -2
+    m_CustomTablePostprocessor:
+      rid: -2
+    m_AsynchronousBehaviour: 0
+    m_UseFallback: 0
+    m_MissingTranslationState: 1
+    m_NoTranslationFoundMessage: No translation found for '{key}' in {table.TableCollectionName}
+    m_SmartFormat:
+      rid: 3473075917227819028
+  references:
+    version: 2
+    RefIds:
+    - rid: -2
+      type: {class: , ns: , asm: }
+    - rid: 3473075917227819028
+      type: {class: SmartFormatter, ns: UnityEngine.Localization.SmartFormat, asm: Unity.Localization}
+      data:
+        m_Settings:
+          rid: 3473075917227819029
+        m_Parser:
+          rid: 3473075917227819030
+        m_Sources:
+        - rid: 3473075917227819031
+        - rid: 3473075917227819032
+        - rid: 3473075917227819033
+        - rid: 3473075917227819034
+        - rid: 3473075917227819035
+        - rid: 3473075917227819036
+        - rid: 3473075917227819037
+        m_Formatters:
+        - rid: 3473075917227819031
+        - rid: 3473075917227819038
+        - rid: 3473075917227819039
+        - rid: 3473075917227819040
+        - rid: 3473075917227819041
+        - rid: 3473075917227819042
+        - rid: 3473075917227819043
+        - rid: 3473075917227819044
+        - rid: 3473075917227819045
+    - rid: 3473075917227819029
+      type: {class: SmartSettings, ns: UnityEngine.Localization.SmartFormat.Core.Settings,
+        asm: Unity.Localization}
+      data:
+        m_FormatErrorAction: 0
+        m_ParseErrorAction: 0
+        m_CaseSensitivity: 0
+        m_ConvertCharacterStringLiterals: 1
+    - rid: 3473075917227819030
+      type: {class: Parser, ns: UnityEngine.Localization.SmartFormat.Core.Parsing,
+        asm: Unity.Localization}
+      data:
+        m_OpeningBrace: 123
+        m_ClosingBrace: 125
+        m_Settings:
+          rid: 3473075917227819029
+        m_AlphanumericSelectors: 1
+        m_AllowedSelectorChars: _-
+        m_Operators: '[]().,'
+        m_AlternativeEscaping: 0
+        m_AlternativeEscapeChar: 92
+    - rid: 3473075917227819031
+      type: {class: ListFormatter, ns: UnityEngine.Localization.SmartFormat.Extensions,
+        asm: Unity.Localization}
+      data:
+        m_Names:
+        - list
+        - l
+        - 
+        m_SmartSettings:
+          rid: 3473075917227819029
+    - rid: 3473075917227819032
+      type: {class: PersistentVariablesSource, ns: UnityEngine.Localization.SmartFormat.Extensions,
+        asm: Unity.Localization}
+      data:
+        m_Groups: []
+    - rid: 3473075917227819033
+      type: {class: DictionarySource, ns: UnityEngine.Localization.SmartFormat.Extensions,
+        asm: Unity.Localization}
+      data: 
+    - rid: 3473075917227819034
+      type: {class: ValueTupleSource, ns: UnityEngine.Localization.SmartFormat.Extensions,
+        asm: Unity.Localization}
+      data: 
+    - rid: 3473075917227819035
+      type: {class: XmlSource, ns: UnityEngine.Localization.SmartFormat.Extensions,
+        asm: Unity.Localization}
+      data: 
+    - rid: 3473075917227819036
+      type: {class: ReflectionSource, ns: UnityEngine.Localization.SmartFormat.Extensions,
+        asm: Unity.Localization}
+      data: 
+    - rid: 3473075917227819037
+      type: {class: DefaultSource, ns: UnityEngine.Localization.SmartFormat.Extensions,
+        asm: Unity.Localization}
+      data: 
+    - rid: 3473075917227819038
+      type: {class: PluralLocalizationFormatter, ns: UnityEngine.Localization.SmartFormat.Extensions,
+        asm: Unity.Localization}
+      data:
+        m_Names:
+        - plural
+        - p
+        - 
+        m_DefaultTwoLetterISOLanguageName: en
+    - rid: 3473075917227819039
+      type: {class: ConditionalFormatter, ns: UnityEngine.Localization.SmartFormat.Extensions,
+        asm: Unity.Localization}
+      data:
+        m_Names:
+        - conditional
+        - cond
+        - 
+    - rid: 3473075917227819040
+      type: {class: TimeFormatter, ns: UnityEngine.Localization.SmartFormat.Extensions,
+        asm: Unity.Localization}
+      data:
+        m_Names:
+        - timespan
+        - time
+        - t
+        - 
+        m_DefaultFormatOptions: 4646
+    - rid: 3473075917227819041
+      type: {class: XElementFormatter, ns: UnityEngine.Localization.SmartFormat.Extensions,
+        asm: Unity.Localization}
+      data:
+        m_Names:
+        - xelement
+        - xml
+        - x
+        - 
+    - rid: 3473075917227819042
+      type: {class: ChooseFormatter, ns: UnityEngine.Localization.SmartFormat.Extensions,
+        asm: Unity.Localization}
+      data:
+        m_Names:
+        - choose
+        - c
+        m_SplitChar: 124
+    - rid: 3473075917227819043
+      type: {class: SubStringFormatter, ns: UnityEngine.Localization.SmartFormat.Extensions,
+        asm: Unity.Localization}
+      data:
+        m_Names:
+        - substr
+        m_ParameterDelimiter: 44
+        m_NullDisplayString: (null)
+        m_OutOfRangeBehavior: 0
+    - rid: 3473075917227819044
+      type: {class: IsMatchFormatter, ns: UnityEngine.Localization.SmartFormat.Extensions,
+        asm: Unity.Localization}
+      data:
+        m_Names:
+        - ismatch
+    - rid: 3473075917227819045
+      type: {class: DefaultFormatter, ns: UnityEngine.Localization.SmartFormat.Extensions,
+        asm: Unity.Localization}
+      data:
+        m_Names:
+        - default
+        - d
+        - 
 --- !u!1 &1376320789
 GameObject:
   m_ObjectHideFlags: 0
@@ -11506,7 +11694,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 60.85
+  m_fontSize: 63
   m_fontSizeBase: 63
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -11929,7 +12117,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   buttonsMain: {fileID: 584496965658112698}
   animator: {fileID: 816342926}
-  <Content>k__BackingField: 
+  content: 
   inputField: {fileID: 339054861}
 --- !u!1 &1523038885
 GameObject:
@@ -14192,7 +14380,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 62.7
+  m_fontSize: 75
   m_fontSizeBase: 75
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -17193,7 +17381,6 @@ MonoBehaviour:
   buttonBack: {fileID: 1967520244}
   nextTMP: {fileID: 91627189}
   pagesControl: {fileID: 90876051}
-  dataManagement: {fileID: 1127046632}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

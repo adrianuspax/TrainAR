@@ -2,12 +2,12 @@ using ASP;
 using ASP.Extensions;
 using System.Collections;
 using TMPro;
-using TreinAR.UserData.Pages;
+using TreinAR.DataManager.Pages;
 using UnityEngine;
 using UnityEngine.UI;
 using Debug = ASP.Debug;
 
-namespace TreinAR.UserData.Footers
+namespace TreinAR.DataManager.Footers
 {
     public class FootersControl : MonoBehaviour
     {
