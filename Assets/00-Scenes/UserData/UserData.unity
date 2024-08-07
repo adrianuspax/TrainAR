@@ -609,7 +609,17 @@ MonoBehaviour:
     levelIndex: 0
     goalIndex: 0
     focusIndex: 0
-    goalWeight: 0
+    targetWeight: 0
+  contentData:
+    name: 
+    gender: 
+    age: 
+    currentWeight: 
+    height: 
+    level: 
+    goal: 
+    focus: 
+    goalWeight: 
 --- !u!1 &91627187
 GameObject:
   m_ObjectHideFlags: 0
@@ -1283,7 +1293,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 133.76
+  m_fontSize: 95.95
   m_fontSizeBase: 133.76
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -2200,7 +2210,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 88.75
+  m_fontSize: 73.85
   m_fontSizeBase: 70
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -2706,7 +2716,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 90
+  m_fontSize: 89
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -3478,7 +3488,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 90
+  m_fontSize: 82.55
   m_fontSizeBase: 100
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -3654,7 +3664,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 124.45
+  m_fontSize: 97.25
   m_fontSizeBase: 133.76
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -3830,7 +3840,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 75
+  m_fontSize: 67.15
   m_fontSizeBase: 75
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -4256,7 +4266,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 124.45
+  m_fontSize: 88.65
   m_fontSizeBase: 133.76
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -6882,18 +6892,6 @@ RectTransform:
     type: 3}
   m_PrefabInstance: {fileID: 838522051}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &838522053 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 1692438299145555249, guid: 6b38141eae5db8a4ea4e0fbbfd091999,
-    type: 3}
-  m_PrefabInstance: {fileID: 838522051}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 88d05641c8c35c14eb52da277f946ad8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &847092187
 GameObject:
   m_ObjectHideFlags: 0
@@ -7806,7 +7804,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 133.76
+  m_fontSize: 68.55
   m_fontSizeBase: 133.76
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -7982,7 +7980,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 124.45
+  m_fontSize: 103.45
   m_fontSizeBase: 133.76
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -8854,7 +8852,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 133.76
+  m_fontSize: 115.55
   m_fontSizeBase: 133.76
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -9597,163 +9595,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1119480421}
   m_CullTransparentMesh: 1
---- !u!1 &1127046625
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1127046626}
-  - component: {fileID: 1127046632}
-  - component: {fileID: 1127046629}
-  - component: {fileID: 1127046628}
-  - component: {fileID: 1127046630}
-  m_Layer: 0
-  m_Name: CodeManager
-  m_TagString: CodeManager
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 0
---- !u!4 &1127046626
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1127046625}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 1868749673}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1127046628
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1127046625}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1eacea80606e36442b32acc63b9b3092, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  nextButton: {fileID: 1315431819}
-  closeButton: {fileID: 584496964912265755}
-  returnButton: {fileID: 1967520244}
-  genreButtonsHeader: {fileID: 1759591229}
-  goalButtonsHeader: {fileID: 826030455}
-  levelButtonsHeader: {fileID: 174273522}
-  focusButtonsHeader: {fileID: 2051469585}
-  saveButton: {fileID: 1376320792}
-  cancelButton: {fileID: 165022774}
-  genreButton: []
-  genreIsPressed: 
-  isMale: 0
-  genreColorPressed: []
-  goalButton: []
-  goalIsPressed: 
-  goalbyIndex: []
-  chosenGoal: 
-  levelButton: []
-  levelIsPressed: 
-  levelByIndex: []
-  chosenLevel: 
-  levelValue: 0
-  focusButton: []
-  focusIsPressed: 
-  focusByIndex: []
-  chosenFocus: 
-  moreEditButton: []
-  moreValueIsEdited: 
-  PagesAndFields: {fileID: 0}
-  Data: {fileID: 0}
-  userDataAnimations: {fileID: 0}
-  userDataButtons: {fileID: 0}
---- !u!114 &1127046629
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1127046625}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 898db59d6c1811f49a25622d6ec9233a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  pagesHeader: {fileID: 90876050}
-  footerHeader: {fileID: 577803303}
-  userNameInput: {fileID: 339054861}
-  nameLevel: {fileID: 915557221}
-  blocksAreaHeader: {fileID: 1213865379}
-  page: []
-  footer: []
-  currentPage: 0
-  currentFooter: 0
-  userNameString: 
-  moreValueTMP: []
-  footerInput: []
-  footerValue: []
-  keepOldTextUsername: 0
-  oldEditTextUsername: 
-  editTextUsername: 
-  userDataAnimations: {fileID: 0}
-  userDataButtons: {fileID: 0}
---- !u!114 &1127046630
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1127046625}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 07625073b02112b4b83f55768080de7a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  pageEnterClip: {fileID: 7400000, guid: acf139c64cd11f94f98ede6a31cde04b, type: 2}
-  pageOutClip: {fileID: 7400000, guid: 19e46546933307448bf22fa09f7fab8a, type: 2}
-  footerAnimator: {fileID: 305537778}
-  footerEnterClip: {fileID: 7400000, guid: 721e64f60505185449e3521a2e965cca, type: 2}
-  footerSaveClip: {fileID: 7400000, guid: bee67f21daaf356489e3ebd7c100447b, type: 2}
-  footerCancelClip: {fileID: 7400000, guid: b48359fcfc646ce48891695e97041304, type: 2}
-  animatorsPages: []
-  PagesAndFields: {fileID: 0}
---- !u!114 &1127046632
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1127046625}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9a121b0fe84749647ad6b891fa334c75, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  userName: 
-  gender: 
-  goal: 
-  level: 
-  focus: 
-  age: 
-  currentWeight: 
-  weightGoal: 
-  height: 
-  language: 
-  username: 
-  password: 
-  pagesAndFields: {fileID: 1127046629}
-  transition: {fileID: 838522053}
-  userDataButtons: {fileID: 1127046628}
-  levelPhrase: []
 --- !u!1 &1130995706
 GameObject:
   m_ObjectHideFlags: 0
@@ -10429,7 +10270,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 90
+  m_fontSize: 85.75
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -11134,12 +10975,12 @@ MonoBehaviour:
   - 
   - 
   - 
-  units: []
   contents:
   - 
   - 
   - 
   - 
+  units: []
   _database:
     m_DefaultTableReference:
       m_TableCollectionName: 
@@ -11694,7 +11535,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 63
+  m_fontSize: 60.85
   m_fontSizeBase: 63
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -14089,7 +13930,6 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 1127046626}
   - {fileID: 1461000359}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -14380,7 +14220,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 75
+  m_fontSize: 62.7
   m_fontSizeBase: 75
   m_fontWeight: 400
   m_enableAutoSizing: 1

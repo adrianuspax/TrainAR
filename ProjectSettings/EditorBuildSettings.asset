@@ -9,9 +9,6 @@ EditorBuildSettings:
     path: Assets/00-Scenes/Main/Redirection.unity
     guid: 8345067c1a6e55c41869719b3098b71c
   - enabled: 1
-    path: Assets/00-Scenes/UserData/Language.unity
-    guid: fc69f1d02dd3bac48aa876e77375e635
-  - enabled: 1
     path: Assets/00-Scenes/Login/SignIn.unity
     guid: 511119d3a15a2b14cbfe8f7e4452174b
   - enabled: 1

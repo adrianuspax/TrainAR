@@ -1,3 +1,4 @@
+using ASP;
 using System;
 using UnityEngine;
 
@@ -6,8 +7,8 @@ namespace TreinAR.DataManager
     [Serializable]
     public class Calculation
     {
-        private readonly ContentData contentData;
-        private readonly UserData userData;
+        [SerializeField, ReadOnly] private ContentData contentData;
+        [SerializeField, ReadOnly] private UserData userData;
 
         public Calculation(UserData userData, ContentData contentData)
         {

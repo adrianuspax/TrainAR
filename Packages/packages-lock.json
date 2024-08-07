@@ -12,7 +12,7 @@
       "depth": 0,
       "source": "git",
       "dependencies": {},
-      "hash": "f290db298bed2ff364b34fa9008e89e74ca6bb13"
+      "hash": "9c7d2759eb0d3674f9bea6b8fb9b6fcb627a897c"
     },
     "com.adrianuspax.tmprolocalization": {
       "version": "https://github.com/adrianuspax/TMProExtensions_Localization.git",

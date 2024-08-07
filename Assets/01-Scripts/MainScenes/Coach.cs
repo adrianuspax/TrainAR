@@ -1,4 +1,4 @@
-﻿using ASP;
+using ASP;
 using ASP.Extensions;
 using UnityEngine;
 
@@ -149,19 +149,17 @@ namespace TreinAR.MainScenes
             enterWorkout = CurrentAnimation.isEnter;
             isWorkout = CurrentAnimation.isWorkout;
             outWorkout = CurrentAnimation.isOut;
-#else
-        return;
-#endif
-        }
-        /// Awake is called when an enabled script instance is being loaded.
-        private void Awake()
-        {
-            ComponentsAssignment();
         }
 
         private void Update()
         {
             InformationsLog();
+        }
+#endif
+        /// Awake is called when an enabled script instance is being loaded.
+        private void Awake()
+        {
+            ComponentsAssignment();
         }
         /// <summary>
         /// Assignment of components and variables

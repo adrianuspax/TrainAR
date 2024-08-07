@@ -1,4 +1,4 @@
-﻿using UnityEngine.Events;
+using UnityEngine.Events;
 using UnityEngine.UI;
 using Debug = ASP.Debug;
 
@@ -21,8 +21,10 @@ namespace TreinAR
             Debug.Log("CloseApplication() called!");
             UnityEditor.EditorApplication.isPlaying = false;
 #else
-            Application.Quit();
+            UnityEngine.Application.Quit();
 #endif
+
+
         }
     }
 }
