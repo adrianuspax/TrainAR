@@ -9,6 +9,10 @@ namespace TreinAR.UserData.Pages
     {
         [Space(20, order = 0)]
         [SerializeField, ReadOnly] private TMP_InputField inputField;
+
+        private bool isKeeping;
+        private string edit;
+        private string old;
         /// Awake is called when an enabled script instance is being loaded.
         private void Awake()
         {
@@ -57,7 +61,8 @@ namespace TreinAR.UserData.Pages
         public void OnValueChanged(string content)
         {
             SetNextButtonInteractableByContent(content);
-            this.content = content;
+            old = edit;
+            this.content = edit = content;
         }
 
         public void OnEndEdit(string content)
@@ -65,23 +70,21 @@ namespace TreinAR.UserData.Pages
             SetNextButtonInteractableByContent(content);
             this.content = content;
 
-            /*if (keepOldTextUsername && !string.IsNullOrEmpty(oldEditTextUsername))
+            if (isKeeping && !string.IsNullOrEmpty(old))
             {
-                editTextUsername = oldEditTextUsername;
-                userNameInput.text = oldEditTextUsername;
-                UserName = oldEditTextUsername;
-                keepOldTextUsername = false;
+                edit = old;
+                inputField.text = old;
+                isKeeping = false;
             }
 
-            if (userNameInput.wasCanceled)
-            {
-                Page1PlaceHolder = string.Empty;
-            }*/
+            if (inputField.wasCanceled)
+                inputField.placeholder.gameObject.SetActive(false);
         }
 
         public void OnTouchScreenKeyboardStatusChanged(TouchScreenKeyboard.Status status)
         {
-
+            if (status == TouchScreenKeyboard.Status.Canceled)
+                isKeeping = true;
         }
 
         public void SetNextButtonInteractableByContent(string content)

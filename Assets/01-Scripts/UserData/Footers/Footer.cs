@@ -37,7 +37,6 @@ namespace TreinAR.UserData.Footers
             inputField.onDeselect.AddListener(OnDeselect);
             inputField.onValueChanged.AddListener(OnValueChanged);
             inputField.onEndEdit.AddListener(OnEndEdit);
-            inputField.onTouchScreenKeyboardStatusChanged.AddListener(OnTouchScreenKeyboardStatusChanged);
         }
         /// <summary>
         /// Assignment of components and variables
@@ -87,11 +86,6 @@ namespace TreinAR.UserData.Footers
         {
             SetSaveButtonInteractableByContent(content);
             this.content = content;
-        }
-
-        public void OnTouchScreenKeyboardStatusChanged(TouchScreenKeyboard.Status status)
-        {
-
         }
 
         public void SetSaveButtonInteractableByContent(string content)

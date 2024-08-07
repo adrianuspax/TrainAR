@@ -345,10 +345,10 @@ namespace TreinAR.MainScenes
         {
             get
             {
-                return (Calculation.ValueBMI.ToString("F2") + " kg/m²",
+                return ($"{Calculation.ValueBMI:F2} kg/m²",
                         /*LanguageManager.statusBMI[(int)Calculation.StatusBMI]*/ default,
-                       (Calculation.BodyFat * 100f).ToString("F2") + "%",
-                        Calculation.CurrentFat.ToString("F2") + " kg");
+                        $"{Calculation.BodyFat * 100f:F2}%",
+                        $"{Calculation.CurrentFat:F2} kg");
             }
         }
 
