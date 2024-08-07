@@ -1,24 +1,18 @@
 using ASP;
 using ASP.Extensions;
+using System;
 using TMPro;
 using TreinAR.DataManager;
-using TreinAR.DataManager.Pages;
 using UnityEngine;
 using UnityEngine.UI;
 using Debug = ASP.Debug;
 
 namespace TreinAR.MainScenes
 {
+    using Calculation = DataManager.Calculation;
+
     public class PanelCoach : MonoBehaviour
     {
-        public enum Focus
-        {
-            chest = 0, //1
-            abdomen = 1, //0
-            legs = 2, //3
-            arms = 3 //2
-        }
-
         [Header(Header.READONLY, order = 0)]
         [Space(-10, order = 1)]
         [Header(Header.components, order = 2)]
@@ -59,14 +53,16 @@ namespace TreinAR.MainScenes
         [Header(Header.variables, order = 1)]
         [SerializeField, ReadOnly] private Vector3 vectorCanvasPos;
         [SerializeField, ReadOnly] private float distance;
+        [SerializeField, NonReorderable, ReadOnly] private string[] statusBMI;
+        [SerializeField, NonReorderable, ReadOnly] private string[] levelPhrase;
+        [SerializeField, NonReorderable, ReadOnly] private string[] goalPhrase;
 
         [Header(Header.scripts, order = 0)]
         [SerializeField, ReadOnly] private AugmentedReality AR;
         [SerializeField, ReadOnly] private TrainingSystem trainingSystem;
         [SerializeField, ReadOnly] private ButtonsFloat floatMenu;
         [SerializeField, ReadOnly] private ButtonsMain buttonsMain;
-        [SerializeField, ReadOnly] private ContentData contentData;
-        [SerializeField, ReadOnly] private UserData userData;
+        [SerializeField, ReadOnly] private Calculation calculation;
         [SerializeField, NonReorderable, ReadOnly] private InfoData[] infoDatas;
 
         public const string PARAMETER = "isOpen";
@@ -84,12 +80,37 @@ namespace TreinAR.MainScenes
 
             Quaternion localRotation = Quaternion.Euler(new Vector3(0f, -180f, 0f));
             pivotCorrection.SetLocalPositionAndRotation(Vector3.up, localRotation);
+            int length;
+            length =  Enum.GetValues(typeof(Calculation.BMI_Status)).Length;
+            statusBMI = new string[length];
 
-            if (ContentData.TryLoad(out ContentData content))
-                contentData = content;
+            for (int i = 0; i < length; i++)
+            {
+                int index = i;
+                LocalizationManager.SetLocalizationString(((Calculation.BMI_Status)index).ToString(), "StringTableMain", (result) => statusBMI[index] = result);
+            }
 
-            if (UserData.TryLoad(out UserData user))
-                userData = user;
+            length = Enum.GetValues(typeof(Calculation.Level)).Length;
+            levelPhrase = new string[length];
+            string[] entry = new string[] { "Sedentary", "Walker", "Rrunner", "Athletic", "BodyBuilder"};
+
+
+            for (int i = 0; i < length; i++)
+            {
+                int index = i;
+                LocalizationManager.SetLocalizationString(entry[index], "StringTableMain", (result) => levelPhrase[index] = result);
+            }
+
+            length = Enum.GetValues(typeof(Calculation.Goal)).Length;
+
+            for (int i = 0; i < length; i++)
+            {
+                int index = i;
+                LocalizationManager.SetLocalizationString(((Calculation.Goal)index).ToString(), "StringTableMain", (result) => goalPhrase[index] = result);
+            }
+
+            if (ContentData.TryLoad(out ContentData contentData) && UserData.TryLoad(out UserData userData))
+                calculation = new(userData, contentData);
 
             nameTMP.text = contentData.name;
             ageTMP.text = contentData.age;
@@ -114,19 +135,19 @@ namespace TreinAR.MainScenes
                 "Gender: " + genderTMP.text + "\n" +
                 "Weight: " + weightTMP.text + "\n" +
                 "Height: " + heightTMP.text + "\n" +
-                "Level: " + levelTMP.text + " || Index Level: " + Calculation.IndexLevel + "\n" +
+                "Level: " + levelTMP.text + " || Index Level: " + calculation.Data.user.levelIndex + "\n" +
                 "BMI: " + bmiTMP.text + "\n" +
                 "Status: " + statusTMP.text + "\n" +
                 "Body Fat: " + bodyFatTMP.text + "\n" +
                 "Total Fat: " + totalFatTMP.text + "\n" +
-                "Goal: " + goalTMP.text + " || Index Goal: " + Calculation.IndexGoal + "\n" +
+                "Goal: " + goalTMP.text + " || Index Goal: " + calculation.Data.user.goalIndex + "\n" +
                 "Target Level: " + targetLevelTMP.text + "\n" +
                 "Target Weight: " + targetWeightTMP.text + "\n" +
                 "Target Body Fat: " + targetBodyFatTMP.text + "\n" +
                 "To Lose Weight: " + toLoseFatTMP.text + "\n" +
                 "To Burn Cal: " + toBurnCalTMP.text + "\n");
 
-            Debug.Log("Index Focus: " + Calculation.IndexFocus);
+            Debug.Log("Index Focus: " + calculation.Data.user.focusIndex);
         }
 
         private void Update()
@@ -248,7 +269,7 @@ namespace TreinAR.MainScenes
             }
         }
 
-        private void RecomendationsActivations(Focus focus)
+        private void RecomendationsActivations(Calculation.Focus focus)
         {
             bool linesToActivate;
 
@@ -256,7 +277,7 @@ namespace TreinAR.MainScenes
             {
                 switch (focus)
                 {
-                    case Focus.chest:
+                    case Calculation.Focus.chest:
                         linesToActivate =
                             i == 0 ||
                             i == DropDownMenuIndex.BURPEE + 1 ||
@@ -268,7 +289,7 @@ namespace TreinAR.MainScenes
                             i == 15;
                         recomendation[i].SetActive(linesToActivate);
                         break;
-                    case Focus.abdomen:
+                    case Calculation.Focus.abdomen:
                         linesToActivate =
                             i == 0 ||
                             i == DropDownMenuIndex.BURPEE + 1 ||
@@ -279,7 +300,7 @@ namespace TreinAR.MainScenes
                             i == 15;
                         recomendation[i].SetActive(linesToActivate);
                         break;
-                    case Focus.legs:
+                    case Calculation.Focus.legs:
                         linesToActivate =
                             i == 0 ||
                             i == DropDownMenuIndex.SQUAT + 1 ||
@@ -294,7 +315,7 @@ namespace TreinAR.MainScenes
                             i == 15;
                         recomendation[i].SetActive(linesToActivate);
                         break;
-                    case Focus.arms:
+                    case Calculation.Focus.arms:
                         linesToActivate =
                             i == 0 ||
                             i == DropDownMenuIndex.SQUATBENTARMS + 1 ||
@@ -335,10 +356,10 @@ namespace TreinAR.MainScenes
         {
             get
             {
-                return ($"{Calculation.ValueBMI:F2} kg/m²",
-                        /*LanguageManager.statusBMI[(int)Calculation.StatusBMI]*/ default,
-                        $"{Calculation.BodyFat * 100f:F2}%",
-                        $"{Calculation.CurrentFat:F2} kg");
+                return ($"{calculation.ValueBMI:F2} kg/m²",
+                        statusBMI[(int)calculation.StatusBMI],
+                        $"{calculation.BodyFat * 100f:F2}%",
+                        $"{calculation.CurrentFat:F2} kg");
             }
         }
 
@@ -352,12 +373,12 @@ namespace TreinAR.MainScenes
         {
             get
             {
-                return (contentData.goal,
-                        /*LanguageManager.levelPhrase[((int)Calculation.TargetLevel - 1)]*/ default,
-                        contentData.goalWeight,
-                       (Calculation.TargetBodyFat * 100f).ToString("F2") + "%",
-                        toLoseFatTMP.text = Calculation.ToLoseWeight.ToString("F2") + " kg",
-                        toBurnCalTMP.text = (Calculation.ToBurnCalories * 0.0001f).ToString("F2") + " kcal");
+                return (calculation.Data.content.goal,
+                        levelPhrase[((int)calculation.TargetLevel - 1)],
+                        calculation.Data.content.goalWeight,
+                       $"{(calculation.TargetBodyFat * 100f):F2}%",
+                        toLoseFatTMP.text = $"{ calculation.ToLoseWeight:F2} kg",
+                        toBurnCalTMP.text = $"{(calculation.ToBurnCalories * 0.0001f):F2} kcal");
             }
         }
     }

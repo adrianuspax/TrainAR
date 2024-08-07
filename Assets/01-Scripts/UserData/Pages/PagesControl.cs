@@ -91,7 +91,7 @@ namespace TreinAR.DataManager.Pages
                 focusIndex = ((Page5)pages[4]).Index,
                 age = ((Page6)pages[5]).Age,
                 currentWeight = ((Page6)pages[5]).CurrentWeight,
-                goalWeight = ((Page6)pages[5]).GoalWeight,
+                targetWeight = ((Page6)pages[5]).GoalWeight,
                 height = ((Page6)pages[5]).Height
             };
 

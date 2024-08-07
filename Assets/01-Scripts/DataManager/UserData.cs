@@ -16,7 +16,7 @@ namespace TreinAR.DataManager
         public int levelIndex;
         public int goalIndex;
         public int focusIndex;
-        public float goalWeight;
+        public float targetWeight;
 
         public string ToString(bool prettyPrint = false)
         {

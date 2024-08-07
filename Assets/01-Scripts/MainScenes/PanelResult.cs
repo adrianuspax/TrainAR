@@ -1,12 +1,15 @@
 using ASP;
 using ASP.Extensions;
 using TMPro;
+using TreinAR.DataManager;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.UI.Extensions;
 
 namespace TreinAR.MainScenes
 {
+    using Calculation = DataManager.Calculation;
+
     public class PanelResult : MonoBehaviour
     {
         [Header(Header.READONLY, order = 0)]
@@ -29,7 +32,7 @@ namespace TreinAR.MainScenes
         [Space(-10, order = 0)]
         [Header(Header.scripts, order = 1)]
         [SerializeField, ReadOnly] private RadarPolygon radarPolygon;
-
+        [SerializeField, ReadOnly] private Calculation calculation;
 
         private const int LVL = 0;
         private const int BMI = 1;
@@ -51,11 +54,14 @@ namespace TreinAR.MainScenes
 
         private void Start()
         {
-            bmi = RangingBMI(Calculation.ValueBMI);
-            currentLevel = RangingLevel(Calculation.IndexLevel);
-            bodyFat = RangingBodyFat(Calculation.BodyFat);
-            biotype = RangingBiotype(Calculation.StatusBMI);
-            burnedCal = RangingBurnedCal(Calculation.ToBurnCalories * 0.25f); //Falta input
+            if (ContentData.TryLoad(out ContentData contentData) && UserData.TryLoad(out UserData userData))
+                calculation = new(userData, contentData);
+
+            bmi = RangingBMI(calculation.ValueBMI);
+            currentLevel = RangingLevel(calculation.Data.user.levelIndex);
+            bodyFat = RangingBodyFat(calculation.BodyFat);
+            biotype = RangingBiotype(calculation.StatusBMI);
+            burnedCal = RangingBurnedCal(calculation.ToBurnCalories * 0.25f); //Falta input
 
             radarPolygon.Value[BMI] = bmi;
             radarPolygon.Value[LVL] = currentLevel;
@@ -119,8 +125,8 @@ namespace TreinAR.MainScenes
         {
             float bodyFatPow2, idealFatPow2;
             bodyFatPow2 = Mathf.Pow(bodyFat, 2);
-            idealFatPow2 = Mathf.Pow(Calculation.IdealBodyFat, 2);
-            return (bodyFatPow2 / (idealFatPow2 - Calculation.IdealBodyFat)) + (2f * bodyFat / (1f - Calculation.IdealBodyFat));
+            idealFatPow2 = Mathf.Pow(calculation.IdealBodyFat, 2);
+            return (bodyFatPow2 / (idealFatPow2 - calculation.IdealBodyFat)) + (2f * bodyFat / (1f - calculation.IdealBodyFat));
         }
 
         public float RangingBiotype(Calculation.BMI_Status status)
@@ -130,7 +136,7 @@ namespace TreinAR.MainScenes
 
         public float RangingBurnedCal(float burnedCal)
         {
-            return burnedCal / Calculation.ToBurnCalories;
+            return burnedCal / calculation.ToBurnCalories;
         }
     }
 }
