@@ -59,11 +59,11 @@ namespace TreinAR.DataManager.Pages
                 if (i == index && isPressed)
                 {
                     buttons[index].image.color = pressedColors[index];
-                    icons[index].color = PalleteColors.BlueGray_White;
+                    icons[index].color = PalleteColorsOld.BlueGray_White;
                 }
                 else
                 {
-                    buttons[i].image.color = PalleteColors.BlueGray_White;
+                    buttons[i].image.color = PalleteColorsOld.BlueGray_White;
                     icons[i].color = pressedColors[i];
                     this.isPressed[i] = false;
                 }

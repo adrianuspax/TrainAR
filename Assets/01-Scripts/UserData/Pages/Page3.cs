@@ -60,17 +60,17 @@ namespace TreinAR.DataManager.Pages
             {
                 if (i == index && isPressed)
                 {
-                    icons[index].color = PalleteColors.BlueGray_White;
-                    tmps[index].color = PalleteColors.BlueGray_White;
+                    icons[index].color = PalleteColorsOld.BlueGray_White;
+                    tmps[index].color = PalleteColorsOld.BlueGray_White;
                     tmps[index].fontStyle = FontStyles.Bold;
-                    buttons[index].image.color = PalleteColors.Main;
+                    buttons[index].image.color = PalleteColorsOld.Main;
                 }
                 else
                 {
-                    icons[i].color = PalleteColors.Main;
-                    tmps[i].color = PalleteColors.BlueGrey(4);
+                    icons[i].color = PalleteColorsOld.Main;
+                    tmps[i].color = PalleteColorsOld.BlueGrey(4);
                     tmps[i].fontStyle = FontStyles.Normal;
-                    buttons[i].image.color = PalleteColors.BlueGray_White;
+                    buttons[i].image.color = PalleteColorsOld.BlueGray_White;
                     this.isPressed[i] = false;
                 }
             }

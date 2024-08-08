@@ -1,0 +1,86 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &54129288706955211
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2089085606283220952}
+  - component: {fileID: 6472808251410690289}
+  - component: {fileID: 2261122119125700853}
+  m_Layer: 0
+  m_Name: ColorPalette
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2089085606283220952
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 54129288706955211}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &6472808251410690289
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 54129288706955211}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dd8f7a8f4ffa12c4c97367a2b5efbd72, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  analogous: {fileID: 11400000, guid: 106b3080ddda17f47b7f3042d28fe72d, type: 2}
+  complementary: {fileID: 11400000, guid: 7d5d072834c15e8449cb865d3d66d12d, type: 2}
+  compound: {fileID: 11400000, guid: 4618aaeab3ac04f47b8c15c914193fb2, type: 2}
+  main: {fileID: 11400000, guid: ff5da14ed2acb4b4eb095c000484ca29, type: 2}
+  monochromatic: {fileID: 11400000, guid: ba66d000802942b48b89d1534c445835, type: 2}
+  shades: {fileID: 11400000, guid: 9d31f35b9510c2a42bfd9293c78f6ea8, type: 2}
+  splitComplementary: {fileID: 11400000, guid: f5061043c2e11274b9d31295b6806b96, type: 2}
+  square: {fileID: 11400000, guid: de13dd82c39e98540988dc2e0b1a3215, type: 2}
+  triad: {fileID: 11400000, guid: 830d9f460c86dfc49b9e94bd4b3766c0, type: 2}
+--- !u!114 &2261122119125700853
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 54129288706955211}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 947a9b2ba803cba419914b815f41f55f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  amber: {fileID: 11400000, guid: ffb89267643656043a3a7d079eb5f0db, type: 2}
+  blue: {fileID: 11400000, guid: 09be996790a110d418eec14d2491275c, type: 2}
+  blueGrey: {fileID: 11400000, guid: 51441bde8e560af4fa20f323a8ce376f, type: 2}
+  brown: {fileID: 11400000, guid: 5682ee2f456b3d345b4f50ccfb2e9fde, type: 2}
+  cyan: {fileID: 11400000, guid: ba2c1e35186b04243a2346d474b081d3, type: 2}
+  deepOrange: {fileID: 11400000, guid: 20bb442e9a02e8649a8d8fe63835c084, type: 2}
+  green: {fileID: 11400000, guid: b31b27d552f5baa41a37768fe496c9cc, type: 2}
+  grey: {fileID: 11400000, guid: 1868a91a1bc6c79488a4d83494df49f7, type: 2}
+  indigo: {fileID: 11400000, guid: 4462e035d12e8324a960b97bd4f71902, type: 2}
+  lightBlue: {fileID: 11400000, guid: 7e9496f80ae9ee54b9cbd2f1272a1ec4, type: 2}
+  lightGreen: {fileID: 11400000, guid: 76e4d43074ada7b43b14bebe54b11564, type: 2}
+  lime: {fileID: 11400000, guid: 5cf1f3dbfa78d2f4084c59604b2a5b1b, type: 2}
+  orange: {fileID: 11400000, guid: 881a41dbd1b00714f904e87bf7ae3173, type: 2}
+  pink: {fileID: 11400000, guid: 5b4fab4d7e40f244390a045a1c932fed, type: 2}
+  purple: {fileID: 11400000, guid: b458c3d14eb7a0f4aa16e1865305b50c, type: 2}
+  red: {fileID: 11400000, guid: 063e454619f2a6845ad9f901004b9771, type: 2}
+  teal: {fileID: 11400000, guid: 145ff9b6776682c4ea1cbd53064a70dc, type: 2}
+  yellow: {fileID: 11400000, guid: f219b58511c05484697d0047ea5c1b57, type: 2}

@@ -60,7 +60,7 @@ namespace TreinAR.DataManager.Pages
             for (int i = 0; i < buttons.Length; i++)
             {
                 bool conditional = (i <= index);
-                buttons[i].image.color = conditional ? PalleteColors.Main : PalleteColors.BlueGray_WhiteBlue;
+                buttons[i].image.color = conditional ? PalleteColorsOld.Main : PalleteColorsOld.BlueGray_WhiteBlue;
                 isPressed[i] = conditional;
             }
 

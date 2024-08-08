@@ -78,8 +78,8 @@ namespace TreinAR.MainScenes
                 }
             }
 
-            pressedColor = PalleteColors.DoubleSplitComplementary(2);
-            pressedTxtColor = PalleteColors.Square(1);
+            pressedColor = PalleteColorsOld.DoubleSplitComplementary(2);
+            pressedTxtColor = PalleteColorsOld.Square(1);
             unpressedColor = gridButtonDDM[0].image.color;
             unpressedTxtColor = gridButtonDDM[0].transform.GetChild(0).GetComponent<TextMeshProUGUI>().color;
 
