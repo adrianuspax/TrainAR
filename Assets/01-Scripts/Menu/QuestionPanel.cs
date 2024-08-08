@@ -57,7 +57,7 @@ namespace TreinAR.Menu
             static IEnumerator _delayCallScene(float time)
             {
                 yield return new WaitForSeconds(time);
-                TrainARSceneManager.LoadRedirection();
+                SceneManager.LoadRedirection();
             }
         }
 

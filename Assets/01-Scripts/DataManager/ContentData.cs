@@ -27,14 +27,9 @@ namespace TreinAR.DataManager
             Json.Save(this);
         }
 
-        public static UserData Load()
+        public static bool TryLoad(out ContentData contentData, ASP.SceneManagement.SceneManager.Scene scene)
         {
-            return Json.Load<UserData>();
-        }
-
-        public static bool TryLoad(out ContentData contentData)
-        {
-            return Json.TryLoad(out contentData);
+            return Json.TryLoad(out contentData, scene.name);
         }
     }
 }

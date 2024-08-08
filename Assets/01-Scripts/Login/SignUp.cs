@@ -118,10 +118,10 @@ namespace TreinAR.Login
                 AccountData.Username = username;
                 AccountData.Password = newPassword;
 
-                if (TrainARSceneManager.GetPreviousSceneSaved() == TrainARSceneManager.menu)
-                    TrainARSceneManager.LoadMenu();
+                if (SceneManager.GetPreviousSceneSaved() == SceneManager.menu)
+                    SceneManager.LoadMenu();
                 else
-                    TrainARSceneManager.LoadSignIn();
+                    SceneManager.LoadSignIn();
             }
         }
 
@@ -132,10 +132,10 @@ namespace TreinAR.Login
                 AccountData.Username = username;
                 AccountData.Password = newPassword;
 
-                if (TrainARSceneManager.GetPreviousSceneSaved() == TrainARSceneManager.menu)
-                    TrainARSceneManager.LoadMenu();
+                if (SceneManager.GetPreviousSceneSaved() == SceneManager.menu)
+                    SceneManager.LoadMenu();
                 else
-                    TrainARSceneManager.LoadSignIn();
+                    SceneManager.LoadSignIn();
             }
         }
         #endregion

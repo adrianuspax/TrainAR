@@ -61,19 +61,19 @@ namespace TreinAR.Menu
             ASP.SceneManagement.SceneManager.SaveCurrentScene();
         }
 
-        public void UpdateProfile() => TrainARSceneManager.LoadUserData();
+        public void UpdateProfile() => SceneManager.LoadUserData();
 
-        public void EditAccount() => TrainARSceneManager.LoadSignOn();
+        public void EditAccount() => SceneManager.LoadSignUp();
 
-        public void Language() => TrainARSceneManager.LoadLanguage();
+        public void Language() => SceneManager.LoadLanguage();
 
         public void SignOut()
         {
             AccountData.Signed = false;
-            TrainARSceneManager.LoadSignIn();
+            SceneManager.LoadSignIn();
         }
 
-        public void Back() => TrainARSceneManager.LoadTrainAR();
+        public void Back() => SceneManager.LoadTrainAR();
     }
 }
 

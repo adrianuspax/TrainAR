@@ -105,10 +105,10 @@ namespace TreinAR.Login
             {
                 AccountData.Signed = true;
 
-                if (TrainARSceneManager.GetPreviousSceneSaved() == TrainARSceneManager.signUp)
-                    TrainARSceneManager.LoadUserData();
+                if (SceneManager.GetPreviousSceneSaved() == SceneManager.signUp)
+                    SceneManager.LoadUserData();
                 else
-                    TrainARSceneManager.LoadTrainAR();
+                    SceneManager.LoadTrainAR();
             }
             else
             {
@@ -118,7 +118,7 @@ namespace TreinAR.Login
 
         public void SignOnFunction()
         {
-            TrainARSceneManager.LoadSignOn();
+            SceneManager.LoadSignUp();
         }
 
         public void OnSelectUsername(string username)

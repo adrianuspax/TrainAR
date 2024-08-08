@@ -110,7 +110,7 @@ namespace TreinAR.MainScenes
                 LocalizationManager.SetLocalizationString(((Calculation.Goal)index).ToString(), "StringTableMain", (result) => goalPhrase[index] = result);
             }
 
-            if (ContentData.TryLoad(out ContentData contentData) && UserData.TryLoad(out UserData userData))
+            if (ContentData.TryLoad(out ContentData contentData, SceneManager.userData) && UserData.TryLoad(out UserData userData, SceneManager.userData))
                 calculation = new(userData, contentData);
 
             nameTMP.text = contentData.name;

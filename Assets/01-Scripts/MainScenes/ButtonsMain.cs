@@ -53,7 +53,7 @@ namespace TreinAR.MainScenes
         private void OnEnable()
         {
             btnTopR.onClick.AddListener(ButtonsManager.CloseApplication);
-            btnTopL.onClick.AddListener(TrainARSceneManager.LoadMenu);
+            btnTopL.onClick.AddListener(SceneManager.LoadMenu);
             btnBarC.onClick.AddListener(AR.PlaceCoachAR);
             btnBarL.onClick.AddListener(panelResult.PanelResultBehaviour);
             btnBarR.onClick.AddListener(() => ButtonPanelCoach(isPressedButtonBar = !isPressedButtonBar));

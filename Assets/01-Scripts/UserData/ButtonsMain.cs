@@ -65,15 +65,15 @@ public class ButtonsMain : MonoBehaviour
 
         pagesControl.SaveData();
 
-        if (TrainARSceneManager.GetPreviousSceneSaved() == TrainARSceneManager.menu)
-            TrainARSceneManager.LoadMenu();
+        if (SceneManager.GetPreviousSceneSaved() == SceneManager.menu)
+            SceneManager.LoadMenu();
         else
-            TrainARSceneManager.LoadTrainAR();
+            SceneManager.LoadTrainAR();
     }
 
     public void Back()
     {
-        TrainARSceneManager.LoadMenu();
+        SceneManager.LoadMenu();
     }
 
     public void SetNextButtonInteractable(bool value)

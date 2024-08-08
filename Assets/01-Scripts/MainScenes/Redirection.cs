@@ -8,9 +8,9 @@ namespace TreinAR.MainScenes
         private void Start()
         {
             if (AccountData.Signed)
-                TrainARSceneManager.LoadTrainAR();
+                SceneManager.LoadTrainAR();
             else
-                TrainARSceneManager.LoadSignIn();
+                SceneManager.LoadSignIn();
         }
     }
 }

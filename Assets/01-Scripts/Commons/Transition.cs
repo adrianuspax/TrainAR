@@ -45,7 +45,7 @@ namespace TreinAR.Commons
         /// This function is called when the object becomes enabled and active.
         private void OnEnable()
         {
-            TrainARSceneManager.Load += CallSceneWithClip;
+            SceneManager.Load += CallSceneWithClip;
         }
         /// Start is called on the frame when a script is enabled just before any of the Update methods are called the first time.
         private void Start()
@@ -56,7 +56,7 @@ namespace TreinAR.Commons
         /// This function is called when the behaviour becomes disabled.
         private void OnDisable()
         {
-            TrainARSceneManager.Load -= CallSceneWithClip;
+            SceneManager.Load -= CallSceneWithClip;
         }
         /// <summary>
         /// Assignment of components and variables
@@ -95,15 +95,15 @@ namespace TreinAR.Commons
             action?.Invoke();
         }
 
-        private void CallSceneWithClip(SceneManager.Scene scene)
+        private void CallSceneWithClip(ASP.SceneManagement.SceneManager.Scene scene)
         {
             StartCoroutine(_delay(scene));
 
-            IEnumerator _delay(SceneManager.Scene scene)
+            IEnumerator _delay(ASP.SceneManagement.SceneManager.Scene scene)
             {
                 StartClip();
                 yield return new WaitForSeconds(animator.GetAnimationClipLength(AnimationControl.State.start.name));
-                SceneManager.Load(scene);
+                ASP.SceneManagement.SceneManager.Load(scene);
             }
         }
     }

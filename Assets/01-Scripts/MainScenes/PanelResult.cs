@@ -54,7 +54,7 @@ namespace TreinAR.MainScenes
 
         private void Start()
         {
-            if (ContentData.TryLoad(out ContentData contentData) && UserData.TryLoad(out UserData userData))
+            if (ContentData.TryLoad(out ContentData contentData, SceneManager.userData) && UserData.TryLoad(out UserData userData, SceneManager.userData))
                 calculation = new(userData, contentData);
 
             bmi = RangingBMI(calculation.ValueBMI);

@@ -3,7 +3,8 @@
     "rootNamespace": "TreinAR.DataManager",
     "references": [
         "GUID:0ffb2380fa6475a428676a4ee274208c",
-        "GUID:7112c82b7aaa69840b088105586afcd6"
+        "GUID:7112c82b7aaa69840b088105586afcd6",
+        "GUID:6c11b0e2444c6f84a8329c70a785fcc2"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],

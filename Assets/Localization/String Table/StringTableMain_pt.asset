@@ -339,7 +339,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 42237394534400
-    m_Localized: "Agachamento <size:50%>Bra\xE7os Flexionados</size>\r"
+    m_Localized: "Agachamento <size=50%>Bra\xE7os Flexionados</size>\r"
     m_Metadata:
       m_Items: []
   - m_Id: 42253483884544
@@ -351,7 +351,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 42283133419520
-    m_Localized: "Agachamento <size:50%>Com Flex\xE3o</size>"
+    m_Localized: "Agachamento <size=50%>com Flex\xE3o</size>"
     m_Metadata:
       m_Items: []
   - m_Id: 42295636639744
