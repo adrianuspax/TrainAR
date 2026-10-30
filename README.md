@@ -1,2 +1,2 @@
 # TrainAR
- TrainAR project repository. Property EXPERSINC.
+ Protótipo de Realidade aumentada!
